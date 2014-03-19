@@ -1,0 +1,486 @@
+.clearfix
+{
+    clear: both;
+}
+
+body.artbase button.section-action
+{
+    width: 300px;
+    height: 75px;
+}
+
+body.artbase .submit-artwork
+{
+    background-image: url(../../images/button_text_sprite.png);
+    background-position: 25px 2px;
+}
+
+body.artbase button.submit-artwork:hover
+{
+    background-position: 25px -70px;
+}
+
+/* Featured Work Styles */
+
+#artbase-info h3
+{
+    padding-left: 6px;
+}
+
+#artbase-info div
+{
+    float: left;
+    width: 620px;
+}
+
+#artbase-info p
+{
+    margin: 6px;
+}
+
+#artbase-info form
+{
+    float: right;
+    width: 310px;
+}
+
+#artbase-top
+{
+    background-color: #ccc;
+    width: 100%;
+    position: relative;
+}
+
+#featured-nav
+{
+    margin-bottom: 2em;
+}
+
+#featured-nav .last {
+    margin-right: 0;
+}
+
+#featured-link,
+.artwork-link
+{
+    border: none;
+    background-color: transparent;
+    width: 14px;
+    height: 14px;
+    background-image: url(../../images/icons_sprite.png);
+    background-position: 0px -1001px;
+    background-repeat: no-repeat;
+    margin-left: 0.5em;
+    float: left;
+    position: absolute;
+}
+
+.artwork-link{
+    padding-right: 10px;
+    margin-top: 1em;
+}
+
+.artwork-edit,
+.exhibition-edit {
+    padding:1px 4px;
+    font-size: 11px;
+    border: none;
+    font-family: Helvetica;
+    background-color: #F30202;
+    text-transform: uppercase;
+    color: white;
+    border-radius: 8px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+}
+
+.artwork-edit:hover,.exhibition-edit:hover {
+    color: white;
+    text-decoration: none;
+}
+
+#featured-work
+{
+    overflow: hidden;
+    width: 950px;
+    height: 375px;
+}
+
+#featured-title a 
+{
+    color: white;
+    float: left;
+    margin-right: 5px;
+
+}
+
+#featured-details
+{
+    font-family: helvetic, sans-serif;
+    position: absolute;
+    top: 0px;
+    height: 290px;
+    left: 440px;
+    right: 40px;
+}
+
+#featured-details .mask
+{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    opacity: 0.75;
+    z-index: 0;
+}
+
+#featured-details .content
+{
+    position: relative;
+    z-index: 1;
+    padding: 40px;
+}
+
+.red-title
+{
+    font-size: 12px;
+    text-transform: uppercase;
+    color: red;
+}
+
+#featured-work-content .tag
+{
+    color: #6494B2;
+    background-color: #0F1010;
+}
+
+#featured-title
+{
+    font-family: georgia, serif;
+    font-size: 24px;
+    color: white;
+    display: inline-block;
+    line-height: .9em;
+}
+
+#featured-artist
+{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-size: 13px;
+    text-transform: uppercase;
+    color: #6494B2;
+}
+
+button.select-work,
+button.next-work 
+{
+    padding: 0;
+    margin: 0;
+    border: none;
+    background-image: url(../../images/icons_sprite.png);
+    background-color: transparent;
+    cursor: pointer;
+}
+
+button.select-work
+{
+    height: 12px;
+    width: 12px;
+    margin-right: 4px;
+    background-position: 0px 961px;
+}
+
+button.next-work
+{
+    width: 12px;
+    height: 12px;
+    background-image: url(../../images/arrows_sprite.png);
+    background-position: 0px -12px;
+    background-repeat: no-repeat;
+}
+
+button.select-work.selected
+{
+    border: none;
+    background-image: url(../../images/icons_sprite.png);
+    background-position: 0px 1001px;
+    background-color: transparent;
+}
+
+/* Highlighted works styles */
+
+#artbase-highlights
+{
+    height: 10em;
+    margin-top: 2em;
+    margin-bottom: 2em;
+}
+
+#artbase-highlights a
+{
+    border: none;
+    text-decoration: none;
+}
+
+#artbase-highlights .highlight
+{
+    display: none;
+}
+
+#artbase-highlights .highlight.selected
+{
+    display: inline;
+}
+
+#artbase-highlights-content.loading
+{
+    display: none;
+}
+
+/* Member Exhibitions & Essays */
+
+/* Essays */
+
+#artbase-essays-and-exhibitions
+{
+}
+
+#artbase-collections,
+#artbase-member-exhibitions
+{
+    float: right;
+}
+
+#artbase-collections .collection .small-italic,
+#artbase-member-exhibitions .exhibition .small-italic {
+    padding: 0 8px 1.5em 8px;
+}
+
+#artbase-collections.clear,
+#artbase-member-exhibitions.clear
+{
+    float: none;
+}
+
+#artbase-new-essays
+{
+    float: left;
+}
+
+#artbase-new-essays .details
+{
+    width: 100%;
+    height: 2.25em;
+}
+
+#artbase-new-essays .details button
+{
+    float: right;
+}
+
+.created-date {
+    color:#999;
+}
+
+.byline-and-date
+{
+}
+
+.byline-and-date > *
+{
+    height: 2em;
+}
+
+.byline-and-date .authors{
+    margin-left: 5px;
+}
+
+#artbase-new-essays blockquote.excerpt-content
+{
+    font-family: Georgia, serif;
+    font-size: 16px;
+    -mox-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    border-left: 3px solid #E2E2E2;
+    padding-left: 1em;
+}
+
+#artbase-new-essays .excerpt img
+{
+    float: right;
+    padding-bottom: 1em;
+}
+
+#artbase-new-essays button.share
+{
+    float: right;
+}
+
+#artbase-new-essays .other-essay
+{
+    font-size: 20px;
+    display: inline;
+}
+
+#artbase-essays-and-exhibitions #artbase-member-exhibitions .exhibition img {
+    margin-top: 1em;
+}
+
+/* Single Exhibition Page */
+
+#curator-info
+{
+    font-size: 18px;
+}
+
+#enter-exhibition
+{
+    margin-top: 1em;
+}
+
+#artbase-member-exhibitions div.tags{
+    margin:10px 0px;
+}
+
+#editorial-description .tags
+{
+    font-size: 12px;
+}
+
+#editorial-description p
+{
+    font-size: 14px;
+}
+
+#editorial-description .artists
+{
+    font-size: 13px;
+}
+
+#exhibition .mini-nav .nav-item{ 
+    padding: 0px 5px 0px 0px;
+    margin-right: 5px;
+}
+
+/*
+#exhibition-tab
+{
+    margin-top: 1em;
+}
+*/
+
+#exhibition-tab-content div.content
+{
+    display: none;
+}
+
+#exhibition-tab-content div.content.selected
+{
+    display: block;
+}
+
+
+#exhibition-tab-content #id_comment_tbl{
+    width:200px;
+}
+
+#exhibition-tab-content .share
+{
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+#how-it-works
+{
+    margin-top: 1em;
+    font-size: 13px;
+    color: #A8ADB3;
+}
+
+a.exhibition-title{
+    color:black;
+}
+
+.title-year {
+    font-size:14px;
+    position: relative;
+    top:-6px;
+}
+
+.exhibition-work
+{
+    margin-right: 0px;
+    text-align: center;
+    margin-bottom: 3em;
+}
+
+.exhibition-work img
+{
+    width: 160px;
+    height: 200px;
+}
+
+.exhibition-work h4
+{
+    font-size: 16px;
+    text-align: center;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+}
+
+.exhibition-work hr
+{
+    margin-bottom: 0px;
+}
+
+.exhibition-work div
+{
+    margin-top: 0.5em;
+}
+
+.exhibition-statment {
+    overflow-x: hidden;
+}
+
+#exhibition-tab-content #id_comment_tbl table{
+    width:50px !important;
+}
+
+#exhibition-tab-content #id_comment{
+   max-width: 350px;
+}
+
+/*Tag Page Styles */
+#works-list {
+    margin-top: 10px;
+}
+
+#works-list #work {
+    height: 250px;
+    width: 150px;
+    padding: 10px;
+    font-weight: bold;
+    text-align: center;
+
+}
+
+/* comments */
+
+#artbase-comments ul{
+    margin: 0px;
+    padding: 0px;
+}
+
+/* policy */
+textarea.policy{
+    width: 910px;
+    height: 350px;
+    text-align:left;
+    margin-left: 15px; 
+    background-color:#F7F7F7;
+    font-size:9pt;
+    padding-left:5px;
+    font-size:11pt;
+    margin-bottom: 30px;
+}

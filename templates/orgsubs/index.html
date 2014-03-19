@@ -1,0 +1,9 @@
+{% extends "orgsubs/base.html" %}
+{% load markup bbcode %}
+{% block pageTitle %} 
+Organizations 
+{% endblock %}
+
+{% block content %}
+ORG SUBS   {{request.META.HTTP_X_FORWARDED_FOR  }} {{ip}} {{ip_access}} 
+{% endblock %}

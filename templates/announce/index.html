@@ -1,0 +1,35 @@
+{% extends 'announce/base.html' %}
+{% load thumbnail markup bbcode block_tags %}
+{% load feed_tags %}
+
+
+{% block pageTitle %}Announce{% endblock %}
+
+{% block section_description %}{% get_text 'announce description' %}{% endblock %}
+
+{% block rss_head_link %}
+    <link rel="alternate" type="application/rss+xml" title="Rhizome Announce" href="{% feedburner_url 'announce' %}" />
+{% endblock %}
+
+{% block body_class %}announce{% endblock %}
+{% block section_action_class %}submit-announce{% endblock %}
+
+{% block content %}
+<a name="filter-top"></a>
+<div class="section span-24">
+    <div class="section-row-titles mini-nav">
+        <span class = "nav-item first selected"><a href="/announce/#filter-top">Latest Announcements</a></span>
+        <span class = "nav-item"><a href="/announce/opportunities/#filter-top">Opportunities</a></span>
+        <span class = "nav-item"><a href="/announce/events/#filter-top">Events</a></span>
+        <span class = "nav-item"><a href="/announce/jobs/#filter-top">Jobs</a></span>
+        <span class = "nav-item last"><a href="/announce/deadlines/#filter-top">Upcoming Deadlines</a></span>
+    </div> 
+    <a class = "rss-link" href="{% feedburner_url 'announce' %}">RSS</a>
+    <hr class="hr2">
+</div>
+
+<div class="section-content span-24">
+    {% include "announce/object_list.html" %}
+</div><!--END SECTION CONTENT-->
+
+{% endblock %}

@@ -1,0 +1,31 @@
+ul.messages {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  li {
+    display: block;
+    padding: 0;
+    margin: 0;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+
+    .section {
+      padding: {
+        top: .5em;
+        bottom: .5em;
+      }
+    }
+
+    &.info { 
+      background: lightYellow;
+      color: #514721;
+    }
+
+    &.error { 
+      background: #FBE3E4;
+      color: #8a1f11;
+      border-color: #FBC2C4;;
+    }
+  }
+}

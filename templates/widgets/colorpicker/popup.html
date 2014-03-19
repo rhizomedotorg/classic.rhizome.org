@@ -1,0 +1,43 @@
+<head>
+<link rel="stylesheet" href="/media/admin/widgets/colorpicker/farbtastic.css" type="text/css">
+<script type="text/javascript" src="/media/js/jquery-min.js"></script>
+<script type="text/javascript" src="/media/admin/widgets/colorpicker/farbtastic.js"></script>
+</head>
+ <script type="text/javascript" charset="utf-8">
+  $(document).ready(function() {
+    $('#picker').farbtastic('#color');
+  });
+
+    function getUrlVar(requestedKey) {
+    	var vars = [], hash;
+    	var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+    
+    	for (var i = 0; i < hashes.length; i++) {
+    		hash = hashes[i].split('=');
+    		vars.push(hash[0]);
+    		vars[hash[0]] = hash[1];
+    	}
+    	if (typeof requestedKey == 'undefined') {
+    		return vars;
+    	} else {
+    		return vars[requestedKey];
+    	}
+    }
+        
+    function sendValue (s){
+        var selvalue = s.value;
+        var id = getUrlVar("id")
+        window.opener.document.getElementById(id).value = selvalue;
+        window.close();
+    }
+</script>
+
+<script language="javascript">
+//var id = window.opener.id;
+</script> 
+
+<form name="color-picker" action="" style="width:400px;">
+<div class="form-item"><label for="color">Color:</label><input type="text" id="color" name="color" value="#123456" /></div><div id="picker"></div>
+<input type="button" value="choose" onClick="sendValue(this.form.color);">
+</form>
+

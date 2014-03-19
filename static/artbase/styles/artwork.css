@@ -1,0 +1,430 @@
+.artwork-content .mini-nav .last {
+    padding-right: 0px;
+}
+
+.artwork-content .tag {
+    color: #6494B2;
+    background-color: #F7F7F7;
+}
+
+#artwork-header
+{
+    background-color: #F7F7F7;
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
+
+.artwork-title {
+    text-align: left;
+    float: left;
+    line-height: 1;
+    font-size: 32px;
+    letter-spacing: 0.5px;
+}
+
+.artwork-title a{
+    color: #6494B2;
+}
+
+#artwork-header h2 {
+    font-size: 32px;
+}
+
+#artwork-controls {
+    height: 15px;
+}
+
+#user-controls {
+    margin-right: 5px;
+}
+
+#artist-info {
+    font-family: Georgia, serif;
+    font-size: 20px;
+}
+
+#artwork-top-info {
+    margin-bottom: 5px;
+}
+
+#artwork-main-image{
+    margin-right: 20px;
+}
+
+#artwork-top-info img {
+    border: 1px solid #ACB1B6;
+}
+
+#artwork-top-info button {
+    border: none;
+    margin-bottom: 1em;
+    background-color: white;
+}
+
+#save-artwork-button,
+#add-to-exhibition {
+    padding: 0 0 0 16px;
+}
+
+#save-artwork-button,
+#add-to-exhibition,
+#add-work-button,
+#add-work-cancel-button {
+    cursor: pointer;
+}
+
+.unsaved-artwork {
+    background-image: url(../../images/icons_sprite.png);
+    background-position: 0 -1520px;
+    background-repeat: no-repeat;
+    color:#6494B2;
+}
+
+.saved-artwork {
+    background-image: url(../../images/icons_sprite.png);
+    background-position: 0 -1600px;
+    background-repeat: no-repeat;
+    color:red;
+}
+
+#add-to-exhibition {
+    background-image: url(../../images/icons_sprite.png);
+    background-position: 0 -1320px;
+    background-repeat: no-repeat;
+    margin-left: 10px;
+    padding-left: 14px;
+}
+
+#artwork-summary {
+    font-size: 16px;
+    font-family: Georgia, serif;
+    overflow-y: auto;
+    margin-bottom: 5px;
+    min-height: 150px;
+    max-height: 300px;
+}
+
+#artwork-description  {
+    font-size: 13px;
+    font-family: Georgia, serif;
+/*     float: right; */
+    margin-bottom: 15px;
+}
+
+#artwork-tags {
+}
+
+#artwork-tags label {
+    float: left;
+    margin-right: 4px;
+    color: #89867D;
+}
+
+#artwork-in-series {
+    padding: 0;
+    margin: 0;
+}
+
+.artwork-content .left-col {
+    float: left;
+    overflow: hidden;
+}
+
+.artwork-content .right-col {
+    float: right;
+}
+
+#artwork-detail-info {
+    margin-top: 3em;
+}
+
+#artwork-detail-info .details {
+    margin-bottom: 2em;
+}
+
+#artwork-detail-info .mini-nav {
+    float: left;
+    margin-top: 2em;
+}
+
+#artwork-detail-info ul.top,
+#artwork-detail-info ul.sub {
+    padding: 0;
+    margin: 0;
+}
+
+#artwork-detail-info ul.top
+{
+    float: left;
+    margin: 0;
+    width: 470px;
+}
+
+#artwork-detail-info ul.top .list-label-gray {
+    float: left;
+    width: 116px;
+}
+
+#artwork-detail-info ul.top .list-item {
+    float: left;
+    width: 345px;
+}
+
+#artwork-detail-info ul.top .list-item a{
+    max-width: 345px;
+}
+
+.list-item iframe, .list-item embed {
+    display: block;
+    margin: auto;
+    text-align: center;
+    max-width: 465px;
+    height: 360px;
+    width:100%;
+    margin: 10px 0px;
+}
+
+.list-item .sm2_link,  .list-item audio {
+    width: 400px !important;
+}
+
+#artwork-detail-info ul.top li {
+    float: left;
+    width: 465px;
+    list-style: none;
+    padding: 0.25em;
+    margin: 0;
+    border-bottom: solid 1px #CFCFCF;
+}
+
+#artwork-detail-info ul.sub li {
+    width: 345px;
+}
+
+#artwork-detail-info ul.top li {
+    list-style: none;
+    padding: 0.25em;
+    margin: 0;
+    border-bottom: solid 1px #CFCFCF;
+}
+
+#artwork-detail-info ul.top li.last-item {
+    border: none;
+}
+
+#exhibition-widget
+{
+    position: absolute;
+    width: 250px;
+}
+
+#exhibition-widget .tab
+{
+    background-color: #0F1010;
+    width: 15em;
+}
+
+#exhibition-widget .options
+{
+    background-color: #333;
+    color: white;
+    padding: 1em;
+    height: 9em;
+}
+
+#exhibition-widget .options input
+{
+    width: 100%;
+}
+
+#exhibition-widget .options button {
+    float: right;
+}
+
+#exhibition-widget .display-block {
+    margin-top: 5px;
+}
+
+.slider .artwork
+{
+    float: left;
+    margin-right: 1em;
+}
+
+#artwork-featured-in .artwork img
+{
+    width: 110px;
+}
+
+#artwork-featured-in{
+    text-align: center;
+    margin-left: 15px;
+}
+
+#artwork-featured-in .exhibition{
+    max-width: 120px;
+    text-align: center;
+}
+
+#artwork-featured-in table{
+    vertical-align: top;
+    margin-bottom: 0;
+}
+
+#artwork-featured-in table td{
+    padding: 0;
+    vertical-align: top;
+}
+
+#artwork-similar-works .artwork img
+{
+    width: 70px;
+    height: 90px;
+    text-align: center;
+}
+
+#artwork-similar-works
+{
+    margin-bottom: 1em;
+    text-align: center;
+    margin-left: 15px;
+}
+
+.slider .artwork h4
+{
+    font-size: 14px;
+}
+
+#artbase-comments li
+{
+    list-style: none;
+}
+
+#artbase-comments #id_comment {
+    width: 97%;
+    height: 100px;
+}
+
+#comment-form .timestamp {
+    margin-left: 4px;
+}
+
+#comment-form #submit-comment {
+    font-size: 12px;
+    font-weight: bold;
+    color: white;
+    float: right;
+    background-color: #87A7BB;
+    text-transform: uppercase;
+    -moz-border-radius: 12px;
+    -webkit-border-radius: 12px;
+    border-radius: 12px;
+    border-style: none;
+    padding: 4px 10px 4px 10px;
+}
+
+#add-to-exhibition-prompt {
+    background-image: url(../../images/icons_sprite.png);
+    background-position: 0 -1320px;
+    background-repeat: no-repeat;
+    padding-left: 16px;
+}
+
+#add-work-button {
+    font-weight: bold;
+    text-transform: uppercase;
+    background-color: #0F1010;
+    padding: 2px 30px;
+    border: 1px solid #1C6898;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+}
+
+#add-work-cancel-button {
+    margin-right: 8px;
+    margin-top: 3px;
+    border: none;
+    background: transparent;
+    text-decoration: underline;
+}
+
+#work-image {
+    max-width: 470px;
+    max-height: 355px;
+}
+
+#save-artwork-form{
+    display: inline;
+}
+
+.created{
+    font-size: 16px;
+    color: gray;
+    vertical-align: middle;
+}
+
+#artwork-bg{
+    background-image:url("../../images/bg_gray_fade.png");
+    background-repeat:repeat;
+    width: 471px;
+    height:355px;
+    text-align:center;
+}
+
+#artwork-bg img{
+    display:block;
+    margin:auto;
+}
+
+#artwork-bg td{
+    padding: 0px;
+}
+
+#artbase-comments #id_comment_tbl tbody{
+    max-width:420px !important;
+}
+
+#artbase-comments object embed{
+    width: 400px;
+    height: 300px;
+}
+
+.audio{
+    margin: 0px !important;
+}
+.audio a.sm2_link{
+    width: 440px;
+}
+
+.artwork-permalink{
+    white-space: normal;
+    word-wrap: break-word;
+}
+
+#archived-icon{
+    position: absolute;
+    left: 767px;
+    width: 52px;
+}
+
+#archived-icon-no-text{
+    margin-left: 10px;
+    float: left;
+    position: absolute;
+    width: 22px;
+}
+
+#artbase-selection{
+    letter-spacing: 1px;
+    background-color: #6494B2;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    position: absolute;
+    text-align: center;
+    text-transform: uppercase;
+    width: 165px;
+    z-index: 2;
+    height:20px;
+}

@@ -1,0 +1,73 @@
+{% load support orgsubs %}
+<div id ="sidebar" class="membership-sidebar">
+    
+    <div class="sidebar-element">
+        <div class="content-wrap">
+            <div class="content">
+               <div class="content-body">
+                    <div class="content-text center">
+                        <img class= "center" src = "{{ STATIC_URL }}support/images/organizational/trialaccess.png">
+                        <div class="content-text" style="padding:10px 15px;">
+                            We gladly offer 2-week trial subscriptions to allow your staff, faculty, and community members to get a feel of our resources.          
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <a class="anchor-name" href="#" name="contacted"></a>
+    <div class="sidebar-element">
+        <div class="section-title">Contact Us</div>
+        <div class="content-wrap">
+            <div class="content">
+               <div class="content-body">
+                    <p class="content-text bold" style="padding:10px 30px;">
+                    For more information about Membership contact:
+                    <br />
+                    212-219-1288 x 302<br />
+                    <a href="mailto:subscribe@rhizome.org">SUBSCRIBE@RHIZOME.ORG</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="sidebar-element">
+        <div class="section-title">Current Subscribers</div>
+        <div class="content-wrap">
+            <div class="content">
+                <div class="content-body">
+                    {% get_current_orgsubs as orgsubs %}
+                    <div class="content-text center"  style="padding:0px 15px;">  
+                        {% for orgsub in orgsubs %}
+                            {% if "Bots" not in orgsub.name %}
+                            <span style="font-size:12px;" class="italic">{{orgsub.name}}{% if not forloop.last %}<br />{%endif%} </span>
+                            {% endif %}
+                        {% endfor %}
+                        <br />
+                        <span class="italic">AND MORE....</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+     </div>
+     
+        <div class="sidebar-element  span-8">
+        <div class="content-wrap span-8">
+            <div class="content">
+               <div class="content-body span-7 center">
+                    <div class="content-text">
+                        <p style="font-family:Georgia;font-weight:bold;font-size:18px">
+                            Rhizome also has Memberships for Individuals!
+                        </p>
+                        <p class="right upper bold">
+                            <a href="/join/individual/">Learn More &raquo;</a>                        
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+     
+</div>

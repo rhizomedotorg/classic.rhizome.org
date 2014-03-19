@@ -1,0 +1,115 @@
+{% extends 'programs/base.html' %}
+{% load markup block_tags %}
+
+{% block pageTitle %} 
+The Download | {{ current_download.premier_date|date:"F Y" }} | {{ current_download.title|title }}: {{ current_download.artist_name|title }}
+{% endblock %}
+
+{% block navbars %}
+    {% get_nav 'Programs' 'The Download' %}
+{% endblock %}
+
+{% block wide_section_description %}{% get_text 'the download description' %}{% endblock %}
+
+{% block customStyleSheets %}
+    <link rel="stylesheet" href="{{ STATIC_URL }}support/styles/support.css" type="text/css" media="screen" charset="utf-8"></link>
+    <style type="text/css">
+    h5 {margin-bottom: 0;}
+    </style>    
+{% endblock %}
+{% block content %}
+
+<div class="span-24">
+    {% if current_download.downloadfile_set.count == 1 %}
+        <a class="limited-edition-link" href="{{ MEDIA_URL }}{{ current_download.downloadfile_set.all.0.file }}">  
+            <img src = "{{ STATIC_URL }}programs/the_download/images/logos/full_forLightBG_cropped.png" />
+        </a>   
+    {% else %}
+        <img src = "{{ STATIC_URL }}programs/the_download/images/logos/full_forLightBG_cropped.png" />
+    {% endif %}
+    <div class="left-column span-15">
+        <div class="center">
+            <img class="download-artist-img" src="{{ MEDIA_URL }}{{ current_download.image }}">
+        </div>
+
+        <div class="about-content">    
+            <h2 class="bold">
+                <span class="italic">
+                {{ current_download.title }}
+                </span>    
+            </h2>    
+            <div class="italic">
+            {{ current_download.file_description_and_size }} 
+            </div> 
+        </div>
+       
+        <div class="about-content">    
+            {{ current_download.work_description|markdown }}
+       </div>
+    
+        <div class="about-content center">
+            {% if current_download.downloadfile_set.count == 1 %}
+                <a class="limited-edition-link" href="{{ MEDIA_URL }}{{ current_download.downloadfile_set.all.0.file }}">
+                    <img src="{{ STATIC_URL }}programs/the_download/images/logos/small_highcontrast.png" />
+                    <div class="upper" style="font-family:Helvetica">
+                        Click to access the artwork
+                    </div>
+                </a>
+            {% else %}
+                <img src="{{ STATIC_URL }}programs/the_download/images/logos/small_highcontrast.png" />
+
+                {% for downloadfile in current_download.downloadfile_set.all %}
+                    <a class="limited-edition-link" href="{{ MEDIA_URL }}{{ downloadfile.file }}">
+                        <div class="upper" style="font-family:Helvetica">
+                            {{ downloadfile.title }}
+                        </div>
+                    </a>
+                {% endfor %}
+            {% endif %}
+       </div>        
+        
+        <div class="section-row-titles">
+            <span class="nav-item">Download Archive</span>
+            <hr class="hr3">
+        </div>
+        
+        {% for dl in archive_listings %}
+        <div class="bold about-content">
+            {{ dl.premier_date|date:"F Y" }} | <a href="{{ dl.get_absolute_url }}">{{ dl.title }} - {{ dl.artist_name.title }}</a>
+        </div>    
+        {% endfor %}
+    </div>
+
+    <div class="right-column span-8">
+        
+        <div class="section-row-titles">
+            <span class = "nav-item">Instructions</span>
+            <hr class="hr3">
+        </div>
+        <div class="about-content">    
+            {{current_download.work_instructions|markdown}}
+        </div>        
+        
+        <div class="section-row-titles">
+            <span class = "nav-item">About the Artist</span>
+            <hr class="hr3">
+        </div>
+        <div class="center">
+            <img style="max-width:310px"  src="{{MEDIA_URL}}{{current_download.artist_image}}"/>
+        </div>
+        <div class="about-content">    
+            {{current_download.about_artist|markdown}}
+            <a target="_blank" href="{{current_download.artist_url}}">{{current_download.artist_url}}</a>
+        </div>
+        <div style="margin-top:20px;">
+        </div>
+    </div>
+        
+    <div class="center span-24" style="font-size:13px;font-family:georgia;">
+        <hr class="hr1" style="margin-top:30px;">
+
+        Download icon designed by <a target="_blank" href="http://www.taborrobak.com/">Tabor Robak</a>
+    </div>
+</div>
+    
+{% endblock %}

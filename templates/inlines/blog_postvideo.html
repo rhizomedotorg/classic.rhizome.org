@@ -1,0 +1,22 @@
+<script language="JavaScript">
+if (Modernizr.video && Modernizr.video.h264){
+    document.write('<video controls="controls" src = "{{object.video.url}}"></video>');
+} else {
+
+document.write('<div class="video"><a href="{{object.video.url}}" style="display:block;width:590px;height:394px;" id="{{object.title}}"></a></div>');
+    
+    flowplayer("{{object.title}}", "/media/media_players/flowplayer/flowplayer-3.2.2.swf",{
+        playlist: [{
+            {% if object.still %}
+                url: '{{object.still.url}}', 
+            {% else %}
+                url: '/media/artbase/images/rhizome_art_default.png',
+            {% endif %}
+                scaling: 'orig'
+            },{   
+                url:'{{object.video.url}}',
+                autoPlay: false
+        }],     
+    });
+}
+</script>

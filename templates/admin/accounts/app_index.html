@@ -1,0 +1,56 @@
+{% extends "admin/index.html" %}
+{% load url from future %}
+
+{% if not is_popup %}
+
+{% block breadcrumbs %}
+<div class="breadcrumbs"><a href="../">Home</a> &rsaquo; 
+{% for app in app_list %}
+{{ appname }}
+{% endfor %}</div>{% endblock %}
+
+{% endif %} 
+
+{% block content %}
+<div id="content-main">
+
+{% if app_list %}
+    {% for app in app_list %}
+        <div class="module">
+        <table summary="Models available in the {{ app.name }} application.">
+        <caption><a href="{{ app.app_url }}" class="section">{{ app.name }}</a></caption>
+        {% for model in app.models %}
+            <tr>
+            {% if model.perms.change %}
+                <th scope="row"><a href="{{ model.admin_url }}">{{ model.name }}</a></th>
+            {% else %}
+                <th scope="row">{{ model.name }}</th>
+            {% endif %}
+            <td>&nbsp;</td>
+            {% if model.perms.add %}
+                <td><a href="{{ model.admin_url }}add/" class="addlink">Add</a></td>
+            {% else %}
+                <td>&nbsp;</td>
+            {% endif %}
+
+            {% if model.perms.change %}
+                <td><a href="{{ model.admin_url }}" class="changelink">Change</a></td>
+            {% else %}
+                <td>&nbsp;</td>
+            {% endif %}
+            </tr>
+        {% endfor %}
+        <tr><th scope="row"><a href="rhizomeuser/merge_users/">Merge Users</a></th></tr>
+        <tr><th scope="row"><a href="rhizomeuser/membership_overview/">Membership Overview</a></th></tr>
+<!--         <tr><th scope="row"><a href="rhizomeuser/dump_new_members/">Get CSV of Latest Members</a></th></tr>
+        <tr><th scope="row"><a href="rhizomeuser/dump_new_users/">Get CSV of Latest Users</a></th></tr>
+        <tr><th scope="row"><a href="rhizomeuser/dump_nyc_members/">Get CSV of NYC Members</a></th></tr> -->
+        </table>
+        </div>
+    {% endfor %}
+{% else %}
+    <p>You don't have permission to edit anything.</p>
+{% endif %}
+</div>
+{% endblock %}
+

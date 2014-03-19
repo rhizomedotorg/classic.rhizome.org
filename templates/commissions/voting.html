@@ -1,0 +1,67 @@
+{% extends "commissions/base.html" %}
+{% load markup %}
+{% load url from future %}
+{% block body_class %}commissions{% endblock %}
+{% block pageTitle %} 
+Commissions Voting
+{% endblock %}
+
+{% block content %}
+
+<div class="section span-24">
+    <div id="artbase-member-exhibitions" class="clear">
+        <div class="section-row-titles">        
+            <span class = "nav-item">Member Voting</span>    
+        </div>    
+        <hr class="hr3">    
+
+{% if cycle.is_active and today > cycle.approval_vote_start and today < cycle.ranking_vote_end %}
+        
+
+        
+        <div class="about-content indent">           
+            <p class="indent">The Rhizome community play a critical role in the Commissions process, and our membership base will choose 2 winning commissions this year. The member vote process is divided into two stages, the <b>Approval vote</b> and the <b>Ranking vote</b>. Details on each stage are below.</p>
+            
+        <div class="enter-wrap span-24">        
+            {% if today > cycle.ranking_vote_start and today < cycle.ranking_vote_end %}
+                <a class="basic current-cycle-enter span-12" href="{% url 'commissions_ranking_vote' cycle.id %}">BEGIN RANK VOTING</a>
+            {% endif %}
+            
+            {% if today > cycle.approval_vote_start and today <  cycle.approval_vote_end %}
+                <a class="basic current-cycle-enter span-12" href="{% url 'commissions_approval_voting_wrapper' cycle.id %}">BEGIN APPROVAL VOTING</a>
+            {% endif %}
+        </div>
+            
+            <a name="approval"></a>        
+            <p class="bold">1. Approval Stage ({{ cycle.approval_vote_start|date:"l F d, Y" }} - {{ cycle.approval_vote_end|date:"l F d, Y" }})</p>                
+            <p class="indent">During the first round, Rhizome members may vote Yes or No for as many or as few proposals as they wish, and can change their votes at any time throughout the duration of the approval stage. While members may vote for whatever proposal they choose, the interface will encourage them to review proposals with the least number of votes, in order to even the total number of votes received by proposals.</p>                
+            <p class="indent">No member is required to review all the proposals. However, the more proposals you vote for, the more influence you will have over which proposals proceed to the second round.</p>                
+            <p class="indent">Members can vote on their own proposals, but we kindly ask that vote for other proposals as well.</p>                
+            <p class="indent">At the end of the approval stage, proposals will be ranked by the percentage of Yes votes received. For example, a proposal with ten Yes votes will have a score of 100%, while a proposal with fifteen Yes votes and five No votes will have a score of 75%. The highest-scoring twenty-five proposals will move on to the ranking stage; this may be more than twenty-five in the event of ties.</p>                
+            <p class="indent">Rhizome may review the proposals to ensure compliance with the requirements of the Call for Proposals. </p>                
+            <a name="rank"></a>        
+            <p class="bold">2. Ranking Stage ({{ cycle.ranking_vote_start|date:"l F d, Y" }} -  {{ cycle.ranking_vote_end|date:"l F d, Y" }})</p>                
+            <p class="indent">In the second round, Rhizome members choose two Rhizome Commissions recipients from the pool of twenty-five or more finalists. </p>                
+            <p class="indent">The results are determined by single transferable vote, also known as instant runoff voting. Each voter ranks the proposals from most favorite to least favorite. If a proposal has more than 50% of first-place votes after the initial tally, it becomes the winner. If not, the lowest-ranking proposal is removed from the list, and the votes are automatically tallied again.</p>                
+            <p class="indent">Rhizome members are allowed to cast one vote per cycle, regardless of how many valid memberships they may have. We reserve the right to eliminate votes if we have reason to believe that they come from a member who is voting with more than one membership. Members who have submitted proposals are welcome to vote.</p>               
+            <p class="indent">For example: Five voters have to choose one winning proposal from candidates a, b, c, and d. They vote as follows:</p>                            
+            <table class="indent">                 
+            <tr><td>Claude</td><td>abc</td></tr>                  
+            <tr><td>Grace</td><td>acb</td></tr>                  
+            <tr><td>Ada</td><td>bca</td></tr>                  
+            <tr><td>George</td><td>bac</td></tr>                  
+            <tr><td>Alan</td><td>cab</td></tr>            
+            </table>                    
+            <p class="indent">When the voting is complete, a has 2 votes, b has 2, and c has 1. Nobody has a majority, so we remove the least popular candidate, c, making Hans' vote effectively "ab". Now a gets 3 votes and b gets 2. The winner is a.</p>                
+            <p class="indent">Voters are not required to rank all finalists, but they are encouraged to rank as many as possible. If you rank only a few candidates, your vote may be eliminated entirely in the final tally.</p>                
+            <p class="indent">For more information on this voting method, refer to the            
+            <a href="http://en.wikipedia.org/wiki/Instant-runoff_voting" target="_blank">Wikipedia entry on Instant-runoff voting</a>        
+            </p>
+        </div>                        
+
+{% endif %}
+
+    </div>
+</div>
+
+{% endblock %}

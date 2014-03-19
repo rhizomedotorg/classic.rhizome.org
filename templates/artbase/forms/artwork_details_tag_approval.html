@@ -1,0 +1,39 @@
+<div class="post-form-content">
+    <h6 class=" upper">TAG APPROVAL</h6>
+    <input type="hidden" name="tag-approval-form" value=1 />
+    <fieldset id="footnote-formset" class="formset">
+    {% for field in approve_tags_form %}
+                
+        {% if field.label == "Artist Tags" %}
+    
+        <div class="bold">
+        <span class="center upper underline">The below are user submitted tags.</span> 
+        - Check the box to verify the tag is only if you think it is an appropriate, high quality, and general descriptor.<br />
+        - This will also promote the tag to Rhizome's list of approved tags.
+        </div>
+        <hr class="thin">
+        <div class="artist-tags">
+            {{field}}
+        </div>
+        <div class="clear"></div>
+        {% endif %}
+
+        {% if field.label == "Approved Tags" %}
+        
+        <div class="rhizome-tags-header bold">
+        <span class="center upper underline">The below is a list of Rhizome approved tags.</span>
+        
+        - Tags already selected for the artwork are checked. <br />
+        - You can add already existing approved Rhizome tags by checking them and saving the artwork. <br />
+        - Unchecking a tag will remove that tag from that artwork, as well as remove that tag from the list of approved tags if this is the only artwork with that tag.
+        </div>
+        <hr class="thin">
+        <div class="rhizome-tags">
+            {{field}}
+        </div>
+        <div class="clear"></div>
+        {% endif %}
+
+    {% endfor %}
+    </fieldset>
+</div>

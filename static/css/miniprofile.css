@@ -1,0 +1,108 @@
+/* Mini Profile */
+
+.miniprofile {
+    float: left;
+    display: inline;
+    margin: 0;
+    padding: 0px;
+}
+
+.miniprofile span {
+    margin: 0;
+    padding: 0;
+}
+
+.discuss-section-row{
+}
+
+.miniprofile img {
+    float: left; 
+    margin-top: -5px; 
+    margin-right: 5px;
+}
+
+.highlights-section .miniprofile
+{
+    padding-bottom: 10px;
+    margin-right: 5px;
+}
+
+.highlights-section .miniprofile img
+{
+    margin-right: 1px;
+}
+
+/*
+ANY OF BELOW USED? -nh
+
+#rhiz-miniprofile {
+    position: absolute;
+    margin: 0px;
+    line-height: 0.75em;
+    font-family: helvetica;
+    background-color: black;
+    overflow: visible;
+    opacity: .9;
+}
+
+#rhiz-miniprofile .user-image {
+    position: absolute;
+    z-index: 2;
+    background-color: #0F1010;
+}
+
+#miniprofile-content .date {
+    font-style: sitewide;
+}
+
+#rhiz-miniprofile .user-overflow {
+    position: absolute;
+    z-index: 1;
+    bottom: -25px;
+    width: 50px;
+    min-height: 135px;
+    background-color: #292929;
+    opacity: .9;
+}
+
+#rhiz-miniprofile .user-info {
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    right: 0px;
+    height: 22px;
+    background-color: #0F1010;
+    padding: 3px 3px 0px;
+    opacity: .9;
+    top:-20px;
+}
+
+#rhiz-miniprofile .user-info .username {
+    float: left;
+    display: inline;
+    color: white;
+    padding: 3px 0 0 0;
+    font-weight: bold;
+    margin-right: 10px;
+    line-height: 1.1;
+}
+
+#rhiz-miniprofile .user-info .user-connect {
+    float: right;
+    display: inline;
+    padding: 3px 0 0 0;
+    font-weight: bold;
+}
+
+#rhiz-miniprofile .user-info .user-connect a {
+    color: #6f9ab5;
+}
+
+#rhiz-miniprofile .user-content {
+    display: block;
+    width: 100%;
+    line-height: 1.3em;
+    color: white;
+    font-style: italic;
+}
+*/

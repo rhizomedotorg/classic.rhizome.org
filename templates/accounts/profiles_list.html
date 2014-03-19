@@ -1,0 +1,109 @@
+{% extends "accounts/base.html" %}
+{% load markup %}
+
+{% block moreCustomStyleSheets %}
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/browse.css" type="text/css"></link>
+{% endblock %}
+
+{% block moreCustomScripts %}
+<script type="text/javascript" src="{{ STATIC_URL }}js/carousel/Carousel.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}accounts/scripts/updated_portfolios.js"></script>
+<script type="text/javascript">
+window.addEvent("domready", init);
+    function init() {show_updated_portfolios_profiles();}
+</script>
+{% endblock %}
+
+{% block pageTitle %}Profiles Directory{% endblock %}
+
+{% block content %}
+<div class="section span-24">
+        <div class="section-row-titles">
+            <span class = "nav-item span-23">Recently Updated Portfolios</span>                      
+            <span class="carousel-scroll" id ="carousel-scroll-portfolios">
+                <a href = "#" id = "previous"></a>
+                <a href = "#" id = "next"></a>
+            </span>
+        </div>            
+        <hr class="hr3">
+        <div id = "profiles-portfolios-wrapper" class="span-24"> 
+            <div id ="portfolios" class="span-24">
+            {% for work in updated_portfolios %}
+                <div class = "work">
+                    <a href= "{{work.view_url}}">
+                        <img src="{{MEDIA_URL}}{{ work.image_small }}" width = "135">
+                    </a>
+                    <div class = "work-details">
+                        <a href= "{{work.view_url}}">
+                            {{work.title}}
+                        </a>
+                        <div class="italic bold">by</div>
+                        <a href= "{{ work.user.get_profile.get_absolute_url }}">
+                            {{ work.user.get_profile }}
+                        </a>
+                    </div>
+                </div>
+            {% endfor %}
+            </div>
+        </div>
+    </div>    
+
+
+    <div class="section span-24">
+        <div class="section-row-titles">
+            <span class = "nav-item ">Profile Directory</span>
+            <hr class="hr3-no-margin">
+        </div>    
+    </div>
+
+    <div class="section-content span-24">
+        <div id = "section-search">
+             <form action="/search/" method="get">
+                <input id ="search" type="text" name="q" value="SEARCH PROFILES"  class = "section-search-input" />
+                <input type="hidden" name="models" value="auth.user" id="id_models_13" /> 
+                <input type="hidden" name="models" value="accounts.rhizomeuser" id="id_models_13" /> 
+                <button id ="section-search-button"  class="round-blue-fat" type="submit">SEARCH</button>
+            </form>
+        </div>
+        
+        <div class="alphabet">
+            {% for letter in alphabet %} 
+                {% if letter == sort %}
+                    <span class = "current-letter"><a href="{{request.path}}?sort={{letter}}">{{ letter.upper }}</a></span>
+                {% else %}
+                    <span class = "letter"><a href="{{request.path}}?sort={{letter}}">{{ letter.upper }}</a></span>
+                {% endif %}
+            {% endfor %}
+        </div>
+
+        <table id="browse-users-table" class="browse-table span-24" cellspacing="0" cellpadding="0" border="0">
+            {% for row in grouped %}
+            <tr {% if forloop.last %} class="last" {% endif %}>
+                {% for user in row %}
+                    {% if user %}
+                    <td>
+                        {{ user.get_profile.get_medium_miniprofile_include_default|markdown }}
+                        <a href="{{ user.get_profile.get_absolute_url }}">
+                            {{ user|title }}                    
+                        </a>
+                    </td>
+                    {% else %}
+                    <td>
+                        &nbsp;
+                    </td>
+                    {% endif %}
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </table>
+    </div>    
+    
+    {% if accounts_paginator.total_pages > 1 %}
+    <hr class="hr2-grey-no-margin">    
+    <span id="feed-paginator" class="span-24">
+        {{ accounts_paginator.render }}
+    </span>
+    <hr class="hr2-grey">
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends "blog/base_blog.html" %}
+
+{% block title %}Post tags{% endblock %}
+{% block body_class %}{{ block.super }} tag_list{% endblock %}
+
+
+
+{% block content_title %}
+  <h2>Post tags</h2>
+{% endblock %}
+
+
+{% block content %}
+<div id="editorial-posts"  class= "left-column span-15">
+    <div class="left span-6">
+        <ul class="tag-list">
+        {% for tag in tag_list_left %}
+            <li class="editorial-tag"><a href="/editorial/tags/{{ tag.tag }}">{{ tag.name }}</a></li>
+        {% endfor %}
+        </ul>
+    </div>
+
+    <div class="left float-right  span-6">
+        <ul class="tag-list">
+        {% for tag in tag_list_right %}
+            <li class="editorial-tag"><a href="/editorial/tags/{{ tag.tag }}">{{ tag.name }}</a></li>
+        {% endfor %}
+        </ul>
+    </div>
+</div>
+
+<div class= "right-column span-8">
+      {% include "fragments/nectar_ads_sidebar.html" %}        
+      {% include "fragments/featured_articles.html" %}
+      {% include "fragments/community_sidebar.html" %}
+      {% include "fragments/editorial_archive_sidebar.html" %}
+</div>
+{% endblock %}

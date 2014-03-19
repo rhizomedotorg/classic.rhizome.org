@@ -1,0 +1,37 @@
+{% load announce %}
+
+<div id ="sidebar">
+     <div class="sidebar-element ">
+        <div class="section-title"><a href="/announce">Jobs Board</a></div>
+        <div class="content-wrap ">
+            <div class="content ">
+                {% get_jobs_board 4 as jobs %}
+                {% for job in jobs %}
+                <div class="content-body  ">
+                    <div class="deadline ">
+                        {% if job.get_thumbnail %}
+                        <div class = "announce-thumbnail ">
+                            <a href="{{job.get_absolute_url}}">
+                                <img width="80" height="80" src = "{{MEDIA_URL}}{{ job.get_thumbnail }}"></img>
+                            </a>
+                        </div>
+                        <div class="announce-title ">
+                            <a class = "bold" href="{{job.get_absolute_url}}">{{ job.title }}</a>                                   
+                        </div>
+                        {% else %}
+                        <div class="announce-title-no-image">
+                            <a class = "bold" href="{{job.get_absolute_url}}">{{ job.title }}</a>                                   
+                        </div>                  
+                        {% endif %}
+
+                        <div class="announce-user">
+                            <span class="descriptor">Posted by</span> <a class = "bold" href="{{job.user.get_profile.get_absolute_url}}">{{ job.user.get_profile }}</a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    
+ </div>

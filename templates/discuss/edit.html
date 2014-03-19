@@ -1,0 +1,31 @@
+{% extends 'discuss/base.html' %}
+
+{% load threadedcomments_tags %}
+{% load blog_tags tagging_tags inlines_tags markup %}
+{% load url from future %}
+
+{% block pageTitle %}Discussion: Edit Post{% endblock %}
+
+{% block content %}
+    <h2>Edit a Discussion Post</h2>
+    <hr class="hr3-no-margin">
+
+    <div class="post-form span-24">
+        <form id="comment_form" action="{% url 'discuss-edit' thread.id %}" method="POST">
+            {% csrf_token %}
+            {{ form }}
+            <div class="float-right-align-right span-22">
+                <label style="red">{% if thread.is_public %} This post is currently public {% else %} This post is currently not public {%endif%}</label>
+
+                {% if thread.is_public %}
+                    <input class="round-red" type="submit" value="unpublish" name="status">
+                    <input class="round-gray" type="submit" value="preview" name="status">
+                    <input class="round-blue" type="submit" value="update" name="status">
+                {% else %}
+                    <input class="round-gray" type="submit" value="preview" name="status">
+                    <input class="round-blue" type="submit" value="publish" name="status">
+                {% endif %}
+            </div>
+        </form>  
+    </div>
+{% endblock %}

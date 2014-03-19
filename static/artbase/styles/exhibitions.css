@@ -1,0 +1,12 @@
+.exhibition-work img {
+    border: 1px solid #ccc;
+}
+ 
+#exhibition-works-table td {
+    vertical-align: top;
+}
+
+#id_comment {
+    width: 97%;
+    height: 100px;
+}

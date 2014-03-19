@@ -1,0 +1,23 @@
+{% load comments i18n %}
+<a name="comments"></a>
+<!-- form for comments on discussion threads -->
+<form id="comment_form" action="{% comment_form_target %}" method="post">
+    <input type="hidden" name="next" value="{{ announcement.get_absolute_url }}" />
+    {% csrf_token %}
+    {% for field in form %}
+    {% if field.is_hidden %}
+    {{ field }}
+    {% endif %}
+    {% endfor %}
+    <div style="display:none;">{{ form.honeypot }}</div>
+
+    <div class = "post-form-content">
+        <fieldset>
+            {% include "comments/basic_bbcode.html" %}
+            <textarea class = "comment-textarea" name="comment" cols="40" rows="10"></textarea>
+            <div class="float-right-align-right">
+                <input class="round-blue" type="submit" value="comment" name="status">
+            </div>
+        </fieldset>
+    </div>
+</form>    

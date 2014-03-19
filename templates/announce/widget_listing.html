@@ -1,0 +1,29 @@
+<div class="span-7 community-calendar-events">
+    {% if date_listings %}
+        <div class="event-listings">
+            <div class="event-count span-7">
+                {{date_listings|length}} events scheduled on {{ date|date:"M" }} {{ date|date:"j" }}, {{date|date:'Y' }}
+            </div>
+            <div class = "listing span-7 {% if date_listings|length > 1 %} overflow {% endif %}">
+                {% for event in date_listings %}
+                <div class="listing-info span-7 {% cycle 'grey' 'black' %}" >
+                    <div class = "listing-time span-2">{{ event.start_date|date:"H:i"}}</div>
+                    <div class = "listing-details span-4">
+                        <span class="listing-title span-5">
+                            <a class="upper" href="{{event.get_absolute_url}}">{{ event.title }}</a>
+                        </span>
+                        <div class="listing-location">
+                          {% if event.city %}{{ event.city }}{% endif %}{% if event.city and event.countr%},{% endif %} 
+                          {% if event.country %} {{event.country.iso }} {% endif %}           
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    {% else %}
+        <div class="empty-listing">
+            There are no schedule events today. <a href ="/announce/events/submit/">Add one!</a>        
+         </div>
+    {% endif %}
+</div>

@@ -1,0 +1,175 @@
+/* Edit Exhibition Form */
+
+#content.artbase-exhibition-form .mini-nav {
+    margin-top: 2em;
+}
+ 
+#exhibition-form #exhibition-title {
+    margin-bottom: 0.5em;
+}
+
+#exhibition-form #exhibition-title input {
+    font-size: 28px;
+    font-style: italic;
+    font-family: Georgia, serif;
+    background: transparent;
+    border: none;
+    width: 936px;
+    margin: 0;
+    padding: 6px;
+}
+
+#exhibition-form #exhibition-subtitle input {
+    font-size: 12px;
+    font-weight: bold;
+    font-family: Helvetica, serif;
+    background: transparent;
+    border: none;
+    width: 930px;
+    margin: 0;
+    padding: 4px 6px;
+    padding-left: 1em;
+    text-transform: uppercase;
+}
+
+#exhibition-form #cols {
+    margin-top: 1em;
+}
+
+#exhibition-form textarea {
+    width: 100%;
+}
+
+#exhibition-form #tags-input {
+    padding: 0.5em;
+    margin: 0;
+}
+
+#exhibition-form #add-tags-button {
+    float: right;
+}
+
+#reorder-prompt {
+    width: 100%;
+    background-color: #E7E7E7;
+    padding: 0.5em;
+    margin-top: 0.5em;
+}
+
+#right-col {
+    float: right;
+}
+
+#statement-label {
+    width: 100%;
+    margin-bottom: 0.5em;
+    display: block;
+}
+
+#reorder-works li {
+    list-style: none;
+    padding: 0.5em;
+    margin: 0;
+    border-top: none;
+}
+
+#reorder-works li img {
+    width: 70px;
+    height: 85px;
+}
+
+#reorder-works .remove {
+    border: none;
+    background-color: #F7F7F7;
+}
+
+#exhibition-subtitle {
+    margin-top: 10px;
+}
+
+#reorder-works {
+    position: relative;
+}
+
+#reorder-prompt-label {
+    font-family: Georgia, serif;
+    font-size: 16px;
+    font-weight: normal;
+}
+
+#reorder-prompt-label-browse {
+    color: #1C6898;
+}
+
+#reorder-prompt-label-browse button{
+    background-color:transparent;
+    border:medium none;
+    color:#6494B2;
+    padding: 0;
+}
+
+#reorder-prompt-label-browse a:hover{
+    text-decoration: underline;
+}
+
+#reorder-works li .handle {
+    height: 85px;
+}
+
+#reorder-works li.clone {
+    opacity: 0.90;
+    border-top: solid 1px #ccc;
+}
+
+#reorder-works li .handle .handle-image {
+    background-image: url("../../images/icons_sprite.png");
+    background-position: 3px -1200px;
+    height: 20px;
+    margin-top: 32px;
+    width: 100%;
+    cursor: move;
+}
+
+.exhibition-artwork-title {
+    margin-bottom: 0;
+}
+
+.exhibition-artwork-title a {
+    font-family: Georgia, serif;
+    font-size: 18px;
+    color: #0F1010;
+}
+
+.exhibition-artwork-title-author {
+    margin-top: 24px;
+}
+
+.exhibition-artwork-remove {
+    border: none;
+    background-image: url("../../images/icons_sprite.png");
+    background-position: 0px -1040px;
+    width: 20px;
+    height: 20px;
+    background-color: transparent;
+    padding: 0;
+    margin-left: 45px;
+    margin-right: 0px;
+    margin-top: 32px;
+}
+
+a.exhibition-artwork-remove:hover {
+    background-position: 0px -1080px;
+}
+
+#edit-exhibition-controls button {
+    cursor: pointer;
+}
+
+#id_statement_parent {
+    margin-bottom: 1em;
+    float: left;
+}
+
+#exhibition-form #id_tags {
+    width: 350px;
+}

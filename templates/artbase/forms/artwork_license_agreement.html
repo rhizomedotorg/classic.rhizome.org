@@ -1,0 +1,243 @@
+<input type = "hidden" name = "form" value = "artwork_license">
+
+<script type="text/javascript">    
+    pickLicense.license_info = {};
+    {% for license in licenses %}
+    pickLicense.license_info["{{license.slug}}"] = {
+        label : '{{license.title}}',
+        fields : {
+        {% if license.slug = "by-nc-sa" %}
+            commercial : 'No',
+            derivative : 'SA'
+        {% endif %}
+        {% if license.slug = "by-nc" %}
+                commercial : 'No',
+                derivative : 'Yes'
+        {%endif%}
+        {% if license.slug = "by-nc-nd" %}
+                commercial : 'No',
+                derivative : 'No'
+        {%endif%}
+        {% if license.slug = "by" %}
+                commercial : 'Yes',
+                derivative : 'Yes'
+        {%endif%}
+        {% if license.slug = "by-sa" %}
+                commercial : 'Yes',
+                derivative : 'SA'
+        {%endif%}
+        {% if license.slug = "by-nd" %}
+                commercial : 'Yes',
+                derivative : 'No'
+        {% endif%}
+        },
+        assets : {
+            image : "{{license.image}}",
+            url : "{{license.url}}",
+        }
+    }
+    {% endfor %}
+    
+    pickLicense.software_license_info = {};
+    {% for license in software_licenses %}
+    pickLicense.license_info["{{license.slug}}"] = {
+        label : '{{license.title}}',
+        assets : {
+            image : "{{license.image}}",
+            url : "{{license.url}}",
+        }
+    }
+    {% endfor %}
+</script>
+
+<div class = "post-form-content span-24">
+    <h6 class = "span-8">Creative Commons License Choice (Optional)</h6>
+
+    <fieldset class="span-23">
+        <p class = "dark-gray bold">Applying one of the licenses below will convey these permissions in searchable computer-readable and legal forms when your work is displayed, making it easy for other artists and members of the public to find your works to use and remix on terms you specify.</p>
+        <p class = "dark-gray bold">If you don't want people to be allowed to copy and distribute your work, please answer "No" to the following question and your work will retain "All Rights Reserved" copyright.</p>
+        
+        <div class="bold upper">Current License</div>
+        <hr class="hr2">
+        <div>
+            {% if work.license %}
+                <p class="indent"> 
+                    <a target="_blank" href="{{work.license.url}}">
+                        <img src = "{{work.license.image}}">
+                    </a>
+                    <a target="_blank" href="{{work.license.url}}">
+                        <span class="bold">{{work.license.title}}</span>
+                    </a>
+                </p>
+                {% if work.license.slug != "arr" %}
+                
+                    <p class = "dark-gray bold">Copy the html below to your Web site to let your visitors know what license applies to your work.</p>
+                    <textarea id="license-code-to-copy" name="html">&lt;a rel="license" href="{{work.license.url}}"&gt;&lt; img alt="{{work.license.title}}" style="border-width:0" src="{{work.license.image}}" /&gt;&lt;/a&gt;&lt;br /&gt;This work is licensed under a &lt;a rel="license" href="{{work.license.url}}"&gt;{{work.license.title}}&lt;/a&gt;
+                    </textarea>
+                {% endif %}
+            {% else %}
+                <p class="indent">You haven't selected a license yet. The default license is 
+                    <a href="http://en.wikipedia.org/wiki/All_rights_reserved" target="_blank">
+                        <span class="bold">All Rights Reserved</span>
+                    </a>
+                </p>
+            {% endif %}
+        </div>
+        
+        
+        <div class="bold upper">
+            Change License
+        </div>        
+        <hr class="hr2">
+        
+        <div id = "change-license">
+            <p>
+                <input id="toggle-license-form" type="checkbox" name="toggle-license-form"/>
+                <label>Click here to change <i>{{work.title}}'s</i> license</label>
+            </p>
+                    
+            <script type="text/javascript">
+                window.addEvent("domready", toggleForm());
+                
+                function toggleForm(){
+                    $('toggle-license-form').addEvent('click', function(e){
+                        if(this.checked){
+                            $('use_cc_license-no').disabled = false;
+                            $('use_cc_license-yes').disabled = false;  
+                        } else {
+                            $('use_cc_license-no').disabled = true;
+                            $('use_cc_license-yes').disabled = true;      
+                            $('cc_commercial_yes').disabled = true;  
+                            $('cc_commercial_no').disabled = true;  
+                            $('cc_derivative_sa').disabled = true;                  
+                            $('cc_derivative_no').disabled = true;                  
+                            $('cc_derivative_yes').disabled = true;  
+                        }
+                        
+                    });
+                }
+            </script>  
+            
+            <div id="CC_button_template" style="display:none;">
+                <a target="_blank" href="%LICENSE_URL%">
+                    <img alt="%CC_NAME%" style="border-width:0" src="%LICENSE_IMAGE%" />
+                </a>
+                <p class = "dark-gray bold">Copy the html below to your Web site to let your visitors know what license applies to your work.</p>
+                <textarea id="license-code-to-copy" name="html">&lt;a rel="license" href="%LICENSE_URL%"&gt;&lt;img alt="%CC_NAME%" style="border-width:0" src="%LICENSE_IMAGE%" /&gt;&lt;/a&gt;&lt;br /&gt;This work is licensed under a &lt;a rel="license" href="%LICENSE_URL%"&gt;%CC_NAME%&lt;/a&gt;
+                </textarea>
+            </div>
+    
+            <input type="hidden" name="license_slug" value="">
+            <div class="indent">
+                <div class = "bold">Use Creative Commons License?</div>
+                <hr class="thin-no-margin">
+                <p>
+                    <input disabled='true' name="use_cc_license"  value="No" id="use_cc_license-no" type="radio" onClick="toggleCCFields(this)">
+                    <label for="use_cc_license-no" class="inline" >No (All Rights Reserved)</label><br/>
+                    <input disabled='true' checked="checked"  name="use_cc_license" value="Yes" id="use_cc_license-yes" type="radio" onClick="toggleCCFields(this)">
+                    <label for="use_cc_license-yes" class="inline">Yes</label>
+                </p>
+            </div>
+    
+            <div class="indent">
+                <div class = "bold">Select Creative Commons License</div>
+                <hr class="thin-no-margin">
+                <div id="licensebox">
+                    <p>
+                        <strong>Allow commercial uses of your work?</strong>
+                        (<a href="http://creativecommons.org/characteristic/nc?lang=en" onclick="cc_popup('nc');return false;">more info <img src="http://creativecommons.org/images/popup.gif" alt="more information" border="0" height="13" width="15"></a>)
+                        <br/>
+                        <input checked="checked" name="cc_commercial" value="Yes" id="cc_commercial_yes" type="radio" onClick="pickLicense()">
+                        <label for="cc_commercial_yes" class="inline">Yes</label><br/>
+                        <input  name="cc_commercial" value="No" id="cc_commercial_no" type="radio" onClick="pickLicense()">
+                        <label for="cc_commercial_no" class="inline">No</label>
+                    </p>
+                    <p>
+                    
+                        <strong>Allow modifications of your work?</strong>
+                        (<a href="http://creativecommons.org/characteristic/nd?lang=en" onclick="cc_popup('nd');return false;">more info <img src="http://creativecommons.org/images/popup.gif" alt="more information" border="0" height="13" width="15"></a>)
+                        <br/>
+                        <input checked="checked" name="cc_derivative" value="Yes" id="cc_derivative_yes" type="radio" onClick="pickLicense()">
+                        <label for="cc_derivative_yes" class="inline">Yes</label><br/>
+                        <input name="cc_derivative" value="SA" id="cc_derivative_sa" type="radio" onClick="pickLicense()">
+                        <label for="cc_derivative_sa" class="inline">Yes, as long as others share alike (<a href="http://creativecommons.org/characteristic/sa?lang=en" onclick="cc_popup('sa');return false;">more info <img src="http://creativecommons.org/images/popup.gif" alt="more information" border="0" height="13" width="15"></a>)
+                        </label><br/>
+                        <input name="cc_derivative" value="No" id="cc_derivative_no" type="radio" onClick="pickLicense()"> <label for="cc_derivative_no" class="inline">No</label>
+                    </p>
+                    
+                    <p>
+                        <strong>License</strong><br/>
+                        <select name="license_select" id="license_select" onClick="setFieldsByLicense(this)">
+                           {% for license in cc_licenses %}
+                            <option value='{{license.slug}}'>{{license.title}}</option>
+                            {% endfor %}
+                        </select>
+                        <div id="license_button"></div>
+                    </p>
+                    
+                </div><!--end licensebox-->
+    
+                    
+              <!--
+      <div class = "bold upper">Or Choose A Software License</div>
+                <div id ="software-license">
+                    <hr class="thin-no-margin">
+                
+                    <p>
+                       <select name="software_select" id = "software_select" onClick="setSoftwareFieldsByLicense(this)">
+                       {% for license in software_licenses %}
+                        <option value='{{license.slug}}'>{{license.title}}</option>
+                        {% endfor %}
+                    </select>
+                    </p>
+                    
+                    <div id="software_button_template" style="display:none;">
+                    <a target="_blank" href="%LICENSE_URL%">
+                        <img alt="%CC_NAME%" style="border-width:0" src="%LICENSE_IMAGE%" />
+                    </a>
+                    <p class = "dark-gray bold">Copy the html below to your Web site to let your visitors know what license applies to your work.</p>
+                    <textarea id="license-code-to-copy" name="html">&lt;a rel="license" href="%LICENSE_URL%"&gt;&lt;img alt="%CC_NAME%" style="border-width:0" src="%LICENSE_IMAGE%" /&gt;&lt;/a&gt;&lt;br /&gt;This work is licensed under a &lt;a rel="license" href="%LICENSE_URL%"&gt;%CC_NAME%&lt;/a&gt;
+                    </textarea>
+                </div>
+    
+                </div>
+                
+                <div class = "bold upper">Or Make the Work Public Domain</div>
+                <div id ="public-domain">
+                    <hr class="thin-no-margin">
+                </div>
+    -->
+    
+                </div>
+            </div>
+        </div> <!--end change license-->
+        
+    </fieldset>
+
+
+<script type="text/javascript">
+    setFieldsByLicenseSlug(document.forms.artwork.license_slug);
+</script>
+
+<h6 class = "span-8">RHIZOME ARTBASE AGREEMENT</h6>
+    <fieldset class="span-23">
+    <textarea id ="artbase-agreement" class="span-23">
+        {{artist_agreement.policy}}
+        
+        I have read and agree to the above conditions and I certify that I
+        have full authority to agree thereto.
+
+        Agreed and accepted by:
+
+        {{user.get_profile}}
+
+        Lauren Cornell
+        for Rhizome.org
+
+        {% now "l F j, Y" %}
+    </textarea>
+    <div class ="span-12 prepend-10 right">
+        <div class="error-list">{{form.agree_to_agreement.errors}}</div>
+        <label class="upper">{{form.agree_to_agreement}} Click here to agree to the ArtBase agreement form</label>
+    </div>
+    </fieldset>

@@ -1,0 +1,12 @@
+{% if comment_count != None %}
+<a class="comment-summary" href="{{ post.get_absolute_url }}/#comments"><i class="fa fa-comment fa-lg"></i> ({{ comment_count }})</a>
+{% endif %}
+<div class="new-share">
+    <a class="share-btn-cover" href="#">Share</a>
+
+    <a class="share-btn" href="https://twitter.com/share?url={{ share_url }}" target="_blank"><i class="fa fa-twitter"></i></a>
+
+    <a class="share-btn" href="http://www.tumblr.com/share/link?url={{ share_url|urlencode }}" title="Share on Tumblr"><i class="fa fa-tumblr-square"></i></a>
+
+    <a class="share-btn" href="#" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u={{ share_url }}', 'facebook-share-dialog', 'width=626,height=436'); return false;"><i class="fa fa-facebook-square"></i></a>
+</div>

@@ -1,0 +1,136 @@
+{% extends "base.html" %}
+{% load markup block_tags %}
+
+{% block pageTitle %}Submit to the ArtBase{% endblock %}
+
+{% block wide_section_description %}{% get_text 'submit artwork' %}{% endblock %}
+
+{% block extra_head %}
+    <meta http-equiv="CACHE-CONTROL" content="NO-CACHE" />
+    <meta http-equiv="PRAGMA" content="NO-CACHE" />
+{% endblock %}
+
+{% block page_assets_css %}
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}artbase/styles/artwork_forms.css" />
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}admin/css/widgets.css" />
+{% endblock %}
+
+{% block page_assets_js %}
+    <script type="text/javascript" src="{{ STATIC_URL }}admin/js/core.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}admin/js/calendar.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}admin/js/admin/DateTimeShortcuts.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}artbase/scripts/tech_lists.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}artbase/scripts/cc_license.js"></script>
+{% endblock %}
+
+{% block customScripts %}
+    <script type="text/javascript" src="/jsi18n"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}artbase/scripts/details.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/loadingOverlay.js"></script>
+{% endblock %}
+
+{% block navbars %}
+    {% get_nav 'Artbase' 'Submit' %}
+{% endblock %}
+
+{% block content %}
+
+{% if request.user.is_authenticated %}
+<div class="section span-24">
+    
+    <div class="section-row-titles post-mini-nav">
+        {% if form_type and work %}
+        <span class="nav-item first {% if form_type == 'base' %} selected {% endif %}">
+            <a href="{% url 'artbase.views.edit_artwork_base' work.id %}">Base Artwork Information</a>
+        </span>
+        <span class="nav-item {% if form_type == 'media' %} selected {% endif %}">
+            <a href="{% url 'artbase.views.edit_artwork_media' work.id %}">Artwork Media</a>
+        </span>
+        <span class="nav-item {% if form_type == 'details' %} selected {% endif %}">
+            <a href="{% url 'artbase.views.edit_artwork_details' work.id %}">Artwork Details</a>
+        </span>
+        <span class="nav-item last {% if form_type == 'license' %} selected {% endif %}">
+            <a href="{% url 'artbase.views.edit_artwork_license' work.id %}">Artwork License and Agreement Policy</a>
+        </span>       
+        {% else %}
+        <span class="selected">
+            <a href="/artbase/submit?form=base">Add an Artwork</a>
+        </span>
+        {% endif %}
+        <hr class="hr3-no-margin">
+    </div>   
+    
+    <div class = "post-form span-24">
+        <form action="{{ request.path }}" name="artwork" id="artwork-form" enctype="multipart/form-data" method="POST">
+            {% csrf_token %}
+            
+            {% if agreement_page_agree_to_agreement_error %}
+            <div class="form-errors-center">
+                You must agree to the ArtBase agreement policy before publishing your work.          
+            </div>
+            {% endif %}
+            
+            
+            {% if form.errors %}
+            <div class="form-errors-center">
+                Please correct the error{{ form.errors|pluralize }} below.
+            </div>
+            {% endif %}
+            
+            {% if agree_to_agreement_error %}
+            <div class="form-errors-center">
+                You must agree to the ArtBase agreement policy before publishing your work. Click the policy link above.         
+            </div>
+            {% endif %}
+
+            {% if request.GET.exceeded %}
+            <div class="form-errors-center">
+                Maximum file size of 5 MB exceeded. Try uploading your files one at a time.
+            </div>
+            {% endif %}
+                        
+            {% include form_path %}
+            
+            <div class = "post-form-content span-23 last">
+                {% if form_type and work %}
+                <h6 class="span-8">Save or Publish</h6>
+                {% else %}
+                <h6 class="span-8">Save</h6>
+                {% endif %}
+                <fieldset class="span-23 last">
+                    {% if not work %}
+                    <div class="right span-23 last">
+                        <label class="left span-12">Once saved, you'll be able to continue adding information about your work.</label>
+                        <input class="round-gray" type="submit" value="save draft" name="status">
+
+                    </div>
+                    {% else %}
+                    <div class="right span-23 last">
+                        <label class="left span-12">Your artwork will be added to your portfolio and submitted to the ArtBase for acceptance upon completion and publishing.</label>                        
+                        
+                        {% if work.status == "approved" or work.status == "rejected" or work.status == "awaiting" %}
+                        <input class="round-gray" type="submit" value="update" name="status">
+                        <input class="round-red" type="submit" value="delete" name="status" style="float:left;">
+                        <input class="round-gray" type="submit" value="view" name="status">
+
+                        {% else %}
+                        <input class="round-gray" type="submit" value="save draft" name="status">
+                        <input class="round-red" type="submit" value="delete" name="status" style="float:left;">
+                        <input class="round-gray" type="submit" value="preview" name="status">
+                        {% endif %}
+
+
+                        
+                        {% if work.status == "unsubmitted" %}
+                        <input class="round-blue" type="submit" value="publish" name="status">
+                        {% endif %}
+                    </div>
+                    {% endif %}
+                </fieldset>
+            </div>
+        </form>
+
+    </div>
+</div>
+{% endif %}
+{% endblock %}

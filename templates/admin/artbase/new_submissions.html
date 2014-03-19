@@ -1,0 +1,102 @@
+{% extends "admin/base_site.html" %}
+{% load i18n admin_modify admin_list %}
+
+
+{% block breadcrumbs %} 
+<div class="breadcrumbs">
+<a href="../../../">{% trans "Home" %}</a> &rsaquo;
+<a href="../../">{{ app_label|capfirst|escape }}</a> &rsaquo;
+<a href="../">{{ opts }} </a>&rsaquo; New Submissions
+</div> 
+{% endblock %}
+
+{% block form_top %}
+  <h1>New Artwork Submissions (new_submissions_count)</h1>
+{% endblock %}
+
+{% block content %}
+            <div class="pagination" style="float:right;">
+                <span class="step-links">
+                    {% if submissions.has_previous %}
+                      <a href="?page={{ submissions.previous_page_number }}"> &larr; previous</a>
+                    {% endif %}
+            
+                    <span class="current">
+                        Page {{ submissions.number }} of {{ submissions.paginator.num_pages }}.
+                    </span>
+            
+                    {% if submissions.has_next %}
+                        <a href="?page={{ submissions.next_page_number }}">next &rarr;</a> 
+                    {% endif %}
+                </span>
+            </div>
+    {% csrf_token %}
+    <div id="content" class ="flex">
+        <div id="content-main">
+            <div id="changelist" class="module">
+                <table id="result_list" cellspacing="0">
+                    <tbody>
+                        {% for artwork in submissions.object_list %}
+                        <tr>            
+                            <td style = "padding:10px;">
+                                <div style = "padding:10px;font-weight:bold;">Submitted on {{artwork.submitted_date|date:"M jS, Y P" }}</div> 
+                                
+                                <div style="font-size:15px; padding:5px;width:700px;">
+                                   {{artwork.id}}: <a target="_blank" href="http://rhizome.org{{artwork.view_url}}">{{artwork.title}}</a> by 
+                                        <i><a target="_blank" href="http://rhizome.org{{artwork.user.get_profile.get_absolute_url}}">{{artwork.user.get_profile}}</i></a>
+                                </div>
+                                <div style = "padding:5px">
+                                    <img style="max-width:400px;" src="{{MEDIA_URL}}{{artwork.image_medium}}" />
+                                </div>
+                                <div style = "padding:5px;font-size:13px;">
+                                    Completion Percentage: {{artwork.completion_percentage}}<br />
+                                </div>
+                                
+                                <div style = "padding:5px;font-size:13px;line-height:1.5;width:700px;">
+                                    {% if artwork.summary %}
+                                        {{artwork.summary}}
+                                    {% else %}
+                                        {{artwork.description}}
+                                    {% endif %}
+                                </div>
+                            
+                            <a href="{{request.path}}?artwork={{ artwork.id }}&choice=to_consider&page={{ request.GET.page }}">
+                                <button style = "float:none; margin: 3px 5px;" class="button default">ADD TO CONSIDERATION LIST</button>
+                            </a>
+
+                            <a href="{{request.path}}?artwork={{ artwork.id }}&choice=rejected&page={{ request.GET.page }}">
+                                <button style = "float:none; margin: 3px 5px;" class="button default">DECLINE</button>
+                            </a>
+
+                            <a href="{{request.path}}?artwork={{ artwork.id }}&choice=spam&page={{ request.GET.page }}">
+                                <button style = "background:red;float:none; margin: 3px 5px;" class="button default">MARK AS SPAM</button>
+                            </a>
+                            
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        
+            <div class="pagination" style="float:right;">
+                <span class="step-links">
+                    {% if submissions.has_previous %}
+                      <a href="?page={{ submissions.previous_page_number }}"> &larr; previous</a>
+                    {% endif %}
+            
+                    <span class="current">
+                        Page {{ submissions.number }} of {{ submissions.paginator.num_pages }}.
+                    </span>
+            
+                    {% if submissions.has_next %}
+                        <a href="?page={{ submissions.next_page_number }}">next &rarr;</a> 
+                    {% endif %}
+                </span>
+            </div>
+        </div>
+
+    </div>
+
+
+{% endblock %}

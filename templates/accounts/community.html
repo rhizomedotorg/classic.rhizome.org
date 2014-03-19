@@ -1,0 +1,236 @@
+{% extends "accounts/base.html" %}
+{% load comments threadedcomments_tags markup%}
+{% block pageTitle %}Community{% endblock %}
+
+{% block customScripts %}
+<script type="text/javascript" src="{{ STATIC_URL }}accounts/scripts/updated_portfolios.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}accounts/scripts/calendar.js"></script>
+<script type="text/javascript">
+window.addEvent("domready", init);
+function init() {show_updated_portfolios_community();}
+</script>
+{% endblock %}
+
+
+{% block content %}
+
+<div class = "span-24">
+
+    <div class="section span-11" style="padding-right:30px">
+        <div class="section-row-titles span-11">
+            <span class = "nav-item span-10">Recently Updated Portfolios</span>                      
+            <span class="carousel-scroll" id ="carousel-scroll-portfolios">
+                    <a href = "#" id = "previous"></a>
+                    <a href = "#" id = "next"></a>
+            </span>
+            <hr class="hr3">
+        </div>
+        <div id = "community-portfolios-wrapper" class = "span-13">            
+            <div id ="portfolios" class = "span-11">
+                {% for work in updated_portfolios %}
+                <div class = "work">
+                    <a href= "{{work.view_url}}">
+                        <img src="{{MEDIA_URL}}{{ work.image_small }}" width = "135">
+                    </a>
+                    <div class = "work-details">
+                        <a href= "{{work.view_url}}">
+                            {{work.title}}
+                        </a>
+                        <div class="italic bold">by</div>
+                        <a href= "{{ work.user.get_profile.get_absolute_url }}">
+                            {{ work.get_artist }}
+                        </a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <div class="section span-11 prepend-1">
+            <div class="section-row-titles">
+                <span class = "nav-item">Community Calendar</span>
+                <hr class="hr3">
+            </div>    
+            <div id = "announce-calendar" class = "span-11">
+                {{announce_calendar|markdown}}
+            </div>
+    </div>
+
+</div>
+
+<div class = "span-24">
+    <div class="section span-11" style="padding-right:30px">
+        <div class="section-row-titles">
+            <span class = "nav-item">Active Discussions</span>
+            <hr class="hr3">
+        </div>
+        {% for thread in discussion_threads %}
+            <div class = "community-section-row {% if forloop.last %} community-section-row-last{% endif %} span-11">
+                <div class = "markdown span-8">
+                    <h3 class= "serif"> 
+                    <a href = "/discuss/view/{{thread.id}}">{{ thread.content_object.title }}</a>
+                    </h3>
+                </div>
+                
+                <div class = "right row-text span-2">
+                    {% if thread.content_type_id == 112 %}
+                        {% get_comment_count for thread as comment_count %}
+                        Replies: {{comment_count}}      
+                    {% else %}
+                        {% get_comment_count for thread.content_object as comment_count %}
+                        Replies: {{comment_count}}
+                    {% endif %}
+                </div>
+                
+                
+                {% if thread.content_type.name != "post" %}
+                <div class = "row-text markdown span-5">
+                    Posted by 
+                    {% if thread.content_object.author %}
+                        <a href = "{{thread.content_object.content_object.author.get_absolute_url }}"> {{ thread.content_object.author.get_profile }}</a>
+                    {% else %}    
+                        <a href = "{{thread.content_object.user.get_profile.get_absolute_url }}"> {{ thread.content_object.user.get_profile }}</a>
+                    {% endif %}
+                </div>  
+                {% endif %}
+                
+                {% if thread.content_type.name == "post" %}
+                    <div class = "row-text markdown span-5">
+                    {% if thread.content_object.get_authors %}
+                        {% for author in thread.content_object.get_authors %}
+                            Posted by <a href="{{ author.get_profile.get_absolute_url }}">{{ author.get_profile }}</a>
+                        {% endfor %}
+                    {% else %} 
+                         Posted by {{ thread.content_object.byline }}
+                    {% endif %}
+                    </div>   
+                {% endif %}       
+            
+                {% if thread.last_comment %}
+                <div class = "row-text right markdown span-5">
+                    Last Response by
+                    <a href = "{{ thread.last_comment.user.get_profile.get_absolute_url }}">
+                        {{ thread.last_comment.user.get_profile }}
+                    </a>
+                </div>
+                {% else %}
+                    <div class = "row-text right markdown span-5">No replies yet</div>
+                {% endif %}
+            
+            </div>
+        {% endfor %}  
+    </div>
+
+    <div class="section span-11 prepend-1">
+        <div class="section-row-titles last">
+            <span class = "nav-item">Recent Announcements</span>
+            <hr class="hr3">
+        </div>   
+         
+     {% for a in announcements %}
+        <div class = "community-section-row {% if forloop.last %} community-section-row-last{% endif %} span-11">
+         
+         {% if a.start_date  or a.deadline %}
+             {% if a.start_date %}
+                <div class="community-announce-date span-2">
+                    <div class = "deadline">Starts:</div>
+                    <div class = "month">{{ a.start_date|date:"M"}}</div>
+                    <div class = "day">{{ a.start_date|date:"d"}}</div>
+                    <div class = "year">{{ a.start_date|date:"Y"}}</div>
+                </div>
+                {% endif %}
+                
+                {% if a.deadline %}
+                <div class="community-announce-date span-2">
+                    <div class = "deadline">Deadline:</div>
+                    <div class = "month">{{ a.deadline|date:"M"}}</div>
+                    <div class = "day">{{ a.deadline|date:"d"}}</div>
+                    <div class = "year">{{ a.deadline|date:"Y"}}</div>
+                </div>
+                {% endif %}        
+            
+                <h3 class ="serif">
+                    <a href="{{ a.get_absolute_url }}">{{ a.title }}</a>   
+                </h3>
+                        
+                {% if a.city or a.country or a.location or a.state %}
+                <div class="item-listing span-8">   
+                        <span class = "row-text span-2">Location:</span>
+                        <div class = "span-5">
+                          {% if a.location_title %} {{ a.location_title }}<br/>{% endif %}
+                          {% if a.city %} {{ a.city }}{% endif %}
+                          {% if a.state %} {{ a.state }}<br/>{% endif %}  
+                          {% if a.country %} {{ a.country }}<br/> {% endif %}    
+                          {% if a.location %} {{ a.location }}<br/> {% endif %}
+                        </div>
+                    <hr class="thin-no-margin">
+                </div> 
+                {% endif %}
+                
+                {% if a.description %}
+                <div class="item-listing span-8">   
+                        <div class = "row-text span-2">Description:</div>  
+                        <div class = "span-8 indent">{{ a.description_strip_bbcode|truncatewords:75 }}</div>
+                    <hr class="thin-no-margin">
+                </div> 
+                {% endif %}
+    
+                {% if a.url %}
+                <div class="item-listing row-text-padding span-8 prepend-2">  
+                    <a href="{{ a.url }}">{{ a.url }}</a>
+                    <hr class="thin-no-margin">
+                </div> 
+                {% endif %}
+                
+                <div class="item-listing row-text-padding span-8 prepend-2">
+                        {{ a.type|upper }} posted by <a href = "{{a.user.get_profile.get_absolute_url}}">{{ a.user.get_profile }}</a>
+                </div>
+                
+            {% else %}
+            
+                <h3 class ="serif">
+                    <a href="{{ a.get_absolute_url }}">{{ a.title }}</a>   
+                </h3>
+                        
+                {% if a.city or a.country or a.location or a.state %}
+                <div class="item-listing span-11">   
+                    <span class = "row-text span-2">Location:</span>
+                    <div class = "span-8">
+                      {% if a.location_title %} {{ a.location_title }}<br/>{% endif %}
+                      {% if a.city %} {{ a.city }}{% endif %}
+                      {% if a.state %} {{ a.state }}<br/>{% endif %}  
+                      {% if a.country %} {{ a.country }}<br/> {% endif %}    
+                      {% if a.location %} {{ a.location }}<br/> {% endif %}
+                    </div>
+                    <hr class="thin-no-margin">
+                </div> 
+                {% endif %}
+                
+                {% if a.description %}
+                <div class="item-listing span-11">   
+                        <div class = "row-text span-2">Description:</div>  
+                        <div class = "span-8">{{ a.description_strip_bbcode|truncatewords:75 }}</div>
+                    <hr class="thin-no-margin">
+                </div> 
+                {% endif %}
+    
+                {% if a.url %}
+                <div class="item-listing span-11">  
+                    <div class ="row-text">
+                        <a href="{{ a.url }}">{{ a.url }}</a>
+                    </div>
+                     <hr class="thin-no-margin">
+                </div> 
+                {% endif %}
+                
+                <div class="item-listing row-text span-11">
+                        {{ a.type|upper }} Posted by <a href = "{{a.user.get_profile.get_absolute_url}}">{{ a.user.get_profile }}</a>
+                </div>
+            {% endif %}
+            
+        </div>
+    {% endfor %}  
+    </div>
+</div>
+{% endblock %}

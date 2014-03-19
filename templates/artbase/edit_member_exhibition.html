@@ -1,0 +1,18 @@
+{% extends "artbase/exhibition_base.html" %}
+
+{%block pageTitle %}
+Edit Exhibition
+{% endblock %}
+
+{% block content_class %}artbase_exhibition_form{% endblock %}
+
+{% block content %}
+<div class="mini-nav">
+    <span class="first upper bold">New Member Exhibition</span>
+<!--     <span>Preview</span> -->
+    <hr class="hr3"></hr>
+</div>
+
+{% include "artbase/member_exhibition_form.html" %}
+
+{% endblock %}

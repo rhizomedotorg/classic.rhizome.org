@@ -1,0 +1,303 @@
+{% load blog_tags markup admin_static %}
+{% load feed_tags block_tags %}
+
+<!doctype html>
+
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta http-equiv="Content-Language" content="en-us">
+        <title>Rhizome | {% block pageTitle %}{% endblock %}</title>                
+        <meta name="google-site-verification" content="AZfoqybynDh_0mjEBG_XwMZeCwiSE-GZ8BiQB5FZzDU" />        
+        <meta name="ROBOTS" content="ALL" />
+        <meta name="description" content="Rhizome is dedicated to the creation, presentation, preservation, and critique of emerging artistic practices that engage technology." />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+        {% block extrahead %}{% endblock %}
+
+        <link rel="shortcut icon" href="{{ STATIC_URL }}images/favicons/leyva.gif" />
+
+        <!-- google fonts -->
+        <link href='//fonts.googleapis.com/css?family=Titillium+Web:400,200,300' rel='stylesheet' type='text/css'>
+        <link href='//fonts.googleapis.com/css?family=Anaheim' rel='stylesheet' type='text/css'>
+
+        {% block styles %}
+            <!--GLOBAL CSS-->
+            <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/blueprint/screen.css" media="screen, projection"></link>
+            <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/base.css" media="screen, projection"></link>
+            <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/comments.css" media="screen, projection"></link>
+            <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/sidebars.css" media="screen, projection"></link>
+            <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/calendars.css" media="screen, projection"></link>
+            <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/miniprofile.css" media="screen, projection"></link>
+            <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/media_players.css" media="screen, projection"></link>
+            <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/blueprint/print.css" media="print"/></link>
+            <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/new_navbars.css"/></link>
+            <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/top_banner.css"/></link>
+            <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}font-awesome-4.0.0/css/font-awesome.min.css"/></link>
+            <!--[if lt IE 8]>
+                <link rel="stylesheet" href="{{ STATIC_URL }}css/blueprint/ie.css" type="text/css" media="screen, projection"></link>
+            <![endif]-->
+         
+            <!--[if IE]>
+                <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/ie.css"  />
+            <![endif]-->
+
+            <!-- LOCAL CSS -->
+            {% block customStyleSheets %}
+                {% for style in styles %}
+                    <link rel="stylesheet" href="{{ style.href }}" type="text/css" media="screen, projection" charset="utf-8" />
+                {% endfor %}
+            {% endblock %}
+            
+            {% block moreCustomStyleSheets %}
+            {% endblock %}
+            
+            {% block pre_inline_css %}
+            {% endblock %}
+
+            {% block page_inline_css %}
+            {% endblock %}
+        {% endblock %}
+        {% block extra_css %}{% endblock %}
+        
+        {% block scripts %}
+            <!-- GLOBAL JAVASCRIPT -->
+            <script type="text/javascript">var _sf_startpt=(new Date()).getTime()</script>
+            <script type="text/javascript">window.__admin_media_prefix__ = "{% static 'admin/' %}";</script>
+            <script type="text/javascript">window.__static_url__ = "{{ STATIC_URL }}";</script>
+            <script type="text/javascript">var STATIC_URL = "{{ STATIC_URL }}";</script>
+            <script type="text/javascript">window.SERVER_NAME = "{{ request.META.SERVER_NAME }}";</script>
+
+            <script type="text/javascript" src="{{ STATIC_URL }}js/mootools-core-1.3.2-yc.js"></script>
+            <script type="text/javascript" src="{{ STATIC_URL }}js/mootools-more-1.3.2.1.js"></script>
+            <script type="text/javascript" src="{{ STATIC_URL }}js/rhizome.js"></script>
+            <script type="text/javascript" src="{{ STATIC_URL }}media_players/flowplayer/flowplayer-3.2.2.min.js"></script>
+            <script type="text/javascript" src="{{ STATIC_URL }}media_players/soundmanager/script/soundmanager2-nodebug-jsmin.js"></script>
+            <script type="text/javascript" src="{{ STATIC_URL }}media_players/soundmanager/script/inlineplayer.js"></script>
+            <script type="text/javascript" src="{{ STATIC_URL }}js/carousel/PeriodicalExecuter.js"></script>
+            <script type="text/javascript" src="{{ STATIC_URL }}js/carousel/Carousel.js"></script>
+            
+            <script type="text/javascript">
+                soundManager.url = '{{ STATIC_URL }}media_players/soundmanager/swf/';
+                //soundManager.flashVersion = 9; // optional: shiny features (default = 8)
+                soundManager.useFlashBlock = true; // optionally, enable when you're ready to dive in
+                // enable HTML5 audio support, if you're feeling adventurous.
+                soundManager.useHTML5Audio = true;
+                soundManager.debugMode = 0; // disable or enable debug output
+                soundManager.useFlashBlock = 0;
+                //soundManager.useMovieStar = true;
+            </script>
+
+            <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.10.2.min.js"></script>
+            <!-- LOCAL  JAVASCRIPT-->              
+            {% block customScripts %}{% endblock %}
+            {% block moreCustomScripts %}{% endblock %}
+                   
+            {% block pre_inline_js %}
+            {% endblock %}
+
+            {% block page_assets_css %}
+            {% endblock %}
+            
+            {% block page_assets_js %}
+            {% endblock %}
+            
+            {% block post_inline_js %}
+            {% endblock %}
+            
+            <script type="text/javascript">
+                {% autoescape off %}
+                {% block pageJsonData %}{% endblock %}
+                {% endautoescape %}
+            </script>
+        {% endblock %}
+        
+        <!--RSS HEADER -->
+        {% block rss_head_link %}
+        {% endblock %}
+
+        <!-- Quantcast Tag, part 1 -->
+        <script type="text/javascript">
+            var _qevents = _qevents || [];
+            (function() {
+                var elem = document.createElement('script');
+                elem.src = (document.location.protocol == "https:" ? "https://secure" : "http://edge")  
+                            + ".quantserve.com/quant.js";
+                elem.async = true;
+                elem.type = "text/javascript";
+                var scpt = document.getElementsByTagName('script')[0];
+                scpt.parentNode.insertBefore(elem, scpt);  
+            })();
+        </script>
+    </head>
+        
+    <body class="{% block body_class %}rhizome-base{% endblock %}{% if current_campaign %} with-top-banner{% endif %}">
+        {% if current_campaign %}
+            <div class="top-banner">
+                <a href="/campaign/">Community Fundraiser {{ current_campaign.year }}</a> | <a href="/campaign/">Donate Now!</a>  
+                <a class="close">X</a>
+            </div>
+        {% endif %}
+        
+        {% block navbars %}
+            {% assign_text 'tagline' as tagline %}
+            {% get_nav None None tagline %}
+        {% endblock %}
+                 
+        {% block featured %}{% endblock %}  
+        {% block highlights %}{% endblock %}
+
+        {% if include_section_header %}
+        <div class="section-header-wrap">
+            {% if artbase_section_header %}
+            <div class="container">
+                {% block artbase_section_header %}{% endblock %}
+            </div>
+            {% else %}
+            <div class ="section-header container">
+                <!-- Start Standard Section Header -->
+                {% if section_title %}
+                    <h6>{{ section_title }}</h6>
+                {% endif %}
+
+                <div id="section-description" class="span-15">{% block section_description %}{% endblock %}</div>
+                <div id="section-description">{% block wide_section_description %}{% endblock %}</div>
+                
+                {% if section_action %}
+                <div class ="section-action" class="span-9 last">
+                    <form action="{{ section_action }}">
+                        <button class="section-action {% block section_action_class %}{% endblock %}" type="submit">{{ section_button }}</button>
+                    </form>
+                </div>
+                {% endif %}
+                
+                {% if artbase_section_action %}
+                <!--for old design-->
+                <div class ="section-action" class="span-9 last">
+                    <form action="/artbase/submit/">
+                        <button class="section-action {% block artbase_section_action_class %}{% endblock %}" type="submit">{{ section_button }}</button>
+                    </form>
+                </div>
+                {% endif %}
+                <!-- End Standard Section Header -->
+                
+                {% block custom_section_header %}{% endblock %}
+                <!-- End Custom Section Header -->
+            </div>
+
+            {% endif %}
+        </div>
+        {% endif %}         
+        
+         {% if include_object_header %}
+            {% block section_object_header %}{% endblock %}
+         {% endif %}    
+         
+         {% block fixedSideContent %}{% endblock %}   
+                        
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}><div class="container">{{ message }}</div></li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        <div id="content" class="container {% block content_class %}{% endblock %}">
+            {% block content %}{% endblock %}
+        </div>
+        
+        <div id="preload"></div>
+
+
+
+        <!-- Quantcast Tag, part 2 -->
+        <script type="text/javascript">
+            _qevents.push( { qacct:"p-1bU5CKetpvMBI", labels:"artmedia" } );
+        </script>
+        <noscript>
+            <div style="display: none;">
+                <img src="//pixel.quantserve.com/pixel/p-1bU5CKetpvMBI.gif?labels=artmedia" height="1" width="1" alt="Quantcast"/>
+            </div>
+        </noscript>
+
+        {% block bottom_js %}
+        {% endblock %}
+
+        <script>
+        jQuery.noConflict();
+        (function($) {
+            $(function() {
+                $('.share-btn-cover').click(function() {
+                    $(this).hide();
+                    $(this).siblings('.share-btn').css({'display': 'inline-block'});
+                    return false;
+                });
+            });
+        })(jQuery);
+        </script>
+        <script type="text/javascript" src="{{ STATIC_URL }}js/new_navbars.js"></script>
+        {% if current_campaign %}
+            <script type="text/javascript" src="{{ STATIC_URL }}js/top-banner.js"></script>
+        {% endif %}
+
+        {% if "https" not in STATIC_URL %}
+            <script type="text/javascript">
+                var z=document.createElement("script");
+                z.type="text/javascript";
+                z.async=true;
+                z.src="//engine.nectarads.com/z/12843/azk1_2_43,azk2_2_16,azk3_2_16,azk4_2_16,azk5_2_16";
+                var s = document.getElementsByTagName("script")[0];
+                s.parentNode.insertBefore(z, s);
+            </script>
+        {% endif %}
+
+
+
+        <script>
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+          ga('create', 'UA-768502-1', 'rhizome.org');
+          ga('send', 'pageview');
+
+        </script>
+    
+        <script type="text/javascript">
+            (function() {
+            var src = document.createElement('script'); 
+            src.async = true;
+            src.src = document.location.protocol + '//platform.twitter.com/widgets.js';
+            document.getElementsByTagName('head')[0].appendChild(src);
+            }());                        
+        </script>
+        <script type="text/javascript">
+          (function() {
+            var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+            po.src = 'https://apis.google.com/js/plusone.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+          })();
+        </script>
+        
+        <script type="text/javascript">
+            var _sf_async_config={uid:26954,domain:"rhizome.org"};
+            (function(){
+              function loadChartbeat() {
+                window._sf_endpt=(new Date()).getTime();
+                var e = document.createElement('script');
+                e.setAttribute('language', 'javascript');
+                e.setAttribute('type', 'text/javascript');
+                e.setAttribute('src',
+                   (("https:" == document.location.protocol) ? "https://a248.e.akamai.net/chartbeat.download.akamai.com/102508/" : "http://static.chartbeat.com/") +
+                   "js/chartbeat.js");
+                document.body.appendChild(e);
+              }
+              var oldonload = window.onload;
+              window.onload = (typeof window.onload != 'function') ?
+                 loadChartbeat : function() { oldonload(); loadChartbeat(); };
+            })();
+        </script>        
+    </body>
+</html>

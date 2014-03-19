@@ -1,0 +1,42 @@
+<!-- This creates bbcode buttons for textfields.-->
+
+<div id="format-buttons">
+    <a id="bbcode-guide" href="/discuss/bbcode" onclick="javascript:void window.open('/discuss/bbcode','1276814637707','width=500,height=400,toolbar=0,menubar=0,location=0,status=1,scrollbars=1,resizable=1,left=0,top=0');return false;">BBCode Guide</a> 
+    <input class="bbcode-button" accesskey="bold"  value=" b " onclick="javascript:void(get_bbstyle(this, 'bold'));return false;" title="Bold text: [b]text[/b]" type="button" />
+    <input class="bbcode-button" accesskey="italic" value=" i " onclick="javascript:void(get_bbstyle(this, 'italic'));return false;" title="Italic text: [i]text[/i]" type="button" />
+    <input class="bbcode-button" accesskey="underline"  value=" u " onclick="javascript:void(get_bbstyle(this, 'underline'));return false;" title="Underline text: [u]text[/u]" type="button" />
+    <select id='bbcode-textsize' onchange="bbfontstyle('[size=' + this.form.textsize.options[this.form.textsize.selectedIndex].value + ']', '[/size]');" title="Font size">
+      <option value="normal" selected="selected">
+        Normal Font
+      </option>
+      <option value="x-small">
+        X-Small Font
+      </option>
+      <option value="small">
+        Small Font
+      </option>
+      <option value="large">
+        Large Font
+      </option>
+      <option value="x-large">
+        X-Large Font
+      </option>
+    </select>
+
+    <input class="bbcode-button" accesskey="align_left"  value="Left" onclick="javascript:void(get_bbstyle(this, 'left'));return false;" title="Align left: [text=left]text[/text]" type="button" />
+    <input class="bbcode-button" accesskey="align_center" value="Center" onclick="javascript:void(get_bbstyle(this, 'center'));return false;" title="Align center: [text=center]text[/text]" type="button" />
+    <input class="bbcode-button" accesskey="align_right" value="Right" onclick="javascript:void(get_bbstyle(this, 'right'));return false;" title="Align Right: [text=right]text[/text]" type="button" />
+    <input class="bbcode-button" accesskey="quote"  value="Quote" onclick="javascript:void(get_bbstyle(this, 'quote'));return false;" title="Quote text: [quote]text[/quote]" type="button" />
+    <input class="bbcode-button" accesskey="hr" value="HR"  onclick="javascript:void(get_bbstyle(this, 'hr'));return false;" title="Horizonatal Line: [hr /]" type="button" />
+    <input class="bbcode-button" accesskey="code" value="Code"  onclick="javascript:void(get_bbstyle(this, 'code'));return false;" title="Code display: [code]code[/code]" type="button" />
+    <input class="bbcode-button" accesskey="list" value="List" onclick="javascript:void(get_bbstyle(this, 'unordered_list'));return false;" title="List: [ul]text[/ul]" type="button" />
+    <input class="bbcode-button" accesskey="list_item" value="List Item" onclick="javascript:void(get_bbstyle(this, 'list_item'));return false;" title="List item: [*]text[/*]" type="button" />
+    <input class="bbcode-button" accesskey="image" value="Img" onclick="javascript:void(get_bbstyle(this, 'image'));return false;" title="Insert image: [img]source-url[/img]" type="button" />
+    <input class="bbcode-button" accesskey="url" value="URL" onclick="javascript:void(get_bbstyle(this, 'url'));return false;" title="Insert URL: [url]http://url[/url] or [url=http://url]URL text[/url]" type="button" />
+    <input class="bbcode-button" accesskey="falsh" value="Flash" onclick="javascript:void(get_bbstyle(this, 'flash'));return false;" title="Insert a Flash File: [flash]source-url[/flash]" type="button" />
+    <input class="bbcode-button" accesskey="qt" value="Quicktime" onclick="javascript:void(get_bbstyle(this, 'qt'));return false;" title="Insert a Quicktime File: [qt]source-url[/qt]" type="button" />
+    <input class="bbcode-button" accesskey="youtube" value="YouTube" onclick="javascript:void(get_bbstyle(this, 'youtube'));return false;" title="Insert a YouTube video: [youtube]source-url[/youtube]" type="button" />
+    <input class="bbcode-button" accesskey="vimeo" value="Vimeo" onclick="javascript:void(get_bbstyle(this, 'vimeo'));return false;" title="Insert a Vimeo video: [vimeo]source-urll[/vimeo]" type="button" />
+    <input class="bbcode-button bbpalette" name="bbpalette" id="bbpalette" value="Color" onclick="javascript:void(displayPalette(this));return false;" title="Font color: [color=red]text[/color] Tip: you can also use color=#FF0000" type="button" />            
+ {% include "comments/color_palette.html" %}
+</div>

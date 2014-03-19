@@ -1,0 +1,32 @@
+<div id="red-title-nav">
+    <div class="red-title">Featured work</div>
+    <div id="featured-nav">
+        {% for featured_artwork in featured_artworks %}
+            <button class="select-work {% if forloop.first %}selected{% endif %} {% if forloop.last %}last{% endif %}"></button>
+        {% endfor %}
+        <button class="next-work"></button>
+    </div>
+</div>
+<div class="clear"></div>
+<div id="title-artist">
+    <div id="featured-title" class="title">
+        <a href="{{ featured_artwork.view_url }}" title="{{ featured_artwork.title }}" id ="featured-work-link">
+            {{ featured_artwork.title|truncatewords:5 }}
+        </a>
+        <div class="created-date">({{ featured_artwork.created_date|date:"Y" }})</div>
+    </div>
+    <div id="featured-artist">
+        {% if featured_artwork.user.get_profile.get_absolute_url %}
+        <a href="{{ featured_artwork.user.get_profile.get_absolute_url }}" id = "featured-artist-link">
+            {{ featured_artwork.byline }}
+        </a>
+        {% else %}
+            {{ featured_artwork.byline }}        
+        {% endif %}
+    </div>
+</div>
+<div class="tags" id="featured_artwork_tags">
+    {% for tag in featured_artwork.get_tags|slice:":10" %}
+        <a class="tag" href="{{ tag.url }}">{{ tag.slug }}</a>
+    {% endfor %}
+</div>

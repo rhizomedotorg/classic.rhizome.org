@@ -1,0 +1,138 @@
+{% extends "artbase/base.html" %}
+{% load markup hitcount_tags block_tags %}
+
+{% block pageTitle %}{{collection.title}}{% endblock %}
+
+{% block bottom_js %}
+<script type="text/javascript" src="{{ STATIC_URL }}artbase/scripts/collection.js"></script> 
+<script type="text/javascript">
+    window.addEvent('domready', function() {
+        {% get_hit_count_javascript for collection %}
+    });
+</script>
+
+{% endblock %}
+
+{% block navbars %}
+    {% get_nav 'Artbase' 'Browse' %}
+{% endblock %}
+
+
+{% block content %}
+
+<div id="collection" class="span-24">
+    
+    <div id="collection-title-overlay">
+        <div id="collection-title-overlay-mask"></div>
+        <div id="collection-red-title">Featured Collection</div>
+        <div id="collection-title-overlay-title">{{collection.title}}</div>
+        {% if not collection.curator.user.id == 2 %}
+        <div id="collection-curator">Curated by {{collection.curator.name}}</div>
+        {% endif %}
+    </div>
+    <img id="collection-triangle-flap" src="{{ STATIC_URL }}images/small_triangle_flap_inverse.png"></img>
+
+
+    <div id ="focused-content" class="span-24">
+
+        <div class="focused current" id="focus-statement">
+            <div id="focus-statement-wrap">        
+            {% for page in pages %}
+                <div class="statement-page {% if forloop.first %}first-page{% endif %}">
+                    {% for column in page %}
+                    <div class="statement-column">
+                        <div class="statement-column-content">
+                            {{column|safe}}
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            {% endfor %} 
+            </div>
+            
+            {% if pages|length > 1 %}
+                <a href="#" id="statement-back" style="visibility:hidden;" class='statement-scroll bold'>&larr;</a>
+                <a href="#" id="statement-forward" class='statement-scroll bold'>&rarr;</a>
+            {% endif %}
+        </div>
+    
+        {% for artwork in artworks %}            
+        <div class="focused" id="focus-{{ artwork.title|lower|cut:" "}}">
+
+            <div class="span-24 focused-content">
+                <div class="span-15 focused-image">
+                    {% if artwork.location_type == "cloned" and artwork.location %}
+                        <a target="_blank" href="{{artwork.location}}">
+                    {% else %}
+                        <a target="_blank" href="{{artwork.url}}">
+                    {% endif %}
+                        <img width="470" height="355" src="http://media.rhizome.org/{{ artwork.image_medium }}" ></img>
+                    </a>
+                </div>
+
+                <div class="focused-header span-11">
+                    {% if artwork.location_type == "cloned" and artwork.location %}
+                        <span class="artwork-title">
+                            <a target="_blank" href="{{artwork.location}}">{{ artwork.title }}</a>
+                        </span>   
+                    {% else %}
+                        <span class="artwork-title">
+                            <a target="_blank" href="{{artwork.url}}">{{ artwork.title }}</a> 
+                        </span>    
+                    {% endif %}
+                        <span class="created">({{ artwork.created_date|date:"Y" }})</span>
+                        <div id="focused-artist">
+                            by <a href="{{ artwork.user.get_profile.get_absolute_url }}/">{{ artwork.byline }}</a>
+                        </div>     
+                </div>            
+            
+                <div class="focused-body">
+                    <div class="focused-description">
+                        {{ artwork.summary|truncatewords:70 }}
+                    </div>
+            
+                    <div class="focused-buttons">
+                        {% if artwork.location and artwork.location_type == "cloned" %}
+                            <a target="_blank" class="focused-button" id="left-button" href="{{artwork.location}}">Launch Artwork</a>
+                        {% else %}
+                            <a target="_blank" class="focused-button" id="left-button" href="{{artwork.url}}">Launch Artwork</a>
+                        {% endif %}
+                            <a target="_blank" class="focused-button" href="{{artwork.view_url}}">View Full Record</a>
+                        <div style="clear:both;"></div>
+                    </div>
+            
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+</div>
+   
+    <a href = "#" class = "collection-carousel-previous" id = "preview-previous"></a>
+    <a href = "#" class = "collection-carousel-next" id = "preview-next"></a>
+
+
+    <div class="span-24" id="collection-carousel">
+        <div class="carousel-item" id='statement'>
+            <div class="work-cover">
+                <div class="work-info">About This Collection</div>
+            </div>
+            <img width = "135" height = "170" src="{{ STATIC_URL }}images/text_thumbnail.png"></img>
+        </div>
+        {% for artwork in artworks %}
+        <div class="carousel-item" id="{{ artwork.title|lower|cut:" "}}">
+            <div class="work-cover">
+                <div class="work-info">{{ artwork.title }} 
+                    <div style="text-transform:lowercase !important;">by</div> {{ artwork.byline }}
+                </div>
+            </div>
+            <img width = "135" height = "170" src="{{ MEDIA_URL }}{{ artwork.image_small }}"></img>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="clear"></div>
+
+</div>
+
+
+{% endblock %}

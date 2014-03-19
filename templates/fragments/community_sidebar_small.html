@@ -1,0 +1,70 @@
+{% load discuss bbcode comments announce_tags %}
+
+<div id ="sidebar">
+    
+  <div class="sidebar-element span-8">
+        <div class="section-title"><a href="/discuss">Active Discussions</a></div>
+        <div class="content-wrap">
+            <div class="content">
+                {% get_active_threads 5 as threads %}
+                {% for thread in threads %}
+                <div class="content-body">
+                    <div class="comment">
+                        {% if thread.content_type_id == 112 %}
+                        {% get_comment_count for thread as comment_count %}
+                        <a class="bold" href = "/discuss/view/{{thread.id}}">{{ thread.content_object.title }}                                   
+                        ({{comment_count}} post{{comment_count|pluralize}})  
+                        </a>                       
+                        {% else %}
+                        {% get_comment_count for thread.content_object as comment_count %}
+                        <a class="bold" href="{{thread.content_object.get_absolute_url}}">{{ thread.content_object.title }}                                   
+                        ({{comment_count}} post{{comment_count|pluralize}})   
+                        </a> 
+                        {% endif %}
+                        
+                        <div class="comment-info right">
+                            <span class="descriptor">
+                                Last comment {{ thread.last_comment.submit_date|timesince }} ago by<br />
+                            </span>
+                            <a class = "bold" href="{{ thread.last_comment.user.get_profile.get_absolute_url }}">                
+                                {{ thread.last_comment.user.get_profile }}
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    
+     <div class="sidebar-element span-8">
+        <div class="section-title"><a href="/announce/deadlines">Community Deadlines</a></div>
+        <div class="content-wrap span-8">
+            <div class="content span-7">
+                {% get_upcoming_deadlines 5 as deadlines %}
+                {% for deadline in deadlines %}
+                <div class="content-body span-7 ">
+                    <div class="deadline span-7">
+                        <div class = "day span-2">
+                            <div class = "day-month">{{ deadline.deadline|date:"M" }}</div>
+                            <div class = "day-number">{{ deadline.deadline|date:"j" }}</div>
+                            <div class = "day-title">{{ deadline.deadline|date:"D" }} </div>
+                        </div>
+                        <div class = "deadline-details span-5">
+                            <div class="deadline-title">
+                                <b class="red">{% if deadline.type == "job" %}Job | {% endif %}{{ deadline.subtype }}:</b><br />
+                                <a class = "bold upper" href="{{deadline.get_absolute_url}}">{{ deadline.title }}</a>
+                            </div>
+                            <div class="deadline-user">
+                                <span class="descriptor">Posted by</span> <a class = "bold" href="{{deadline.user.get_profile.get_absolute_url}}">{{ deadline.user.get_profile }}</a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+   
+</div>

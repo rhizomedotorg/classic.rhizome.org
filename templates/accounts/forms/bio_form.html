@@ -1,0 +1,21 @@
+<form action="{{ request.path }}" method="POST">
+{% csrf_token %}
+<input type = "hidden" name = "form" value = "bio">
+    <div class = "edit-profile-form span-24">
+        {% for field in bio_form %}
+        {% if field.errors %}{{ field.errors }}{% endif %}
+        <div class = "fieldset span-23">
+            <div class = "h6 light-gray">{{field.label}}</div>
+            <fieldset> 
+                 {% if field.errors %}<span class="form_errors">{{ field.errors }}</span>{% endif %}
+                <div class = "edit-profile-form-input">{{field}}</div>
+            </fieldset>
+        </div>
+        {% endfor %}
+        <div class = "span-23 end">
+            <fieldset id ="edit-button" class="float-right">
+                 <input class="round-blue" type="submit" value="update" name="update">
+            </fieldset>
+        </div>
+    </div>
+</form>

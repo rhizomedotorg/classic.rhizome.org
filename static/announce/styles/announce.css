@@ -1,0 +1,201 @@
+body.announce button.section-action 
+{
+    height:75px;
+    width:300px;
+}
+
+body.announce .submit-announce
+{
+    background-image:url("../../images/button_text_sprite.png");
+    background-position:25px 55px;
+}
+
+body.announce button.submit-announce:hover
+{
+    background-position: 25px 127px;
+}
+
+body.announce .submit-opportunity
+{
+    background-image:url("../../images/button_text_sprite.png");
+    background-position:25px 345px;
+}
+
+body.announce button.submit-opportunity:hover
+{
+    background-position: 25px 415px;
+}
+
+body.announce .submit-job
+{
+    background-image:url("../../images/button_text_sprite.png");
+    background-position:25px 198px;
+}
+
+body.announce button.submit-job:hover
+{
+    background-position: 25px 270px;
+}
+
+body.announce .submit-event
+{
+    background-image:url("../../images/button_text_sprite.png");
+    background-position:25px 485px;
+}
+
+body.announce button.submit-event:hover
+{
+    background-position: 25px 557px;
+}
+
+#announce-posts-type {
+    font-size: 24px;
+    font-family: Georgia;
+    line-height: 1.1;
+}
+
+#announce-posts h2{
+    font-size:26px;
+    line-height:1.2;
+    min-height: 87px;
+}
+
+.announce-post-details {
+    margin: 0px 0px 5px;
+}
+
+.start-date-no-image {
+    padding: 5px;
+    background-color: #a8adb2;
+    font-weight: bold;
+    text-align: center;
+    color: white;
+    line-height: 1.3;
+    margin-left: 40px;
+}
+
+.start-date-single {
+    margin-right: 10px;   
+    max-height: 100px;
+}
+
+.month {
+    font-family:Helvetica;
+    font-size:13px;
+    text-align:center;
+    text-transform:uppercase;
+}
+
+.start-date-no-image .day, .start-date-single .day  {
+    background-color:#A8ADB2;
+    border:none;
+    padding: 0;
+    font-size: 30pt;  
+    width: 100%;
+    margin-left: 0px !important;
+    line-height: 1;
+}
+
+.year {
+    font-size: 14pt;
+}
+
+.feed-item-meta-data {
+    text-align: right;
+    padding:5px;
+}
+
+.feed-item-meta-type {
+    padding: 5px;
+}
+
+#type {
+    text-align: right;
+    font-weight: bold;
+    color: black;
+}
+
+.hr-thin-gray {
+    margin: 1.45em 0;
+}
+
+#id_description {
+    width: 100%;
+}
+
+.post-form #id_venue_name,
+#id_locality_province,
+#id_zip_postal_code, 
+#id_venue_address,
+#id_image, 
+#id_city, 
+#id_subtype, 
+#id_url,
+#id_country,
+#id_state {
+    height:25px;
+    width:100%;
+}
+
+.post-body img{
+    text-align: center;
+    display: block;
+    margin: 0 auto;
+}
+
+.post-body object{
+    margin: 10px auto;
+    display: block;
+    text-align: center;
+}
+
+.post-body object embed{
+    height: 360px;
+    max-height: 782px;
+    max-width: 590px;
+    width: 590px;
+}
+
+.post-body .quote{
+    font-size: 15px;
+    margin: 1.5em;
+    color: #333 !important;
+    font-style: normal;
+    quotes: "\201C" "\201D";
+}
+
+.post-body .quote:before { content: open-quote; font-weight: bold; }
+.post-body .quote:after { content: close-quote; font-weight: bold; }
+
+#announcement-location-indent{
+    margin-left: 100px;
+}
+
+a.edit-link{
+    -moz-border-radius:8px 8px 8px 8px;
+    border-radius:8px 8px 8px 8px;
+    -webkit-border-radius: 8px;
+    background-color:#F30202;
+    border:medium none;
+    color:white;
+    font-family:Helvetica;
+    font-size:11px;
+    padding:1px 4px;
+    text-transform:uppercase;
+}
+
+a.edit-link:hover{
+    color:white;
+}
+
+#announcement-location-header {
+    font-size: 22px;
+    font-family: Helvetica;
+    line-height: 1.2;
+}
+
+#announcement-location-content p{
+    font-family: Georgia;
+    font-size: 16px;
+    margin-bottom: 20px;
+}

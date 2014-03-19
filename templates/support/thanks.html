@@ -1,0 +1,43 @@
+{% extends "support/base.html" %}
+{% load bbcode markup %}
+
+{% block pageTitle %}Thank you for your donation!{% endblock %}
+
+{% block content %}
+
+<div class = "thanks section span-24" >
+
+    <div class= "left-column span-15">
+        <div id = "thanks-letter">
+            <div id="thanks-letter-header">Thank you for your donation!</div>
+            <div class="about-content letter-content">
+                <div class="upper light-gray center">TAX-DEDUCTION INFORMATION</div>
+                <div class="light-gray center">
+                    <p>Rhizome.org is a not-for-profit 501(c)(3) organization. For U.S. taxpayers, contributions to Rhizome.org are tax-deductible to the extent allowed by law.<p>
+                        
+                    <p>If you have any questions or comments please <a href="mailto:membership@rhizome.org">email us</a>.</p>
+                </div>
+            
+            </div>
+        </div>
+    </div> <!-- end left column -->
+        
+    <div class= "right-column span-8">
+        <div id ="sidebar" class="span-8">
+            <div class="sidebar-element span-8">
+                <div class="section-title">Donation Information</div>
+                <div class="content-wrap span-8">
+                    <div class="content span-7">                                                                                    
+                        <div class="content-body span-7">
+                            <div class="about-content">
+                                <div class="content-text bold">You will receive a confirmation shortly via e-mail, please be sure to check your spam filters for this confirmation. This email will serve as an official receipt of your contribution. Please print this receipt for your records.</div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+    </div><!--end left column-->
+</div>
+            
+{% endblock %}

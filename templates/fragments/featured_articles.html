@@ -1,0 +1,50 @@
+{% load blog_tags %}
+<div id ="sidebar">
+
+    <div class="sidebar-element ">
+        <div class="section-title">
+            <a href="/editorial/">Featured Articles</a>
+        </div>
+        <div class="content-wrap ">
+            <div class="content ">
+                {% get_featured_posts 4 as featured_post_list %}
+                {% for post in featured_post_list %}
+                <div class="content-body ">
+                    <div class="sidebar-post">
+                        {% if post.get_first_image %}
+                        <div class = "post-image">
+                            <a class="bold" href="{{ post.get_absolute_url }}?ref=ftsidebar">
+                                <img width="100px" src = "{{ MEDIA_URL }}{{ post.get_first_image }}"></img>
+                            </a>
+                        </div>
+                        <div class="sidebar-post-title ">
+                            <a class = "bold" href="{{ post.get_absolute_url }}?ref=ftsidebar">{{ post.title }}</a>                                   
+                        </div>
+                        {% else %}
+                        <div class="sidebar-post-title-no-image">
+                            <a class = "bold" href="{{ post.get_absolute_url }}?ref=ftsidebar">{{ post.title }}</a>                                   
+                        </div>
+                        {% endif %}
+                        <div class="sidebar-post-info ">
+                            <span class="descriptor">by 
+                                {% if post.get_authors %}
+                                    {% for author in post.get_authors %}
+                                        <span class="authors bold-upper blue">
+                                            <a href="{{ author.get_profile.get_absolute_url }}?ref=ftsidebar">{{ author.get_full_name}}</a> 
+                                        </span>
+                                    {% endfor %}
+                                {% else %}
+                                    {% if post.byline %}
+                                    <span class="authors bold-upper blue">{{ post.byline }}</span>
+                                    {% endif %}
+                                {% endif %}
+                            on {{post.publish|date:"M jS, Y" }}</a>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>

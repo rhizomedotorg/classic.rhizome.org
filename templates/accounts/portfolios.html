@@ -1,0 +1,61 @@
+{% extends 'accounts/base.html' %}
+{% load block_tags %}
+
+{% block moreCustomStyleSheets %}
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/browse.css" type="text/css"></link>
+{% endblock %}
+
+{% block pageTitle %}Recently Updated Portfolios{% endblock %}
+
+{% block navbars %}
+    {% get_nav 'Community' 'Portfolios' %}
+{% endblock %}
+
+{% block content %}
+<div class="section span-24">
+    <div class="section-row-titles">
+        <span class = "nav-item">Recently Updated Portfolios</a></span>
+        <hr class="hr3">
+    </div>    
+</div>
+
+<div class="section-content span-24">
+
+    <div class = "section-listings">
+        
+       <table id="browse-titles-table" class="browse-table" cellspacing="0" cellpadding="0" border="0">
+        {% for row in grouped %}
+        <tr {% if forloop.last %} class="last" {% endif %}>
+            {% for work in row %}
+            {% if work %}
+            <td>
+                <a href="{{ work.view_url }}">
+                    <img src="{{MEDIA_URL}}{{work.image_small}}" width="135">
+                </a><br/>
+                <a class="listing-title" href="{{ work.view_url }}">
+                    {{work.title|title}}
+                </a>
+                <br/>by<br/>
+                <a href= "{{work.user.get_profile.get_absolute_url}}">{{work.user.get_profile}}</a>
+            </td>
+            {% else %}
+            <td>
+                &nbsp;
+            </td>
+            {% endif %}
+            {% endfor %}
+        </tr>
+        {% endfor %}
+        </table>
+    
+    </div>
+</div>
+
+{% if portfolios_paginator.total_pages > 1 %}
+<hr class="hr2-grey-no-margin">  
+<span id="feed-paginator" class="span-24">
+    {{ portfolios_paginator.render }}
+    <hr class="hr2-grey">
+</span>
+{% endif %}
+{% endblock %}

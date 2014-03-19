@@ -1,0 +1,18 @@
+{% load markup %}
+
+<div id="fp" class="carousel">
+  <div class="carousel-inner">
+    {% for obj in featured_objects %}
+      <div class="item{% if forloop.first %} active{% endif %}">
+          <img class="image" src="{{ obj.image }}"></img>
+            <div style="color: {{ obj.text_color }};" class="carousel-caption">
+                <h2><a style="color: {{ obj.title_color }};" href="{{ obj.url }}?ref=carousel_p{{ forloop.counter }}">{{ obj }}</a></h2>
+                By <a style="color: {{ obj.byline_color }};" href="{{ obj.get_byline.0 }}?ref=carousel_p{{ forloop.counter }}">{{ obj.get_byline.1 }}</a>
+                {{ obj.get_description|markdown|truncatewords_html:25 }}
+            </div>
+      </div>
+    {% endfor %}
+  </div>
+  <a class="left carousel-control" href="#fp" data-slide="prev">‹</a>
+  <a class="right carousel-control" href="#fp" data-slide="next">›</a>
+</div>

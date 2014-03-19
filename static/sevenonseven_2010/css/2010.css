@@ -1,0 +1,149 @@
+/* @override http://rhizome.org/sevenonseven/style.css */
+
+body{background-image: url('../img/bigtriangles.gif');background-repeat:no-repeat;background-position:top right;text-align: center;}
+.wrapper { text-align: left; width: 900px; margin-left: auto; margin-right: auto; } 
+.bluebar { position: absolute; left: 0px; top: 45px; width: 100%; height: 331px; margin: 0px; background-image: url('../img/bluebar-big.png'); z-index:-1;}
+
+img{border: none;}
+
+/* HEADERS */
+h1 { font-family: "Georgia", "Times New Roman", Times, serif; font-size: 24px; font-weight: 100; }
+h2 { margin:0px; margin-bottom: 5px; color: #3399cc;
+	font: xx-large Georgia, "Times New Roman", Times, serif;
+}
+
+.icon {
+	margin-bottom: -2px;
+	margin-left: 2px;
+}
+
+.vidTitle {
+	font-size: 18px;
+	color: #4e8bb6;
+}
+h3 { font-size: large;font-weight: normal; margin: 0px 0px -5px;
+	text-transform: uppercase;
+	color: #4e8bb6;
+}
+h4 { color: #333;font-family: Georgia, 'Times New Roman', Times, serif;font-size: 19px;text-align: right;width: 300px;font-weight: normal;margin: 0px;}
+h5 { color: #333;font-family: Georgia, 'Times New Roman', Times, serif;font-size: 19px;text-align: left; font-weight: normal;margin: 0px;}
+
+/* LINKS */
+a:link { color: #000; text-decoration: none; border: hidden; text-align: right;}
+a:visited { color: #000; text-decoration: none; }
+a:hover { text-decoration: underline; color: #666; }
+a:active { text-decoration: none; }
+
+/* LINKS psuedo-styles for Trailer and Interview leftColumn */
+a.name:link { color: #000; text-decoration: none; border: hidden; text-align: right; font-size: 16px}
+a.name:visited { color: #000; text-decoration: none; font-size: 16px;
+}
+a.name:hover { text-decoration: underline; color: #666;	font-size: 16px;
+}
+a.name:active { text-decoration: none;
+	font-size: 16px;
+}
+
+a.blue:link { color: #4e8bb6; text-decoration: none; border: hidden; text-align: right; font-size: 16px}
+a.blue:visited { color: #4e8bb6; text-decoration: none; font-size: 16px;
+}
+a.blue:hover { text-decoration: underline; color: gray;	font-size: 16px;
+}
+a.blue:active { text-decoration: none;
+	font-size: 16px;
+	color: #4e8bb6;
+}
+
+
+/* SIDEBAR */
+
+.leftcolumn { margin-top: 38px; text-align: left; width: 320px; z-index:2; float: left;}
+
+.tickets {	width: 320px; margin-top: 0px; padding: 10px 0 30px; color: #333333; font-size: 19px; font-family: "Georgia", "Times New Roman", Times, serif; text-align: right; margin-left: -10px;
+	margin-right: 0;
+}
+
+.tickets ul {display:inline;
+}
+.tickets ul li { list-style: none;color: #333;list-style-type: none; font-family: 'Georgia', 'Times New Roman', Times, serif; font-size: 22px; margin-top: 0px; padding: 0px; text-align: right; height: 20px; }
+
+ul#reg {display:inline;float:right;
+	border-bottom: 1px solid gray;
+	border-top: 1px solid gray;
+	padding-bottom: 10px;
+	list-style-type: none;
+	margin-top: 40px;
+	padding-top: 8px;
+	margin-left: 130px;
+}
+ul#reg li {text-align: right;}
+ul#images {width:50px; float:right;display:inline;margin: 0px 0px 5px 0px;padding-top: 0px;}
+.tickets ul li.1 { margin-bottom: 5px; }
+
+
+#desc { margin: 24px auto 24px 6px;}
+
+.eventschedule { width: 300px; font-size: 19px; font-family: "Georgia", "Times New Roman", Times, serif; text-align: right; color: #333333; padding-top: 26px;margin-right: 0;clear:both;margin-left: 4px;margin-top:30px;
+}
+
+.eventschedule h2{margin-top: 5px;padding-top: 0px;}
+
+.disclaimer-tickets { font-size: 13px; margin: 0px 0px 0px 0px; text-align: right;width:320px;clear:both;}
+
+/* MAIN CONTENT */
+
+.middleblock { width: 460px; height: 3760px; top: 30px; background-image: url('../img/middleblock3-big.png'); background-position: top left; background-repeat: no-repeat; float: left; font-family: "Georgia", "Times New Roman", Times, serif; font-size: 16px; color: #333333; text-align: left; behavior: url(/css/resources/iepngfix.htc);
+	padding: 20px;
+	margin-top: 10px;
+	margin-left: 10px;
+	margin-right: 18px;
+}
+
+.information {width: 211px;height: 115px;margin-top: 70px;float: left;}
+
+.leftcolumnBlock { width: 315px; height: 220px; top: 10px; float: left; font-family: "Georgia", "Times New Roman", Times, serif; font-size: 16px; color: #333333; text-align: left; behavior: url(/css/resources/iepngfix.htc);
+}
+
+#people {margin-left: 10%;
+	margin-top: 10px;
+	padding-top: 15px;
+	border-top: 1px solid gray;
+	margin-right: 10%;
+}
+
+.art { text-align: left; float: left;margin-left: 0px; }
+.art ul { float: left;text-align:left;margin-left: 0px;padding-left: 0px;}
+.art ul li { list-style: none; text-align: left;}
+
+.technology { text-align: right; float: right;
+	margin-left: 21px;
+}
+.technology ul { float:left; }
+.technology ul li { list-style: none; text-align: right;}
+
+.disclaimer-big { font-family: "Georgia", "Times New Roman", Times, serif; font-size: 16px; color: #333333; text-align: right; behavior: url(/css/resources/iepngfix.htc);
+	margin-bottom: 18px;
+	margin-top: 0;
+}
+
+.disclaimer { font-size: 12px; margin-top: 0;
+	text-align: right;
+	margin-right: 0;
+	color: gray;
+}
+
+.disclaimer-props { font-size: 12px;
+	text-align: right;
+	margin-top: 0;
+	margin-left: 40px;
+}
+
+.lightdisclaimer { font-size: 12px; color: #999999; }
+
+
+.sponsorblock { width: 200px; }
+.spacer { width: 340px; margin-top: 0px; margin-left: 60px; float: left; }
+
+span.caption {
+	font: x-small/1px "Lucida Grande", Lucida, Verdana, sans-serif;
+}

@@ -1,0 +1,157 @@
+@mixin font-smoothing {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@mixin box-shadow($value) {
+  -moz-box-shadow: $value;
+  -webkit-box-shadow: $value;
+  box-shadow: $value;
+}
+
+@import "fontface";
+@include fontFace("news_gothic_mtcondensedbold", "../fonts/newsgothicmt-condensedbold-webfont");
+
+%navbar {
+  min-width: 800px;
+  background: black;
+  position: fixed;
+  height: 30px;
+  width: 100%;
+  z-index: 1000;
+  font-family: "news_gothic_mtcondensedbold", sans-serif;
+  @include font-smoothing;
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0 35px;
+    line-height: 1;
+
+    li {
+      color: rgb(220, 220, 220);
+      display: block;
+      float: left;
+      margin-right: 23px;
+      margin-top: 8px;
+    }
+
+    li.reversed {
+      margin-left: 23px;
+      float: right;
+      margin-right: 0;
+    }
+
+    li:last-child {
+      margin-right: 0;
+    }
+  }
+
+  a {
+    color: rgb(220, 220, 220);
+  }
+
+  a:hover {
+    color: white;
+    text-decoration: none;
+  }
+
+  a.active {
+    color: white;
+    text-decoration: underline;
+  }
+}
+
+// header
+
+#new_header {
+  @extend %navbar;
+  font-size: 18px;
+  top: 0;
+  @include box-shadow(0 0 13px 0 rgb(35, 31, 32));
+
+  li {
+    &:first-child a {
+      text-transform: uppercase;
+      color: white;
+    }
+
+    &#account {
+      float: right;
+      font-size: 12px;
+      i { font-size: 16px; }
+    }
+
+    &#search {
+      margin-left: 23px;
+      font-size: 12px;
+
+      form {
+        margin: 0;
+        padding: 0;
+        display: inline;
+
+        input {
+          -webkit-appearance: none;
+          border-radius: 0;
+          width: 112px;
+          margin: 0;
+          padding: 3px 4px 3px 3px;
+          display: inline-block;
+          height: 10px;
+          background: rgb(220, 220, 220);
+          border: none;
+          vertical-align: middle;
+          color: black;
+
+          &:focus {
+            background: white;
+            color: black;
+          }
+        }
+
+        a#search-addon {
+          margin: 0;
+          padding: 3px;
+          height: 10px;
+          background: rgb(220, 220, 220);
+          display: inline-block;
+          cursor: pointer;
+          vertical-align: middle;
+          color: white;
+          line-height: 10px;
+          i { line-height: 10px; } 
+        }
+
+        input:focus+a#search-addon {
+          background: white;
+          color: rgb(220, 220, 220);
+        }
+      }
+    }
+  }
+}
+body.with-top-banner #new_header {
+  top: 30px;
+}
+
+// footer
+
+#new_footer {
+  @extend %navbar;
+  font-size: 13px;
+  bottom: 0;
+
+  ul li {
+    margin-top: 10px;
+
+    &:first-child a.active:not(.underline) {
+      text-decoration: none;
+    }
+  }
+  &.flash {
+    li, a, a:first-child, a.active {
+      color: white;
+    }
+  }
+}

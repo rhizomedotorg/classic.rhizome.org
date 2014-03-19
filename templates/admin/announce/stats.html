@@ -1,0 +1,55 @@
+{% extends "admin/base_site.html" %}
+{% load i18n admin_modify %}
+
+{% block extrahead %}
+<script src="{{ STATIC_URL }}js/admin/RelatedObjectLookups.js"></script>
+{% endblock %}
+
+{% block breadcrumbs %} 
+<div class="breadcrumbs">
+<a href="../../../">{% trans "Home" %}</a> &rsaquo;
+<a href="../../">{{ app_label|capfirst|escape }}</a> &rsaquo;
+<a href="../">{{ opts }} </a>&rsaquo; Membership Overview
+</div> 
+{% endblock %}
+
+{% block form_top %}
+  <h1>Membership Overview</h1>
+{% endblock %}
+
+{% block content %}
+    <style type="text/css">
+    li{
+        font-size: 14px !important;
+    }
+    </style>
+
+
+    {% csrf_token %}
+    <div id="content" class ="flex">
+        <div id="content-main">
+            <div id="changelist" class="module">
+            <table id="result_list" cellspacing="0" style="font-size:14px;">
+                <tbody>
+                  
+                    <tr>            
+                        <td style = "padding:10px">
+                            <h3>Current Totals</h3>
+                            <ul>
+                                <li>Total Announcements Last 1 month: {{ one_month_announcements }}</li>
+                                <li>Total Announcements Last 6 months: {{ six_month_announcements }}</li>
+                                <li>Total Announcements Last Year: {{ one_year_announcements }}</li>
+                                <li>Total Announcements All Time: {{ all_time_announcements }}</li>
+                            </ul>
+                        </td>
+                        </td>
+
+                    </tr>
+
+                </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

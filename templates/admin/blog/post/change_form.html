@@ -1,0 +1,158 @@
+{% extends "admin/change_form.html" %}
+{% load i18n admin_static admin_modify %}
+{% load admin_urls %}
+
+{% block object-tools-items %}
+    <li><a href="{% url opts|admin_urlname:'history' original.pk|admin_urlquote %}" class="historylink">{% trans "History" %}</a></li>
+    {% if has_absolute_url %}<li><a target="_blank" href="{% url 'admin:view_on_site' content_type_id original.pk %}" class="viewsitelink">{% trans "View on site" %}</a></li>{% endif%}
+{% endblock %}
+
+{% block extrahead %}
+    <style>
+        img.post-add-image {
+        padding: 3px;
+        margin-right: 10px;
+    }
+
+    img.post-add-image:hover {
+        cursor: pointer;
+        border: 1px solid red;
+        padding: 2px;
+    }
+    div.add-media-widget {
+        margin-left: 106px;
+    }
+    div.add-media-widget div.warning {
+        padding: 10px;
+        text-transform: uppercase;
+    }
+    div.add-media-links a {
+        text-decoration: underline;
+        text-transform: uppercase;
+    }
+</style>
+  {% load admin_static inlines_tags %}
+  {{ block.super }}
+  
+  <script type="text/javascript">   
+
+    function insertAtCaret(element, text) {
+        if (document.selection) {
+            element.focus();
+            var sel = document.selection.createRange();
+            sel.text = text;
+            element.focus();
+        } else if (element.selectionStart || element.selectionStart === 0) {
+            var startPos = element.selectionStart;
+            var endPos = element.selectionEnd;
+            var scrollTop = element.scrollTop;
+            element.value = element.value.substring(0, startPos) + text + element.value.substring(endPos, element.value.length);
+            element.focus();
+            element.selectionStart = startPos + text.length;
+            element.selectionEnd = startPos + text.length;
+            element.scrollTop = scrollTop;
+        } else {
+            element.value += text;
+            element.focus();
+        }
+    }
+        
+    {% if '127.0.0.1:8000' in request.META.HTTP_HOST or 'localhost:8000' in request.META.HTTP_HOST %}
+        var insert_media_url = "http://127.0.0.1:8000/media";
+    {% endif %}
+    
+    {% if 'rhizome.org' in request.META.HTTP_HOST %}
+        var insert_media_url = "http://media.rhizome.org";
+    {% endif %}
+
+    function insertAfter(referenceNode, newNode) {
+        referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
+    }
+      
+    function BlogAddMediaWidget() {
+        var body_div = document.getElementById('id_body').parentNode;
+        var content = ''
+        
+        {% if not adminform.form.instance.id %}
+            content += '<div class="add-media-widget"><div class="warning">Post must be saved before adding media</div></div>'
+        {% else %}
+            content += '<div class="add-media-widget">' 
+            content += '<div class="add-media-links">'
+            content += '<h5>'
+            content += '<a target = "_blank" href ="../../postimage/add/">Add Images</a> | '
+            content += '<a target = "_blank" href ="../../postaudio/add/">Add Audio</a> | '
+            content += '<a target = "_blank" href ="../../postvideo/add/">Add Video</a> | '
+            content += '<a target = "_blank" href ="../../postfile/add/">Add File</a>'
+            content += '</h5>'
+            content += '</div>'    
+
+        {% if adminform.form.instance.get_images %}
+            content += '<label>Images</label><br />'      
+            content += '<hr />' 
+            content += '<div>'      
+            {% for image in adminform.form.instance.get_images %}
+                content += '<img onclick="addImg(\'{{image.get_absolute_url}}\', {{image.width}},{{image.height}});return false;" class = "post-add-image" width = "150" src="{{MEDIA_URL}}{{image.image}}" />'
+            {% endfor %}
+            content += '</div>'      
+        {% endif %}
+
+        {% if adminform.form.instance.get_audio %}
+            content += '<label>Audio</label><br />'
+            content += '<hr />'       
+            content += '<div>'      
+            {% for audio in adminform.form.instance.get_audio %}
+                content += '<a onclick = "insertInline(this);return false;" href="{{audio.audio}}"" name = "{{audio.title}}" rel="{{audio.id}}" title = "blog.postaudio">{{audio.audio}}</a> '
+            {% endfor %}
+            content += '</div>'      
+        {% endif %}
+        
+        {% if adminform.form.instance.get_files %}
+            content += '<label>Files</label><br />'
+            content += '<hr />'       
+            content += '<div>'      
+            {% for file in adminform.form.instance.get_files %}
+                content += '<a onclick = "insertFile(this,\'{{file.get_absolute_url}}\');return false;" href="#" name = "{{file.title}}" rel="{{file.id}}">{{file.title}}</a>'
+            {% endfor %}
+            content += '</div>'      
+        {% endif %}
+
+        {% if adminform.form.instance.get_videos %}
+            content += '<label>Video</label><br />'  
+            content += '<hr />'      
+            content += '<div>'      
+            {% for video in adminform.form.instance.get_videos %}
+                content += '<a onclick = "insertInline(this);return false;" name = "{{video.video}}" href="'+insert_media_url+'{{video.get_absolute_url}}" rel="{{video.id}}" title = "blog.postvideo">{{video.video}}</a> '
+            {% endfor %}
+            content += '</div>'      
+            {% endif %}
+
+        {% endif %}
+
+        var div = document.createElement('div');
+        div.innerHTML = content;
+        body_div.insertBefore(div, document.getElementById('id_body').nextSibling); 
+    }
+    
+    function addImg(src,width,height) {
+        html = '<img src="'+insert_media_url+src+'" width="'+width+'" height="'+height+'" />';
+        body = document.getElementById('tinymce');
+        tinyMCE.execInstanceCommand("id_body","mceInsertContent",false,html);
+    }
+
+    function insertInline(element) {
+        inline = '<inline type="'+element.title+'" id="'+element.rel+'" title="'+element.href+'" /><div class="center italic">'+element.name+'</div>';
+        body = document.getElementById('tinymce');
+        tinyMCE.execInstanceCommand("id_body","mceInsertContent",false,inline);
+    }
+
+    function insertFile(element,src) {
+        html = '<a target = "_blank" href="'+insert_media_url+src+'" title="'+element.name+'">'+element.name+'</a>';
+        body = document.getElementById('tinymce');
+        tinyMCE.execInstanceCommand("id_body","mceInsertContent",false,html);
+    }
+    
+    django.jQuery(document).bind("ready", BlogAddMediaWidget);
+  </script>
+
+{% endblock %}
+

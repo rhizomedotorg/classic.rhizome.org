@@ -1,0 +1,64 @@
+{% extends "blog/base_blog.html" %}
+{% load tagging_tags block_tags %}
+
+{% block navbars %}
+    {% get_nav 'Journal' None %}
+{% endblock %}
+
+{% block extrahead %}
+
+        <!-- FB & Twitter meta -->
+
+        <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+ 
+        <meta property="og:site_name"              content="rhizome.org">
+        <meta name="twitter:site"                  content="@rhizome">
+
+        <meta property="og:type"                   content="article">
+        <meta name="twitter:card"                  content="summary">
+        <meta property="article:section"           content="Editorial">
+
+        <meta name="twitter:url"                   content="{{ request.build_absolute_uri }}">
+        <meta property="og:url"                    content="{{ request.build_absolute_uri }}">
+ 
+        <meta property="og:title"                  content="{{post.title}}">
+        <meta name="twitter:title"                 content="{{ post.title }}">
+
+        <meta property="article:published_time"    content="{{ post.publish|date:"c" }}"> 
+
+        {% tags_for_object post as tag_list %}
+        {% if tag_list %}
+            {% for tag in tag_list %}
+        <meta property="article:tag"             content="{{ tag }}">
+            {% endfor %}
+        {% endif %}
+
+        <meta name="twitter:description" content="{{ post.create_description }}">
+        <meta property="og:description"          content="{{ post.create_description }}"> 
+        
+        {% if post.get_first_image_from_body %}
+            <meta name="twitter:image" content="{{ post.get_first_image_from_body }}">
+            <meta property="og:image"  content="{{ post.get_first_image_from_body }}">    
+        {% else %}
+            {% if post.get_first_image %}
+            <meta name="twitter:image" content="{{MEDIA_URL}}{{ post.get_first_image }}">
+            <meta property="og:image"  content="{{MEDIA_URL}}{{ post.get_first_image }}">
+            {% else %}
+                <meta name="twitter:image" content="http://media.rhizome.org/about/images/rhizome_logo_2010.jpg">
+                <meta property="og:image"  content="http://media.rhizome.org/about/images/rhizome_logo_2010.jpg">
+            {% endif %}
+        {% endif %}
+{% endblock %}
+
+
+
+{% block pageTitle %}{{ post.title }}{% endblock %}
+{% block title %}{{ post.title }}{% endblock %}
+{% block body_class %}{{ block.super }} post_detail{% endblock %}
+{% block body_id %}post_{{ post.id }}{% endblock %}
+
+{% block content %}
+
+{% include "blog/single_post.html" %}        
+
+{% endblock %}

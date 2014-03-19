@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load threadedcomments_tags blog tagging_tags inlines_tags markup %}
+
+{% block pageTitle %} Video {% endblock %}
+
+{% block content %}
+{% for v in videos_page.object_list %}
+<div>
+<h1><a href="/videos/{{v.id}}">{{v.title}}</a> </h1>
+<p>{{ v.lead_video|markdown }}</p>
+<p>{{ v.description|markdown }}</p>
+</div>
+
+{% endfor %}
+
+<div class="pagination">
+    <span class="step-links">
+        {% if videos_page.has_previous %}
+            <a  class ="previous" href="?page={{ exhibtions.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ videos_page.number }} of {{ videos_page.paginator.num_pages }}
+        </span>
+
+        {% if videos_page.has_next %}
+            <a class ="next" href="?page={{ videos_page.next_page_number }}">next</a>
+        {% endif %}
+    </span>
+</div>
+{% endblock %}

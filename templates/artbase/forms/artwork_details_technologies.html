@@ -1,0 +1,68 @@
+<div id="artwork-details-form-technologies" class="post-form-content">
+    <h6 class="upper">TECHNOLOGIES USED</h6>
+    <fieldset class="box-sizing">
+        <div class="left-col span-14">
+            <div id="add-tech-control" class="bold">
+                <span>Please select a technology from the list below.* </span>
+                <span id="add-tech" class="round-gray">ADD TECHNOLOGY+</span>
+            </div>
+            <div class="tech-select-current box-sizing">
+                <table id="tech-select-table" width="" cellspacing="0" cellpadding="0" border="0">
+                    <tr id="tech-select-table-heading">
+                        <th>Categories</th>
+                        <th>Types</th>
+                        <th>Versions</th>
+                    </tr>
+                    <tr id="tech-lists">
+                        <td id="tech-category-list">
+                            <div class="tech-list-container">
+                                {% for cat in tech_categories %}
+                                <div class="tech-cat" data-value="{{ cat }}">{{ cat }}</div>
+                                {% endfor %}
+                            </div>
+                        </td>
+                        <td id="tech-type-list">
+                            <div class="tech-list-container"></div>
+                        </td>
+                        <td id="tech-version-list">
+                            <div class="tech-list-container"></div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="right-col span-8 last">
+            <div class="bold">
+                <span>Technologies</span>
+            </div>
+            <div id="artwork-technologies" class="display-none">
+                {{ multi_form.forms.artworkstub.technologies }}
+            </div>
+            <ul id="tech-selected">
+                {% if work_model.technologies.all %}
+                <li id="no-tech-selected" class="tech-selection display-none">
+                    <span>No technologies selected yet</span>
+                    <a class="delete">Delete</a>
+                </li>
+                {% for tech in work_model.technologies.all %}
+                <li id="tech-{{ tech.id }}" class="tech-selection">
+                    <span>
+                        {{ tech.type }} {{ tech.version }}
+                    </span>
+                    <a class="delete">Delete</a>
+                </li>
+                {% endfor %}
+                {% else %}
+                <li id="no-tech-selected" class="tech-selection">
+                    <span>No technologies selected yet</span>
+                    <a class="delete">Delete</a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+        <div class="span-15 bold">
+                *If your artwork is using a technology not listed above, please tell us about that technology in the technology overview field below.
+        </div>
+    </fieldset>
+</div>

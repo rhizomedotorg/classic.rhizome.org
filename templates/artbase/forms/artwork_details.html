@@ -1,0 +1,103 @@
+<script type="text/javascript" src="{{ STATIC_URL }}artbase/data/tech.js"></script>
+
+<input type="hidden" name="form" value="artwork_details">
+
+{% include 'artbase/forms/artwork_details_technologies.html' %}
+
+<!-- START LEFT COLUMN -->
+<div id="artwork-details-form-left-column"  class="span-11">
+    <div class="post-form-content">
+        <h6>Technology Overview</h6>
+        <fieldset>
+            <div id="technology-prompt" class="bold">
+                Please provide an overview of the technical aspects of the artwork. Describe how the artwork works, and list all technologies involved in the creation of the work, including version number if possible. We will use this information to develop our list of technologies.
+            </div>
+            <span class="form-errors-wide">
+                {{ multi_form.forms.artworkstub.tech_details.errors }}
+            </span>
+            {{ multi_form.forms.artworkstub.tech_details }}
+        </fieldset>
+    </div>
+
+    <div class="post-form-content">
+        <h6 class=" upper">FORMAT</h6>
+        <fieldset id="format-form">
+            <div class="bold">
+                Please state the format of the work <br/> (eg. website, video, software, painting,
+                audio, etc)
+            </div>
+            <div>
+                {{ multi_form.forms.artworkstub.format }}
+            </div>
+        </fieldset>
+    </div>
+
+    <div class="post-form-content">
+        <h6 class="upper">STATE OR EDITION</h6>
+        <fieldset id="state-ed-form">
+            <div class="bold">
+                Please detail the state, edition or version of the work <br/> (1st edition, version 2.2, 3 of 8, etc)
+            </div>
+            <div>
+                {{ multi_form.forms.artworkstub.state_ed }}
+            </div>
+        </fieldset>
+    </div>
+
+    <div id="artbase-details-form-readme" class="span-11">
+        <h6 class="upper">README</h6>
+        <fieldset class="readme-form">
+            <div class="bold">Please detail any specific notes about this work</div>
+            <div>
+                {{ multi_form.forms.artworkstub.readme }}
+            </div>
+        </fieldset>
+    </div>
+
+    {% include 'artbase/forms/artwork_details_support.html' %}
+    {% include 'artbase/forms/artwork_details_footnotes.html' %}
+</div>
+<!-- END LEFT COLUMN -->
+
+
+<!-- START RIGHT COLUMN -->
+<div id="artwork-details-form-right-column" class="span-12 prepend-1 last">
+    <div id="artwork-details-form-tags" class="post-form-content" id="rhiz_tags">
+        <h6 class=" upper">TAGS</h6>
+        <fieldset id="tags-form">
+            <div class="bold">Please separate tags by commas, e.g. "video, interactive, painting, computer vision, net.art"</div>
+            <div>
+                {{ multi_form.forms.artworkstub.tags }}
+            </div>
+        </fieldset>
+    </div>
+
+    {% if request.user.is_staff %}
+        {% include 'artbase/forms/artwork_details_tag_approval.html' %}
+    {% endif %}
+    
+    {% include 'artbase/forms/artwork_details_creators.html' %}
+
+    <div id="artwork-details-form-collective" class="post-form-content">
+        <h6 class="upper">Collective (if applicable)</h6>
+        <fieldset id="collective-form">
+            <div class="bold">If this Artwork was created by a collective, please provide the collective's name</div>
+            <div>
+                {{ multi_form.forms.artworkstub.collective }}
+            </div>
+        </fieldset>
+    </div>
+    
+    {% include 'artbase/forms/artwork_details_articles.html' %}
+    {% include 'artbase/forms/artwork_details_exhibitions.html' %}
+    
+    <div id="artwork-details-form-collective" class="post-form-content">
+        <h6 class="upper">Comments</h6>
+        <fieldset id="collective-form">
+            <div>
+                {{ multi_form.forms.artworkstub.allow_comments }}<label>Allow Comments on this artwork?</label>
+            </div>
+        </fieldset>
+    </div>
+</div>
+<!-- END RIGHT COLUMN -->

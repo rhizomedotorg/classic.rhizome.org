@@ -1,0 +1,63 @@
+{% extends "admin/base_site.html" %}
+{% load  admin_modify  %}
+
+{% block extrahead %}
+<script src="{{ STATIC_URL }}js/admin/RelatedObjectLookups.js"></script>
+{% endblock %}
+
+{% block breadcrumbs %} 
+<div class="breadcrumbs">
+<a href="../../../">Home</a> &rsaquo;
+<a href="../../">{{ app_label|capfirst|escape }}</a> &rsaquo;
+<a href="../">{{ opts }} </a>&rsaquo; Membership Overview
+</div> 
+{% endblock %}
+
+{% block form_top %}
+  <h1>Membership Overview</h1>
+{% endblock %}
+
+{% block content %}
+    <style type="text/css">
+    li{
+        font-size: 14px !important;
+    }
+    </style>
+
+
+    {% csrf_token %}
+    <div id="content" class ="flex">
+        <div id="content-main">
+            <div id="changelist" class="module">
+            <table id="result_list" cellspacing="0" style="font-size:14px;">
+                <tbody>
+                  
+                    <tr>            
+                        <td style = "padding:10px">
+                            <h3>Current Totals</h3>
+                            <ul>
+                                <li>Total Members: {{ all_member_count }}</li>
+                                <li>Paying Members: {{ paying_members }}</li>
+                                <li>OrgSub Members: {{ orgsub_member_count }}</li>
+                                <li>Complimentary Members: {{ complimentary_members }}</li>
+                                <li>Expired in last year: {{ one_year_expired }}</li>
+                                <li>New Users this year: {{new_users_this_year}}</li>
+                            </ul>
+                            <hr />
+                            <h3>Expired in last 30 days ({{recently_expired|length}}):</h3>
+                            <ul>
+                            {% for expired in recently_expired %}
+                                <li class="{%  cycle 'row1' 'row2' %}" style="margin-bottom:5px;padding:5px;">{{expired.user.get_profile }} ({{expired.user.email}}) | Expired: {{expired.member_tools_exp_date|date:"M jS, Y" }} | Reminder Email: {{expired.last_reminder_email|date:"M jS, Y" }}| Comeback Email: {{expired.last_homecoming_email|date:"M jS, Y" }}</li>
+                            {% endfor %}
+                            </ul>
+                        </td>
+
+                    </tr>
+
+                </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

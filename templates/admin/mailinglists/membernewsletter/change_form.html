@@ -1,0 +1,22 @@
+{% extends "admin/change_form.html" %}
+
+{% block extrahead %}
+
+    {% load admin_static inlines_tags %}
+    {{ block.super }}
+
+    {% block extrastyle %}{{ block.super }}<link rel="stylesheet" type="text/css" href="{% static "admin/css/dashboard.css" %}" />{% endblock %}
+
+    <script type="text/javascript" src="{% static "js/tiny_mce/tiny_mce.js" %}"></script>
+
+   
+    <script type="text/javascript">    
+        {% if not adminform.form.instance.id %}
+        (function($){
+            $(document).ready(function() {
+                var body_image_row = $('.body_image');
+                body_image_row.css('display','none');
+        })})(django.jQuery);
+        {% endif %}
+    </script>
+{% endblock %}     

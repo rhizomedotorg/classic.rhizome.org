@@ -1,0 +1,45 @@
+{% load programs_tags %}
+{% get_upcoming_programs as programs %}
+{% if programs %}
+<div id ="sidebar" >
+
+    <div class="sidebar-element ">
+        <div class="section-title">
+            Events + Exhibitions
+        </div>
+        <div class="content-wrap ">
+            <div class="content ">
+                {% for program in programs %}
+                <div class="content-body program  ">
+                    <div class="sidebar-program center ">
+                        {% if program.medium_image %}
+                        <div class = "program-image">
+                            <a href="{{program.get_absolute_url}}">
+                                <img width="250px" src = "{{MEDIA_URL}}{{ program.medium_image }}"></img>
+                            </a>
+                        </div>
+                        <div class="program-title">
+                            <a href="{{program.get_absolute_url}}">{{ program.title }}</a>                                   
+                        </div>
+                        {% else %}
+                        <div class = "program-image">
+                            <img width="250px" src = "{{MEDIA_URL}}{{ program.image }}"></img>
+                        </div>
+                        <div class="program-title">
+                            <a href="{{program.get_absolute_url}}">{{ program.title }}</a>                                   
+                        </div>
+                        {% endif %}
+                        <div class="program-info">
+                                {{program.start_date|date:"l M jS, Y P" }}
+                                <br />at
+                                <a href="{{program.location_url}}">{{program.location_title}}</a>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}

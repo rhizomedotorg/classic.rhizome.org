@@ -1,0 +1,16 @@
+Hi there,
+
+Thanks for signing up to Rhizome!
+
+Rhizome is a nonprofit organization dedicated to the creation, presentation, preservation, and critique of emerging artistic practices that engage technology.
+
+To activate your account and get started on Rhizome, click here:
+
+{{ verification_url }}
+             
+Thanks and welcome,
+
+Rhizome
+
++ + +
+Rhizome.org is a not-for-profit 501(c)(3) organization. For U.S. taxpayers, contributions to Rhizome are tax-deductible, minus the value of any goods or services received, to the extent allowed by law.

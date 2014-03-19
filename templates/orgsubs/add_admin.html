@@ -1,0 +1,31 @@
+<!--currently not used-->
+
+<div class = "edit-profile-form span-24">    
+     <div class = "fieldset span-10">
+        <div class = "h6 light-gray">The following accounts are assigned as administrators of this subscription:</div>
+        <fieldset class="span-10">
+        {% for admin in membership.org_sub.get_admins %}
+            <div class = "light-gray">{{admin.email}} | <span class="red">REMOVE</span></div>
+        {% endfor %}  
+        </fieldset>
+    </div> 
+    
+    <div class = "fieldset span-10">
+        <div class = "h6 light-gray">Add Another Admin</div>
+        {% for field in add_member_form %}
+            {% if not field.is_hidden %}
+             <fieldset class="span-10"> 
+                {% if field.errors %}<span class="form_errors">{{ field.errors }}</span>{% endif %}
+                <span class = "h6 light-gray">{{field.label}}:</span>
+                <span class = "edit-profile-form-input">{{ field }}</span>
+            </fieldset>
+            {% else %}
+                {{field}}
+            {% endif %}
+        {% endfor %}
+    
+        <fieldset id ="edit-button" class="float-right">
+            <button class="round-blue" value="1" name="Submit">Add Member</button>
+        </fieldset>
+    </div>
+</div>

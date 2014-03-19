@@ -1,0 +1,73 @@
+<header>
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}artbase/styles/collections.css" media="screen, projection"></link>
+</header>
+
+<body style="margin:0px;padding:0px;">
+
+<div id="collection-fragment">
+    <div id="fragment-header">
+        {% if artwork.location_type == "cloned" and artwork.location %}
+            <span id="artwork-title">
+                <a target="_blank" href="{{artwork.location}}">{{ artwork.title }}</a>
+                {% if work.version %}
+                    <span class="artwork-version">
+                        <a target="_blank" href="{{artwork.location}}">({{ artwork.version }})</a>
+                    </span>
+                {% endif %}
+                <span class="created">({{ artwork.created_date|date:"Y" }})</span>
+
+            </span>   
+        
+        {% else %}
+        
+            <span id="artwork-title">
+                <a target="_blank" href="{{artwork.url}}">{{ artwork.title }}</a> 
+                {% if work.version %}
+                    <span class="artwork-version">
+                        <a target="_blank" href="{{artwork.url}}">({{ artwork.version }})</a>
+                    </span>
+                {% endif %}
+            </span>    
+            <span class="created">({{ artwork.created_date|date:"Y" }})</span>
+
+        {% endif %}
+            <div id="fragment-artist">
+                by <a href="{{ artwork.user.get_profile.get_absolute_url }}/">{{ artwork.byline }}</a>
+            </div>     
+    </div>
+
+    <div id="fragment-image">
+        {% if artwork.location_type == "cloned" and artwork.location %}
+        <a target="_blank" href="{{artwork.location}}">
+        {% else %}
+        <a target="_blank" href="{{artwork.url}}">
+        {% endif %}
+            <img width="470" height="355" src="http://media.rhizome.org/{{ artwork.image_medium }}" ></img>
+        </a>
+    </div>
+
+
+    <div id="fragment-body">
+        <div id="fragment-description">
+            {{ artwork.description|truncatewords:85 }}
+        </div>
+
+        <div id="fragment-buttons">
+            {% if artwork.location and artwork.location_type == "cloned" %}
+                <a target="_blank" class="fragment-button" id="left-button" href="{{artwork.location}}">Launch Artwork</a>
+            {% else %}
+                <a target="_blank" class="fragment-button" id="left-button" href="{{artwork.url}}">Launch Artwork</a>
+            {% endif %}
+                <a target="_blank" class="fragment-button" href="{{artwork.view_url}}">View Full Record</a>
+            <div style="clear:both;"></div>
+        </div>
+
+    </div>
+
+    <div style="clear:both;"></div>
+
+
+</div>            
+
+
+</body>

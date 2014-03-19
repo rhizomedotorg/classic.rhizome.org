@@ -1,0 +1,176 @@
+<input type="hidden" name="form-type" value="proposal-form">
+{% if proposal_form.errors %}
+    <div class="form-errors bold upper center">There were errors with your submission. Please check the form below.</div>
+{% endif %}
+
+{% if request.GET.save %}
+    <div style = "background-color:#FFFEB3;" class="notice bold upper center">Your proposal has been saved.</div>
+{% endif %}
+
+<h6 class = "span-24">Proposal Title</h6>
+<div class = "post-form-input-title span-24">{{ proposal_form.title.errors }}{{ proposal_form.title }}</div>
+
+<div id="cols" class="span-23 last">
+    <div class = "post-form-content span-24">
+        <h6 class = "span-9">Artists Involved with the Project</h6>
+        <fieldset class="span-23">
+            <div>
+                <div class="span-8">
+                    {{ proposal_form.first_name.errors }}
+                    <label>Please enter your first name:</label>
+                    <input id="id_first_name" type="text" name="first_name" value="{{request.user.first_name}}" maxlength="20" />
+                </div>
+                
+                <div class="span-8">
+                    <label>Please enter your last name:</label><br/>    
+                    <input id="id_last_name" type="text" name="last_name" value="{{request.user.last_name}}" maxlength="20" />
+                </div>
+            </div>    
+            
+            <div class="span-18">
+                <label>If there are other artists involved with this project that have Rhizome accounts, please enter the email address they use to login to Rhizome. <br />Separate each artist's email address with a comma.</label><br/>
+                {{ proposal_form.other_artists_users.errors}}{{ proposal_form.other_artists_users }}
+                <br />
+                <label>If there are other artists involved without Rhizome accounts, please enter their names below. 
+                <br />Separate each artist's name with a comma.</label><br/>
+                {{ proposal_form.other_artists}}<br/>
+            </div>
+        </fieldset>
+    </div>
+             
+     <div class = "post-form-content span-24">
+        <h6>Summary</h6>
+        <fieldset class="span-23">
+            <p class="bold">A one-line overview of the project. Limit 140 characters.</p>
+            {{ proposal_form.summary.errors }}{{ proposal_form.summary }}
+        </fieldset>
+    </div>
+            
+    <div class = "post-form-content span-24">
+        <h6>Description</h6>
+        <fieldset class="span-23">
+            <div class="bold">An general overview of the project, including a statement of intent.</div>
+
+            {% include "comments/basic_bbcode.html" %}
+            {{ proposal_form.description.errors }}{{ proposal_form.description }}
+        </fieldset>
+    </div>
+
+    {% if cycle.is_tumblr_commission %}
+    <h6 class="span-24">Your Tumblr</h6>
+        <div class="post-form-content span-24">
+            <fieldset class="span-23">
+                {{ proposal_form.tumbrl_url.errors }}{{ proposal_form.tumblr_url }}
+            </fieldset>
+        </div>
+    {% endif %}
+
+    <div class = "post-form-content span-24">
+        <h6>Your Bio/CV</h6>
+        <fieldset class="span-23">
+            <p class="bold">Please include a resume, bio, or c.v. for yourself and any artists involved with the project. 
+            <br />Please outline relevant skills, past projects, any shows that you've had or in which you've participated.</p>
+    <!--         <label class = "span-10">{{ proposal_form.save_as_bio }} Check here to save this as your Rhizome account bio</label> -->
+            
+            {% include "comments/basic_bbcode.html" %}
+            {{ proposal_form.resume_or_cv.errors }}{{ proposal_form.resume_or_cv }}
+        </fieldset>
+    </div>
+    
+    <div class = "post-form-content span-24">
+        <h6>Project Timeline and Budget</h6>
+        <fieldset class="span-23">        
+           <p class="bold">Please include a year-long, step-by-step breakdown detailing how you intend to execute your project, include anticipated costs in labor, materials, etc.<br /> Please provide a estimated grand-total cost for the project.</p>
+            
+            {% include "comments/basic_bbcode.html" %}
+            {{ proposal_form.timeline_and_budget.errors }}{{ proposal_form.timeline_and_budget }}
+        </fieldset>
+    </div>
+    
+     <div class = "post-form-content span-24">
+        <h6>Work Samples (Max 4 Samples)</h6>
+        <fieldset class="span-23">        
+            <p class="bold">Please provide samples and summaries of previous works you've completed, particularly works that share similarities in style or execution to the current proposal.</p>
+            
+            {% include "comments/basic_bbcode.html" %}
+            {{ proposal_form.work_samples.errors }}{{ proposal_form.work_samples }}
+        </fieldset>
+    </div>
+
+    <div class = "span-24">
+                    
+        <div id="left-col" class="span-11">
+            <div class = "post-form-content span-11">
+                <h6 class = "span-6">Project Location Info</h6>
+                <fieldset class="span-11">
+                     <h6 class = "light-gray span-9">City</h6>
+                    {{ proposal_form.city.errors }}{{ proposal_form.city }}<br/>
+                    <h6 class = "light-gray span-9">US State (if applicable)</h6>
+                    {{ proposal_form.state.errors }}{{ proposal_form.state }}<br/>
+                    <h6 class = "light-gray span-9">Country</h6>
+                    {{ proposal_form.country.errors }}{{ proposal_form.country }}<br/>
+                </fieldset>
+            </div>            
+        </div>
+                            
+        <div id="right-col" class="span-10 prepend-2">
+            <div class = "post-form-content span-10">
+                <h6 class = "span-6">Main Proposal Image (optional)</h6>
+                <fieldset class="span-10">{{ proposal_form.image.errors }}{{ proposal_form.image }}
+                <!--edit image added via form.py-->
+                <div class="h6 light-gray">Submit a png / jpg / gif image*</div>
+                <span class="light-gray">*Images can be up to 590px wide, and will also be cropped to a 100px x 100px thumbnail.</span>
+                </fieldset>
+            </div>
+        </div>
+    
+    </div>
+    
+    <div class = "post-form-content span-24">
+            <h6>External Link to project (if not a Rhizome hosted)</h6>
+            <fieldset class="span-23">
+                <p class="bold">Proposals can be either hosted by Rhizome or created by the applicant. 
+                <br />If you want to host your own proposal webpage, enter the url and <span class="red upper">uncheck</span> "Host proposal on Rhizome" below. 
+                <br /><a target="_blank" href="/commissions/procedures">Read the procedures for more info.</a></p>
+                {{ proposal_form.external_url.errors }}{{ proposal_form.external_url }}
+            </fieldset>
+    </div>
+
+    <div class = "post-form-content span-24">
+        <h6>Commissions Options</h6>
+        <fieldset class="span-23">
+            <label class="red span-5">{{ proposal_form.rhizome_hosted }} Host proposal on Rhizome</label>
+            {% if not cycle.is_tumblr_commission %}
+                <label class="span-11">{{ proposal_form.is_public }} Enter proposal in member vote (will make proposal viewable by public)</label>
+                <label class="span-5">{{ proposal_form.allow_comments }} Allow comments on proposal</label>
+            {% endif %}
+        </fieldset>
+    </div>
+                
+    <div class = "post-form-content span-23">
+        <h6 class = "span-18">Submit</h6>
+        <fieldset class="span-23">
+            <div class="float-right right span-23">
+
+                
+                {% if proposal_form.instance.submitted %}
+                <button class="round-gray" value="save" name="status">Update</button>
+                <button class="round-gray" value="preview" name="status">View</button>
+                {% endif %}
+                
+                {% if not proposal_form.instance.submitted %}
+                <button class="round-gray" value="save" name="status">Save</button>
+                <button class="round-gray" value="preview" name="status">Preview</button>
+                <button class="round-blue" value="publish" name="status">Publish</button>
+                {% endif %}
+                
+                {% if proposal_form.instance.id %}
+                <button class="round-red float-left" value="delete" name="status">Delete</button>
+                {% endif %}
+
+            </div>
+        </fieldset>        
+    </div>
+
+</div>
+

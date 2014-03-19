@@ -1,0 +1,242 @@
+#frontpage-featured-wrap {
+/*     background-color: #F7F7F7; */
+    background-color: #fffff;
+}
+
+#frontpage-featured-objects{
+    max-height: 285px;
+    width: 850px;
+    overflow: hidden;
+}
+
+#featured-object{
+    width: 100%;
+    overflow:hidden;
+    margin-right:20px;
+}
+
+#fp-arrow-wrap{
+    height: 100%;
+}
+
+a#fp-arrow-next{
+    background-image:url(../../images/fp_carousel_arrow_forward.png);
+    background-repeat: no-repeat;
+    background-position:right;
+    height:100%;
+    padding:140px 20px;
+}
+
+a#fp-arrow-previous{
+    background-image:url(../../images/fp_carousel_arrow_back.png);
+    background-repeat: no-repeat;
+    background-position:left;
+    height:100%;
+    padding:140px 20px;
+}
+
+
+#frontpage-featured
+{
+    padding: 5px 0px;
+    overflow:hidden;
+}
+
+.frontpage-featured-description p{
+}
+
+#frontpage-featured-nav{
+    text-align: right;
+}
+
+#frontpage-featured-image
+{
+    overflow: hidden;
+    width: 400px;
+    height: 275px;
+    margin-left: 10px;
+    text-align: center;
+}
+#frontpage-featured-image a img.image {
+    height: 275px;
+    max-width: 400px;
+}
+#frontpage-featured-details {
+    margin-right: 10px;
+}
+
+#frontpage-featured-details a {
+    color:black;
+}
+
+#frontpage-featured-details a:hover{
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#frontpage-featured-details .content
+{
+    padding-left: 50px;
+    padding-top: 20px;
+}
+
+.red-title, .featured-byline
+{
+    font-size: 12px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.red-title{
+    color: red;
+}
+
+.featured-byline a{
+    color: #6494B2 !important;
+}
+
+.featured-byline a:hover{
+    text-decoration: underline;
+}
+
+#frontpage-featured-content .tag
+{
+    color: #6494B2;
+    background-color: #0F1010;
+}
+
+.frontpage-featured-title {
+    margin-top: 35px;
+}
+
+.frontpage-featured-title,.frontpage-featured-subtitle
+{
+    font-family: 'Titillium Web', sans-serif;
+    font-size: 22px;
+    font-weight: 300;
+    margin-bottom: 8px;
+    line-height: 1.3em;
+    max-width:330px;
+}
+
+.frontpage-featured-subtitle
+{
+    font-size: 24px;
+}
+
+
+.frontpage-featured-description
+{
+    font-family: Verdana, 'sans-serif';
+    font-size: 14px;
+}
+
+frontpage-content-nav a{
+    color:#F7F7F7;
+}
+
+#frontpage-content-nav .selected a{
+    color:black;
+}
+
+#frontpage-content-nav .selected a:hover{
+    color:black;
+}
+
+#frontpage-content-nav a:hover{
+    color: #777b7f;
+}
+
+.highlights-section .highlights-events {
+    text-align: center;
+}
+
+#highlights-events {
+    position:relative;
+    width: 270px;
+}
+
+#mission-statement
+{
+    font-family: Georgia;
+    line-height: 1.5;
+    font-size: 10pt;
+    color:gray;
+    margin-bottom: 10px;
+}
+
+#mission-statement #rhizome
+{
+    font-family: Helvetica;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: black;
+}
+
+#rhizome-large-red{
+    font-size:39px;
+    font-family: Helvetica;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #E20000;
+}
+#mission-statement a {
+    font-weight: bold;
+}
+
+#newmu-affiliate{
+    margin: 10px 0px;
+}
+
+div#fp-calendar-events-carousel { 
+    height:88px !important;
+}
+
+.column-wrapper.fp {
+    position: relative;
+    top: -13px;
+}
+
+.hr2.fp {
+    background: #ddd;
+    margin-bottom: 36px;
+    margin-left: -31px;
+}
+
+.span-12 {
+    margin-left: 0;
+}
+
+#streamModal {
+    margin-left: -460px;
+    width: 920px;
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+
+#streamModal .modal-body {
+    max-height: 500px;
+    overflow: hidden;
+    padding: 0;
+    background: black;
+}
+
+#streamModal .modal-footer {
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0);
+    border-top: none;
+
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}

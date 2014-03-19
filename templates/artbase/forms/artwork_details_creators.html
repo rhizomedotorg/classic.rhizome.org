@@ -1,0 +1,32 @@
+<div class="post-form-content">
+    <h6 class=" upper">Artists Involved and Roles</h6>
+    <fieldset id="creator-formset" class="formset">
+        <div class="bold">
+            Please list any other artists involved with this work along with their
+            role in the creation of the work. 
+            <!--If the other artists are on Rhizome, please provide the email address attached to their Rhizome account.-->
+        </div>
+        <hr class="thin">
+        {{ multi_form.forms.creator.management_form }}
+        {% for form in multi_form.forms.creator.forms %}
+        <div id = "creator-form-{{ forloop.counter0 }}" class="form creator-form" data-type="creator">
+            <span class="display-none">
+                {{ form.DELETE }}
+            </span>
+            
+            <label class="other-artist-label">Name</label>
+            {{ form.name__display_string }}
+            <label class="other-artists-roles">Roles</label>
+            {{ form.roles }}
+            
+            <div class="delete-form clearfix">
+                <a>Delete</a>
+            </div>
+            <span class="display-none">
+                {{ form.DELETE }}
+            </span>
+        </div>
+        {% endfor %}
+        <div class="round-gray float-right add-form" data-type="creator">ADD ANOTHER ARTIST+</div>
+    </fieldset>
+</div>

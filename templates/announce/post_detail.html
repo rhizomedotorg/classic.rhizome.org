@@ -1,0 +1,217 @@
+{% extends "announce/base.html" %}
+{% load comments inlines_tags markup bbcode hitcount_tags block_tags %}
+
+{% block navbars %}
+    {% if type == 'jobs' %}
+        {% get_nav 'Community' 'Jobs Board' %}
+    {% else %}
+        {% get_nav 'Community' 'Announce' %}
+    {% endif %}
+{% endblock %}
+
+{% block extrahead %}
+
+        <!-- FB & Twitter meta -->
+
+        <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+ 
+        <meta property="og:site_name"              content="rhizome.org">
+        <meta name="twitter:site"                  content="@rhizome">
+
+        <meta property="og:type"                   content="article">
+        <meta name="twitter:card"                  content="summary">
+        <meta property="article:section"           content="Announce">
+
+        <meta name="twitter:url"                   content="{{ request.build_absolute_uri }}">
+        <meta property="og:url"                    content="{{ request.build_absolute_uri }}">
+ 
+        <meta property="og:title"                  content="{{ announcement.title}}">
+        <meta name="twitter:title"                 content="{{ announcement.title }}">
+
+        <meta property="article:published_time"    content="{{ announcement.created|date:"c" }}"> 
+
+        <meta name="twitter:description"            content="{{ announcement.create_description }}">
+        <meta property="og:description"             content="{{ announcement.create_description }}"> 
+        
+        {% if announcement.image %}
+            <meta name="twitter:image" content="{{ announcement.image.url }}">
+            <meta property="og:image"  content="{{ announcement.image.url }}">    
+        {% endif %}
+
+{% endblock %}
+
+{% block bottom_js %}
+    <script type="text/javascript" src="{{ STATIC_URL }}js/bbcode/editor.js"></script>   
+    <script type="text/javascript" src="{{ STATIC_URL }}js/bbcode/color_palette.js"></script>   
+    <script type="text/javascript" src="{{ STATIC_URL }}discuss/scripts/add_comment_toggler.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/loadingOverlay.js"></script>
+    <script type="text/javascript">
+        window.addEvent('domready', function() {
+            {% get_hit_count_javascript for announcement %}
+        });
+    </script>
+
+{% endblock %}
+
+
+{% block pageTitle %} Announce: {{ announcement.title }} {% endblock %}
+    
+
+{% block content %}
+
+<div class="column-wrapper span-24">
+    <div id="announce-posts"  class= "left-column span-15">
+        {% if not announcement.status %}<!-- preview status check-->
+            <div class="thanks-header span-15">
+                 <div class="span-4">This is a preview.</div>
+                  <div class="view-edit">
+                    <a class="span-10" href="{{announcement.edit_url}}">Click here to edit and/or publish your post.</a>
+                 </div>
+            </div>
+        {% elif thanks %}
+            <div class="thanks-header span-15">
+                <div class="span-8">Thanks for Posting an Announcement!</div>
+                 <div class="view-edit">
+                    {% if announcement.can_edit %}
+                        <a class="span-1" href="{{announcement.edit_url}}">Edit</a>
+                    {% endif %}
+                    <a class="span-3" href="{{announcement.view_url}}">View on Site</a>
+                </div>
+            </div>
+        {% endif %}
+
+        <div class="single-post span-15">         
+            {% if announcement.start_date %}
+                <div class="start-date-single span-2 last">
+                    <div class = "deadline">Starts:</div>
+                    <div class = "month">{{ announcement.start_date|date:"M"}}</div>
+                    <div class = "day">{{ announcement.start_date|date:"d"}}</div>
+                    <div class = "year">{{ announcement.start_date|date:"Y"}}</div>
+                </div>
+            {% endif %}
+            
+            {% if announcement.deadline %}
+                <div class="start-date-single span-2 last">
+                    <div class = "deadline">Deadline:</div>
+                    <div class = "month">{{ announcement.deadline|date:"M"}}</div>
+                    <div class = "day">{{ announcement.deadline|date:"d"}}</div>
+                    <div class = "year">{{ announcement.deadline|date:"Y"}}</div>
+                </div>
+            {% endif %}
+            
+            <div class="announce-post-details">
+                <div id="announce-posts-type">
+                    {{announcement.subtype}}:
+                    {% if request.user == announcement.user and announcement.can_edit and announcement.edit_url %}
+                        <a class="edit-link float-right" href="{{announcement.edit_url}}">EDIT</a>
+                    {% endif %}
+                </div> 
+                
+                <h2 class="announce-post-title">
+                    <a class="upper" href="{{ announcement.url }}">{{ announcement.title|safe }}</a>
+                </h2>
+
+                {% get_comment_count for announcement as comment_count %}
+                {% with request.build_absolute_uri as share_url %}
+                    {% include 'fragments/new_share.html' %}
+                {% endwith %}
+                                
+                <div class="authors bold" style="margin:3px 0px";>
+                    POSTED BY:
+                    <a href="{{announcement.user.get_profile.get_absolute_url}}">
+                        {{ announcement.user.get_profile }}
+                    </a> 
+                    | <span class="bold">{{ announcement.created|date:"D M jS, Y  P" }}</span>
+                    <br />
+                    
+                    {% if announcement.venue_name  %}
+                        LOCATION: <span class="blue bold">{{ announcement.venue_name }}</span>
+                    {% endif %}
+                </div>
+            </div>
+                    
+            <hr class="black-thin">  
+                                       
+            {% if announcement.image %}
+            <p class="center span-15">
+                <img src ="{{ announcement.image.url }}" />
+            </p>
+            {% endif %}
+            
+            <div class="post-body">
+                <p>{% bbcode announcement.description %}</p>
+            
+                {% if announcement.url %}
+                <p class="blue bold"> 
+                    <div class="bold upper">Link:</div>
+                    <a class="indent" href="{{ announcement.url }}">{{ announcement.url }}</a>
+                </p>
+                {% endif %}
+                
+                {% if announcement.venue_address %}                    
+                    <p class="blue bold"> 
+                        <div class="bold upper">Address:</div>
+                        <div class="indent">{{ announcement.get_html_location|safe}}</div>               
+                    </p>
+                {% endif %}
+            </div>            
+
+            {% if announcement.user.get_profile.bio or announcement.user.get_profile.get_activity_stream %}
+            <div class = "post-author-bio span-15">
+                    <div class="miniprofile span-2">
+                        {{ announcement.user.get_profile.get_large_miniprofile|markdown}}
+                    </div>
+                    
+                    <div class = "span-12 ">
+                    {% if announcement.user.get_profile.bio %}
+                        {{ announcement.user.get_profile.bio }}
+                    {% endif %}
+                        
+                        {% if announcement.user.get_profile.get_activity_stream %}
+                        <div class = "bio-more span-12">
+                        More from <a href="{{ announcement.user.get_profile.get_absolute_url }}">{{ announcement.user.get_profile }}</a>:
+                            <ul class="span-10">
+                                {% if announcement.user.get_profile.get_blog_posts %}
+                                    {% for post in announcement.user.get_profile.get_blog_posts %}
+                                    <li class="capitals">Blog Post: <a href="{{ post.get_absolute_url }}">{{ post.title }}</a></li>
+                                    {% endfor %}
+                                {% endif %}
+                                
+                                {% for activity in announcement.user.get_profile.get_activity_stream %}
+                                    <li class="capitals">{{activity.content_object.content_type}}: <a href="{{ activity.content_object.get_absolute_url }}">{{ activity.content_object.title }}</a></li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        {% endif %}
+                    </div>
+            </div>
+            {% endif %}
+                       
+            <div class="post-nav last span-15">
+            {% if announcement.get_previous_by_publish %}
+                    <a class="previous span-7" href="{{ announcement.get_previous_post.post_url }}">Previous Announcement</a>
+                {% endif %}
+                {% if announcement.get_next_by_publish %}
+                    <a class="next span-7" href="{{ announcement.get_next_post.post_url }}">Next Announcement</a>
+                {% endif %}
+            </div>
+
+            <hr class="black-thin-no-margin">
+
+        </div>
+        
+        {% if announcement.status %}
+        <!--#include virtual="/announce/comment_fragment/?announcement_id={{announcement.id}}&ct={{announcement.content_type}}&parent={{request.get_full_path}}" -->
+        {% endif %} 
+
+    </div>
+    
+   <!--end left column-->
+    <div class= "right-column span-8">
+        {% include "fragments/nectar_ads_sidebar.html" %}
+        {% include "fragments/community_sidebar_small.html" %}
+    </div>
+
+</div>
+
+{% endblock %}

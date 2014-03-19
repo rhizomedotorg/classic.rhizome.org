@@ -1,0 +1,45 @@
+<div class="post-form-content ">
+    <h6 class="upper">EXHIBITIONS</h6>
+    <fieldset id="exhibition-formset" class="formset">
+        <div class="bold">Please list any exhibitions or shows that have involved this artwork</div>
+        <hr class="thin">
+        {{ multi_form.forms.exhibition.management_form }}
+        {% for form in multi_form.forms.exhibition.forms %}
+        <div id ="exhibition-form-{{ forloop.counter0 }}" class="form exhibition-form" data-type="exhibition">
+            <span class="display-none">
+                {{ form.DELETE }}
+            </span>
+            
+            <label>Title</label>
+            <span>
+                {{ form.title }}
+            </span>
+            <label>Curator</label>
+            <span>
+                {{ form.curator }}
+            </span>
+            <label>Link</label>
+            <span>
+                {{ form.link }}
+            </span>
+
+            <div class="clearfix">
+                <label>Location</label>
+                {{ form.location }}
+<!--
+                <label>Date</label>
+                {{ form.date }}
+-->
+            </div>
+
+            <div class="delete-form clearfix">
+                <a>Delete</a>
+            </div>
+            <span class="display-none">
+                {{ form.DELETE }}
+            </span>
+        </div>
+        {% endfor %}
+        <div class="round-gray float-right add-form" data-type="exhibition">ADD ANOTHER EXHIBITION+</div>
+    </fieldset>
+</div>

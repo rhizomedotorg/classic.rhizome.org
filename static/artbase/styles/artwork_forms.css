@@ -1,0 +1,435 @@
+#artwork-form textarea {
+}
+
+#id_url {
+    height:30px;
+    width:100%;
+}
+
+#id_summary, #id_statement{
+    height:150px;
+    width:100%;
+}
+
+#id_description  {
+    height:250px;
+    width:100%;
+}
+
+#artbase-agreement{
+    width: 100%;
+}
+
+input[type="checkbox"] {
+    margin: 0 3px 0 0;
+    top:0;
+    padding: 0px;
+    max-width:14px;
+}
+
+.existing {
+    margin-bottom: 10px;
+}
+
+.delete-checkbox {
+    margin: 5px 0px;
+}
+
+#software_select {
+    width: 50%;
+}
+
+#id_video_url,
+#id_audio_url,
+#id_user_tags,
+#id_state_ed,
+#id_format,
+#id_other_artists,
+#id_other_artists_users,
+#id_collective {
+    width:100%;
+}
+
+#exhibition-input input,
+#article-input input,
+#support-input input,
+#footnote-input input {
+    width: 100%;
+}
+
+#id_exhibition_date, 
+#id_article_date,
+#id_support_date  {
+    width: 50% !important;
+}
+
+#license-code-to-copy{
+    height:100px;
+    width: 100%;
+}
+
+#licensebox {
+    margin-left: 10px;
+}
+
+a.remove-artist, a.remove-artist:visited {
+    color: red;
+}
+
+#rhiz_tags input[type="checkbox"] {
+    top: 0;
+}
+
+textarea {
+    font-family: Arial, sans-serif;
+}
+
+#rhiz_tags ul {
+    padding-left:0px;
+    list-style-type: none;
+    margin-top: 10px;
+}
+
+#rhiz_tags ul li {
+    display:inline-table;
+    width:174px;
+    margin-bottom:0px; 
+    color: #333;
+}
+
+#artwork-details-form-technologies {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+#artwork-details-form-technologies textarea {
+    margin-top: 15px;
+    height: 200px;
+    width: 260px;
+}
+
+.box-sizing {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.full-width {
+    width: 100%;
+}
+
+#technology-prompt {
+}
+
+#add-tech {
+    float: right;
+    padding: 4px 6px;
+}
+
+.base-selected base-tab {
+}
+
+#images-fieldset div{
+    margin-right: 20px;
+}
+
+.image-container {
+    margin-bottom: 25px;
+}
+
+#images-fieldset img {
+    max-width: 300px;
+    display:block;
+    margin:auto;
+    margin-bottom: 1.45em;
+}
+
+#audio-video-fieldset div {
+    margin: 5px 0px;
+}
+
+#change-license {
+    margin:20px 0px;
+}
+
+.other-artist-label {
+    width: 165px;
+    display: inline-block;
+}
+
+#other-artist input {
+    width: 254px;
+}
+
+#artbase-base-form input,
+#artbase-base-form textarea {
+    width: 943px;
+}
+
+.artbase-base-form-section {
+    margin-bottom: 10px;
+}
+
+#artbase-details-form-readme textarea {
+    width: 375px;
+}
+
+#artwork-details-form-left-column input[type=text] {
+    /*width: 375px;*/
+}
+
+.delete-form {
+    clear: both;
+    width: 100%;
+    text-align: right;
+}
+
+.add-form {
+    margin-top: 10px;
+}
+
+/* Footnote form styles */
+
+.footnote-formset {
+}
+.footnote-form {
+    padding: 8px 0px;
+    border-bottom: 1px solid #ccc;
+}
+.footnote-form label {
+    width: 40px;
+    display: inline-block;
+}
+.footnote-form input {
+    margin-left: 6px;
+    width: 330px;
+}
+
+/* Support form styles */
+
+.support-formset {
+}
+.support-form {
+    padding: 8px 0px;
+    border-bottom: 1px solid #ccc;
+}
+.support-form label {
+    width: 75px;
+    display: inline-block;
+}
+.support-form input {
+    margin-left: 6px;
+    width: 295px;
+}
+
+.article-form {
+    padding: 8px 0px;
+    border-bottom: 1px solid #ccc;
+}
+.article-form label {
+    width: 75px;
+    display: inline-block;
+}
+.article-form input {
+    margin-left: 6px;
+    width: 335px;
+}
+
+.creator-form {
+    padding: 8px 0px;
+    border-bottom: 1px solid #ccc;
+}
+.creator-form label {
+    width: 50px;
+    display: inline-block;
+}
+.creator-form input {
+    margin-left: 6px;
+    width: 360px;
+}
+
+.exhibition-form {
+    padding: 8px 0px;
+    border-bottom: 1px solid #ccc;
+}
+.exhibition-form label {
+    width: 50px;
+    display: inline-block;
+}
+.exhibition-form input {
+    margin-left: 6px;
+    width: 360px;
+}
+.exhibition-form .left-half *,
+.exhibition-form .right-half * {
+    display: inline-block;
+}
+.exhibition-form .left-half {
+    float: left;
+    width: 220px;
+}
+.exhibition-form .left-half input {
+    width: 140px;
+}
+.exhibition-form .right-half {
+    float: right;
+    width: 200px;
+}
+.exhibition-form .right-half label {
+    width: 30px;
+}
+.exhibition-form .right-half input {
+    width: 150px;
+}
+
+/* Non formset form styles */
+
+#format-form input {
+    width: 375px;
+}
+#state-ed-form input {
+    width: 375px;
+}
+#tags-form input {
+    width: 415px;
+}
+#collective-form input {
+    width: 415px;
+}
+
+.delete-form {
+    cursor: pointer;
+}
+
+/* Technologies form */
+
+#artwork-details-form-technologies .left-col {
+    padding-right: 20px;
+    border-right: 1px solid #ccc;
+    height: 220px;
+}
+#artwork-details-form-technologies .right-col {
+}
+#tech-lists {
+}
+#tech-lists td {
+}
+#tech-lists td .tech-list-container {
+    height: 150px;
+    overflow-y: scroll;
+}
+#tech-lists td .tech-list-container div {
+    padding: 0px 4px;
+    cursor: pointer;
+}
+#tech-lists td .tech-list-container div:hover {
+    text-decoration: underline;
+}
+#tech-lists td .tech-list-container div.selected {
+    background-color: #719BB6;
+    color: white;
+}
+#tech-category-list {
+    width: 190px;
+}
+#tech-type-list {
+    width: 190px;
+}
+#tech-lists td {
+    padding: 0 0 0 8px;
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
+#tech-lists td:first-child {
+    padding-left: 0px;
+}
+#tech-lists td:last-child {
+    border-right: none;
+}
+#tech-select-table {
+    margin-top: 10px;
+    clear: both;
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    border-top: 1px solid #ccc;
+}
+#tech-select-table-heading th {
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 4px;
+}
+#add-tech-control {
+    height: 30px;
+}
+
+#id_artworkstub-tech_details {
+    height: 150px;
+    width: 375px;
+}
+
+#no-tech-selected {
+    font-style: italic;
+}
+
+#no-tech-selected .delete {
+    display: none;
+}
+.has-tech #no-tech-selected {
+    display: none;
+}
+
+#tech-selected .delete {
+    cursor: pointer;
+}
+
+#id_artworkstub-tags{
+    width: 415px;
+    height: 180px;
+    overflow-y: scroll;
+}
+
+#artbase-base-form #id_created_date_0, #artbase-base-form #id_created_date_1 {
+    width:125px;
+}
+
+#artbase-base-form #id_byline{
+    width: 300px;
+}
+
+.base-inline-input{
+    width: 400px; 
+    display: inline; 
+    float: left;
+}
+
+/* tag approval form */
+.rhizome-tags ul,
+.artist-tags ul{
+    padding: 0;
+}
+
+.rhizome-tags ul li,
+.artist-tags ul li{
+    margin: 0;
+    list-style: none;
+    width: 130px;
+    float: left;
+    line-height: 1.4;
+}
+
+.rhizome-tags ul li,
+.rhizome-tags ul label,
+.artist-tags ul li,
+.artist-tags ul label{
+    font-weight: normal;
+}
+
+input.artist_tag,
+input.rhizome_tag{
+    width: 130px;
+    line-height: 1.4;
+}
+
+.rhizome-tags-header{
+    margin-top: 15px;
+}

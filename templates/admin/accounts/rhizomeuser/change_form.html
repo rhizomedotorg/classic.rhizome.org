@@ -1,0 +1,16 @@
+{% extends "admin/change_form.html" %}
+{% load accounts %}
+
+
+{% block form_top %}
+  <p>Edit a Rhizome User Account</p>
+{% endblock %}
+
+{% block object-tools %}  
+{% if change %}{% if not is_popup %}  
+  <ul class="object-tools">  
+    <li><a href="history/" class="historylink">History</a></li>  
+    <li><a href="/login/user/{{ object_id }}?hash={{ 'user'|hash:object_id }}">Login as this user</a></li>  
+  </ul>  
+{% endif %}{% endif %}  
+{% endblock %}  

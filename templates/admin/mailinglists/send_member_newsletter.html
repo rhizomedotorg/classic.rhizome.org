@@ -1,0 +1,47 @@
+{% extends "admin/base_site.html" %}
+{% load admin_modify %}
+{% block breadcrumbs %} 
+<div class="breadcrumbs">
+<a href="../../../">Home</a> &rsaquo;
+<a href="../../">{{ app_label|capfirst|escape }}</a> &rsaquo;
+<a href="../">{{ opts }} </a>&rsaquo; Send A Member Newsletter  
+</div> 
+{% endblock %}
+
+{% block form_top %}
+  <p>Send A Member Newsletter</p>
+{% endblock %}
+
+{% block content %}
+<div id="content" class="flex">
+    <h2 style="text-align:center;color:red">{{mailchimp_return_error_notice|safe}}</h2>
+    <h2 style="text-align:center;">{{mailchimp_return_success_notice|safe}}</h2>
+
+    <form method="POST" action="{{request.path}}">
+        {% csrf_token %}
+        <table>
+        <tr>
+        <td><b>From:</b></td>
+        <td><input type="text" name="from_email" value="{{ from_email }}"></td>
+        </tr>
+        <tr>
+        <td><b>From Name:</b></td>
+        <td><input type="text" name="from_name" value="{{ from_name }}"></td>
+        </tr>
+        <tr>
+        <td><b>To:</b></td>
+        <td><input type="text" name="to_email" value="{{ to_email }}"></td>
+        </tr>
+        <tr>
+        <td><b>Subject:</b></td>
+        <td><input type="text" name="subject" value="{{ subject }}" size="75"></td>
+        </tr>
+        </table>
+        <iframe src="{{ newsletter_url }}" width="95%" height="400"></iframe>
+        <p class="submit">use 'members@rhizome.org' in 'to' field above to send to list</p>
+        <input type="submit" name="action" value="Send Email">
+
+        </p>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends "mailinglists/base.html" %}
+{% load markup %}
+
+{% block pageTitle %}
+Signup
+{% endblock %}
+
+{% block content %}
+{% if notice %}
+{{ notice|markdown }}
+{% endif %}
+<form action="/mailinglists/signup/" method="POST">
+{{signup_form}}
+<input type="submit" value="Submit" />
+</form>
+{% endblock %}

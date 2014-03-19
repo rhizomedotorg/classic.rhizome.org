@@ -1,0 +1,36 @@
+{% extends 'about/base.html' %}
+{% load block_tags %}
+
+{% block navbars %}
+    {% get_nav 'About Us' 'Policy' %}
+{% endblock %}
+
+{% block pageTitle %}Policy{% endblock %}
+
+{% block content %}
+    <div class="column-wrapper span-24">
+        <a name="user"></a>
+        <div class="section-row-titles">
+            <span class = "nav-item">USER AGREEMENT</span>
+        </div>
+        <hr class="hr3-no-margin">
+
+        <textarea class="policy" readonly>{% get_text 'public user agreement' %}</textarea>
+
+        <a name="member"></a>
+        <div class="section-row-titles">
+            <span class="nav-item">MEMBER AGREEMENT</span>
+        </div>
+        <hr class="hr3-no-margin">
+
+        <textarea class="policy" readonly>{% get_text 'member agreement' %}</textarea>
+
+        <a name="privacy"></a>
+        <div class="section-row-titles">
+            <span class="nav-item">PRIVACY STATEMENT</span>
+        </div>
+        <hr class="hr3-no-margin">
+
+        <textarea class="policy" readonly>{% get_text 'privacy statement' %}</textarea>
+    </div>
+{% endblock %}

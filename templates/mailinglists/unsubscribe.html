@@ -1,0 +1,55 @@
+{% extends "mailinglists/base.html" %}
+{% load markup %}
+
+{% block pageTitle %}
+Unsubscribe
+{% endblock %}
+
+{% block content %}
+<div class="column-wrapper span-24">
+    {% if unsubscribe_form.errors %}
+        <div><a class="form-errors upper center" style="font-size:16px" href="#mailinglists">There was an error unsubscribing</a></div>
+    {% endif %}
+    
+    <div class="section-row-titles">
+        <span class = "nav-item">Unsubscribe from Rhizome News</span>
+        <hr class="hr3-no-margin">
+    </div>
+    <p class="indent about-content">Click here to <a href="/unsubscribe/news/">unsubscribe from Rhizome News</a></p>
+        
+    <div class="section-row-titles">
+        <span class = "nav-item">Community Mailing Lists</span>
+        <hr class="hr3-no-margin">
+    </div>
+    <div class="about-content">
+        <div class="indent">
+            <fieldset class="span-11">
+                <form action="{{request.full_path}}" method = "post" class= "mailing-lists-form" id="unsubscribe-form">
+                    {% csrf_token %}
+
+                    
+                    {% if notice and not unsubscribe_form.errors %}
+                        <div class="red">{{ notice|markdown }}</div>
+                    {% endif %}
+                    
+                    {% for e in unsubscribe_form.errors %}
+                        {% if e == "mailinglists" %}
+                            <div class="red">Please select a list</div>
+                        {% else %}
+                            <div class="red">This field is required: {{ e }}</div>
+                        {% endif %}
+                    {% endfor %}
+    
+                    {% for f in unsubscribe_form %}
+                    <b>{{f.label}}</b>
+                    <div class="indent">{{f}}</div>
+                    {% endfor %}
+                    <div class="right">
+                        <input type="submit" class="round-gray" value="unsubscribe" />
+                    </div>
+                </form>
+            </fieldset>
+        </div>
+    </div>
+</div>
+{% endblock %}

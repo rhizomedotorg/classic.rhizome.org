@@ -1,0 +1,121 @@
+@mixin calc($property, $expression, $default) {
+  #{$property}: $default;
+  #{$property}: -moz-calc(#{$expression});
+  #{$property}: -webkit-calc(#{$expression});
+  #{$property}: calc(#{$expression});
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+h1, h2, h3, h4 {
+  margin: 0;
+  padding: 0;
+}
+
+ul, li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+body {
+  text-rendering: optimizeLegibility;
+  font: {
+    family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+    size: 13px;
+  };
+}
+
+$link-color: #6494B2;
+a {
+  text-decoration: none;
+  color: $link-color;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+h4 {
+  color: black;
+  font: {
+    family: Verdana, sans-serif;
+    size: 20px;
+    style: italic;
+  }
+  margin: 10px 0 10px 0;
+  font-weight: normal;
+}
+
+.float-stop {
+  clear: both;
+}
+
+// layout
+
+#content {
+  top: 30px;
+  @include calc(height, "100% - 60px", 100%);
+  position: relative;
+}
+body.with-top-banner #content {
+  top: 60px;
+  @include calc(height, "100% - 90px", 100%);
+}
+
+
+.section {
+  width: 1024px;
+  margin: 0 auto;
+  padding: 1em 0 1em 10px;
+  line-height: 1.5;
+}
+
+%column {
+  @extend .section;
+  margin: 0;
+  padding: 0;
+  float: left;
+}
+
+.left-col {
+  @extend %column;
+  width: 70%;
+}
+
+.right-col {
+  @extend %column;
+  width: 30%;
+}
+
+.header {
+  margin: 0;
+  background: #F7F7F7;
+  font: {
+    family: "Verdana", 'sans-serif';
+    size: 13px;
+  }
+}
+
+// loading indicator
+
+#loading-indicator {
+  $width: 66px;
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: {
+    top: -$width/2;
+    left: -$width/2;
+  }
+}
+
+@import "messages";
+@import "forms";
+@import "buttons";
+@import "sidebars";

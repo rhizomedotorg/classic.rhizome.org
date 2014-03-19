@@ -1,0 +1,64 @@
+{% extends "blank_slate.html" %}
+{% load bbcode comments threadedcomments_tags markup hitcount_tags %}
+{% load url from future %}
+
+{% block customStyleSheets %}
+<link rel="stylesheet" href="{{ STATIC_URL }}commissions/styles/commissions.css" type="text/css" charset="utf-8"></link>
+{% endblock %}
+
+{% block pageTitle %} 
+Rhizome Commissions Voting
+{% endblock %}
+
+{% block content %}
+<div id="voting">
+
+    <div id="commissions-proposal-iframe-header">
+        <div class="pagination" style="float:right;">
+            <span class="step-links">
+                <span class="current">
+                    <a href="/profile/commissions-voting/">Review your votes</a> |
+                    <a href="{% url 'commissions_voting' proposal.cycle.id %}">Back to Voting</a>
+                </span>
+            </span>
+        </div>
+        
+        <span class="span-8"><a href="{% url 'commissions_voting' proposal.cycle.id %}">RHIZOME COMMISSIONS VOTING</a></span>
+    
+        <form method="POST" id="approval-voting-form" action="{{request.build_absolute_url}}"> 
+            {% for field in voting_form %}
+                {% if not field.is_hidden %}
+                    <label>Do you feel this proposal meets our <a target="_blank" href="{% url 'commissions_procedures' proposal.cycle.id %}#criteria">criteria</a>?</label> {{field}}
+                {% endif %}
+            {% endfor %}
+            
+            {% if approval_status %}
+            <span id="status" style="margin-left:5px;padding:1px 3px;color:red;text-transform:uppercase;">{{approval_status}}</span>
+            {% else %}
+            <span id="status" style="margin-left:5px;padding:1px 3px;color:red;text-transform:uppercase;"></span>            
+            {% endif %}
+        </form>
+    
+    </div>
+        <iframe id = "commissions-proposal-iframe" src="{{ proposal.voting_view_url }}"></iframe>
+        <script type="text/javascript">            
+            $('id_approved_0').addEvent('click', function(e){
+                if (this.checked){
+                   new Request({method: 'post',url: '/commissions/proposal/{{proposal.id}}/approve/', data:  {approved: 'true'}, onError: function(rtxt) {},onSuccess: function(rtxt){$('status').set('text',rtxt);}}).send();
+                   console.log('yes');
+                } 
+            });
+            
+            $('id_approved_1').addEvent('click', function(e){
+                if (this.checked){
+                    new Request({method: 'post',url: '/commissions/proposal/{{proposal.id}}/approve/', data:  {approved: 'false' }, onError: function(rtxt) {},onSuccess: function(rtxt){$('status').set('text',rtxt);}}).send();
+
+                }
+            });
+    
+        </script>
+
+
+</div>
+
+{% endblock %}

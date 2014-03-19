@@ -1,0 +1,126 @@
+{% load block_tags %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head prefix="og: http://ogp.me/ns#">
+        <script type="text/javascript">var _sf_startpt=(new Date()).getTime()</script> <!-- chartbeat -->
+        <meta charset="UTF-8">
+        <title>{% block title %}Rhizome{% endblock %}</title>
+        <meta name="description" content="{% block description %}{% get_text 'Meta Description' %}{% endblock %}" />
+        <meta name="google-site-verification" content="AZfoqybynDh_0mjEBG_XwMZeCwiSE-GZ8BiQB5FZzDU" />
+
+        <meta content="{% block og_title %}Rhizome{% endblock %}" property="og:title">
+        <meta content="{% block og_type %}website{% endblock %}" property="og:type">
+        <meta content="{% block og_image %}{% endblock %}" property="og:image">
+        <meta content="{{ request.build_absolute_uri }}" property="og:url">
+        <meta content="Rhizome" property="og:site_name">
+
+        <meta name="twitter:card" content="summary">
+        <meta name="twitter:site" content="@rhizome">
+        {% block extra_meta %}{% endblock %}
+
+        <link rel="shortcut icon" href="{{ STATIC_URL }}images/favicons/leyva.gif" />
+        <!-- google fonts -->
+        <link href='//fonts.googleapis.com/css?family=Titillium+Web:400,200,300' rel='stylesheet' type='text/css'>
+        <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}font-awesome-4.0.0/css/font-awesome.min.css">
+        <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/new_base.css">
+        <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/new_navbars.css">
+        <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/top_banner.css">
+        {% block extra_css %}{% endblock %}
+
+        <!-- Quantcast Tag, part 1 -->
+        <script type="text/javascript">
+            var _qevents = _qevents || [];
+            (function() {
+                var elem = document.createElement('script');
+                elem.src = (document.location.protocol == "https:" ? "https://secure" : "http://edge")  
+                            + ".quantserve.com/quant.js";
+                elem.async = true;
+                elem.type = "text/javascript";
+                var scpt = document.getElementsByTagName('script')[0];
+                scpt.parentNode.insertBefore(elem, scpt);  
+            })();
+        </script>
+    </head>
+        
+    <body class="{% block body_class %}{% if current_campaign %}with-top-banner{% endif %}{% endblock %}">
+        {% block top-banner %}
+            {% if current_campaign %}
+                <div class="top-banner">
+                    <a href="/campaign/">Community Fundraiser {{ current_campaign.year }}</a> | <a href="/campaign/">Donate Now!</a>  
+                    <a class="close">X</a>
+                </div>
+            {% endif %}
+        {% endblock %}
+
+        {% block navbars %}
+            {% assign_text 'tagline' as tagline %}
+            {% get_nav None None tagline %}
+        {% endblock %}
+                        
+        <div id="content" class="{% block content_class %}{% endblock %}">
+            <div id="loading-indicator">
+                <img src="{{ STATIC_URL }}images/loading_transparent.gif">
+            </div>
+            {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}><div class="section">{{ message|safe }}</div></li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+
+            {% block content %}{% endblock %}
+        </div>
+
+        <!-- Quantcast Tag, part 2 -->
+        <script type="text/javascript">
+            _qevents.push( { qacct:"p-1bU5CKetpvMBI", labels:"artmedia" } );
+        </script>
+        <noscript>
+            <div style="display: none;">
+                <img src="//pixel.quantserve.com/pixel/p-1bU5CKetpvMBI.gif?labels=artmedia" height="1" width="1" alt="Quantcast"/>
+            </div>
+        </noscript>
+        
+        <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.10.2.min.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}js/new_navbars.js"></script>
+        {% if current_campaign %}
+            <script type="text/javascript" src="{{ STATIC_URL }}js/top-banner.js"></script>
+        {% endif %}
+        {% block extra_js %}{% endblock %}
+
+        <script>
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+          ga('create', 'UA-768502-1', 'rhizome.org');
+          ga('send', 'pageview');
+
+        </script>
+        
+        <!-- more chartbeat -->
+        <script type="text/javascript">
+        var _sf_async_config={};
+        /** CONFIGURATION START **/
+        _sf_async_config.uid = 26954;
+        _sf_async_config.domain = "rhizome.org"; /** CHANGE THIS **/
+        /** CONFIGURATION END **/
+        (function(){
+          function loadChartbeat() {
+            window._sf_endpt=(new Date()).getTime();
+            var e = document.createElement("script");
+            e.setAttribute("language", "javascript");
+            e.setAttribute("type", "text/javascript");
+            e.setAttribute('src', '//static.chartbeat.com/js/chartbeat.js');
+            document.body.appendChild(e);
+          }
+          var oldonload = window.onload;
+          window.onload = (typeof window.onload != "function") ?
+             loadChartbeat : function() { oldonload(); loadChartbeat(); };
+        })();
+        </script>
+    </body>
+</html>

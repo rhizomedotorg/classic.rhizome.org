@@ -1,0 +1,17 @@
+#mbox-controls{
+    border-left:none;
+}
+
+#mbox-bottom{
+    position: relative;
+    margin-top: -260px;
+}
+
+#mbox-mainbox{
+    border:3px solid black;
+    overflow: hidden;
+    
+}
+#mbox-filebox{
+    padding-top: 15px !Important;
+}

@@ -1,0 +1,1026 @@
+/* Donation Form */
+#membership-overview {
+    font-size:18px;
+    font-family: Georgia;
+    padding: 10px 20px;
+    color:#A8ADB3;
+}
+
+.donation-form-section {
+    font-size:16px;
+    font-family: Georgia;
+    color:black;
+}
+
+#org-sub-register {
+    border-right:1px solid #DEDEDE;
+}
+
+#id_org_email_username {
+    width:125px;
+    height:21px;
+}
+
+#id_orgsub_email_domain {
+    width: 200px;
+}
+
+#id_orgsub_email{
+    width: 150px;
+    height:25px;
+}
+
+.donation-form-input{
+}
+
+.donation-form-input #id_organization{
+    max-width: 440px;
+}
+
+
+.donation-form-input select, 
+.donation-form-input input{
+    background-color:#F7F7F7;
+    font-size:11pt;
+    padding-left:5px;
+    font-size:11pt;
+    margin: 0px;
+    top:0;
+    position: inherit;
+}
+
+#membership-benefits li {
+    list-style-type: disc;
+}
+
+#no-donation {
+    background-color: #F7F7F7;
+    padding:.5em;
+}
+
+#id_no_contribution {
+    margin:0px;
+    margin-right: 5px;
+    top:0;
+}
+
+.supporters-list{
+/*     color:#89867D; */
+    color:gray;
+    text-align: center;
+    font-style: italic;
+}
+.support-level{
+    text-align: center;
+    color:#6494B2;
+    font-size: 22px;
+}
+
+.membership {
+    font-size: 14px;
+}
+
+#payment-info {
+	border-color: #6494B2;
+	border-style: solid;
+	border-right-width: 1px;
+}
+
+.membership-section {
+    margin-bottom: 20px;
+}
+
+.membership-sidebar {
+    font-family: Georgia;
+}
+
+.membership-sidebar img {
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.membership-sidebar #contact-info {
+    text-align: center;
+    color: #6494B2;
+    font-family: Helvetica;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+ul.sidebar-benefits-list {
+    font-family: Georgia;
+    margin: 5px 0px;
+}
+
+ul.sidebar-benefits-list li{
+    margin: 5px 0px;
+}
+
+.sidebar-join-link{
+    font-weight:bold;
+    text-transform:uppercase;
+    text-align:center;
+    padding: 10px;
+    background-color: white;
+    font-size: 18px;
+}
+
+.benefits-header {
+    background-image:url("../images/bar_background.png");
+    margin: 0 auto;
+    text-align: center;
+    padding: 12px;
+    font-family: Georgia;
+    font-size: 22px;
+}
+
+.benefits-list-header {
+    font-style: italic;
+    font-size: 18px;
+    margin: 10px 0px 5px;
+}
+
+.membership-level,
+ul.benefits-list {
+    font-family: Georgia;
+    margin-top: 5px;
+    padding-left: 5px;
+}
+
+ul.level-benefits-list{
+    margin-left: 15px;
+    padding: 0px;
+    list-style: none;
+}
+
+.level-benefit{
+    color: #6494B2;
+    font-weight: bold;
+}
+
+.level-benefit-description{
+    margin-left: 15px;
+}
+
+.membership-level-title{
+    font-size: 28px;
+    list-style-type: none;  
+    margin-left: 0px;
+    color: #6494B2;
+    line-height: 1;
+}
+
+li.membership-benefit {
+    font-size: 22px;
+    list-style-type: none;  
+    margin-left: 0px;
+    color: #6494B2;
+}
+
+.membership-level-info{
+    margin-bottom: 0px;
+}
+
+.membership-level-summary{
+    margin: 5px;
+}
+
+#id_email{
+    min-width: 200px;
+}
+
+.membership-level-info,
+.benefit-description {
+    font-size: 14px;
+    margin-left:5px;
+    color: gray;
+}
+
+.supporters-content {
+    margin-bottom: 10px;
+}
+
+
+#final_amount{
+    font-weight: bold;
+    font-size: 14px;
+}
+
+#address-wrap{
+    font-weight: bold;
+    font-size: 15px;
+    line-height: 1.1;
+}
+
+label{
+    color:#89867D;
+    text-transform: uppercase;
+}
+
+input[type="checkbox"]{
+    margin: 0;
+    top:0;
+}
+
+#chosen-amount{
+    color:red !important;
+    border: 1px solid black;
+}
+
+#chosen-amount:hover{
+    cursor: pointer;
+}
+
+.chosen-amount{
+    padding: 5px 0px;
+    line-height: 1;
+}
+
+.chosen-amount .amount {
+    font-size: 15px; 
+    padding: 3px;
+}
+
+#id_select_amount{
+    width: 90%;
+}
+
+#id_custom_amount{
+    width: 250px;
+}
+
+
+#information,
+#donation-selection,
+#shipping-wrap {
+    margin-bottom: 15px;
+    margin-left: 40px;
+}
+
+.shipping-input, 
+.donation-input, 
+.billing-input, 
+.donation-input {
+    margin: 5px 0px;    
+}
+
+#shipping-wrap{
+    margin-bottom: 15px;
+}
+
+a#arrow-previous, a#arrow-next {
+    background-image:url("../../images/fp_carousel_arrow_back.png");
+    background-position:left center;
+    background-repeat:no-repeat;
+    height:100%;
+    padding:135px 5px;
+    width: 13px;
+    display: inline;
+    float:left
+}
+
+#shipping-billing-same,
+#wants-gift-check,
+#membership-level{
+    font-weight: bold;
+    color: #080808;
+    width: 100%;
+    margin: 0 auto 10px;
+}
+
+#shipping-billing-same{
+    width: 85%;
+}
+
+
+#thank-you-shipping{
+    margin-left: 40px;
+}
+
+#wants-gift-check *{
+    background-color: #FFFEB3;
+}
+
+#with-membership-and-edition-and-council,
+#with-membership-and-council,
+#with-membership-and-edition,
+#with-membership{
+    display: none;
+    background-color: #FFFEB3;
+    padding: 2px;
+    width:100%;
+}
+
+.trigger-wrap{
+    text-align: center;
+    margin: 0 auto;
+    vertical-align: top;
+    line-height: 0.9;
+}
+
+#trigger-membership-info{
+    color:#6494B2;
+    font-style: italic;
+    display: inline;
+    font-size: 14px;
+    padding-right: 10px;
+}
+
+#trigger-membership-info:hover{
+    cursor: pointer;
+}
+
+#membership-info-hover{
+    display: none;
+    position: absolute;
+    z-index: 2;
+    margin-left: 180px;
+    margin-top: -100px;
+    width: 500px;
+    background-color: white;
+    padding: 2px 5px;
+    -moz-border-radius: 5px 5px 5px 5px;
+    -webkit-border-radius: 5px 5px 5px 5px;
+    border-radius: 5px 5px 5px 5px;
+    border: 1px solid #6494B2;
+    font-family: Georgia;
+    -moz-box-shadow: 3px 3px 6px 1px #000;
+    -webkit-box-shadow: 3px 3px 6px 1px #000;
+    box-shadow: 3px 3px 6px 1px #000;
+    /* For IE 8 */
+    -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000')";
+    /* For IE 5.5 - 7 */
+    filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000');
+}
+
+.info-hover-title{
+    font-weight: bold;
+    text-decoration: underline;
+    color: #6494B2;
+}
+
+.info-hover-summary{
+    margin: 0px 40px 6px 5px;
+}
+
+#limited-edition-artworks{
+    max-height: 320px;
+    width: 224px;
+    float:left;
+}
+
+#limited-edition-artworks{
+    max-height: 320px;
+    width: 224px;
+    float:left;
+}
+
+#limited-edition-store{
+    text-align: center;
+}
+
+.editions-row{
+    margin-bottom: 20px;
+}
+
+.edition {
+    padding: 20px;
+    width: 200px;
+    border:solid 2px #cacaca;
+    max-height: 295px;
+}
+
+#limited-edition-store .edition:hover{
+    border:solid 2px black;
+}
+
+.selected-edition{
+    border:solid 1px red;
+    margin: -1px;
+}
+
+
+#limited-edition-store .by{
+    font-size: 13px;
+}
+
+#limited-edition-store img{
+    margin-bottom: 5px;
+}
+
+#limited-edition-store a:hover{
+    text-decoration: none;
+}
+
+
+.limited-edition-store-item{
+    padding: 5px 30px;
+    text-align: center;
+}
+
+
+.limited-editions{
+    text-align: center;
+    margin: 0 auto;
+    display: block;
+    padding:0 25px;
+}
+
+.limited-edition-old{
+    display:inline;
+    float:left;
+    height:300px;
+    padding:10px 45px;
+    text-align:center;
+    width:200px;
+}
+a.limited-edition-link,
+a.limited-edition-link:hover{
+    color: black;
+}
+
+#limited-edition-choice{
+    font-size: 15px;
+    text-align:center;
+}
+
+#limited-edition-choice img {
+    margin-bottom: 10px;
+}
+
+#limited-edition-title,
+.edition-title{
+    font-family: Georgia;
+    font-size:17px;
+    margin-bottom: 10px;
+    margin-bottom: 5px;
+    line-height: 1.1;
+    font-style: italic;
+    text-decoration: none;
+}
+
+.edition-donation{
+    color: red;
+    padding-bottom: 10px;
+}
+
+#limited-edition-artist,
+.edition-donation,
+.edition-artist{
+    font-family: Helvetica;
+    font-size:15px;
+    font-weight: bold;
+    line-height: 1.1;
+    margin-bottom: 5px;
+}
+.edition-image{
+    z-index: 0;
+}
+
+.more-info {
+    visibility: hidden;
+    background-color: black;
+    color: white;
+    text-align: center;
+    padding: 10px 0px;
+    font-weight: bold;
+    margin-top: -80px;
+    margin-bottom: 50px;
+    opacity: .99999999 !important;
+    font-size: 15px;
+    z-index: 5;
+    position: relative;
+}
+
+.edition:hover .more-info{
+    visibility: visible;
+}
+
+/*
+.edition:hover .edition-title,
+.edition:hover .edition-image,
+.edition:hover .edition-artist{
+    opacity: .2;
+}
+*/
+
+a#arrow-previous {
+    background-image:url("../../images/fp_carousel_arrow_back.png");
+}
+
+a#arrow-next {
+    background-image:url("../../images/fp_carousel_arrow_forward.png");
+}
+
+.limited-edition{
+    padding:10px 5px;
+    text-align:center;
+}
+
+#artworks-carousel{
+    margin-left:-10px;
+    width:300px;
+}
+
+.donate-button {
+    font-family:Helvetica !important;
+    font-size:22px !important;
+    margin:0 auto !important;
+    padding: 10px 0px !important;
+    text-align:center !important;
+    color:#6494B2 !important;
+    width: 312px !important;
+    background-color: #f6f6f6 !important;
+    padding: 10px !important;
+    white-space: normal;
+}
+
+.or {
+    font-style: italic;
+    font-family: Georgia;
+    font-size: 22px;
+    text-align: center;
+}
+
+.billing-info{
+    margin: 5px 0px;
+}
+
+.amount,
+.thanks-date{
+    font-size: 16px;
+    font-family: Helvetica;
+    color:#6494B2;
+    font-weight: bold;
+    padding: 5px 0px;
+}
+
+.about-content{
+    padding: 5px 0px;
+}
+
+#thanks-letter {
+    border: solid 1px gray;
+    padding: 20px;
+    -moz-box-shadow: 1px -1px 5px #000000;
+    -webkit-box-shadow: 1px -1px 5px #000000;
+    box-shadow: 1px -1px 5px #000000;
+    /* For IE 8 */
+    -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=2, Direction=135, Color='#000000')";
+    /* For IE 5.5 - 7 */
+    filter: progid:DXImageTransform.Microsoft.Shadow(Strength=2, Direction=135, Color='#000000');
+}
+
+#thanks-letter-header{
+    word-spacing: 3px;
+    font-size: 28px;
+    font-family: Helvetica;
+    color:#6494B2;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-align: center;
+}
+.letter-content{
+    margin-left: 20px;
+}
+
+.started{
+    font-family:georgia,sans-serif;
+    font-size:24px;
+    margin:0;
+    padding:0;
+    display:inline;
+    height:60px;
+}
+
+#join-button{
+    width: 200px;
+}
+
+.policy-links{
+    text-transform: uppercase;
+    font-family: Helvetica;
+    font-size: 12px;
+    margin: 5px 0px;
+    line-height: 2;
+    text-align: center;
+    margin-top: 5px;
+    font-weight: bold;
+}
+
+#supporters-header-donate-link{
+    text-align: center;
+    font-size: 18px;
+    text-transform: uppercase;
+    font-family: Helvetica;
+}
+
+#supporters-header-donate-link a,
+#supporters-header-donate-link a:hover{
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+    width: 200px;
+    background-color: #6494B2;  
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+#become-member-link{
+    text-align: center;
+    font-size: 32px;
+    text-transform: uppercase;
+}
+
+#become-user-link{
+    text-align: center;
+    font-size: 22px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+.donation-method{
+    margin-bottom: 20px;
+}
+
+#paypal-slider, #authorize-slider{
+    cursor: pointer;
+    text-decoration: none;  
+}
+
+#donate-header-text{
+    font-family: Georgia;
+    font-size: 22px;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.fundraiser{
+    margin-bottom: 20px;
+    text-align: center;
+    background-color:#F7F7F7;
+    border:1px solid red;
+    font-family:Georgia;
+    font-size:17px;
+    margin-bottom:20px;
+    padding:8px;
+}
+
+
+/* limited edition store list */
+
+.limited-edition-box{
+    border: 1px solid black;
+    margin-bottom: 10px;
+}
+
+.limited-edition-box img{
+    margin-bottom: 0px !important;
+}
+
+.box-title{
+    background-color: black;
+    font-size: 18px;
+    font-weight: bold;    
+    padding:0px 1px;
+    color: white;
+    text-align: left;
+    padding-left: 5px;
+}
+
+.box-info{
+    padding: 20px;
+}
+
+.box-content{
+    display: inline;
+    width: 330px;
+    margin-bottom: 10px;
+    text-align: left;
+    float: left;
+}
+
+.box-image{
+    width: 190px;
+    float: left;
+    display: inline;
+    margin-right: 25px;
+}
+
+.box-artist{
+    font-family: Helvetica;
+    margin-bottom: 5px;
+    font-size:14px;
+}
+
+.box-cost{
+    text-transform: uppercase;
+    font-family: Helvetica;
+    text-align: right;
+    font-weight: bold;
+}
+
+.box-cost a{
+    color: #6494B2;
+    text-decoration: none;
+}
+
+.box-description{
+    overflow-y: auto;
+    margin-bottom: 5px;
+    padding-bottom: 0px;
+    padding-top: 5px;
+    font-family: georgia;
+}
+
+.box-description .description-header{
+    font-family: Helvetica;
+    font-style: italic;
+}
+
+.box-details{
+    width:190px;
+    font-style: italic;
+    text-align:center;
+    font-size: 11px;
+}
+
+.box-buy{
+    margin: 10px 0px;
+    text-align: right;
+    text-transform: uppercase;
+}
+
+.box-buy a,
+.box-buy a:hover{
+    color: black;
+    text-decoration: none;
+    background: url("../../images/bg_diagonal_stripes.gif");
+    border: 1px solid black;
+    padding: 3px 5px;
+    font-weight: bold;
+}
+
+.box-buy a:hover{
+    text-decoration: underline;
+}
+
+
+/* limited edition pop-up box fragment */
+
+#box-fragment-body{
+    width: 850px;
+    height: 500px;
+}
+
+#limited-edition-box-fragment{
+    width: 850px;
+    border: 1px solid black;
+}
+
+#box-fragment-title{
+    background-color: black;
+    font-size: 23px;
+    font-weight: bold;    
+    padding: 10px 5px 10px 20px;
+    color: white;
+}
+
+#box-fragment-info{
+    padding: 20px;
+}
+
+#box-fragment-image{
+    height: 200px;
+}
+
+#box-fragment-images{
+    width: 420px;
+    display: inline;
+    float: left;
+    margin-right: 25px;
+}
+
+#box-fragment-images-small{
+    width: 320px;
+    display: inline;
+    float: left;
+    margin-right: 25px;
+}
+
+
+#box-fragment-images #view-image{
+    display: inline;
+    width: 300px;
+    float: left;
+    margin-right: 10px;
+}
+
+#box-fragment-images #image-set{
+    display: inline;
+    width: 101px;
+    float: left;
+}
+
+#box-fragment-images #image-set img{
+    margin-bottom: 5px;
+}
+
+#box-fragment-details{
+    font-style: italic;
+    text-align:center;
+    font-size: 14px;
+    display: block;
+    width: 300px;
+    float:left;
+    margin-top: -120px;
+}
+
+#box-fragment-content{
+    width: 350px;
+    display: inline;
+    float: left;
+    margin-bottom: 10px;
+}
+
+#box-fragment-artist{
+    font-family: Helvetica;
+    margin-bottom: 5px;
+}
+
+#box-fragment-cost{
+    text-transform: uppercase;
+    font-family: Helvetica;
+    text-align: right;
+}
+
+#box-fragment-cost #buy-red{
+    color: red;
+}
+
+#box-fragment-cost a{
+    color: #6494B2;
+    text-decoration: none;
+}
+
+#box-fragment-description{
+    height: 249px;
+    overflow-y: auto;
+    border-bottom: 1px solid black;
+    margin-bottom: 5px;
+    padding-bottom: 0px;
+    padding-top: 5px;
+}
+
+#box-fragment-description .description-header{
+    margin-bottom: 5px;
+    font-family: Helvetica;
+    font-style: italic;
+    text-decoration: underline;
+}
+
+
+#box-fragment-buy{
+    clear: both;
+    text-align: right;
+    margin: 10px 0px;
+}
+
+#box-fragment-buy a,
+#box-fragment-buy a:hover{
+    color: black;
+    text-decoration: none;
+    background: url("../../images/bg_diagonal_stripes.gif");
+    border: 1px solid black;
+    padding: 3px 5px;
+    font-weight: bold;
+}
+
+#box-fragment-buy a:hover{
+    text-decoration: underline;
+}
+
+#box-fragment-images .imageset-image{
+    cursor: pointer;
+}
+
+#individual-intro{
+    font-weight: bold;
+    font-style: italic;
+    margin: 20px 0px;
+    font-family: Georgia;
+}
+
+a.blue-bg-more{
+    background-color: #6494B2;
+    color: white;
+    padding: 1px 2px;
+    font-family: Helvetica;
+    font-size: 13px;
+    font-weight: bold;
+    padding: 3px 2px;
+}
+
+#memberbenefits-button{
+    background: url('../images/donate/button_memberbenefits_sprite.png');
+	display: block;
+	width: 100%;
+	height: 89px;
+    background-repeat: no-repeat;
+    background-position: 50% 0;
+    text-align: center;
+}
+
+#memberbenefits-button:hover{
+    background-position: 50% -90px;
+}
+
+#incoming-amount-wrap{
+    font-weight: bold;
+    color: red;
+    padding: 10px;
+    font-size: 20px;
+}
+
+#incoming-amount-display{
+    padding: 5px;
+}
+
+#limited-edition-choice .edition-title,
+.donate-sidebar-benefits-header{
+    text-align: center;
+    font-weight: bold;
+    font-family: inherit;
+}
+
+#limited-edition-choice .edition-title{
+    font-size: 15px;
+    font-style: italic;
+    text-decoration: none;
+}
+
+.donate-sidebar-benefits-header{
+    font-size: 20px;
+    text-decoration: underline;
+}
+
+.donate-sidebar-benefits-title{
+    color:#6494B2;
+    padding:5px 0px 0px 0px;
+}
+
+.donate-sidebar-summary{
+   font-size: 12px;
+    font-weight: bold;
+    margin-left: 20px;
+    width: 90%;
+    font-style: italic;
+    margin-bottom: 3px;
+}   
+
+#donate-sidebar-store{
+    background: #5F88A6;
+    padding: 4px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    font-weight: bold;
+    color:white;
+    font-size: 15px;
+}
+
+#donate-sidebar-store #store{
+    font-size: 25px;
+}
+
+#donate-sidebar-store-link a,
+#donate-sidebar-store-link a:hover,
+#donate-sidebar-store-link a:visited{
+    color: white;
+}
+
+.donate-sidebar-benefits-list{
+    font-weight: bold;
+    font-size: 14px;
+    margin-left: 15px;
+}
+
+#limited-edition-button{
+    background: url('../images/donate/button_limitededition_sprite.png');
+	display: block;
+	width: 100%;
+	height: 89px;
+    background-repeat: no-repeat;
+    background-position: 50% 0;
+    text-align: center;
+}
+
+#limited-edition-button:hover{
+    background-position: 50% -90px;
+}
+
+#name div{
+    margin-right: 20px;
+}

@@ -1,0 +1,31 @@
+{% extends "blog/base_blog.html" %}
+{% load block_tags %}
+
+{% block pageTitle %}Editorial{% endblock %}
+{% block body_class %}{{ block.super }} post_list{% endblock %}
+
+{% block navbars %}
+    {% get_nav 'Journal' None %}
+{% endblock %}
+
+{% block content %}
+<div class="column-wrapper span-24">
+    <div id="editorial-posts" class="left-column span-15">
+        {% with parent_ref='journal_p'|add:current_page_str %}
+            {% for post in post_paginator.object_list %}
+                {% include "blog/listings_post.html" %}
+            {% endfor %} 
+        {% endwith %}
+        <hr class="hr2" />
+        {{ post_paginator.render }}
+    </div>
+    
+    <div class= "right-column span-8">
+      {% include "fragments/nectar_ads_sidebar.html" %}        
+      {% include "fragments/subscribe_sidebar.html" %}
+      {% include "fragments/featured_articles.html" %}
+      {% include "fragments/editorial_archive_sidebar.html" %}
+    </div>
+</div>
+
+{% endblock %}

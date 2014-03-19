@@ -1,0 +1,50 @@
+<h2>
+    {% if artwork.location_type == "cloned" and artwork.location %}
+        <span class="artwork-title span-20">
+            <a target="_blank" href="{{artwork.location}}">{{ artwork.title }}</a> <span class="created">({{ artwork.created_date|date:"Y" }})</span>
+            {% if work.version %}
+                <span class="artwork-version">
+                    <a target="_blank" href="{{artwork.location}}">({{ artwork.version }})</a>
+                </span>
+            {% endif %}
+            <a target="_blank" href="{{artwork.location}}">
+                <img id ="archived-icon-no-text" title="view archived artwork" src="{{ STATIC_URL }}artbase/images/archived_icon.png" />
+            </a>
+        </span>   
+
+    {% else %}
+
+        <span class="artwork-title span-20">
+            <a target="_blank" href="{{artwork.url}}">{{ artwork.title }}</a> 
+            <span class="created">({{ artwork.created_date|date:"Y" }})</span>
+            {% if work.version %}
+                <span class="artwork-version">
+                    <a target="_blank" href="{{artwork.url}}">({{ artwork.version }})</a>
+                </span>
+            {% endif %}
+            <a target="_blank" title="view this artwork" href="{{artwork.url}}">
+                <button class="artwork-link"></button>
+            </a>
+        </span>    
+
+    {% endif %}
+
+</h2>
+<div class="clearfix">
+    <div id="artist-info">
+        <span>by</span>
+        <span class="blue">
+            {% if artwork.user.id != 2 %}
+                <a href="{{ artwork.user.get_profile.get_absolute_url }}/">{{ artwork.get_artist }}</a>
+            {% else %}
+                {{ artwork.get_artist }}
+            {% endif %}
+
+        </span>
+                
+        {% if request.user == artwork.user  or request.user.is_staff %}
+        <a class="artwork-edit float-right" href="{% url 'artbase.views.edit_artwork_base' artwork.id %}">EDIT</a>
+        {% endif %}
+    </div>     
+    
+</div>

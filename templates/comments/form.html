@@ -1,0 +1,35 @@
+{% load comments i18n %}
+<a name="comments"></a>
+<form id="comment_form" action="{% comment_form_target %}" method="post">
+{% csrf_token %}
+  <!-- <input type="hidden" name="next" value="/discuss/thanks/" /> -->
+  {% for field in form reversed %}
+    {% if field.is_hidden %}
+      {{ field }}
+    {% else %}
+      {% if field.errors %}{{ field.errors }}{% endif %}
+        <p
+        {% if field.errors %} class="error"{% endif %}
+        {% ifequal field.name "honeypot" %} style="display:none;"{% endifequal %}
+        {% ifequal field.name "name" %} style="display:none;"{% endifequal %}
+        {% ifequal field.name "email" %} style="display:none;"{% endifequal %}
+        {% ifequal field.name "url" %}  style="display:none;"{% endifequal %}
+        {% ifequal field.name "title" %}  style="display:none;"{% endifequal %}
+        >      
+        {% ifequal field.name "title" %}
+            <p style="display:none"><label for="id_title">Title</label><input id="id_title" type="text" name="title" value="{{object.title}}"/>
+        {% else %}
+            {{ field }}
+        {% endifequal %}
+        {% ifequal field.name "url" %}
+            <p style="display:none"><label for="id_url">URL</label><input id="id_url" type="text" name="url" value="http://localhost:8000{{ object.get_absolute_url }}"/>
+        {% endifequal %}
+      </p>
+    {% endif %}
+  {% endfor %}
+  <p class="submit">
+    <input type="submit" name="post" class="submit-post" value="{% trans "Post" %}" />
+    <input type="submit" name="preview" class="submit-preview" value="{% trans "Preview" %}" />
+    <input type="hidden" name="comment_post_ID" value="{{ comment.id }}" />
+  </p>
+</form>

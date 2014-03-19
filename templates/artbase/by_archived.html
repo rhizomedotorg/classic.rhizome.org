@@ -1,0 +1,56 @@
+{% extends "artbase/browse_base.html" %}
+
+{% block pageTitle %}Artbase: Browse by Archived{% endblock %}
+
+{% block content %}
+
+{% include "artbase/browse_nav.html" %}
+
+<div class="section-content span-24">
+
+    <div id = "section-search">
+        <form action="/search/" method="get">
+            <input id ="search" type="text" name="q" value="SEARCH THE ARTBASE"  class = "section-search-input" />
+            <input type="hidden" name="models" value="artbase.artworkstub" id="id_models_13" />
+            <button id ="directory-search"  class="round-blue-fat" type="submit">SEARCH</button>
+        </form>
+    </div>
+    
+    <div class ="span-23 center notice">
+        These artworks have been archived by Rhizome and are fully hosted within the <a href="http://archive.rhizome.org">Rhizome Archives</a>. Though we have hundreds of works hosted in our archives, not all are listed below. We are currently in the process of auditing and repairing all of our archived works. Functional works will added to this list as they are updated.  
+    </div>
+
+    <table id="browse-titles-table" class="browse-table" cellspacing="0" cellpadding="0" border="0">
+        {% for row in grouped %}
+        <tr>
+            {% for work in row %}
+            {% if work %}
+            <td>
+                <a href="{{ work.view_url }}">
+                    <img src="{{MEDIA_URL}}{{work.image_small}}" width="135">
+                </a><br/>
+                <a class="listing-title" href="{{ work.view_url }}">
+                    {{work.title|title}} ({{ work.created_date|date:"Y" }})
+                </a>
+                <br/><b class="italic">by</b><br/>
+                <a href= "{{work.user.get_profile.get_absolute_url}}">{{work.get_artist}}</a>
+            </td>
+            {% else %}
+            <td>
+                &nbsp;
+            </td>
+            {% endif %}
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+{% if browse_paginator.total_pages > 1 %}
+<hr class="hr2-grey-no-margin">
+<span id="feed-paginator" class="span-24">
+    {{ browse_paginator.render }}
+    <hr class="hr2-grey">
+</span>
+{% endif %}
+{% endblock %}

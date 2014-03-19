@@ -1,0 +1,49 @@
+<div class="post-form-content span-11">
+    <h6 class="upper">SUPPORT</h6>
+    <fieldset id="support-formset" class="formset">
+        <div class="bold">Please detail any support or funding you have received for this work</div>
+        <hr class="thin">
+        {{ multi_form.forms.support.management_form }}
+        {% for form in multi_form.forms.support.forms %}
+        <div id ="support-form-{{ forloop.counter0 }}" class="form support-form" data-type="support">
+            <div>
+                <label>Title</label>
+                <span>
+                    {{ form.title }}
+                </span>
+            </div>
+            
+            <div>
+                <label>Benefactor</label>
+                <span>
+                    {{ form.benefactor }}
+                </span>
+            </div>
+            
+            <div>
+                <label>Amount</label>
+                <span>
+                    {{ form.amount }}
+                </span>
+            </div>
+            
+  <!--
+          <div>
+                <label>Date</label>
+                <span>
+                    {{ form.date }}
+                </span>
+            </div>
+-->
+            
+            <div class="delete-form clearfix">
+                <a>Delete</a>
+            </div>
+            <span class="display-none">
+                {{ form.DELETE }}
+            </span>
+        </div>
+        {% endfor %}
+        <div class="round-gray float-right add-form" data-type="support">ADD ANOTHER SUPPORT+</div>
+    </fieldset>
+</div>

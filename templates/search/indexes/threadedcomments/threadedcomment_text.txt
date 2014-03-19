@@ -1,0 +1,3 @@
+{{ object.title }}
+{{ object.comment.user.username }}
+{{ object.comment.user.get_full_name }}

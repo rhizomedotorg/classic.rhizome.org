@@ -1,0 +1,89 @@
+{% extends 'support/base.html' %}
+
+{% load support markup block_tags %}
+
+{% block pageTitle %}Organizational Subscriptions{% endblock %}
+
+{% block navbars %}
+    {% get_nav 'Membership' 'Organizations' %}
+{% endblock %}
+
+{% block content %}
+
+<div class = "membership span-24">
+    <div class="left-column span-15">
+        <h2>Rhizome Organizational Subscriptions</h2>
+        
+        <div id="individual-intro">
+            Organizational Subscriptions are group memberships structured and priced for institutional communities such as universities, art schools, art centers, museums and libraries. Subscribing institutions receive full access to our peerless archive of digital art, and powerful tools and resources designed for both newcomers and experts to deepen their understanding of the field. 
+        </div>
+        
+        <div class="section-row-titles">
+            <span class = "nav-item">Subscription Rates</span>
+            <hr class="hr3">
+        </div> 
+        
+        <div class="span-15" style="margin-bottom:20px;">
+            <div class="span-7 " style="margin-right:30px;margin-top: 10px;">
+                <img src="{{ STATIC_URL }}support/images/organizational/amountperyear.png" />
+            </div>
+             
+            <div class="span-7" style="font-family:Georgia;font-size:13px;">
+                <div>Pricing is based upon the estimated number of users who will be accessing Rhizome.org, and not necessarily the size of the entire institution. Many of our current subscribers generally base this estimation on the size of a relevant department or school, such as a School of Art in a larger university or an Art Department.</div>
+                
+                <p class="center">
+                    For more information:
+                    <br />
+                    membership{at}rhizome.org<br />
+                    212-219-1288 x302<br />
+                </p>
+            </div>  
+        </div>
+
+        <div class="section-row-titles">
+            <span class = "nav-item">Member Benefits</span>
+            <hr class="hr3">
+        </div> 
+        
+        <div>
+            {% get_member_benefits as member_benefits %}
+            <ul class="benefits-list">
+            {% for benefit in member_benefits %}
+                <div class="member-benefit-wrap">
+                    <li class="membership-benefit">
+                        {% if benefit.link %}
+                            <a href="{{benefit.link}}">{{ benefit.title }}</a>
+                        {% else %}
+                            {{ benefit.title }}                       
+                        {% endif %}
+                    </li>
+                    <div class="benefit-description">{{ benefit.summary }}</div>
+                </div>
+            {% endfor %}
+            </ul>
+        </div>
+        
+        <div class="section-row-titles">
+            <span class = "nav-item">About Rhizome</span>
+            <hr class="hr3-no-margin">
+        </div> 
+
+        <div class="span-15" style="font-size:15px">
+            <div class="span-10" style="font-family:Georgia;margin-right:30px;margin-top:15px;">
+                Rhizome is a leading organization for new media and internet art. Our programs support the creation, interpretation, presentation, and preservation of this dynamic field of artistic practice. The goal of our membership program is to educate broad audiences about the history and current directions of new media art, as well as provide a gateway for professional and artistic opportunities in the field.
+            </div>  
+            
+            <div class="span-4" style="margin-top:5px;">
+                <img src="{{ STATIC_URL }}support/images/organizational/press_sprite.png"  />
+            </div>
+                    
+        </div> 
+                 
+    </div><!--end right side-->
+    
+    <div class="right-column span-8">
+        {% include "fragments/orgsub_sidebar.html" %}
+    </div>
+    
+</div>
+{% endblock %}

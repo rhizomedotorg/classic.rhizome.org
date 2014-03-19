@@ -1,0 +1,83 @@
+{% extends 'programs/base.html' %}
+{% load inlines_tags markup block_tags %}
+
+{% block navbars %}
+    {% get_nav 'Programs' 'Events' %}
+{% endblock %}
+
+{% block content %}
+
+<div class="section span-24">
+    <div class= "left-column span-15">
+
+        <div class = "program-detail span-15">
+        
+            <div class = "program-detail-image span-15">    
+                {% if event.media_link %}
+                <a href="{{event.media_link}}" target='_blank'>
+                    <img src="{{MEDIA_URL}}{{event.image}}"/>
+                </a>
+                {% else %}
+                    <img src="{{MEDIA_URL}}{{event.image}}"/>
+                {% endif %}
+            </div>
+            
+            <div class="span-15">
+                <div class = "program-detail-title">
+                    {{ event.title }}
+                </div>
+                  
+                {% with request.build_absolute_uri as share_url %}
+                    {% include 'fragments/new_share.html' %}
+                {% endwith %}  
+
+                <div class="event-date">
+                    {% if event.is_online %} Launched {% endif %}
+                    {{ event.start_date|date:"l, F jS, Y P" }}<br />
+                    {% if event.location_title %} at {{ event.location_title }}{% endif %}
+                </div>
+                
+                {% if event.tickets_link %}
+                    <div class="bold">
+                        <a href="{{event.tickets_link}}" target="_blank">BUY TICKETS</a>
+                    </div>
+                {% endif %}
+
+                {% if event.is_new_silent %}
+                    <div class = "new-silent">
+                        New Silent Series
+                    </div>
+                {% endif %}
+
+                {% if event.get_curators or event.curator_other %}
+                 <div class="curators">
+                    Curated by
+                    {% if event.get_curators %}
+                       {% for curator in event.get_curators %}
+                        <a href="{{ curator.get_profile.get_absolute_url }}">
+                                {{ curator.get_profile }}
+                        </a>{% if not forloop.last %}, {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                    
+                    {% if event.curator_other %}
+                        {{event.curator_other}}
+                    {% endif %}
+                </div>
+                {% endif %}
+
+                <div class = "summary">
+                    {{ event.description|markdown }}
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    <div class= "right-column span-8">
+        {% include "fragments/nectar_ads_sidebar.html" %}
+    </div>  
+
+</div>
+
+{% endblock %}
+

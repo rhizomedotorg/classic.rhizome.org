@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+
+{% load markup bbcode block_tags cache %}
+
+{% block styles %}
+  <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}bootstrap/css/bootstrap.carousel.min.css"></link>
+  {% comment %}<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}bootstrap/css/bootstrap.modal.min.css"></link>{% endcomment %}
+
+  {{ block.super }}
+
+  <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}frontpage/styles/frontpage.css" />
+  <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/new_carousel.css" />
+{% endblock %}
+
+{% block scripts %}
+  <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.10.2.min.js"></script>
+  <script type="text/javascript" src="{{ STATIC_URL }}bootstrap/js/bootstrap.carousel.min.js"></script>
+{% endblock %}
+
+<!-- Start Page JSON Data -->
+{% block pageJsonData %}    
+    {% for name, item in featured_objects_as_json.items %}
+        var {{ name }} = {{ item }};
+    {% endfor %}
+{% endblock %}
+<!-- End Page JSON Data -->
+
+{% block pageTitle %} Home {% endblock %}
+
+{% if featured_objects %}
+    {% block featured %}
+        {% include 'fragments/new_carousel.html' %} 
+    {% endblock %}
+{% endif %}
+
+{% block content %}
+{% cache 500 frontpage %}
+
+<div class="column-wrapper fp">
+<!--left column-->  
+<a name="content"></a>
+<div class="left-column span-15">    
+    <div id="editorial-posts">
+        {% with parent_ref='fp' %}
+            {% for post in blog_posts_paginator.object_list %}   
+                {% include "blog/listings_post.html" %}
+            {% endfor %}
+        {% endwith %}
+    </div>
+
+    <hr class="hr2" />
+    {{ blog_posts_paginator.render }}
+</div>
+<!--end left column-->  
+
+<!-- right column-->            
+<div class="right-column span-8 last">
+    {% include "fragments/nectar_ads_sidebar.html" %}  
+    {% include "fragments/sidebar-items.html" %}        
+    {% include "fragments/programs_sidebar.html" %}
+    {% include "fragments/subscribe_sidebar.html" %}
+    {% include "fragments/featured_articles.html" %}
+    {% include "fragments/community_sidebar.html" %}
+</div>
+<!--end right column-->  
+
+</div>
+<!--end column wrapper-->  
+
+{% endcache %}
+{% endblock %}
+
+{% block bottom_js %}
+
+
+  <script>
+ jQuery.noConflict();
+    (function($) {
+        $(function() {
+            $('.carousel').carousel();
+        });
+  })(jQuery); 
+  </script>
+{% endblock %}

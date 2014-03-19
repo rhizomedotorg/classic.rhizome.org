@@ -1,0 +1,14 @@
+{% extends "admin/base.html" %}
+{% load i18n %}
+
+{% block title %}{{ title }} | {% trans 'Rhizome site admin' %}{% endblock %}
+
+{% block extrastyle %}
+<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/admin_overrides.css">
+{% endblock %}
+
+{% block branding %}
+<h1 id="site-name"><span class="hl">R</span class="hl">hi<span class="hl">z</span>ome <span class="hl">a</span>dministration</h1>
+{% endblock %}
+
+{% block nav-global %}{% endblock %}

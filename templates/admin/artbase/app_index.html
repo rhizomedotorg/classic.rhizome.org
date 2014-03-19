@@ -1,0 +1,57 @@
+{% extends "admin/index.html" %}
+{% load i18n %}
+{% load url from future %}
+
+{% if not is_popup %}
+
+{% block breadcrumbs %}
+<div class="breadcrumbs"><a href="../">
+{% trans "Home" %}</a> &rsaquo; 
+{% for app in app_list %}
+{% blocktrans with app.name as name %}{{ name }}{% endblocktrans %}
+{% endfor %}</div>{% endblock %}
+
+{% endif %} 
+
+{% block content %}
+<div id="content-main">
+
+{% if app_list %}
+    {% for app in app_list %}
+        <div class="module">
+        <table summary="{% blocktrans with app.name as name %}Models available in the {{ name }} application.{% endblocktrans %}">
+        <caption><a href="{{ app.app_url }}" class="section">{% blocktrans with app.name as name %}{{ name }}{% endblocktrans %}</a></caption>
+        {% for model in app.models %}
+            <tr>
+            {% if model.perms.change %}
+                <th scope="row"><a href="{{ model.admin_url }}">{{ model.name }}</a></th>
+            {% else %}
+                <th scope="row">{{ model.name }}</th>
+            {% endif %}
+            <td>&nbsp;</td>
+            {% if model.perms.add %}
+                <td><a href="{{ model.admin_url }}add/" class="addlink">{% trans 'Add' %}</a></td>
+            {% else %}
+                <td>&nbsp;</td>
+            {% endif %}
+
+            {% if model.perms.change %}
+                <td><a href="{{ model.admin_url }}" class="changelink">{% trans 'Change' %}</a></td>
+            {% else %}
+                <td>&nbsp;</td>
+            {% endif %}
+            </tr>
+        {% endfor %}
+            <tr><th scope="row"><a href="artworkstub/new_submissions/">New Submissions</a></th><td>&nbsp;</td><td>&nbsp;</td></tr>
+            <tr><th scope="row"><a href="artworkstub/awaiting_approval/">Artworks For Consideration/Awaiting Approval</a></th><td>&nbsp;</td><td>&nbsp;</td></tr>
+            <tr><th scope="row"><a href="artworkstub/artstor_csv_dump/">Create CSV for Artstor</a></th><td>&nbsp;</td><td>&nbsp;</td></tr>
+            <tr><th scope="row"><a href="artworkstub/url_inventory/">Run artwork url inventory</a></th><td>&nbsp;</td><td>&nbsp;</td></tr>
+
+        </table>
+        </div>
+    {% endfor %}
+{% else %}
+    <p>{% trans "You don't have permission to edit anything." %}</p>
+{% endif %}
+</div>
+{% endblock %}

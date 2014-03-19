@@ -1,0 +1,325 @@
+#id_other_artists,
+#id_other_artists, 
+#id_other_artists_users {
+    width:700px;
+}
+
+#id_tumblr_url,
+#id_external_url {
+    width: 450px;
+    font-size:13px;
+    height:25px;
+    line-height:0.2;
+}
+
+#id_save_as_bio, 
+input[type="checkbox"]{
+    margin: 0;
+    top:0;
+}
+
+/*proposal details*/
+#commissions-proposal{
+    padding: 10px 5px;
+    font-size: 14px;
+    background-color:#F7F7F7;
+    border:1px solid #CFCFCF;
+    margin-bottom: 10px;
+}
+
+#commissions-proposal img, 
+#commissions-proposal object, 
+#commissions-proposal audio, 
+#commissions-proposal video{
+    max-width:600px;
+    max-height:400px;
+    min-width:300px;
+    min-height:200px;  
+    margin: 10px 10px 10px 0px;  
+}
+
+#proposal-title {
+    font-size: 40px;    
+}
+
+#proposal-summary{
+    font-size: 20px;
+    text-align: center;
+    margin: 15px 0px;    
+}
+
+.proposal-content{
+    margin: 5px 0px 15px 15px;       
+}
+
+#commissions-proposal #main-img{
+    text-align: center;
+    margin: auto;
+    display: block;
+}
+
+#proposal-instructions-wrap {
+    padding: 3px;
+    font-weight: bold;
+}
+
+#proposal-instructions-wrap a:hover {
+    text-decoration: none;
+}
+
+#proposal-instructions {
+    padding: 25px;
+    background-color: white;
+    width: 900px;
+}
+
+#instructions{
+    display: block;
+    margin: auto;
+    width: 750px;
+    max-height: 500px;
+    overflow-y:scroll;
+    padding: 10px;
+}
+
+#commissions-voting-iframe-header,
+#commissions-proposal-iframe-header {
+    font-size: 13px;
+    font-weight: bold;
+    margin-left: 25px;
+    margin-top: 5px;
+    width: 90%;
+}
+
+#commissions-voting-iframe-header .pagination a,
+#commissions-proposal-iframe-header .pagination a{
+    background-color: #6494B2;
+    color: white;
+}
+
+#voting{
+    padding-bottom: 50px;
+}
+
+#commissions-proposal-iframe{
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    width: 95%;
+    height:800px;    
+    border: 1px solid #DDDDDD;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+#no-votes{
+    font-size: 45px;
+    font-weight:bold;
+    text-align: center;
+    margin-top: 25%;
+}
+
+#close{
+    border: 1px solid #6494B2;
+    float: right;
+    padding: 0px 6px;
+    cursor: pointer;
+    color: #6494B2;
+}
+
+.instructions-settings{
+    border-bottom: 1px solid #BBBBBB;
+}
+
+a.edit-link{
+    -moz-border-radius:8px 8px 8px 8px;
+    border-radius:8px 8px 8px 8px;
+    -webkit-border-radius: 8px;
+    background-color:#F30202;
+    border:medium none;
+    color:white;
+    font-family:Helvetica;
+    font-size:11px;
+    padding:2px 4px;
+    text-transform:uppercase;
+    float: right;
+}
+
+a.edit-link:hover{
+    color:white;
+}
+
+#proposal-comments{
+    padding: 10px 5px 0px;
+}
+
+#iframe-comments-wrapper{
+    width: 950px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.commissions-thanks-header{
+    padding-bottom:20px;
+    text-align: center;
+    color:red;
+    font-size: 18px;
+}
+
+.procedures p,.procedures li {
+    max-width: 900px;
+}
+
+.vote-view {
+    display:block;
+    margin: 0 auto;
+    width:900px;
+}
+
+form#approval-voting-form ul{
+    display: inline;
+    list-style: none;
+    width:120px;
+    padding-left: 0px !important;
+    margin: 0px;
+}
+
+form#approval-voting-form ul li{
+    width:50px;
+    display:inline;
+}
+
+
+#ranking-vote-form fieldset{
+    padding: 10px;
+}
+
+#rank-vote-instructions{
+    font-size: 14px;
+    font-family:Georgia;
+}
+
+.ranking-finalist {
+    background-color: #F9F9F9;
+    background-image: url("../../images/bg_diagonal_stripes.gif");
+    background-repeat: repeat;
+    border: 1px solid #CFCFCF;
+    cursor: move;
+    font-family: Georgia,serif;
+    font-size: 18px;
+    line-height: 1.1;
+    margin-bottom: 6px;
+    padding: 10px 30px;
+    max-height: 40px;
+    min-height: 40px;
+}
+
+.ranking-finalist .handle{
+    background-image: url("../../images/icons_sprite.png");
+    background-position: 3px -1200px;
+    cursor: move;
+    height: 20px;
+    margin-top: 12px;
+    background-repeat: no-repeat;
+}
+
+.ranking-finalist .proposal-info{
+    font-weight: bold;
+    margin-top: 2px;
+}
+
+.ranking-slot .rank{
+    color: black;
+    font-family: Georgia;
+    font-size:35px;
+    line-height: .8;
+    text-align: center;
+    margin-bottom: 5px;
+    padding: 10px 0px;
+    margin-bottom: 6px;
+    padding: 11px 0;
+    background-color: black;
+    color:white;
+    max-height: 40px;
+    min-height: 40px;
+}
+
+#finalists{
+    padding-bottom: 20px;
+    margin-left:30px;
+}
+
+.ranking-slot{
+    height: 100%;
+    margin-right:15px;
+}
+
+#quick-save{
+    margin: 0px auto 10px;
+    text-align:center;
+    display:none;
+}
+
+#quick-save button{
+    font-size: 16px;
+}
+
+#quick-save-button-bg{
+    padding:5px;
+    border: 1px solid #719BB6;
+    width: 300px;
+    margin: 0px auto;
+}
+
+
+#id_description,
+#id_timeline_and_budget,
+#id_resume_or_cv,
+#id_work_samples
+{
+    width: 100%;
+}
+
+#id_summary {
+    width:100%;
+    height: 25px;
+    font-size: 13px;
+    line-height: .2;
+}
+
+.post-form-content fieldset{
+    margin-bottom: 20px;
+}
+
+#edit-proposal{
+    position: fixed;
+}
+
+#edit-proposal a{
+    font-weight: bold;
+    color: white;
+    padding: 3px 10px;
+    background-color: red;
+}
+
+#upcoming-cycle{
+    text-align: center;
+    padding: 30px;
+    border: 1px solid red;
+    font-size: 18px;
+    font-weight: bold;
+    color: red;
+    margin-left: 70px;
+    margin-bottom: 20px;
+    background-color: #F7F7F7;
+    background-image: url("../images/bg_diagonal_stripes.gif");
+}
+
+#content img.tumblr {
+    position: relative;
+    bottom: 25px;
+    display: block;
+    margin: 0 auto;
+}

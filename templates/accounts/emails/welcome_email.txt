@@ -1,0 +1,3 @@
+{% load markup %}
+
+{{ email_body|markdown }}

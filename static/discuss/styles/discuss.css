@@ -1,0 +1,114 @@
+body.discuss button.section-action 
+{
+    height:75px;
+    width:300px;
+}
+
+body.discuss .submit-discussion 
+{
+    background-image:url("../../images/button_text_sprite.png");
+    background-position:25px 630px;
+}
+
+body.discuss button.submit-discussion:hover
+{
+    background-position: 25px 702px;
+}
+
+body.discuss section
+{
+    margin-top: 10px;
+}
+
+h2.discuss-listing-title  
+{
+    font-size:18px;
+}
+
+
+h2.discuss-listing-title p
+{
+    line-height:1;
+}
+
+.listing-username 
+{
+    padding: 0px;
+}
+
+.discussion-thread {
+    font-size:15px;
+}
+
+.discussion-thread li {
+    list-style: none;
+    width: 98%;
+}
+
+.discussion-thread table{
+    margin: 0px 5px;
+    max-width: 99%;
+}
+
+.child-details span, .thread-details span {
+line-height: 3;
+}
+
+.thread-title {
+    line-height: 1.1;
+    margin-bottom: 10px;
+}
+
+.thread-parent,.thread-children  {
+    margin-bottom: 10px;
+}
+
+.thread-children{
+    margin: 2px 0px;
+}
+
+
+.child, .child-alternate {
+    margin-left: 5px;
+    width: 100%;
+    padding: 10px 0px 10px 5px;
+    border-color: #e7e7e7;
+    border-style: solid;
+    border-width: 1px; 
+}
+
+.child-alternate {
+    background-color: #f6f6f6;
+}
+
+.comment-body{ 
+    padding: 5px 15px;
+}
+
+
+.comment-body img{
+    max-width: 600px;
+}
+
+.comment-body {
+    margin-bottom: 5px;
+    max-width: 900px;
+}
+
+.thread-reply a, .reply a{
+    color:#6494B2;
+    font-size: 12px;
+    margin-left: 15px;
+}
+
+.thread-reply a:hover, .reply a:hover{
+    text-decoration: underline;
+}
+
+.views{
+    width:100px;
+}
+
+input[type="text"], input[type="password"], input.text, input.title, textarea, select  {
+    margin:0.5em 0;
+}

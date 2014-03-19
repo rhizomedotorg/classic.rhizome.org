@@ -1,0 +1,33 @@
+<div id="listing-content" class="span-7">
+    {% if date_listings %}
+    <div class = "listing-overflow" class="span-7">
+        <div id="event-count" class="span-7">
+            {{date_listings|length}} events scheduled for this day
+        </div>
+        <div id="listings">
+            {% for listing in date_listings %}
+                <div class="listing-info span-7 {% cycle 'grey' 'black' %}" >
+                    <div class = "listing-time span-2">{{ listing.start_date|date:"H:i"}}</div>
+                    <div class = "listing-details span-4">
+                        <span class="listing-title span-5">
+                            <a class="upper" href="{{listing.get_absolute_url}}">{{ listing.title }}</a>
+                        </span>
+                        <div class="listing-location">
+                          {{ listing.city }}, {{listing.country}}            
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% else %}
+     <div class="empty-listing">
+        There are no scheduled events today. <a href ="/announce/events/submit/">Add one!</a>        
+     </div>
+    {% endif %}
+</div>
+<div class = "listing-day">
+    <div class = "day-month">{{ date|date:"M" }}</div>
+    <div class = "day-number">{{ date|date:"j" }}</div>
+    <div class = "day-title">{{ date|date:"D" }} </div>
+</div>

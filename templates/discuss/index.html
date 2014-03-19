@@ -1,0 +1,89 @@
+{% extends 'discuss/base.html' %}
+{% load threadedcomments_tags hitcount_tags markup %}
+{% load feed_tags block_tags %}
+
+
+{% block pageTitle %}Discussion{% endblock %}
+
+{% block section_description %}{% get_text 'discuss description' %}{% endblock %}
+
+{% block rss_head_link %}
+    <link rel="alternate" type="application/rss+xml" title="Rhizome Discuss" href="{% feedburner_url 'discuss' %}" />
+{% endblock %}
+
+{% block body_class %}discuss{% endblock %}
+{% block section_action_class %}submit-discussion{% endblock %}
+
+
+{% block content %}
+    <div class="section span-24 last">
+        <div class="section-row-titles">
+            <span class="span-7 med-gray">TITLE</span>
+            <span class="span-7 med-gray">STARTED BY</span>
+            <span class="span-7 med-gray">LAST POST</span>
+            <span class="span-2 med-gray">STATS</span>
+        </div> 
+        <a class="rss-link" href="{% feedburner_url 'discuss' %}">RSS</a>
+        <hr class="hr2-thin"> 
+    </div>
+    
+    {% for thread in discussion_paginator.object_list %}
+        <div class="discuss-section-row span-24">
+            <span class="markdown span-7">
+                <h2 class="discuss-listing-title"><a href="{{ thread.get_absolute_url }}">{{ thread }}</a></h2>
+            </span>
+
+            <span class="markdown span-7">
+                {% if thread.started_by.get_profile %}
+                    <span class="miniprofile">
+                       <a href="{{ thread.started_by.get_profile.get_absolute_url }}">
+                            {% if thread.started_by.get_profile.has_icon %}
+                                <img height="25" width="25" src="{{ MEDIA_URL }}{{ thread.started_by.get_profile.icon }}"/>
+                            {% else %}
+                                <img height="25" width="25" src="{{ STATIC_URL }}accounts/images/icons/rhizome_user_default.png"/>
+                            {% endif %}
+                        </a>
+                    </span>
+                    <div style="padding-bottom:5px; margin-top:-5px; display:inline;">
+                        <a href = "{{ thread.started_by.get_profile.get_absolute_url }}">{{ thread.started_by.get_profile }}</a>
+                    </div>
+                {% else %}
+                    <div style="padding-bottom:5px; margin-top:-5px; display:inline;">
+                        {{ thread.started_by }}
+                    </div>
+                {% endif %}
+                | {{ thread.started|timesince }} ago
+            </span>
+        
+            <span class="markdown span-7">
+                <span class="miniprofile">
+                    <a href="{{ thread.last_comment.user.get_profile.get_absolute_url }}">
+                        {% if thread.last_comment.user.get_profile.has_icon %}
+                            <img height="25" width="25" src="{{ MEDIA_URL }}{{ thread.last_comment.user.get_profile.icon }}"/>
+                        {% else %}
+                            <img height="25" width="25" src="{{ STATIC_URL }}accounts/images/icons/rhizome_user_default.png"/>
+                        {% endif %}
+                    </a>
+                </span>
+                <div style="padding-bottom:5px; margin-top:-5px; display:inline;">
+                    <a href="{{ thread.last_comment.user.get_profile.get_absolute_url }}">{{ thread.last_comment.user.get_profile }}</a>
+                </div> | {{ thread.last_comment.submit_date|timesince }} ago
+            </span>
+
+            <span class="span-2 views">
+                {% if thread.is_discuss_thread %}
+                    {% get_comment_count for thread as comment_count %}
+                    {% get_hit_count for thread as hit_count %}
+                {% else %}
+                    {% get_comment_count for thread.content_object as comment_count %}
+                    {% get_hit_count for thread.content_object as hit_count %}
+                {% endif %}
+
+                Views: {{ hit_count }}<br />
+                Length: {{ comment_count }}
+            </span>
+        </div>
+        <hr class="thin-no-margin">
+    {% endfor %}
+    <div class="pagination">{{ discussion_paginator.render }}</div>
+{% endblock %}

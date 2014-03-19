@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block pageTitle %}{% trans "Comment Preview" %}{% endblock %}
+{% block title %}{% trans "Preview your post" %}{% endblock %}
+
+
+{% block content %}
+  {% load comments %}
+  <form action="{% comment_form_target %}" method="post">
+  {% csrf_token %}
+    {% if next %}<input type="hidden" name="next" value="{{ next }}" />{% endif %}
+    {% if form.errors %}
+    <h1>{% blocktrans count form.errors|length as counter %}Please correct the error below! {% plural %}Please correct the errors below11{% endblocktrans %}</h1>
+    {% else %}
+    <h1>{% trans "Preview your comment" %}</h1>
+      <blockquote>{{ comment|linebreaks }}</blockquote>
+      <p>
+      {% trans "and" %} <input type="submit" name="submit" class="submit-post" value="{% trans "Post your comment" %}" id="submit" /> {% trans "or make changes" %}:
+      </p>
+    {% endif %}
+    
+    
+    {% for field in form reversed %}
+      {% if field.is_hidden %}
+        {{ field }}
+      {% else %}
+        {% if field.errors %}{{ field.errors }}{% endif %}
+          <p
+        {% if field.errors %} class="error"{% endif %}
+        {% ifequal field.name "honeypot" %} style="display:none;"{% endifequal %}
+        {% ifequal field.name "name" %} style="display:none;"{% endifequal %}
+        {% ifequal field.name "email" %} style="display:none;"{% endifequal %}
+        {% ifequal field.name "url" %}  style="display:none;"{% endifequal %}
+        >
+        {% ifequal field.name "title" %}
+            <p style="display:none"><label for="id_title">Title</label><input id="id_title" type="text" name="title" value="{{object.title}}"/>
+        {% else %}
+            {{ field.label_tag }}       
+            {{ field }}
+        {% endifequal %}
+        reg preview
+      </p>
+      {% endif %}
+    {% endfor %}
+          {{form.errors}}
+
+    <p class="submit">
+    <input type="submit" name="submit" class="submit-post" value="{% trans "Post" %}" />
+    <input type="submit" name="preview" class="submit-preview" value="{% trans "Preview" %}" />
+    </p>
+  </form>
+{% endblock %}
+

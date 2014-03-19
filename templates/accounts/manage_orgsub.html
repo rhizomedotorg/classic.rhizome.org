@@ -1,0 +1,117 @@
+{% extends "accounts/base.html" %}
+
+{% load markup %}
+
+{% block pageTitle %}
+Manage Organizational Subscription
+{% endblock %}
+
+{% block customScripts %}
+<script type="text/javascript" src="{{ STATIC_URL }}accounts/scripts/edit.js"></script>
+{% endblock %}
+
+{% block content %}
+
+{% with 'Manage Organizational Subscription' as selected %}
+    {% include 'fragments/account_mini_nav.html' %}
+{% endwith %}
+
+<div id = "edit-profile">    
+    {% ifequal updated "pass" %}
+        <div id ="updated"><h3>YOUR PROFILE HAS BEEN UPDATED</h3></div>
+    {% endifequal %}
+    
+    {% ifequal updated "fail" %}
+        <div id ="updated"><h3>THERE WERE PROBLEMS WITH YOUR UPDATE. PLEASE CHECK YOUR SUBMISSION.</h3></div>
+    {% endifequal %}
+    
+    {% if "invitation_notice" %}
+        <div id ="updated"><h3>{{ invitation_notice }}</h3></div>
+    {% endif %}
+    
+    <div id ="accordion">
+        <div id = "personal-info" class = "container span-24 last">
+            <div class="section-object-header">
+                <div class = "edit-section-header">
+                    <span class = "edit-section-header-arrow"></span>
+                    <h2 class="edit-section-header-h2">Organizational Subscription Info</h2>
+                </div>
+            </div>
+        
+            <div class = "edit-section" >
+                <div class = "fieldset span-24">
+                    <div class = "h6 light-gray">Account Overview</div>
+                    <fieldset> 
+                        <div class = "edit-profile-form-input">
+                            <div class = "admin-info">- You are an administrator of the <span class="italic bold">{{ organization.name }}</span> organization subscription.</div>
+                            <div class = "admin-info">- The following accounts are listed as admins for this subscription:
+                                {% for admin in organization.get_admins %} 
+                                <div class="admin-listing"><span class="italic bold"><a href="{{admin.get_profile.get_absolute_url}}">{{admin.email}}</a></span></div>
+                                {% endfor %}
+                            </div>
+                                                        
+                            <div class = "admin-info">- Your subscription was created on <span class="italic bold">{{organization.created|date:"M d, Y"}}</span>.</div>
+
+                            
+                            <div class = "admin-info">- Your subscription will expire on <span class="italic bold">{{organization.expiration_date|date:"M d, Y"}}</span>.</div>
+                            <div class = "admin-info">- Your required donation is <span class="italic bold">${{ organization.donation_required|floatformat }}</span> a year.</div>
+                            <div class = "admin-info">- Your subscription currently has <span class="italic bold">{{organization.get_member_count}}</span> members.</div>
+                            
+                            {% if organization.ip_access and organization.ip_networks %}
+                                <div class = "admin-info">- Your organization's ip access ranges are:
+                                    <div class="admin-listing"><span class="italic bold">{{organization.get_ip_networks|markdown}}</span></div>
+                                </div>
+                            {% endif %}
+                            
+                            {% if organization.email_domain %}
+                                <div class = "admin-info">- Your organization's email domains are:
+                                    <div class="admin-listing"><span class="italic bold">{{organization.get_email_domain|markdown}}</span></div>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+        </div>
+        <hr class = "thin">
+
+        <div id = "account-info" class = "container span-24">
+            <div class="section-object-header">
+                <div class = "edit-section-header">
+                    <span class = "edit-section-header-arrow"></span>
+                    <h2 class="edit-section-header-h2">Edit Your Organization's Info</h2>
+                    <span>Please take a moment to fill out any blank or incorrect fields in the form below.</span>
+                </div>
+            </div>
+        
+            <div class = "edit-section">
+                <form action="{{ request.path }}" method="POST">
+                {% csrf_token %}
+                <input type = "hidden" name = "form" value="edit_orgsub">
+                {% include "orgsubs/edit.html" %}
+                </form>
+            </div>
+        </div>  
+        
+        <div id = "account-info" class = "container span-24">
+            <div class="section-object-header">
+                <div class = "edit-section-header">
+                    <span class = "edit-section-header-arrow"></span>
+                    <h2 class="edit-section-header-h2">Add a Member to Your Subscription</h2>
+                    <span>Invite others to join Rhizome as Members.</span>
+                </div>
+            </div>
+
+            <div class = "edit-section span-24">    
+                <form action="{{ request.path }}" method="POST">
+                {% csrf_token %}
+                <input type = "hidden" name = "form" value="add_member">
+                {% include "orgsubs/manage_members.html" %}
+                </form>
+            </div> 
+        </div>        
+        
+    </div><!--end accordion-->
+</div><!--end edit profile-->
+
+{% endblock %}

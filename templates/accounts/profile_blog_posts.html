@@ -1,0 +1,54 @@
+{% load comments blog_tags markup inlines_tags %}
+{% block content %}
+<div class="profile-section span-24 last">
+    <div class="section-title">
+        <a name="blog_posts"><span>BLOG POSTS</span></a>
+    </div>
+    <hr class="hr3-no-margin" />
+    
+    <div class="section-content span-24">
+    {% for post in blog_posts_pages.object_list %}
+        <div class = "feed-item span-24">
+            <div class = "feed-item-meta span-3">
+                <div class = "feed-item-meta-data">Published on {{ post.publish|date:"D M d, Y" }} </div>
+            </div>
+            
+            <div class="feed-item-listing span-19">   
+                <h2 class ="item-listing-title">
+                    <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+                </h2>
+                <hr class="thin">
+                
+                <div class="feed-item-listing span-19">   
+                    <div class ="feed-item-listing-row">
+                        <div class = "feed-item-listing-row-details span-19">
+                             {% if post.fp_news_excerpt %}
+                                {{ post.fp_news_excerpt|markdown|render_inlines }}
+                            {% else %}
+                                {% if post.tease %}
+                                    {{ post.tease|markdown|render_inlines }}
+                                {% else %}
+                                    {{ post.body|markdown|render_inlines|truncatewords_html:300 }}
+                                        {% if "LINK &raquo;" not in post.body %}
+                                            {% if "READ ON &raquo;" not in post.body %}
+                                                <p class="more span-19"><a href="{{post.get_absolute_url}}">READ ON &raquo;</a></p>
+                                            {% endif %}
+                                        {% endif %}
+                                {% endif %}
+                            {% endif %}        
+                        </div>
+                    </div>
+                </div> 
+            </div><!--END FEED ITEM LISTING-->
+        </div><!--END FEED ITEM-->
+
+        <hr class="hr2-grey-no-margin">    
+        {% endfor %}
+        <span id="feed-paginator" class="span-24">
+            {{ blog_posts_pages.render }}
+            <hr class="hr2-grey">
+        </span>
+    </div><!--END SECTION CONTENT-->
+</div>
+
+{% endblock %}

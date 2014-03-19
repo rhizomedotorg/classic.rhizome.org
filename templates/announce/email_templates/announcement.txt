@@ -1,0 +1,19 @@
+RHIZOME ANNOUNCE
+
+{{announcement.type|upper}}:{{announcement.subtype|upper}}: 
+{{announcement.title}} 
+
+{{announcement.description_strip_bbcode}} 
+
+Link: {{announcement.url}} 
+
+{% if announcement.get_location_details %}
+Location: 
+{{announcement.get_location_details }}
+{% endif %}
+
+From: {{announcement.user.get_profile}}
+
+http://{{current_site.domain}}/announce/{{announcment.type_for_url}}/{{announcement.id}}/
+_____________________
+unsubscribe: http://rhizome.org/unsubscribe

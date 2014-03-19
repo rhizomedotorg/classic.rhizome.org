@@ -1,0 +1,36 @@
+{% extends "blog/base_blog.html" %}
+{% load comments threadedcomments_tags bbcode blog_tags tagging_tags inlines_tags markup hitcount_tags block_tags %}
+
+{% block navbars %}
+    {% get_nav 'Journal' tag.name %}
+{% endblock %}
+
+{% block customScripts %}
+<script type="text/javascript" src="{{ MEDIA_URL}}discuss/scripts/add_comment_toggler.js"></script>
+{% endblock %}
+{% block pageTitle %}Blog Posts tagged "{{ tag.name }}"{% endblock %}
+{% block body_class %}{{ block.super }} tag_detail{% endblock %}
+{% block body_id %}tag_{{ tag.id }}{% endblock %}
+
+{% block content %} 
+<div class="column-wrapper span-24">
+
+    <div id="editorial-posts"  class= "left-column span-15">
+        {% with parent_ref='tags_'|add:tag.slug %}
+            {% for post in post_paginator.object_list %}
+                {% include "blog/listings_post.html" %}
+            {% endfor %}
+        {% endwith %}
+        <hr class="hr2" />
+        {{ post_paginator.render }}
+    </div>
+    
+    <div class= "right-column span-8">
+      {% include "fragments/nectar_ads_sidebar.html" %}        
+      {% include "fragments/featured_articles.html" %}
+      {% include "fragments/community_sidebar.html" %}
+      {% include "fragments/editorial_archive_sidebar.html" %}
+    </div>
+</div>
+{% endblock %}
+

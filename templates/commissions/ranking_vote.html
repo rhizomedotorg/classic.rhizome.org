@@ -1,0 +1,89 @@
+{% extends "commissions/base.html" %}
+{% load bbcode comments threadedcomments_tags markup hitcount_tags %}
+
+{% block customStyleSheets %}
+<link rel="stylesheet" href="{{ STATIC_URL }}commissions/styles/commissions.css" type="text/css" charset="utf-8"></link>
+{% endblock %}
+
+{% block customScripts %}
+<script type="text/javascript" src="{{ STATIC_URL }}commissions/scripts/rankingVote.js"></script>
+{% endblock %}
+
+{% block pageTitle %} 
+Rhizome Commissions: Ranking Vote
+{% endblock %}
+
+{% block content %}
+<div class="mini-nav">
+    <span class="first upper bold">Rhizome Commissions: Rank Voting</span>
+    <hr class="hr3-no-margin"></hr>
+</div>
+
+<div id = "rank-voting" class="span-24">
+    <div id="rank-vote-instructions" class="span-19">
+        {% if user_rank_votes_length == 0 %} 
+        <p>In random order below are the top commission proposals as chosen by the Approval Voting stage.</p>
+        {% endif %}
+
+        <p>To vote, drag and drop each of the {{ ranking_finalists|length }} proposals into a ranking order, from your favorite (#1) to your least favorite (#{{ ranking_finalists|length }}).</p>
+        
+        <p class="bold">Once you've settled on an order, click the "save order and vote" button at the bottom of the page.</p>
+        
+        <p>You may update your ranking order as often as you wish up until <i>{{ cycle.ranking_vote_end|date:"l F d, Y" }}</i></p>
+    </div>
+    
+    <div class="form-errors center upper">{{ voting_form.rankings.errors}}</div>
+    
+    {% if request.GET.updated %}
+
+    <div id = "ranking-saved-notice" class="notice center upper span-23">Your ranking order has been saved!</div>
+    
+    {% endif %}
+    
+    <form method="POST" id="ranking-vote-form" action="{{ request.build_absolute_url }}"> 
+        {% csrf_token %}
+        {{ voting_form.rankings }}
+
+        <div id ="quick-save" class="span-24 center">
+            <div id="quick-save-button-bg">
+                <button name="save" value="1" class="round-blue">Save Order and Vote</button>
+            </div>
+        </div>
+        <div class="span-24">
+            <div class="ranking-slot span-1">
+            {% for proposal in ranking_finalists %}
+                <div class="rank span-2">{{ forloop.counter }} {</div>
+            {% endfor %}
+            </div>
+            
+            <div id="finalists" class="span-21">
+            {% for proposal in ranking_finalists %}    
+                <div class="ranking-finalist span-20 prepend-1" id="{{proposal.id}}">
+                    <div class="handle span-1"></div>
+                    <div class="span-18 proposal-info">
+                        <a target="_blank" href="{{ proposal.view_url }}">{{ proposal.title }}</a> 
+                        <br />
+                        by 
+                        {% for a in proposal.get_all_involved %}
+                            {% if a.get_profile %}
+                                <a target="_blank" href="{{ a.get_profile.get_absolute_url }}">{{ a.get_profile }}</a>{%if not forloop.last %},{% endif %}
+                            {% else %}
+                                {{ a }}{% if not forloop.last %},{% endif %}
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endfor %}        
+            </div>
+        </div>
+        
+        <fieldset class="span-23">
+            <div class="float-right">
+                <button name="save" value="1" class="round-blue">Save Order and Vote</button>
+            </div>
+        </fieldset>
+    </form>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,182 @@
+{% extends "artbase/exhibition_base.html" %}
+{% load bbcode comments threadedcomments_tags tagging_tags inlines_tags markup bbcode hitcount_tags %}
+{%block pageTitle %}{{exhibition.title}}{% endblock %}
+
+{% block flash_message %}
+    {% if flash_msg == "preview_exhibition" %}
+        This is a preview of your exhibition. <a href="{% url 'edit_member_exhibition' exhibition.id %}">Click to continue editing</a>
+    {% endif %}
+    
+    {% if flash_msg == "published" or request.GET.flash == "published" %}
+        Your exhibition has been published! <a href="{% url 'edit_member_exhibition' exhibition.id %}">Click to continue editing</a>
+    {% endif %}
+{% endblock %}
+
+{% block bottom_js %}
+<script type="text/javascript">
+    window.addEvent('domready', function() {
+        {% get_hit_count_javascript for exhibition %}
+    });
+</script>
+{% endblock %}
+
+{% block custom_section_header %}
+<h2>
+    <span>{{ exhibition.title }} {% if exhibition.time_opened %}<span class="title-year">({{ exhibition.time_opened|date:"Y" }})</span>{% endif %}<!-- <a class="chain-link" href="{{ exhibition.url }}"></a> --></span>
+</h2>
+
+<div>
+    <div id="curator-info" class="serif">
+        <span>
+            Curated by <a class="blue" href="{{ exhibition.user.get_profile.get_absolute_url }}">{{ exhibition.user.get_profile }}</a>
+        </span>
+        {% if is_users_exhibition %}
+        <a href="{{exhibition.edit_url}}" class="exhibition-edit float-right">Edit</a>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div id="exhibition">
+    <div id="exhibition-works" class="span-14">
+        <h6>Featuring</h6>
+        <hr class="hr3"></hr>
+
+        <table id="exhibition-works-table" cellpadding="0" cellspacing="0" border="0">
+            {% for row in grouped %}
+            <tr>
+                {% for artwork in row %}
+                    {% if artwork %}
+                    <td class="exhibition-work">
+                        <a href="{{ artwork.view_url }}"><img src="{{MEDIA_URL}}{{ artwork.image_small }}"></img></a>
+                        <h4 title="{{ artwork.title }}" class="blue">
+                            <a href="{{ artwork.view_url }}">{{ artwork.title}}</a>
+                        </h4>
+                        <hr class="thin"></hr>
+                        <div class="bold italic">by</div>
+                        <div class="h6 blue"><a href="{{ artwork.user.get_profile.get_absolute_url }}">{{ artwork.user.get_profile }}</a></div>
+                    </td>
+                    {% endif %}
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </table>
+    
+    </div>
+
+    <div id="exhibition-info" class="prepend-1 span-9 last">
+        <!--
+        <button id="enter-exhibition" class="span-9 last big-button">Enter Exhibition</button>
+        <p id="how-it-works" class="span-9 last">
+            *We offer a continuous browsing experience for user exhibitions under Rhizome.org.
+            At any point feel free to jump to the specific works themselves or browse their
+            pages by clicking on the thumbnails on this page.
+        </p>
+        -->
+
+        <div id="exhibition-tab" class="span-9 mini-nav">
+        {% get_comment_count for exhibition as comment_count %}
+            <span class="selected nav-item">Editorial description</span> <span class="last nav-item">Comments ({{comment_count}})</span>
+        </div>
+    
+        <a name="comments"></a>
+
+        <hr class="hr3-no-margin black"/>
+
+        <div id="exhibition-tab-content">
+            <div id="editorial-description" class="content selected">
+                <p class="serif exhibition-statment">
+                    {{ exhibition.statement }}
+                </p>
+                
+                {% if exhibition.get_tags %}
+                <hr />
+                <div class="post-tags-and-share tags span-9">
+                    <span class="tags essay-tags">
+                        <label>Tags:</label>
+                        {% for tag in exhibition.get_tags %}
+                            <a class="tag blue" href="/artbase/exhibitions/tag/{{ tag.slug }}">{{ tag.name }}</a>
+                        {% endfor %}                    
+                    </span>
+                </div>
+                {% endif %}
+              <!--
+                <p class="artists italic serif">
+                    <span class="span-9">Artists include:</span>
+                    {% for artist in exhibition.artists %}
+                    <a class="blue" href="{{ artist.get_profile.get_absolute_url }}">{{ artist.get_profile }}</a>{% if not forloop.last %},{% endif %}
+                    {% endfor %}
+                </p>
+              -->
+            </div>
+            
+            <div class="content comments">
+                <!-- START THREADED COMMENTS -->
+                {% get_comment_list for exhibition as comment_list %}
+                
+                {% if comment_list %}
+                    {% for comment in comment_list|fill_tree|annotate_tree %}
+                        {% ifchanged comment.parent_id %}{% else %}
+                        </li>
+                        {% endifchanged %}
+         
+                        {% if not comment.open and not comment.close %}
+                        </li>
+                        {% endif %}
+            
+                        {% if comment.open %}
+                        <ul class="comments">
+                            <li class ="threaded-comment" {% if comment.last %} class="last"{% endif %}>
+                            <a class="h6 blue" href="{{ user.get_profile.get_absolute_url }}">{{ comment.user_name }}</a> <span class="h6 light-gray">| {{ comment.submit_date|timesince }} ago</span><br/>
+                            <div class ="comment-body">{% bbcode comment.comment %}</div> 
+                            <hr class="thin-no-margin" />
+                        {% endif %}
+                            
+                        {% if comment.added_path %} ADDED {% endif %}
+                        
+                        {% for close in comment.close %}
+                            </li>
+                        </ul>
+                        {% endfor %}
+                    {% endfor %}
+                
+                {% else %}
+                
+                <div class="bold">This exhibition has no comments. You should add one!</div>
+                {% endif %}
+                <!-- END THREADED COMMENTS -->
+                <br/>
+                <div class="span-9 mini-nav">
+                    <span class="bold">Leave a Comment</span>
+                    <hr class="hr3 black"/>
+                </div>
+                 
+                {% if request.user.is_authenticated %}
+                        {% render_comment_form for exhibition %}
+                {% else %}
+                   <div class= "login">
+                        You must be logged in to post a comment.
+                        <a id="section-login" class="round-blue" href = "/login/?next={{ request.path }}">Log In</a>
+                    </div>
+                {% endif %}
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{% if similar_exhibitions %}
+    <div id="related-exhibitions" class="span-24 last">
+        <h6 class="black">Related exhibitions ({{ related_exhibition_count }})</h6>
+        <hr class="black hr3"/>
+        {% for exhibition in similar_exhibitions %}
+        <div class="related-exhibition">
+            <img src="{{ MEDIA_URL}}{{ exhibition.image_small }}"></img>
+            <h4>{{ exhibition.title }}</h4>
+        </div>
+        {% endfor %}
+    </div>
+{% endif %}
+
+{% endblock %}

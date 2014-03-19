@@ -1,0 +1,102 @@
+{% extends "accounts/base.html" %}
+
+{% load support %}
+
+{% block customStyleSheets %}
+<link rel="stylesheet" href="/media/support/styles/support.css" type="text/css" media="screen" charset="utf-8"></link>
+{% endblock %}
+
+{% block pageTitle %}Membership required{% endblock %}
+
+{% block content %}
+
+<div class="membership span-24">
+    
+    <div class="left-column span-15">
+    
+        <div class="span-15 about-content">
+            <div class="center" >
+                <a href="/support/donate/"><img src="{{ STATIC_URL }}images/members_only_sprite.png"/></a>
+            </div>
+            
+            <p class="center bold">This content is only available with membership to Rhizome.</p>
+        </div>
+                
+        <div id="individual-intro">
+           Connect to Rhizome through our membership program. No matter what level of membership you choose, you will receive tools and resources that will deepen your knowledge of the field. As a non-profit organization, Rhizome relies on our community, foundations and government agencies for support.
+        </div>
+
+        <div class="section-row-titles span-15">
+            <span class = "nav-item">Membership Levels</span>
+            <hr class="hr3" />
+        </div> 
+
+
+        {% get_donation_membership_levels as membership_levels %}
+        
+        {% for level in membership_levels %}
+        <div class = "membership-level span-15">
+            <div class="membership-level-info span-15">
+                <div class="span-4">
+                    <a href="/support/donate?amount={{level.donation_level}}">
+                        <img src="{{ STATIC_URL }}{{level.icon_two}}" />
+                    </a>
+                </div>
+                 
+                <div class="span-10">
+                    <div class ="membership-level-title span-10">
+                        <a href="#" class="anchor-name" name = "{{level.internal_title}}">{{level.title}}</a>
+                    </div>
+                    <div class ="membership-level-summary span-10">
+                        {{level.summary}}
+                    </div>
+                </div>  
+            </div>
+        
+            <div class= "benefits-list-header span-15">
+                Benefits Include:
+            </div>
+
+            <div class="span-15">
+                <ul class="level-benefits-list">
+                {% for benefit in level.get_benefits %}
+                    <div class="level-benefit-wrap">
+                        <li class="level-benefit">
+                            {% if benefit.link %}
+                                <a href="{{benefit.link}}">{{ benefit.title }}</a>
+                            {% else %}
+                                {{ benefit.title }}                       
+                            {% endif %}
+                        </li>
+                        <div class="level-benefit-description">{{ benefit.summary }}</div>
+                    </div>
+                {% endfor %}
+                </ul>
+            </div>
+            
+        </div>
+        {% if not forloop.last %}
+            <hr class="thin-blue" />
+        {% endif %}
+        
+        {% endfor %}
+        
+        <div class="section-row-titles">
+            <span class = "nav-item">Policies</span>
+            <hr class="hr3">
+        </div> 
+
+        <div class="span-10" style="font-size:15px">
+            <div><a href="/about/#access">ACCESS AND MEMBERSHIP POLICY</a></div>
+            <div><a href="/about/policy#member">MEMBER AGREEMENT</a></div>
+            <div><a href="/about/policy/#user">USER AGREEMENT</a></div>
+        </div> 
+                 
+    </div><!--end right side-->
+    
+    <div class="right-column span-8">
+        {% include "fragments/individual_membership_sidebar.html" %}
+    </div>
+    
+</div>
+{% endblock %}

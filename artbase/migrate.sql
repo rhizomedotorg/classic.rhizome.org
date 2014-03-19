@@ -1,0 +1,1 @@
+alter table dummy change user_foo_name user_name varchar(1024);

@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block pageTitle %} 
+New Commission
+{% endblock %}
+
+{% block customScripts %}
+		<script type="text/javascript" src="/amedia/jsi18n/"></script>
+		<script type="text/javascript" src="{{ STATIC_URL }}amedia/js/core.js"></script>
+		<script type="text/javascript" src="{{ STATIC_URL }}amedia/js/calendar.js"></script>
+		<script type="text/javascript" src="{{ STATIC_URL }}amedia/js/admin/DateTimeShortcuts.js"></script>
+{% endblock %}
+{% block page_assets_css %}
+	<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}amedia/css/forms.css"/>
+	<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}amedia/css/widgets.css"/>
+{% endblock %}
+
+{% block content %}
+<h2>Add a Commission</h2>
+<table>
+<tr>
+<td>
+<form action="http://127.0.0.1:8000/commissions/new/" enctype="multipart/form-data" method="POST">
+{{commission_form}}
+</td>
+</tr>
+<tr>
+<td>
+<input type="submit" value="Submit" />
+</form>
+</td>
+</tr>
+</table>
+</p>
+{% endblock %}

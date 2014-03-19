@@ -1,0 +1,105 @@
+{% extends 'support/base.html' %}
+{% load markup block_tags %}
+
+{% block pageTitle %}Supporters{% endblock %}
+
+{% block body_class %}support{% endblock %}
+{% block section_action_class %}submit-support{% endblock %}
+
+{% block wide_section_description %}{% get_text 'supporters text' %}{% endblock %}
+
+{% block navbars %}
+    {% get_nav 'Membership' 'Supporters' %}
+{% endblock %}
+
+{% block content %}
+
+<div class="column-wrapper span-24">
+
+    <div class= "left-column span-15">
+        <div class="section span-15">
+                <div class="section-row-titles">
+                    <span class = "nav-item">Community Campaign {{ supporters.year }}</span>
+                </div>
+                <hr class="hr3-no-margin">
+                
+                {% if supporters.root_level %}
+                <div class="supporters-content span-15">
+                <div class = "support-level">Council Level Supporters</div>
+                    <div class="supporters-list">{{ supporters.root_level }}</div>
+                </div>
+                
+                <hr class="blue">
+                {% endif %}
+
+                {% if supporters.stolon_level %}
+                
+                <div class="supporters-content span-15">
+                    <div class = "support-level">Gold Level Supporters</div>
+                    <div class="supporters-list">{{ supporters.stolon_level }}</div>
+                </div>
+                
+                <hr class="blue">
+                {% endif %}
+                {% if supporters.bud_level %}
+                
+                <div class="supporters-content span-15">
+                    <div class = "support-level">Silver Level Supporters</div>
+                    <div class="supporters-list">{{ supporters.bud_level }}</div>
+                </div>
+                
+                <hr class="blue">
+                {% endif %}
+                {% if supporters.seedling_level %}
+                
+                <div class="supporters-content span-15">
+                    <div class = "support-level">Bronze Level Supporters</div>
+                    <div class="supporters-list">{{ supporters.seedling_level }}</div>
+                </div>
+                
+                <hr class="blue">
+                {% endif %}
+                {% if supporters.membership_level or supporters.sprout_level %}
+                
+                <div class="supporters-content span-15">
+                    <div class = "support-level">Supporters</div>
+                    <div class="supporters-list">{{ supporters.membership_level }}{{ supporters.sprout_level }}</div>
+                </div>
+                {% endif %}
+
+        </div>
+    </div>
+    
+    <div class= "right-column span-8">         
+    {% if supporters.institutions or supporters.corporate %}
+        <div id ="supporters-sidebar-list" class="section span-8">
+                
+                {% if supporters.institutions %}
+                <div class="section-row-titles">
+                    <span class = "nav-item">Institutional Supporters</span>
+                </div>
+                <hr class="hr3-no-margin">
+                <div class="about-content">
+                    {{ supporters.institutions|markdown }}
+                </div> 
+                {% endif %}
+  
+                {% if supporters.corporate %}
+                <div class="section-row-titles">
+                    <span class = "nav-item">Corporate Sponsors</span>
+                </div>
+                <hr class="hr3-no-margin">
+                <div class="about-content">
+                    {{ supporters.corporate|markdown }}
+                </div>   
+                {% endif %}
+
+        </div>
+    {% endif %}
+
+        {% include "fragments/support_sidebar.html" %}
+
+    </div>
+
+</div>
+{% endblock %}

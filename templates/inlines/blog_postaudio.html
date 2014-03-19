@@ -1,0 +1,7 @@
+<script type="text/javascript">
+if (Modernizr.audio && Modernizr.audio.mp3){
+    document.write('<audio controls="controls" src = "{{object.audio.url}}"></audio>');
+} else {
+    document.write('<div class="audio"><a class = "sm2_link" href="{{object.audio.url}}">{{object.title}} (click to play)</a></div>');
+} 
+</script>

@@ -1,0 +1,55 @@
+{% extends "blank_slate.html" %}
+{% load bbcode markup hitcount_tags %}
+
+{% block customStyleSheets %}
+<link rel="stylesheet" href="{{ STATIC_URL }}commissions/styles/commissions.css" type="text/css" charset="utf-8"></link>
+<link rel="stylesheet" href="{{ STATIC_URL }}css/comments.css" type="text/css" charset="utf-8"></link>
+{% endblock %}
+
+{% block customScripts %}
+    {% if proposal.allow_comments %}
+        {% if "iPad" not in request.META.HTTP_USER_AGENT and "iPhone" not in request.META.HTTP_USER_AGENT and "MSIE" not in request.META.HTTP_USER_AGENT %}
+                <script type="text/javascript" src="{{ MEDIA_URL}}discuss/scripts/add_comment_toggler.js"></script>
+            {% else %}            
+                <script type="text/javascript" src="{{STATIC_URL }}discuss/scripts/basic_bbcode_editor/editor.js"></script>   
+
+            {% endif %}    
+    {% endif %}
+{% endblock %}
+
+{% block pageTitle %} 
+{{proposal.title}}
+{% endblock %}
+
+{% block content %}
+<script type="text/javascript">
+    window.addEvent('domready', function() {
+        {% get_hit_count_javascript for proposal %}
+    });
+</script>
+
+<div id ="commissions-proposal-iframe-header">
+
+<span class="span-8"><a href="http://rhizome.org/commissions/">RHIZOME COMMISSIONS PROPOSAL</a></span>
+
+<span class="span 12">
+{% if proposal.thumbnail %}
+<img width="25px" src="{{MEDIA_URL}}{{proposal.thumbnail}}" class="float-left" style="margin-right:5px;"/>
+{% endif %}
+
+{{proposal.title}} by <a href="{{proposal.author.get_profile.get_absolute_url}}">{{ proposal.username}}</a>
+</span>
+
+{% if can_edit %}
+<a href="{{proposal.edit_url}}" class="edit-link">EDIT THIS PROPOSAL</a>
+{% endif %}
+
+<iframe id = "commissions-proposal-iframe" src="{{proposal.external_url}}"></iframe>
+
+{% if proposal.allow_comments %}
+    <div id="iframe-comments-wrapper">
+    <!--#include virtual="/commissions/comment_fragment/?proposal_id={{proposal.id}}&parent={{request.get_full_path}}" -->
+    </div>
+{% endif %}
+
+{% endblock %}

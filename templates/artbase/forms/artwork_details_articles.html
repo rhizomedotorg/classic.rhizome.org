@@ -1,0 +1,46 @@
+<div class="post-form-content">
+    <h6 class=" upper">ARTICLES and ESSAYS</h6>
+    <fieldset id="article-formset" class="formset">
+        <div class="bold">Please add any articles referencing the work</div>
+        <hr class="thin">
+        {{ multi_form.forms.article.management_form }}
+        {% for form in multi_form.forms.article.forms %}
+        <div id ="article-form-{{ forloop.counter0 }}" class="form article-form" data-type="article">
+            <span class="display-none">
+                {{ form.DELETE }}
+            </span>
+            
+            <label>Title</label>
+            <span>
+                {{ form.title }}
+            </span>
+            <label>Author</label>
+            <span>
+                {{ form.author }}
+            </span>
+            <label>Publication</label>
+            <span>
+                {{ form.publication }}
+            </span>
+            <label>Link</label>
+            <span>
+                {{ form.link }}
+            </span>
+<!--
+            <label>Date</label>
+            <span>
+                {{ form.date }}
+            </span>
+-->
+            
+            <div class="delete-form clearfix">
+                <a>Delete</a>
+            </div>
+            <span class="display-none">
+                {{ form.DELETE }}
+            </span>
+        </div>
+        {% endfor %}
+        <div class="round-gray float-right add-form" data-type="article">ADD ANOTHER ARTICLE+</div>
+    </fieldset>
+</div>

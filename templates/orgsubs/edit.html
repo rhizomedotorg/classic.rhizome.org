@@ -1,0 +1,68 @@
+<div class = "edit-profile-form span-24">
+    <div class = "fieldset span-10">
+        <div class = "h6 light-gray">Contact Information</div>
+         <fieldset> 
+        {% if organization.general_contact_info %}
+            <span class="form_errors">{{ edit_orgsub_form.general_contact_info.errors }}</span> 
+            <div class = "bold">General contact info</div>
+            <div class = "edit-profile-form-input">{{ edit_orgsub_form.general_contact_info }}</div>
+        {% else %}
+            <span class="form_errors">{{ edit_orgsub_form.general_contact_info.errors }}</span>  
+             <div class = "bold red">Please take a moment to update your contact info:</div>
+             <div class = "edit-profile-form-input">{{ edit_orgsub_form.general_contact_info }}</div>
+        {% endif %}
+        
+        {% if organization.billing_contact_info %}
+            <span class="form_errors">{{ edit_orgsub_form.billing_contact_info.errors }}</span> 
+             <div class = "bold">Billing contact info</div>
+            <div class = "edit-profile-form-input">{{ edit_orgsub_form.billing_contact_info }}</div>
+        {% else %}
+            <span class="form_errors">{{ edit_orgsub_form.billing_contact_info.errors }}</span>  
+             <div class = "bold red">Please take a moment to update your billing contact info:</div>
+             <div class = "edit-profile-form-input">{{ edit_orgsub_form.billing_contact_info }}</div>
+        {% endif %}
+
+        
+        </fieldset>
+    </div>
+            
+    <div class = "fieldset span-10">
+        <div class = "h6 light-gray">Organization URL</div>
+         <fieldset> 
+            {% if organization.uri %}
+             <span class="form_errors">{{ edit_orgsub_form.uri.errors }}</span>
+            <div class = "edit-profile-form-input">{{ edit_orgsub_form.uri }}</div>
+            {% else %}
+             <span class="form_errors">{{ edit_orgsub_form.uri.errors }}</span>   
+            <div class = "edit-profile-form-input">{{ edit_orgsub_form.uri }}</div>
+            {% endif %}
+        </fieldset>
+    </div>
+    
+        <div class = "fieldset span-10">
+        <div class = "h6 light-gray">Address</div>
+         <fieldset> 
+            {% if edit_orgsub_form.street1.errors %}<span class="form_errors">{{ edit_orgsub_form.street1.errors }}</span>{% endif %} 
+            <span class = "dark-gray">Street:</span> <div class = "edit-profile-form-input">{{ edit_orgsub_form.street1 }}</div>
+            {% if edit_orgsub_form.street2.errors %}<span class="form_errors">{{ edit_orgsub_form.street2.errors }}</span>{% endif %} 
+            <span class = "dark-gray">Street cont'd:</span> <div class = "edit-profile-form-input">{{ edit_orgsub_form.street2 }}</div>
+            {% if edit_orgsub_form.city.errors %}<span class="form_errors">{{ edit_orgsub_form.city.errors }}</span>{% endif %} 
+            <span class = "dark-gray">City:</span> <div class = "edit-profile-form-input">{{ edit_orgsub_form.city }}</div>
+            {% if edit_orgsub_form.locality_province.errors %}<span class="form_errors">{{ edit_orgsub_form.locality_province.errors }}</span>{% endif %} 
+            <span class = "dark-gray">Locality/Province:</span> <div class = "edit-profile-form-input">{{ edit_orgsub_form.locality_province }}</div>
+            {% if edit_orgsub_form.zip_postal_code.errors %}<span class="form_errors">{{ edit_orgsub_form.zip_postal_code.errors }}</span>{% endif %} 
+            <span class = "dark-gray">Zip/Postal Code</span> <div class = "edit-profile-form-input">{{ edit_orgsub_form.zip_postal_code }}</div>
+            {% if edit_orgsub_form.state.errors %}<span class="form_errors">{{ edit_orgsub_form.state.errors }}</span>{% endif %} 
+            <span class = "dark-gray">US State:</span> <div class = "edit-profile-form-input">{{ edit_orgsub_form.state }}</div>
+            {% if edit_orgsub_form.country.errors %}<span class="form_errors">{{ edit_orgsub_form.country.errors }}</span>{% endif %} 
+            <span class = "dark-gray">Country:</span> <div class = "edit-profile-form-input"> {{ edit_orgsub_form.country }}</div>
+        </fieldset>
+    </div>
+
+<div class = "span-22 end">
+    <fieldset id ="edit-button" class="float-right">
+        <button class="round-blue" value="1" name="Update">UPDATE</button>
+    </fieldset>
+</div>
+
+</div>

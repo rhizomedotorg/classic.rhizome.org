@@ -1,0 +1,58 @@
+{% extends 'new_base.html' %}
+{% load block_tags %}
+
+{% block pageTitle %}Make a Donation{% endblock %}
+
+{% block navbars %}
+    {% get_nav 'Membership' 'Donate' %}
+{% endblock %}
+
+{% block content %}
+    <div class="header">
+        <div class="section">
+            {% get_text 'donate header' %}
+        </div>
+    </div>
+    <div class="section">
+        <div class="left-col">
+            <form id="donation-amount-form" action="{{ request.path }}" method="post">{% csrf_token %}
+                {{ form.amount }}
+
+                <div class="field col-2">
+                    <fieldset>
+                        <div class="field col-2">
+                            {{ form.select_amount.label_tag }}<br>
+                            {{ form.select_amount }} USD
+                        </div>
+                        <div class="field col-2">
+                            {{ form.custom_amount.label_tag }}<br>
+                            {{ form.custom_amount }} USD
+                            {{ form.custom_amount.errors }}
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="field">
+                    <button id="login" class="round-blue" type="submit" value="Submit">Proceed with donation</button>
+                </div>
+            </form>
+
+            <h2>or Donate with Bitcoin</h2><br>
+            <a href="bitcoin:16kN2bhacYvAtLzSktbZft2aCJS2CyaycA?label=Rhizome%20Donation">
+                <img src="{{ STATIC_URL }}images/qr.png">
+            </a>
+            <p>
+                <a href="bitcoin:16kN2bhacYvAtLzSktbZft2aCJS2CyaycA?label=Rhizome%20Donation">16kN2bhacYvAtLzSktbZft2aCJS2CyaycA</a>
+            </p>
+            <p>
+                To recieve benefits + donation receipt, you must email us with the details of the transaction (we don't learn your email from a Bitcoin donation).
+            </p>
+        </div>
+        <div class="right-col">
+            {% include 'fragments/benefits_of_membership_sidebar.html' %}
+        </div>
+    </div>
+{% endblock %}
+
+{% block extra_js %}
+    <script type="text/javascript" src="{{ STATIC_URL }}js/donation_amount_form.js"></script>
+{% endblock %}

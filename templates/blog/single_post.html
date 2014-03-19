@@ -1,0 +1,134 @@
+{% load comments threadedcomments_tags bbcode blog_tags tagging_tags inlines_tags markup hitcount_tags %}
+{% load url from future %}
+
+{% block bottom_js %}
+    <script type="text/javascript" src="{{ STATIC_URL }}discuss/scripts/add_comment_toggler.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/bbcode/editor.js"></script>   
+    <script type="text/javascript" src="{{ STATIC_URL }}js/bbcode/color_palette.js"></script>   
+    <script type="text/javascript" src="{{ STATIC_URL  }}js/loadingOverlay.js"></script>
+    <script type="text/javascript">
+        window.addEvent('domready', function() {
+            {% get_hit_count_javascript for post %}
+        });
+    </script>
+{% endblock %}
+
+{% block content %}
+
+<div class="column-wrapper span-24">
+    <div id="editorial-posts"  class= "left-column span-15">
+        <div data-live-url="{% url 'post_body' post.id %}" class="single-post span-15 {% if post.is_live %}live-post{% endif %}{% if post.is_micro %} micro{% endif %}">
+            {% if post.subtitle %}
+                <h2 class="post-title">
+                    <a href="{{ post.get_absolute_url }}">
+                    {{ post.title }}: {{post.subtitle}}
+                    </a>
+                </h2>
+                {% else %}
+                <h2 class="post-title"><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h2>
+            {% endif %} 
+
+            <div class="post-details">
+                <div class="post-meta">
+                    {% if post.get_authors %}
+                        {% for author in post.get_authors %}
+                            <span class="authors bold-upper blue">
+                                <a href="{{author.get_profile.get_absolute_url}}/">{{ author.get_full_name}}</a> 
+                            </span>
+                        {% endfor %}
+                        <span class="blue">|</span>
+                    {% else %}
+                        {% if post.byline %}
+                        <span class="authors bold-upper">{{ post.byline }}</span>
+                        <span class="blue">|</span>
+                        {% endif %}
+                    {% endif %}
+                        <span class="bold">{{ post.publish|date:"D M jS, Y P" }}</span>
+                </div>
+                {% get_comment_count for post as comment_count %}
+                {% with request.build_absolute_uri as share_url %}
+                    {% include 'fragments/new_share.html' %}
+                {% endwith %}
+            </div>
+        
+            <hr class= "black-thin">
+            
+            <div class="post-body">
+                {{ post.body|markdown|render_inlines }} 
+            </div>
+                {% if post.post_item_link %}
+                    <p class="more span-15"><a href="{{post.post_item_link}}">LINK &raquo;</a></p>
+                {% endif %}
+            
+              <!--TAGS-->	
+            {% tags_for_object post as tag_list %}
+            {% if tag_list %}
+            <div class="post-tags-and-share span-15">
+                <span class="tags essay-tags">
+                    <label>Tags:</label>
+                    {% for tag in tag_list %}
+                        <a class="tag blue" href="/editorial/tags/{{ tag.slug }}/">{{ tag.name }}</a>
+                    {% endfor %}
+                </span>
+            </div>
+            {% endif %}
+            
+            {% comment %}           
+                {% if post.get_authors %}
+                    {% for author in post.get_authors %}
+                    <div class = "post-author-bio span-14">
+                        <div class="miniprofile span-2">
+                            {{ author.get_profile.get_large_miniprofile|markdown}}
+                        </div>
+                        <div class = "span-12 last">
+                        {% if author.get_profile.get_blog_posts %}
+                            <div class = "bio-more span-10">
+                            More from <a href="{{ author.get_profile.get_absolute_url }}">{{ author.get_profile }}</a>:
+                                <ul>
+                                {% for post in author.get_profile.get_blog_posts %}
+                                <li><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></li>
+                                {% endfor %}
+                                </ul>
+                            </div>
+                        {% endif %}
+                        </div>
+                    </div>                 
+                    {% endfor %}
+                {% endif %}
+            {% endcomment %}
+                        
+            <hr class="black-thin span-15">
+            
+            <div class="post-nav last span-15">
+                {% if post.get_previous_post %}
+                    <a class="previous span-7" href="{{ post.get_previous_post.get_absolute_url }}">Previous Post</a>
+                {% endif %}
+                {% if post.get_next_post %}
+                    {% if not post.get_previous_post %}
+                        <a class="next span-7 prepend-8" href="{{ post.get_next_post.get_absolute_url }}">Next Post</a>
+                    {% else %}
+                        <a class="next span-7" href="{{ post.get_next_post.get_absolute_url }}">Next Post</a>
+                    {% endif %}
+                {% endif %}
+            </div>
+
+        </div> 
+        {% if post.id %}
+            {% if debug %}
+                {% include 'blog/comment_fragment.html' with post=post %}
+            {% else %}
+                <!--#include virtual="/editorial/comment_fragment/?post_id={{ post.id }}&parent={{ request.get_full_path }}"-->
+            {% endif %}
+        {% endif %}
+    </div>
+   
+   <!--end left column-->
+    <div class= "right-column span-8">
+        {% include "fragments/nectar_ads_sidebar.html" %}        
+        {% include "fragments/subscribe_sidebar.html" %}
+        {% include "fragments/featured_articles.html" %}
+    </div>
+
+</div>
+
+{% endblock %}

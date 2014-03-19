@@ -1,0 +1,33 @@
+<div class="post-form-content">
+    <h6 class=" upper">FOOTNOTES</h6>
+    <fieldset id="footnote-formset" class="formset">
+        <div class="bold">Please add any footnote links pertinent to the work</div>
+        <hr class="thin">
+        {{ multi_form.forms.footnote.management_form }}
+        {% for form in multi_form.forms.footnote.forms %}
+        <div id="footnote-form-{{ forloop.counter0 }}" class="form footnote-form" data-type="footnote">
+            <div>
+                <label>Title</label>
+                <span>
+                    {{ form.title }}
+                </span>
+            </div>
+
+            <div>
+                <label>Link</label>
+                <span>
+                    {{ form.link }}
+                </span>
+            </div>
+            
+            <div class="delete-form clearfix">
+                <a>Delete</a>
+            </div>
+            <span class="display-none">
+                {{ form.DELETE }}
+            </span>
+        </div>
+        {% endfor %}
+        <div class="round-gray float-right add-form" data-type="footnote">ADD ANOTHER FOOTNOTE+</div>
+    </fieldset>
+</div>

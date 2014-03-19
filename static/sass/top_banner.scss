@@ -1,0 +1,28 @@
+.top-banner {
+  height: 30px;
+  background: #FF3838;
+  color: black;
+  font-weight: bold;
+  font-size: 18px;
+  text-align: center;
+  width: 100%;
+  z-index: 1100;
+  position: fixed;
+  top: 0;
+  font-family: 'Titillium Web', sans-serif;
+  text-transform: uppercase;
+  line-height: 30px;
+
+  a {
+    color: black;
+
+    &.close {
+      position: absolute;
+      right: 10px;
+      cursor: pointer;
+      &:hover {
+        text-decoration: none;
+      }
+    }
+  }
+}

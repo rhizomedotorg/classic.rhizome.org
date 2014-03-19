@@ -1,0 +1,161 @@
+{% extends "commissions/base.html" %}
+{% load markup block_tags %}
+{% load url from future %}
+{% block body_class %}commissions{% endblock %}
+
+{% block pageTitle %}Commissions{% endblock %}
+
+{% block wide_section_description %}{% get_text 'commissions description' %}{% endblock %}
+
+{% block flash_message %}Your proposal has been deleted{%endblock%}
+
+{% block content %}
+
+{% for cycle in cycles %}
+<div class="section span-24">
+    {% if today < cycle.submission_start_date and today < cycle.ranking_vote_end %}
+        <div id="upcoming-cycle" class="span-20">
+            The {{ cycle.title }} will open on {{ cycle.submission_start_date|date:'l F d, Y' }}
+        </div>
+    {% else %}
+        <div id="artbase-member-exhibitions" class="clear">
+            {% if today > cycle.submission_start_date and today < cycle.ranking_vote_end or not cycle.ranking_vote_end %}
+                <h6>{{ cycle.title }}</h6>
+            {% else %}
+                <h6 class="red">The Current Commissions cycle has closed. Winners will be announced soon!</h6>
+            {% endif %}
+            <hr class="hr3"></hr>
+            <div class="current-cycle-description indent span-20">
+                {{ cycle.description|markdown }}
+                <p class="bold"><u>Application Deadline:</u> {{ cycle.submission_end_date|date:"l F d, Y" }}</p>
+
+                {% if cycle.is_tumblr_commission %}
+                <p class="bold"><a href="{% url 'commissions_procedures' cycle.id %}">Application Instructions</a></p>
+                {% endif %}
+
+                {% if cycle.approval_vote_start %}
+                    <p class="bold"><u>Approval Voting:</u> {{ cycle.approval_vote_start|date:"l F d, Y" }} - {{ cycle.approval_vote_end|date:"l F d, Y" }}</p>
+                {% endif %}
+                {% if cycle.ranking_vote_start %}
+                    <p class="bold"><u>Rank Voting:</u> {{ cycle.ranking_vote_start|date:"l F d, Y" }} - {{ cycle.ranking_vote_end|date:"l F d, Y" }} </p>
+                {% endif %}
+            </div>
+            
+            <div class="enter-wrap">
+                {% if today > cycle.submission_start_date and today < cycle.submission_end_date %}
+                    <a class="basic current-cycle-enter span-12" href="{% url 'commissions_submit' cycle.id %}">SUBMIT A PROPOSAL</a>
+                {% endif %}
+                
+                {% if today > cycle.approval_vote_start and today <  cycle.ranking_vote_end %}
+                    <a class="basic current-cycle-enter span-12" href="{% url 'commissions_voting' cycle.id %}">GO TO COMMISSIONS VOTING</a>
+                {% endif %}
+            </div>
+            <div class="supporters blue span-24">
+                {{ cycle.supporters|markdown }}
+            </div>
+        </div>
+    {% endif %}
+</div>
+{% endfor %}
+
+<div class="section span-24">
+    <div id="artbase-member-exhibitions" class="clear">
+        <h6>Commissions Archive</h6>
+        <hr class="hr3"></hr>
+        {% for cycle in archive %}
+        {% if cycle.vote_winners or cycle.jury_winners or cycle.winners_artwork or cycle.winner_proposal_deprecated %}
+        <div class="exhibition span-24 last">
+            <div class="pad span-24 last">
+                <h3 class="span-23 cycle-title">
+                    {{ cycle.title }} Commissions Cycle
+                </h3>
+                <div class="left-col span-11">
+                    <div class="left pad markdown">
+                            {{ cycle.description|markdown }}
+                    </div>
+                </div>
+                
+                <div class="right-col span-10 last">
+                    {% if cycle.jury_winners %}
+                    <div class="left pad markdown">
+                        <div class = "bold black">
+                            Jury Awards
+                        </div>
+                        {% for winner in cycle.jury_winners %}
+                            <span class="winners"> <a class="blue" href="{{ winner.view_url }}">
+                            {{winner.title}}                                        
+                            </a>: {{ winner.username }}</span>{% if not forloop.last %}<br/> {% endif %}
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+
+                    {% if cycle.vote_winners %}
+                    <div class="left pad markdown">
+                        <div class = "bold black">
+                            Member Awards:
+                        </div>
+                        {% for winner in cycle.vote_winners %}
+                            <span class="winners"> <a class="blue" href="{{ winner.view_url }}">
+                            {{ winner.title }}
+                            </a>:{{ winner.username }}{% for user in winner.get_artists %} and {{ user }}{% endfor %}</span>{% if not forloop.last %}<br/> {% endif %}
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                    
+                     {% if cycle.winners_artwork %}
+                    <div class="left pad markdown">
+                        <div class = "bold black">
+                            Winners cont'd
+                        </div>
+                        {% for winner in cycle.winners_artwork %}
+                            <span class="winners"> <a class="blue" href="{{ winner.view_url }}">
+                            {{winner.title}}                                        
+                            </a>: {{ winner.username }}</span>{% if not forloop.last %}<br/> {% endif %}
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                    
+                    {% if cycle.winner_proposal_deprecated %}
+                    <div class="left pad markdown">
+                        <div class = "bold black">
+                            Winners
+                        </div>
+                            <span class="winners"> <a class="blue" href="{{ winner.view_url }}">
+                            {{winner_proposal_deprecated.title}}                                        
+                            </a>: {{ winner_proposal_deprecated.username }}</span>                    
+                    </div>
+                    {% endif %}
+                </div>
+                
+                {% if cycle.supporters %}
+                <div class="supporters span-23">
+                        {{cycle.supporters|markdown}}
+                </div>
+                {% endif %}
+            </div>
+        </div>
+        {% else %}
+        <div class="exhibition span-24 last">
+            <div class="pad span-24 last">
+                <h3 class="span-23 cycle-title">
+                        {{ cycle.title }} Commissions Cycle
+                </h3>
+                <div class="span-23">
+                    <div class="left pad markdown">
+                           {{ cycle.description|markdown }}
+                    </div>
+
+                    {% if cycle.supporters %}
+                    <div class="supporters">
+                        {{cycle.supporters|markdown}}
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

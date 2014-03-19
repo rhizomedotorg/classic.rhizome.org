@@ -1,0 +1,151 @@
+{% extends "accounts/base.html" %}
+
+{% load markup %}
+{% load url from future %}
+
+{% block pageTitle %}
+Commissions Voting
+{% endblock %}
+
+{% block customScripts %}
+<script type="text/javascript" src="{{ STATIC_URL }}accounts/scripts/edit.js"></script>
+{% endblock %}
+
+{% block content %}
+
+{% with 'Commissions Voting' as selected %}
+    {% include 'fragments/account_mini_nav.html' %}
+{% endwith %}
+
+<div id="edit-profile">    
+    <div id="accordion">
+        <div id="personal-info" class = "container span-24 last">
+            <div class="section-object-header">
+                <div class = "edit-section-header">
+                    <span class = "edit-section-header-arrow"></span>
+                    <h2 class="edit-section-header-h2">Your Proposals</h2>
+                </div>
+            </div>
+
+            <div class="edit-section">
+                <div class="fieldset span-24">
+                    <fieldset> 
+                        <div class="edit-profile-form-input">
+                            <div class="admin-info"> 
+                                {% for proposal in proposals %}
+                                    {% if not proposal.submitted %} 
+                                        <a href="{% url 'commissions_proposal_preview' proposal.id %}">{{ proposal.title|title }}</a> (not submitted)
+                                    {% else %}
+                                        <a href="{% url 'commissions_proposal_detail' proposal.id %}">{{ proposal.title|title }}</a>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                        </div>
+
+                    </fieldset>
+                </div>
+            </div>
+        </div>
+        
+    <hr class = "thin">
+          
+        <div id = "personal-info" class = "container span-24 last">
+            <div class="section-object-header">
+                <div class = "edit-section-header">
+                    <span class = "edit-section-header-arrow"></span>
+                    <h2 class="edit-section-header-h2">Approval Votes</h2>
+                </div>
+            </div>
+
+            <div class = "edit-section" >
+                <div class = "fieldset span-24">
+                    <div class = "h6 light-gray">Your Approval Votes</div>
+                    <fieldset> 
+                        <div class = "edit-profile-form-input">
+                            <div class = "admin-info">    
+                            {% if app_votes %}
+                                {% for vote in app_votes %}
+                                    <div class="vote-wrap">
+                                        <div class="proposal">
+                                            <b><a href="{{ vote.proposal.view_url }}">{{ vote.proposal.title }}</a></b>
+                                            <br /> by <br />
+                                            <i>{{ vote.proposal.username }}</i>
+                                        </div>
+                                        
+                                        <div class="vote">
+                                            {% if vote.approved %} 
+                                            <div class="status approved">
+                                                approved
+                                            </div>  
+                                             {% else %} 
+                                            <div class="status not-approved">
+                                                not approved
+                                            </div>               
+                                             {% endif %}                          
+                                            <div class="change">
+                                                <a href="{% url 'commissions_indiv_approval_voting_wrapper' vote.proposal.id %}">change vote</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                                <hr />
+                                <div id="continue-voting">
+                                    <a href="{% url 'commissions_index' %}">Continue voting &raquo;</a>
+                                </div>
+                            {% else %}
+                                You haven't placed any votes yet. <a href="{% url 'commissions_index' %}">Go vote!</a>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    </fieldset>
+                </div>
+            </div>
+        </div>
+        
+    <hr class = "thin">
+
+        <div id = "personal-info" class = "container span-24 last">
+            <div class="section-object-header">
+                <div class = "edit-section-header">
+                    <span class = "edit-section-header-arrow"></span>
+                    <h2 class="edit-section-header-h2">Rank Votes</h2>
+                </div>
+            </div>
+        
+            <div class = "edit-section" >
+                <div class = "fieldset span-24">
+                    <div class = "h6 light-gray">Your Rank Votes</div>
+                    <fieldset> 
+                        <div class = "edit-profile-form-input">
+                            <div class = "admin-info">
+                            {% if rank_votes %}
+                                {% for vote in rank_votes %}
+                                    <div class="vote">
+                                        <b>{{ vote.proposal.title }}</b>
+                                        <br /> by <br />
+                                        <i>{{ vote.proposal.username }}</i>
+                                        <hr />
+                                        <span class="red">Rank: {{vote.rank}}</span> 
+                                        <br /> 
+                                        <a href="{% url 'commissions_ranking_vote' vote.proposal.cycle.id %}">change vote</a>
+                                    </div>
+                                {% endfor %}
+                                <hr />
+                                <div id="continue-voting">
+                                    <a href="{% url 'commissions_index' %}">Update Rankings &raquo;</a>
+                                </div>
+                            {% else %}
+                                You haven't placed any votes yet. <a href="{% url 'commissions_index' %}">Go vote!</a>
+                            {% endif %}
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+        </div>
+              
+    </div><!--end accordion-->
+</div><!--end edit profile-->
+
+{% endblock %}

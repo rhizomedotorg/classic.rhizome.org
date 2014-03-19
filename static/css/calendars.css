@@ -1,0 +1,289 @@
+/* global */
+.deadline {
+    font-weight: normal;
+    font-size: 12px;
+    font-weight: bold;
+    margin-bottom: 3px;
+}
+
+.year {
+    padding-bottom: 3px;
+}
+
+.month {
+    font-family: Helvetica;
+    font-size: 13px;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.community-announce-date, .start-date-single {
+    background-color:#A8ADB2;
+    color:white;
+    font-weight:bold;
+    font-size: 16px;
+    line-height:1.3;
+    padding:5px;
+    text-align:center;
+}
+
+.community-announce-date .day, .single-post .day {
+    background-color:#A8ADB2;
+    border:none;
+    padding: 0;
+    font-size: 30pt;
+    width: 100%;
+    margin-left: 0px !important;
+    line-height: 1;
+}
+
+
+/* FP CALENDAR CAROUSAL*/
+.fp-calendar-day {
+    width: 50px;
+    text-align: center;
+    background-color: white;
+    border: solid 1px #cecdcd;
+    padding: 8px 0px;
+    position: relative;
+    margin-left: 2px;
+    line-height: 1.22;
+    font-family: Helvetica;
+    float:left;
+}
+
+#fp-calendar-events-carousel {
+    margin-left: -2px;
+    overflow: hidden;
+}
+
+.fp-calendar-events {
+    width: 268px;
+}
+
+.fp-calendar-day-number {
+    font-size: 33px;
+    font-weight: lighter;
+}
+
+.fp-calendar-day-title, .fp-calendar-day-month {
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #909090;
+}
+
+.fp-calendar-day:hover .div{
+    color: white;
+}
+
+/* COMMUNIT CALENDAR WIDGET */
+#announce-calendar table.month {
+    /*border-spacing: 4px 4px;*/
+    /*border-collapse: separate;*/
+    margin-left: 0px;
+    font-family: Georgia;
+}
+
+#announce-calendar th.month {
+    padding-bottom: 0px;
+    text-align: center;
+}
+
+#announce-calendar td{
+    padding: 2px 0 0;
+    max-width: 5px !important;
+}
+
+#announce-calendar .sun,
+#announce-calendar .mon,
+#announce-calendar .tue,
+#announce-calendar .wed,
+#announce-calendar .thu,
+#announce-calendar .fri,
+#announce-calendar .sat {
+    color: #666;
+}
+
+#announce-calendar th {
+    max-width: 5px !important;
+    padding: 0px;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: normal;
+    border-bottom: 1px solid #ccc;
+}
+
+#announce-calendar .day-number {
+    text-align: center;
+}
+
+#announce-calendar .day-number span {
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    background-color:#bbb;
+    font-size:16px;
+    font-weight:bold;
+    /*padding:10px 0;*/
+    text-align:center;
+    width: 48px;
+    height: 25px;
+    display: inline-block;
+}
+
+#announce-calendar .today span {
+    background-color: #666;
+}
+
+#announce-calendar .calendar-lookup-day span {
+    color: #6494B2;
+    cursor: pointer;
+}
+
+#announce-calendar .filled:hover {
+    border-color: #344d5c;
+}
+
+/* CALENDAR TOOLTIP */
+
+.fp-calendar-events{
+    color:white;
+    font-size: 12px;
+    overflow: visible;
+    position:absolute;
+    left:0px;
+    top: 80px;
+    line-height: 1.2em;
+    font-family: helvetica;
+    overflow: visible;
+    visibility: hidden;
+    background-color: black;
+   }
+
+#widget-listing{
+    position: absolute;
+}
+
+.community-calendar-events{
+    color:white;
+    font-size: 12px;
+    overflow: visible;
+    position:absolute;
+    line-height: 1.2em;
+    font-family: helvetica;
+    overflow: visible;
+    background-color: black; 
+}
+
+.fp-calendar-events a., .community-calendar-events a {
+    color:#6494B2;
+}
+
+.fp-calendar-events .grey, .community-calendar-events .grey {
+    background-color: #292929;
+    width:270px;
+}
+
+.fp-calendar-events .black, .community-calendar-events .black {
+    background-color: black;
+}
+
+.fp-calendar-events .listing, .community-calendar-events .listing  {
+    z-index: 1;
+    overflow-x: hidden;
+    overflow-y: visible;
+    max-height: 200px;
+    background-color: black;
+    -moz-box-shadow: 1px -1px 5px #000000;
+    -webkit-box-shadow: 1px -1px 5px #000000;
+    box-shadow: 1px -1px 5px #000000;
+    /* For IE 8 */
+    -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=2, Direction=135, Color='#000000')";
+    /* For IE 5.5 - 7 */
+    filter: progid:DXImageTransform.Microsoft.Shadow(Strength=2, Direction=135, Color='#000000');
+}
+
+.fp-calendar-events .overflow{
+    overflow-y: auto;
+    width: 268px;
+}
+
+.community-calendar-events .overflow {
+    overflow-y: auto;
+}
+
+
+.fp-calendar-events a:hover, .community-calendar-events a:hover {
+    text-decoration: underline;
+}
+
+.fp-calendar-events .event-count, .community-calendar-events .event-count{
+    width: 258px;
+    padding: 5px;
+    text-align: center;   
+    text-transform: uppercase; 
+}
+
+.fp-calendar-events .event-count{
+    -moz-box-shadow: 1px -1px 5px #000000;
+    -webkit-box-shadow: 1px -1px 5px #000000;
+    box-shadow: 1px -1px 5px #000000;
+}
+
+.fp-calendar-events .listing-time, .community-calendar-events .listing-time {
+    margin-right: 5px;
+    width: 50px; 
+}
+
+.fp-calendar-events .listing-time {
+    float:left;
+    display: inline;
+}
+
+.fp-calendar-events .listing-details{
+    overflow: auto;
+}
+
+.fp-calendar-events .listing-info, .community-calendar-events .listing-info {
+    color:white;
+    padding: 5px 0px 5px 5px;
+}
+
+.fp-calendar-events .listing-title, .community-calendar-events .listing-title {
+    color:white;
+}
+
+.fp-calendar-events .listing-location, .community-calendar-events .listing-location {
+    color:gray;
+}
+
+
+.fp-calendar-events .empty-listing {
+    color: white;
+    z-index: 1;
+    padding: 5px;
+    width: 258px;
+    height: 20px;
+    background-color: black;
+    overflow: visible;
+    text-align: center;
+    -moz-box-shadow: 1px -1px 5px #000000;
+    -webkit-box-shadow: 1px -1px 5px #000000;
+    box-shadow: 1px -1px 5px #000000;
+    /* For IE 8 */
+    -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=2, Direction=135, Color='#000000')";
+    /* For IE 5.5 - 7 */
+    filter: progid:DXImageTransform.Microsoft.Shadow(Strength=2, Direction=135, Color='#000000');
+}
+
+.fp-calendar-events .event-top {
+    top: -175px;
+}
+
+.fp-calendar-events .empty-top{
+    top:-30px;
+}
+
+.fp-calendar-events.on-bottom, {
+    top: 88px;
+}

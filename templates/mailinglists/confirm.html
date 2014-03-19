@@ -1,0 +1,22 @@
+{% extends "mailinglists/base.html" %}
+{% load markup %}
+
+{% block pageTitle %}
+Confirm
+{% endblock %}
+
+{% block content %}
+    <div class= "left-column span-14">
+        <div class="section-row-titles">
+            <span class = "nav-item">Confirm Subscription</span>
+            <hr class="hr3-no-margin">
+        </div> 
+        <div class= "about-content">
+        {% if notice %}
+            {{notice|markdown}}
+        {% else %}
+            <p>{{listmember.email}} is now confirmed for {{mailinglist.title}}</p>
+        {% endif %}
+        </div>
+    </div>
+{% endblock %}

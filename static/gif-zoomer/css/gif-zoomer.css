@@ -1,0 +1,42 @@
+body, html {
+    margin: 0;
+    padding: 0;
+}
+
+.zoomer-loading {
+    display: block;
+    width: 100px;
+    text-align: center;
+    padding: 10px;
+    font-family: monospace;
+    margin: 200px auto 0 auto;
+}
+
+.zoomer-img.portrait {
+    width: 40%;
+    height: 100%;
+    margin: 0 auto;
+    background-attachment: scroll;
+}
+
+.zoomer-img.nearest-neighbor {
+    image-rendering: optimizeSpeed; 
+    image-rendering: -moz-crisp-edges; 
+    image-rendering: -o-crisp-edges; 
+    image-rendering: -webkit-optimize-contrast;
+    -ms-interpolation-mode: nearest-neighbor;   /* IE8+ */
+}
+
+.zoomer-img {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: no-repeat center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    z-index: -1;
+}

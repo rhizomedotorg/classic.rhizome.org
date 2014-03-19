@@ -1,0 +1,40 @@
+<div id="miniprofile-content">
+    <a href = "{{user.get_profile.get_absolute_url}}"><img class="user-image" width = "55" height = "55" src="{{user.get_profile.icon.url}}"/></a>
+    <div class="user-overflow">
+        <div class="user-content">
+            
+            {% if miniprofile_content.content_object.content_object.comment %}
+                "{{ miniprofile_content.content_object.content_object.comment|truncatewords:40 }}",  <span class = "date">posted </span>
+                {{ miniprofile_content.content_object.content_object.submit_date|timesince }} ago
+                
+            {% else %}
+                {% if miniprofile_content.body %}
+                    {{ miniprofile_content.title }},  <span class = "date">posted {{ miniprofile_content.post_date|timesince }} ago</span>        
+                        
+            {% else %}
+                {% if miniprofile_content.comment %}
+                    "{{ miniprofile_content.comment }}",  <span class = "date">posted {{ miniprofile_content.submit_date|timesince }} ago</span>
+                    
+            {% else %}
+                {% if miniprofile_content.type %}
+                    {{ miniprofile_content.type }}: {{ miniprofile_content.title }}, <span class = "date">posted {{ miniprofile_content.created|timesince }} ago</span>
+                    
+            {% else %}
+                {{miniprofile_content}}
+            {% endif %}    
+            {% endif %}
+            {% endif %}
+            {% endif %}
+            
+        </div>
+        <br/><br/>
+        <div class="user-info">
+            <span class="username">{{user.get_full_name}}</span>
+            <span class="user-connect">
+                {%if user.get_profile.url%}<a style="color:#6f9ab5" href="{{user.get_profile.url}}">Site</a> {%endif%} 
+                {%if user.get_profile.url%}{%if user.get_profile..twitter %} <span style="color:white"> | </span> {%endif%}{%endif%}
+                {%if user.get_profile.twitter %}<a href="http://twitter.com/{{user.get_profile.twitter}}">Twitter</a>{%endif%}
+            </span>
+        </div>
+    </div>
+</div>

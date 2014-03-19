@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% load url from future %}
+
+{% block pageTitle %} Logged Out {%endblock%}
+
+{% block breadcrumbs %}<div class="breadcrumbs"><a href="/">{% trans 'Home' %}</a> &rsaquo; {% trans 'Logged Out' %}</div>{% endblock %}
+
+
+{% block content %}
+
+<div class="section span-24">
+        <div class="section-row-titles">
+            <span class = "nav-item">Login to Rhizome</span>
+            <hr class="hr3-no-margin">
+        </div>    
+</div>
+
+{% if form.errors %}
+<div class="form-errors">Your username and password didn't match. Please try again.</div>
+{% endif %}
+
+<div class="section-content span-24">
+    <div class = "section-content">
+        <form method="post" action="">
+        {% csrf_token %} 
+        {% if not next %}
+        <input type = "hidden" name="next" value="/community">
+        {% endif %}
+        
+        <div id = "main-login">
+            <div class="username-password">
+                {{ form.username.label_tag }}<label> / email address</label> {{ form.username }}
+            </div>
+            
+            <div class="username-password">
+                {{ form.password.label_tag }} {{ form.password }}
+            </div>
+            
+            <div id="login-text">
+                New to Rhizome? <a href="{% url 'accounts_register' %}">Click here to sign up</a><br/>
+                Forgot your username or password? <a href="/password_reset/">Click here</a>
+            </div>
+            
+            <button id ="login" class="round-blue float-right" type="submit" value="Login">LOGIN</button>
+
+        </div>
+    </div>
+</div>
+
+</form>
+
+{% endblock %}

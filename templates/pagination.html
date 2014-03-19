@@ -1,0 +1,29 @@
+<div class="pagination">
+    <span class="step-links">
+        {% if has_previous %}
+        <a class="previous" href="{{ previous_url }}">
+        </a>
+        {% endif %}
+        
+        {% if not is_in_first_set %}
+        <a class="last" href="{{ first_url }}">{{ first_page }}</a>
+        ...
+        {% endif %}
+        
+        {% for page, url in pages %}
+        <a class="{% ifequal page selected_page %}selected{% endifequal %}" {% if url %} href="{{ url }}"{% endif %}>
+            {{ page }}
+        </a>
+        {% endfor %}
+
+        {% if not is_last_set %}
+        ...
+        <a class="last" href="{{ last_url }}">{{ last_page }}</a>
+        {% endif %}
+        
+        {% if has_next %}
+        <a class="next" href="{{ next_url }}">
+        </a>
+        {% endif %}
+    </span>
+</div>

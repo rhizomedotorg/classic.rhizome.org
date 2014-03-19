@@ -1,0 +1,149 @@
+{% for a in announce_paginator.object_list %}
+    <div class = "feed-item span-24">
+        {% if a.thumbnail %}
+        <div class = "feed-item-meta span-6">
+                <div class="feed-item-image span-3">
+                    <img src="{{MEDIA_URL}}{{a.thumbnail}}" />
+                </div> 
+            
+                {% if a.start_date %}
+                <div class="start-date-single span-2">
+                    <div class = "deadline">Starts:</div>
+                    <div class = "month">{{ a.start_date|date:"M"}}</div>
+                    <div class = "day">{{ a.start_date|date:"d"}}</div>
+                    <div class = "year">{{ a.start_date|date:"Y"}}</div>
+                </div>
+                {% endif %}
+                
+                {% if a.deadline %}
+                <div class="start-date-single span-2">
+                    <div class = "deadline">Deadline:</div>
+                    <div class = "month">{{ a.deadline|date:"M"}}</div>
+                    <div class = "day">{{ a.deadline|date:"d"}}</div>
+                    <div class = "year">{{ a.deadline|date:"Y"}}</div>
+                </div>
+                {% endif %}
+                
+            {% else %}
+            <div class = "feed-item-meta span-5">
+                {% if a.start_date %}
+                <div class = "prepend-2">
+                    <div class="start-date-no-image span-2 prepend-1">
+                        <div class = "deadline">Starts:</div>
+                        <div class = "month">{{ a.start_date|date:"M"}}</div>
+                        <div class = "day">{{ a.start_date|date:"d"}}</div>
+                        <div class = "year">{{ a.start_date|date:"Y"}}</div>
+                    </div>
+                </div>
+                {% endif %}
+                
+                {% if a.deadline %}
+                <div class = "prepend-2">
+                    <div class="start-date-no-image span-2 prepend-1">
+                        <div class = "deadline">Deadline:</div>
+                        <div class = "month">{{ a.deadline|date:"M"}}</div>
+                        <div class = "day">{{ a.deadline|date:"d"}}</div>
+                        <div class = "year">{{ a.deadline|date:"Y"}}</div>
+                    </div>
+                </div>
+
+                {% endif %}
+                
+            {% endif %}
+            
+            <div class = "feed-item-meta-data span-5 last">
+                <span class = "red">{{ a.type|upper }}</span> posted by<br/>
+                <a href="{{ a.user.get_profile.get_absolute_url }}">
+                {{ a.user.get_profile }}
+                </a><br/>
+                {{ a.created|date:"D M d, Y" }}
+            </div>
+        </div><!-- end feed-item-meta -->
+        
+        {% if a.thumbnail %}
+        <div class="feed-item-listing span-16">   
+        {% else %}
+        <div class="feed-item-listing span-16 prepend-1">   
+        {% endif %}
+            <h2 class ="item-listing-title">
+                     <a href="{{ a.get_absolute_url }}">{{ a.title }}</a>   
+                     {% if a.user == request.user and a.cant_edit and a.edit_url %}
+                        <a class="edit-link-object-list" href="{{a.edit_url}}">Edit</a>
+                     {% endif %}
+            </h2>
+            <hr class="thin span-18">
+            
+            {% if a.subtype %}
+            <div class="feed-item-listing span-18">   
+                <div class ="feed-item-listing-row">
+                    <div class = "feed-item-listing-row-title span-2">Type:</div>  
+                    <div class = "feed-item-listing-row-details span-12">{{ a.subtype}}</div>
+                </div>    
+                <hr class="thin">
+            </div> 
+            {% endif %}
+            
+            {% if a.deadline %}
+            <div class="feed-item-listing span-18">   
+                <div class ="feed-item-listing-row">
+                    <div class = "feed-item-listing-row-title span-2">Deadline:</div>  
+                    <div class = "feed-item-listing-row-details span-12">{{ a.deadline|date:"D M d, Y H:i" }}</div>
+                </div>    
+                <hr class="thin">
+            </div> 
+            {% endif %}
+          
+            {% if a.start_date %}
+            <div class="feed-item-listing span-18">   
+                <div class ="feed-item-listing-row">
+                    <div class = "feed-item-listing-row-title span-2">Dates:</div>  
+                    <div class = "feed-item-listing-row-details span-12">{{ a.start_date|date:"D M d, Y H:i" }} 
+                    {% if a.end_date %}- {{ a.end_date|date:"D M d, Y" }}{% endif %}
+                    </div>
+                </div>
+                <hr class="thin">
+            </div> 
+            {% endif %}
+           
+             {% if a.city or a.country or a.state %}
+            <div class="feed-item-listing span-18">   
+                <div class ="feed-item-listing-row">
+                    <div class = "feed-item-listing-row-title span-2">Location:</div>
+                    <div class = "feed-item-listing-row-details span-12">
+                      {% if a.location_title %} {{ a.location_title }}<br/>{% endif %}
+                      {% if a.city %} {{ a.city }},{% endif %}
+                      {% if a.state %} {{ a.state }}<br/>{% endif %}  
+                      {% if a.country %} {{ a.country }}<br/> {% endif %}    
+                    </div>
+                </div>
+                <hr class="thin">
+            </div> 
+            {% endif %}
+            
+            
+            {% if a.description %}
+            <div class="feed-item-listing span-18">   
+                <div class ="feed-item-listing-row">
+                    <div class = "feed-item-listing-row-title span-2">Description:</div>  
+                    <div class = "feed-item-listing-row-details span-12">{{ a.description_strip_bbcode|truncatewords:75 }}</div>
+                </div>
+                <hr class="thin">
+            </div> 
+            {% endif %}
+
+            {% if a.url %}
+            <div class="feed-item-listing span-18">  
+                <div class ="feed-item-listing-row"><a href="{{ a.url }}">{{ a.url }}</a></div>
+            </div> 
+            {% endif %}
+         </div><!--END FEED ITEM LISTING-->
+    </div><!--END FEED ITEM-->
+    <hr class="hr2-blue">    
+{% endfor %}
+{% if announce_paginator.object_list|length < 1 %}
+    <div class="about-content bold">No results found. Try broadening your search. </div>
+{% endif %}
+
+<span id="feed-paginator" class="span-24">
+    {{ announce_paginator.render }}
+</span>

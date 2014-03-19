@@ -1,0 +1,240 @@
+/*
+.comment-count {
+    float: right;
+    font-size: 11px;
+    cursor: pointer;
+}
+.comment-count .left {
+    float: left;
+    width: 10px;
+    height: 22px;
+    background-image: url(../images/comment_sprite.png);
+    background-position: 0px -560px;
+}
+.comment-count .right {
+    float: left;
+    width: 20px;
+    height: 22px;
+    background-image: url(../images/comment_sprite.png);
+    background-position: -40px -600px;
+    line-height: 2.25em;
+    color: white;
+}
+div.comment-count:hover .left {
+    background-position: 0px -640px;
+}
+div.comment-count:hover .right {
+    background-position: -40px -680px;
+}
+.comment-count .number {
+    margin-left: -10px;
+    text-align: center;
+    width: 32px;
+}
+*/
+
+a.comment-count{
+    background-image:url("../images/comment_sprite.png");
+    background-position:3px 0px;
+    padding: 3px 14px 6px;
+    background-repeat: no-repeat;
+    color: white;   
+}
+
+.announce-comment-count a.comment-count{
+    float:right;
+    margin-left: 20px;
+}
+
+a.comment-count:hover {
+     background-position: 3px -31px;
+     text-decoration: none;
+}
+
+/* comments for objects like posts */
+
+.object-comment-children {
+    margin-left: 0px;
+    width: 100%;
+    padding: 0px;
+    list-style: none;
+}
+
+.object-comment-children .object-comment-children{
+    margin-left: 50px;
+    width: 91%;
+    padding: 0px;
+    list-style: none;
+}
+
+
+.object-comment-children .object-comment-children #comment_form {
+    width: 98%;
+}
+
+.object-comment-child-details {
+line-height: 3;
+}
+
+.object-comment-child {
+    margin-top: 15px;
+
+}
+
+.comments .comment-body {
+    margin-bottom: 20px;
+    font-size: 14px;
+    margin-left: 40px;
+    line-height: 1.5;
+    clear:both;
+    font-weight: normal;
+}
+
+.comments .comment-body img{
+    max-width: 550px;
+}
+
+.object-comment-children .object-comment-children .object-comment-children .object-comment-children .object-comment-children .mceEditor * {
+    width: 100% !important;
+}
+
+.object-comment-children .object-comment-children .object-comment-children .object-comment-children .object-comment-children .mceEditor td {
+    width: 1% !important;
+}
+
+#id_comment_parent {
+    width:100%;
+}
+
+.mceToolbar table {
+    width:100%;
+}
+
+.mceEditor {
+min-width: 400px;
+}
+
+ul.comments {
+    margin: 0px;
+    padding: 0px;
+}
+.threaded-comment {
+    list-style: none;
+    padding-top:3px;
+}
+
+.comments .quote{
+    font-size: 15px;
+    margin: .25em 1em;
+    color: #333 !important;
+    font-style: italic;
+}
+
+.comments .quote:before {
+    content: '\201C';
+}
+.comments .quote:after {
+    content: '\201D';
+}
+
+#comment_form {
+    width: 100%;
+}
+
+comment_form h3{
+    font-family: Georgia;
+}
+
+.comment-submit{
+    width:inherit;
+}
+
+.comment-preview {
+    border-color: red;
+    border-style: solid;
+    border-width: 1px;
+    margin-bottom: 5px;
+}
+
+.comment-preview form {
+    padding: 10px;
+}
+
+.comment-preview .preview-notice{
+    border: none;
+}
+
+
+.reply-button{
+    text-align: right;
+}
+
+.reply-button a,
+.reply a{
+    color:#6494B2;
+    font-size: 12px;
+    font-weight: bold;
+    cursor:pointer;
+    text-decoration: underline;
+}
+
+.reply a:hover{
+    text-decoration: none;
+}
+
+
+.reply{
+    margin: 0px 5px 10px 5px;
+}
+
+.comment-textarea,
+#id_comment {
+    width: 100%;
+    font-size: 15px;
+}
+
+#format-buttons{
+    font-size: 11px;
+}
+
+#bbcode-guide{
+    background-color: #FEFEFE;
+    border: 2px solid #BBBBBB;
+    border-radius: 1em 1em 1em 1em;
+    color: #719BB6 !important;
+    cursor: pointer;
+    font-weight: bold;
+    margin: 1px;
+    padding: 1px 3px;
+    text-decoration: none;
+}
+
+#bbcode-guide:hover{
+    text-decoration: none;
+}
+
+#bbcode-textsize,
+.bbcode-button{
+    background-color: #FEFEFE;
+    border: 2px solid #BBBBBB;
+    border-radius: 1em 1em 1em 1em;
+    color: #719BB6 !important;
+    cursor: pointer;
+    font-weight: bold;
+    margin: 1px 0px;
+    font-size: 9pt;
+}
+
+#bbcode-textsize{
+    border-radius: 0;
+}
+
+
+/* BBCODE STYLES */
+.post-body .xx-small, .comment-body .xx-small{font-size: 7pt;}
+.post-body .x-small, .comment-body .x-small{font-size: 9pt;}
+.post-body .small, .comment-body .small{font-size: 11pt;}
+.post-body .xx-large, .comment-body .xx-large{font-size: 36pt;}
+.post-body .x-large, .comment-body .x-large{font-size: 28pt;}
+.post-body .large, .comment-body .large{font-size: 20pt;}
+.post-body .medium, .comment-body .medium{font-size: 14pt;}

@@ -1,0 +1,70 @@
+<form action="{{ request.path }}" method="POST" >
+{% csrf_token %}
+<input type = "hidden" name = "form" value = "address_form">
+<div class = "edit-profile-form span-24">
+    
+    <div class = "fieldset span-10">
+        <div class = "h6 light-gray">Street</div>
+        <fieldset> 
+             {% if address_form.street1.errors %}<span class="form_errors">{{ address_form.street1.errors }}</span>{% endif %}
+            <div class = "edit-profile-form-input">{{address_form.street1}}</div>
+        </fieldset>
+    </div>
+    
+    <div class = "fieldset span-10">
+        <div class = "h6 light-gray">Street cont'd</div>
+        <fieldset> 
+             {% if address_form.street2.errors %}<span class="form_errors">{{ address_form.street2.errors }}</span>{% endif %}
+            <div class = "edit-profile-form-input">{{address_form.street2}}</div>
+        </fieldset>
+    </div>
+    
+    <div class = "fieldset span-10">
+        <div class = "h6 light-gray">{{address_form.city.label}}</div>
+        <fieldset> 
+             {% if address_form.city.errors %}<span class="form_errors">{{ address_form.city.errors }}</span>{% endif %}
+            <div class = "edit-profile-form-input">{{address_form.city}}</div>
+        </fieldset>
+    </div>
+        
+    <div class = "fieldset span-10">
+        <div class = "h6 light-gray">Locality or Province</div>
+        <fieldset> 
+             {% if address_form.locality_province.errors %}<span class="form_errors">{{ address_form.locality_province.errors }}</span>{% endif %}
+            <div class = "edit-profile-form-input">{{address_form.locality_province}}</div>
+        </fieldset>
+    </div>
+    
+     <div class = "fieldset span-10">
+        <div class = "h6 light-gray">US State (if applicable)</div>
+        <fieldset> 
+             {% if address_form.state.errors %}<span class="form_errors">{{ address_form.state.errors }}</span>{% endif %}
+            <div class = "edit-profile-form-input">{{address_form.state}}</div>
+        </fieldset>
+    </div>
+
+    
+    <div class = "fieldset span-10">
+        <div class = "h6 light-gray">Zip or Postal Code</div>
+        <fieldset> 
+             {% if address_form.zip_postal_code.errors %}<span class="form_errors">{{ address_form.zip_postal_code.errors }}</span>{% endif %}
+            <div class = "edit-profile-form-input">{{address_form.zip_postal_code}}</div>
+        </fieldset>
+    </div>    
+   
+    <div class = "fieldset span-10">
+        <div class = "h6 light-gray">Country</div>
+        <fieldset> 
+             {% if address_form.country.errors %}<span class="form_errors">{{ address_form.country.errors }}</span>{% endif %}
+            <div class = "edit-profile-form-input">{{address_form.country}}</div>
+        </fieldset>
+    </div>    
+
+    
+    <div class = "span-23">
+        <fieldset id ="edit-button" class="float-right">
+            <input class="round-blue" type="submit" value="update" name="update">
+        </fieldset>
+    </div>
+</div>
+</form>

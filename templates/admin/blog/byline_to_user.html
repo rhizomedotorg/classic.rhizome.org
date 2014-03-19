@@ -1,0 +1,106 @@
+{% extends "admin/base_site.html" %}
+{% load admin_modify %}
+
+{% block extrahead %}
+<script src="{{ STATIC_URL }}js/admin/RelatedObjectLookups.js"></script>
+{% endblock %}
+
+{% block breadcrumbs %} 
+<div class="breadcrumbs">
+<a href="../../../">Home</a> &rsaquo;
+<a href="../../">{{ app_label|capfirst|escape }}</a> &rsaquo;
+<a href="../">{{ opts }} </a>&rsaquo; Byline to User
+</div> 
+{% endblock %}
+
+{% block form_top %}
+  <p>Byline to Users</p>
+{% endblock %}
+
+{% block content %}
+<form id="mergeusers_form" method="post" action="{{request.path}}">
+    {% csrf_token %}
+    <div id="content" class ="flex">
+        <div id="content-main">
+            <div id="changelist" class="module">
+            <table id="result_list" cellspacing="0">
+                <tbody>
+                    <tr>     
+                        <p style = "padding:10px;font-weight:bold;">
+                            This will transfer all posts with a specific byline to a rhizome user account.
+                        </p>   
+                    </tr>
+                    
+                    <tr>            
+                        <td style = "padding:10px">
+                            <label for="id_old_user" class="required">BYLINE:</label>
+                            <input type="text" name="merge_byline" id="byline" />
+                    </td>
+                    </tr>
+                        <td style = "padding:10px">
+                            <label for="id_merge_user" class="required">USER:</label>
+                            <input class="vForeignKeyRawIdAdminField" type="text" name="user" id="id_user" /><a href="../../../auth/user/?t=id" class="related-lookup" id="lookup_id_user" onclick="return showRelatedObjectLookupPopup(this);"> <img src="/media/amedia/img/admin/selector-search.gif" width="16" height="16" alt="Lookup" /></a>            
+
+                           <input class="default" type="submit" name="merge" value="MERGE!"/>
+                        </td>
+                    </tr>
+                    
+                    {% if merged_notice %}
+                    <tr>
+                        <td>
+                             <h3>{{ merged_notice }} ({{merged_objects|length}} total)</h3>
+                            <hr />       
+                            <p>                    
+                            {% if merged_objects %}
+                                {% for object in merged_objects %}
+                                    {{object}} merged!<br />
+                                {% endfor %}
+                            {% endif %}
+                             </p> 
+                            </div>
+                        </td>
+                    </tr>
+                    {% endif %}
+                    
+                    <tr>
+                       <td>
+                           --------------------------------------------------------------------------------
+                       </td>
+                    </tr>
+
+                    <tr>
+                        <td style = "padding:10px">
+                            <h3>PREVIEW ALL POSTS BY BYLINE</h3>
+                            <p>
+                                <label for="id_byline" class="required">Enter Byline</label>
+                                <input class="vForeignKeyRawIdAdminField" type="text" name="preview_byline" id="byline" />                                                       
+                                <input class="default" type="submit" name="view_byline_objects" value="preview"/>
+                            </p>
+                        </td>
+                        
+                    </tr>        
+                                       
+                    <tr>
+                        <td>
+                            {% if preview_notice %}
+                            <h3>{{preview_notice}} ({{preview_objects|length}} total)</h3>
+                                <hr />
+                                <p>
+                                {% for object in preview_objects %}
+                                    {{object.title}}<br />
+                                {% endfor %}
+                                </p>
+                            {% endif %}
+                            </div>
+                        </td> 
+                    </tr>
+
+                </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</form>
+
+
+{% endblock %}

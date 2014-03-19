@@ -1,0 +1,44 @@
+{% load oembed_tags %}
+
+{% if artwork.get_video %}
+    <div class="mini-nav clear">
+        <div class="nav-item only selected">Video</div>
+    </div>
+    <hr class="hr3">
+    {% for video in artwork.get_video %}
+        <div>
+            <span class="list-item">{% oembed %}{{video.url}}{% endoembed %}</span>
+        </div>
+    {% endfor %}    
+{% endif %}
+
+{% if artwork.get_audio %}
+    <div class="mini-nav clear">
+        <div class="nav-item only selected">Audio</div>
+    </div>
+    <hr class="hr3">     
+    <div>          
+        {% for audio in artwork.get_audio %}
+        <span class="list-item">
+            {% if audio.file_path %}
+                <script type="text/javascript">
+                if (Modernizr.audio && Modernizr.audio.mp3){
+                    document.write('<audio controls="controls" src = "{{MEDIA_URL}}{{audio.file_path}}"></audio>');
+                } else {
+                    document.write('<div class="audio"><a class="sm2_link" href="{{MEDIA_URL}}{{audio.file_path}}">{{audio.file_name}}</a></div>');
+                } 
+                </script>
+            {% else %}
+               <script type="text/javascript">
+                if (Modernizr.audio && Modernizr.audio.mp3){
+                    document.write('<audio controls="controls" src = "{{audio.url}}"></audio>');
+                } else {
+                    document.write('<div class="audio"><a class="sm2_link" href="{{audio.url}}">{{audio.url}}</a></div>');
+                } 
+                </script>
+            {% endif %}
+            
+        </span>
+        {% endfor %}
+    </div> 
+{% endif %}

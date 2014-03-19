@@ -1,0 +1,138 @@
+{% extends "programs/base.html" %}
+
+{% block pageTitle %} 
+Programs 
+{% endblock %}
+
+{% load markup inlines_tags %}
+
+{% block content %}
+
+
+<div class="section span-24">
+        <div class="section-row-titles">
+            <span class = "nav-item">Upcoming Rhizome Events</span>
+            <hr class="hr3-no-margin">
+        </div>    
+        <div id = "recent-events" class = "span-24">
+            {% for event in recent_events %}
+                <div class = "left-content span-10">
+                   <img id = "main-event" src="{{MEDIA_URL}}{{ event.image }}" width = "400">
+                </div>
+                
+                <div class="right-content span-11 prepend-2">
+                    <div class = "programs-title center">{{ event.title }}</div>
+                    <hr class="thin-no-margin">
+                    {% if event.is_new_silent %}
+                        <div class = "new-silent">
+                            <a class="red" href="/new-silent/">New Silent Series:</a> <span class="blue">Curated by Lauren Cornell</span>
+                        </div>
+                    {% endif %}
+                    <div class = "summary">
+                        {{ event.summary|markdown }}
+                    </div>
+                </div>
+                
+            {% endfor %}
+        
+        </div>
+</div>
+
+<div class="section span-11">
+        <div class="section-row-titles">
+            <span class = "nav-item">Commissions</span>
+        </div>
+            <hr class="hr3-no-margin">
+            {% if current_commissions_cycle.is_open %}
+                <a class = "red" href = "/commissions/apply">Rhizome's Commission Cycle is now open.</a>
+            {% endif %}
+            <div class="commissions">
+            Founded in 2001, the goal of the Rhizome Commissions Program is to support emerging artists by providing grants for the creation of significant works of new media art. By new media art, we mean projects that creatively engage new and networked technologies to works that reflect on the impact of these tools and media in a variety of forms. 
+            
+            <a class="enter" href="/commissions/">Apply for a grant</a>
+            </div>
+
+</div>
+
+<div class="section span-11 prepend-1">
+        <div class="section-row-titles">
+            <span class = "nav-item">Resources</span>
+        </div>
+            <hr class="hr3-no-margin">
+            <div class="entrace">
+                <a class="enter" href="/resources/program">New Media Program Directory</a>
+                <a class="enter" href="/resources/residency">New Media Residency Directory</a>
+                <a class="enter" href="/resources/syllabus">New Media Syllabus Directory</a>
+                <a class="enter" href="/resources/festival">New Media Festival Directory</a>
+            </div>
+</div>
+
+<div class="section span-24">
+    <div id="artbase-member-exhibitions" class="clear">
+        <h6>Recent Rhizome Exhibitions</h6>
+        <hr class="hr3"></hr>
+        {% for exhibition in recent_exhibitions %}
+        <div class="exhibition span-24 last">
+            <div class="pad span-24 last">
+                <div class="left-col span-7">
+                    <h3>
+                        <a class="exhibition-title" href="{{ exhibition.url }}">{{ exhibition.title }}</a>
+                    </h3>
+                    <hr class="thin"></hr>
+                    <div class="bold-upper blue curated">
+                        Curated by 
+                       {% for curator in exhibition.curators %}
+                         <a href="{{ exhibition.user.get_profile.get_absolute_url }}">
+                            {{ curator.get_profile }}
+                        </a>{% if not forloop.last %},{% endif %}
+                        {% endfor %}
+                        
+                        {% if exhibition.curator_other %}
+                            {% if exhibition.curator_other_link %}
+                                <span class="bold-upper blue curated"> and <a class="bold-upper blue curated" href ="{{exhibition.curator_other_link}}">{{ exhibition.curator_other }}</a>
+                                </span>
+                            {% else %}
+                                <span class="bold-upper blue curated">and {{ exhibition.curator_other }}</span>
+                            {% endif %}
+                        {% endif %}
+                        </a>
+                    </div>
+                    <p class="exhibition-statment left">{{ exhibition.description|markdown|truncatewords:40 }}</p>
+                </div>
+                
+                <div class="span-7">
+                    <a href="{{ exhibition.url }}"><img width="285" height="200" class="middle-col span-8" src="{{MEDIA_URL}}{{ exhibition.image }}"></img></a>
+                </div>
+                    
+                <div class="right-col span-7 prepend-1 last">
+                    <div class="artists">
+                        <span class="bold upper">Artists include:</span>
+                        <span class="blue italic">
+                            {% for artist in exhibition.get_artists %}
+                            <a href="{{ artist.get_profile.get_absolute_url }}">{{ artist.get_profile }}</a>{% if not forloop.last %}, {% endif %}
+                            {% endfor %}
+                            {% if exhibition.artists_other %}
+                                {{ exhibition.artists_other|markdown|truncatewords:40 }}
+                            {% endif %}
+                        </span>
+                            
+                        {% if exhibition.get_tags %}
+                          <div class="post-tags-and-share tags">
+                            <span class="tags essay-tags">
+                                 <div class="italic bold">Tags:</div>
+                                {% for tag in exhibition.get_tags %}
+                                    <a class="tag blue" href="/artbase/tag/{{ tag.slug }}">{{ tag.name }}</a>
+                                {% endfor %}                    
+                            </span>
+                        </div>
+                        {% endif %}
+                    </div>
+                    <a class="basic enter" href="{{ exhibition.url }}"></a>
+                </div>
+           </div>     
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

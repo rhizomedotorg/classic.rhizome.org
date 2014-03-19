@@ -1,0 +1,206 @@
+{% extends "accounts/base.html" %}
+
+{% load support markup %}
+
+{% block customScripts %}
+<script type="text/javascript" src="{{ STATIC_URL }}accounts/scripts/edit.js"></script>
+{% endblock %}
+
+{% block pageTitle %} 
+Edit Your Profile 
+{% endblock %}
+
+
+{% block content %}
+    {% with 'Edit Your Profile' as selected %}
+        {% include 'fragments/account_mini_nav.html' %}
+    {% endwith %}
+
+    <div id = "edit-profile">
+        {% if updated == "pass" or request.GET.updated %}
+            <div id ="updated"><h3>YOUR PROFILE HAS BEEN UPDATED. <a target = "_blank" href="{{request.user.get_profile.get_absolute_url}}">VIEW PROFILE</a></h3></div>
+        {% endif %}
+        
+        {% if updated == "fail" %}
+            <div id ="updated"><h3>THERE WERE PROBLEMS WITH YOUR UPDATE. PLEASE CHECK YOUR SUBMISSION.</h3></div>
+        {% endif %}
+
+        <div id ="accordion">
+            <div id = "personal-info" class = "container span-24 last">
+                <div class="section-object-header">
+                    <div class = "edit-section-header">
+                        <span class = "edit-section-header-arrow"></span>
+                        <h2 class="edit-section-header-h2">Personal Info</h2>
+                        <span>Enter your name, website and social media links</span>
+                    </div>
+                </div>
+                
+                <div class = "edit-section" >
+                    {% include "accounts/forms/personal_info_form.html" %}
+                </div>
+            </div>
+        
+            
+             <div id = "account-info" class = "container span-24 last">
+                <div class="section-object-header">
+                    <div class = "edit-section-header">
+                        <span class = "edit-section-header-arrow"></span>
+                        <h2 class="edit-section-header-h2">Icon and Privacy</h2></h2>
+                        <span>Change your icon and set your privacy level</span>
+                    </div>
+                </div>
+                
+                <div class = "edit-section">
+                    {% include "accounts/forms/account_info_form.html" %}
+                </div>
+            </div>
+            
+                    
+            <div id = "bio" class = "container span-24 last">
+                <div class="section-object-header">
+                    <div class = "edit-section-header">
+                         <span class = "edit-section-header-arrow"></span>
+                        <h2 class="edit-section-header-h2">Bio</h2>
+                        <span>Provide a brief description of yourself</span>
+                    </div>
+                </div>
+                
+                <div class = "edit-section">
+                    {% include "accounts/forms/bio_form.html" %}
+                </div>
+            </div>
+            
+            
+            <div id = "portfolio-edit" class = "container span-24 last">
+                <div class="section-object-header">
+                    <div class = "edit-section-header">
+                         <span class = "edit-section-header-arrow"></span>
+                        <h2 class="edit-section-header-h2">Mailing Lists</h2>
+                        <span>Manage your Rhizome email subscriptions</span>
+                    </div>
+                </div>
+                
+                <div class = "edit-section">
+                    <div class="about-content span-18" style="margin-left: 40px;">Checked boxes indicate to which lists you are currently subscribed. Unselecting a checked box and clicking 'update' will remove you from the corresponding list. Selecting an unchecked box and clicking 'update' will add you to that list.</div>
+                    {% include "accounts/forms/email_form.html" %}
+                </div>
+            </div>
+            
+            
+            <div id = "portfolio-edit" class = "container span-24 last">
+                <div class="section-object-header">
+                    <div class = "edit-section-header">
+                         <span class = "edit-section-header-arrow"></span>
+                        <h2 class="edit-section-header-h2">Portfolio</h2>
+                        <span>Add or edit artworks in your portfolio</span>                    
+                    </div>
+                </div>
+                
+                <div class = "edit-section">
+                    <div class = "edit-profile-form span-24">
+                        <div class = "fieldset span-23">
+                            <div class = "h6 light-gray">Portfolio | <a href="/artbase/submit">Add an artwork</a></div>
+                                <fieldset> 
+                                  {% if user.get_profile.get_entire_portfolio %}
+                                    {% for work in user.get_profile.get_entire_portfolio %}
+                                        <div class="edit-portfolio center span-7">
+                                            <a href="{{ work.view_url }}/">
+                                                <img src="{{MEDIA_URL}}{{work.image_small}}" width="135">
+                                            </a>
+                                            <div class="portfolio-work-details"
+                                                <a class="listing-title" href="{{ work.view_url }}/">{{work.title|title}}</a> 
+                                                | 
+                                                <a href="{{work.edit_url}}">Edit this artwork</a>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                {% else %}
+                                    <div class = "bold">
+                                        There are no artworks in you portfolio. <a href="/artbase/submit">Why don't you add one?</a>
+                                    </div>
+                                {% endif %}
+                                </fieldset>
+                            </div>
+                        </div>
+                    </div>                
+                </div>
+                    
+            {% if user.get_profile.get_recent_announcements %}
+
+            
+             <div id = "account_status" class = "container span-24 last">
+                <div class="section-object-header">
+                    <div class = "edit-section-header">
+                         <span class = "edit-section-header-arrow"></span>
+                        <h2 class="edit-section-header-h2">Edit Recent Announcements</h2>
+                        <span>Edit announcements you've recently posted</span>                    
+                    </div>
+                </div>
+                
+                <div class = "edit-section">
+                    <div class = "edit-profile-form span-24">
+                        <div class = "fieldset span-23">
+                            <div class = "h6 light-gray">Recent Announcements</div>
+                                <fieldset> 
+                                   {% for announcement in user.get_profile.get_recent_announcements %}
+                                    <div>
+                                        <a href="{{announcement.get_absolute_url}}">{{announcement.title}}</a> |
+                                        <a class = "h6 red" href="{{announcement.edit_url}}">EDIT</a>
+                                    </div>
+                                {% endfor %}
+                                </fieldset>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>        
+            {% endif %}
+            
+            
+            <div id = "add-info" class = "container span-24 last">
+                <div class="section-object-header">
+                    <div class = "edit-section-header">
+                         <span class = "edit-section-header-arrow"></span>
+                        <h2 class="edit-section-header-h2">Address</h2>
+                        <span>Update or verify your billing address</span>
+                    </div>
+                </div>
+                
+                <div class = "edit-section">
+                    {% include "accounts/forms/address_form.html" %}
+                </div>
+            </div>
+
+             <div id = "add-info" class = "container span-24 last">
+                <div class="section-object-header">
+                    <div class = "edit-section-header">
+                         <span class = "edit-section-header-arrow"></span>
+                        <h2 class="edit-section-header-h2">Additional Info</h2>
+                        <span>Help us better serve the Rhizome Community by providing some demographic info</span>
+                    </div>
+                </div>
+                
+                <div class = "edit-section">
+                    {% include "accounts/forms/add_info_form.html" %}
+                </div>
+                
+            
+            <div id = "set-password" class = "container span-24 last">
+                <div class="section-object-header">
+                    <div class = "edit-section-header">
+                         <span class = "edit-section-header-arrow"></span>
+                        <h2 class="edit-section-header-h2">Password</h2></h2>
+                        <span>Change your account password</span>
+                    </div>
+                </div>
+                
+                <div class = "edit-section">
+                    {% include "accounts/forms/set_password_form.html" %}
+                </div>
+            </div>
+            
+            
+            </div>
+        </div><!--end accordion-->
+    </div><!--end edit profile-->
+{% endblock %}

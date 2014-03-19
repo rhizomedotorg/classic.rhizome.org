@@ -1,0 +1,40 @@
+{% extends "artbase/base.html" %}
+
+{% block page_assets_css %}
+        <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}artbase/styles/tags.css"></link>
+{% endblock %}
+
+{% block pageTitle %}
+Exhibitions tagged "{{ tag.name }}"
+{% endblock %}
+
+{% block content %}
+<div class="section-row-titles span-24">
+    <span class = "mini-nav">Exhibitions tagged "{{ tag.name }}"</span>
+</div>
+<hr class="hr3-no-margin">
+
+<div class="section span-24">
+    <div id="works-list">
+        {% for exhibition in exhibitions_paginator.object_list %}
+        <div id ="work" class = "span-4 {% if forloop.last %}last{%endif%}">
+            <a href="{{ exhibition.view_url }}">
+                <img src="{{MEDIA_URL}}{{ exhibition.image }}" width="125"></img>
+            </a>
+        
+            <div class="title"><a href="{{ exhibition.view_url }}">{{ exhibition.title }}</a></div>
+            <div> by </div> 
+            <div class="artist">
+                <a href="{{ exhibition.user.get_profile.get_absolute_url }}">
+                    {{ exhibition.user.get_profile }}
+                </a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<div class="section span-24">
+    {{ artwork_paginator.render }}
+</div>
+{% endblock %}

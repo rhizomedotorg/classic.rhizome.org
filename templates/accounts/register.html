@@ -1,0 +1,108 @@
+{% extends 'new_base.html' %}
+{% load markup support block_tags %}
+
+{% block pageTitle %}Register{% endblock %}
+
+{% block navbars %}
+    {% get_nav 'Membership' None %}
+{% endblock %}
+
+{% block wide_section_description %}{% get_text 'register header' %}{% endblock %}
+
+{% block content %}
+    <div class="header">
+        <div class="section">
+            {% get_text 'register header' %}
+        </div>
+    </div>
+
+    <div class="section">
+        <form class="wide" action="{{ request.path }}" method="POST">{% csrf_token %}
+            <input type="hidden" name="form" value="register_form">
+
+            <div class="field">
+                {{ form.username.label_tag }}
+                <fieldset>
+                    {{ form.username }}
+                    {{ form.username.errors }}
+                </fieldset>
+            </div>
+            <div class="field">
+                {{ form.email.label_tag }}
+                <fieldset>
+                    {{ form.email }}
+                    {{ form.email.errors }}
+                </fieldset>
+            </div>
+            <div class="field">
+                {{ form.password1.label_tag }}
+                <fieldset>
+                    {{ form.password1 }}
+                    {{ form.password1.errors }}
+                </fieldset>
+            </div>
+            <div class="field">
+                {{ form.password2.label_tag }}
+                <fieldset>
+                    {{ form.password2 }}
+                    {{ form.password2.errors }}
+                </fieldset>
+            </div>
+            <div class="field col-2">
+                {{ form.spam_question.label_tag }}
+                <fieldset>
+                    {{ form.spam_question }}
+                    {{ form.spam_question.errors }}
+                </fieldset>
+            </div>
+            {{ form.double_verify }}
+
+            <h4 class="span-23">You can become a Rhizome Member in two ways (optional):</h4>
+            <div class="field col-2">
+                <label>1) Make a Contribution</label>
+                {{ form.amount }}
+                <fieldset>
+                    <div class="field col-2">
+                        {{ form.select_amount.label_tag }}<br>
+                        {{ form.select_amount }} USD
+                    </div>
+                    <div class="field col-2">
+                        {{ form.custom_amount.label_tag }}<br>
+                        {{ form.custom_amount }} USD
+                        {{ form.custom_amount.errors }}
+                    </div>
+                </fieldset>
+            </div>
+            
+            <div class="field col-2">
+                <label>2) Through a Rhizome Organizational Subscription</label>
+                <fieldset>
+                    <div class="field">
+                        If your email address matches one of our organizational subscriptions (ie @brown.edu, @moma.org), your account will be automatically upgraded to full membership status.
+                    </div>
+                    <div class="field">
+                        {{ form.organization.label_tag }}
+                        {{ form.organization }}
+                        {{ form.organization.errors }}
+                    </div>
+                </fieldset>
+            </div>
+
+            <div class="field col-2">
+                <textarea id="user-agreement">{% get_text 'public user agreement' %}</textarea>
+                {{ form.agree_to_terms }}
+                {{ form.agree_to_terms.label_tag }}
+                {{ form.agree_to_terms.errors }}
+            </div>
+
+            <div class="field col-2">
+                If you chose to make a donation, you will be forwarded to our donation page after verifying your account via email
+                <input type="submit" class="round-blue" value="Sign me up!" name="register">
+            </div>
+        </form>
+    </div>
+{% endblock %}
+
+{% block extra_js %}
+    <script type="text/javascript" src="{{ STATIC_URL }}js/donation_amount_form.js"></script>
+{% endblock %}

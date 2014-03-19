@@ -1,0 +1,53 @@
+{% extends "programs/base.html" %}
+{% load inlines_tags markup %}
+
+{% block pageTitle %} 
+New Silent Series 
+{% endblock %}
+
+{% block content %}
+
+<div class="section span-24">
+        <div class="section-row-titles">
+            <span class = "nav-item">Rhizome New Silent Series</span>
+            <hr class="hr3-no-margin">
+        </div>    
+        <div id = "recent-events" class = "span-24">
+            {% for event in events_paginator.object_list %}
+            <div class = "event span-24">
+                <div class = "left-content span-10">    
+                    {% if event.image %}
+                        <img src="{{ event.image.url }}" width = "400">
+                    {% endif %}
+                </div>
+                
+                <div class="right-content span-11 prepend-2">
+                    <div class = "programs-title">
+                        <a href= "{{event.url}}">{{ event.title }}</a>
+                    </div>
+                    <hr class="thin-no-margin">
+                    {% if event.is_new_silent %}
+                        <div class = "new-silent">
+                            <a class="red" href="/new-silent/">New Silent Series:</a> <span class="blue">Curated by Lauren Cornell</span>
+                        </div>
+                    {% endif %}
+                    <div class="date">
+                        {% if exhibition.is_online %} Launched {% endif %}
+                        {{ event.start_date|date:"l, F jS Y" }} {% if event.location_title %}at {{ event.location_title }} {% endif %}
+                    </div>
+                    <div class = "summary">
+                        {{ event.summary|markdown }}
+                    </div>
+                     {% if event.video %}
+                    <div class = "summary">
+                        <a href = "{{event.get_absolute_url}}">More details...</a>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {{events_paginator.render}}
+</div>
+
+{% endblock %}

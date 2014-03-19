@@ -1,0 +1,110 @@
+{% extends "artbase/base.html" %}
+{% load markup block_tags %}
+
+{% block pageTitle %} 
+    About the Rhizome ArtBase 
+{% endblock %}
+
+{% block navbars %}
+    {% get_nav 'Artbase' 'About' %}
+{% endblock %}
+
+{% block content %}
+<div class="column-wrapper span-24">
+
+    <div class= "left-column span-15">
+        
+        <div class="section span-15">
+            <div class="section-row-titles">
+                <span class = "nav-item"><a class="anchor-name" name ="mission">OUR MISSION</a></span>
+            </div>
+            <hr class="hr3-no-margin">
+            <div class="about-content">
+                {{ about_artbase.mission|markdown }}
+            </div>    
+        </div>
+
+        <div class="section span-15">
+            <div class="section-row-titles">
+                <span class = "nav-item"><a class="anchor-name" name ="archival_process">THE ARCHIVAL PROCESS</a></span>
+            </div>
+            <hr class="hr3-no-margin">
+            <div class="about-content center span-7">
+                <img src="{{ STATIC_URL }}artbase/about/process1.png" style="margin-top:30px;"/><br />
+                <img src="{{ STATIC_URL }}artbase/about/process2.png" style="margin-top:60px;"/><br />
+                <img src="{{ STATIC_URL }}artbase/about/process3.png" style="margin-top:42px;"/><br />
+            </div>
+            <div style="font-family:Georgia;font-size:13px;margin-top:5px;" class="span-6 prepend-1">
+                {{ about_artbase.archival_process|markdown }}
+            </div>
+       </div>
+        
+        <div class="section span-15">
+            <div class="section-row-titles">
+                <span class = "nav-item"><a class="anchor-name" name ="philosophy">PHILOSOPHY</a></span>
+            </div>
+            <hr class="hr3-no-margin">
+            <div class="about-content">
+                {{ about_artbase.philosophy|markdown }}
+            </div>  
+        </div>
+
+        <div class="section span-15">
+            <div class="section-row-titles">
+                <span class = "nav-item"><a class="anchor-name" name ="access">ACCESS & MEMBERSHIP</a></span>
+                       </div>
+            <hr class="hr3-no-margin">
+            <div class="about-content">
+                {{ about_artbase.access_membership|markdown }}
+            </div>    
+        </div>
+        
+    </div>
+    
+    
+    <div class= "right-column span-8"> 
+             
+        <div class="section span-8">
+            <div class="section-row-titles">
+                <span class = "nav-item"><a class="anchor-name" name ="board">ARTBASE DOCUMENTS</a></span>
+            </div>
+            <hr class="hr3">
+            <div class="about-content">
+            {% for document in documents %}
+                {% if document.cover_image %}
+                    <div class= "center">
+                        <img src="{{ MEDIA_URL }}{{ document.cover_image }}" />
+                    </div>
+                {% endif %}
+            
+               &bull; <a style="line-height:1;margin:5px 0px;" href="{{ MEDIA_URL }}{{ document.file }}" target="blank">{{document.title}}</a> by {{document.author}} <span style="font-size:13px;">({{ document.published|date:'Y' }})</span>
+               <br /> <br />
+            {% endfor %}
+            </div>   
+        </div>
+        
+        <div class="section span-8">
+            <div class="section-row-titles">
+                <span class = "nav-item"><a class="anchor-name" name ="current_projects">CURRENT PROJECTS</a></span>
+            </div>
+            <hr class="hr3-no-margin">
+            <div class="about-content">
+                {{ about_artbase.current_projects|markdown }}
+            </div>   
+        </div>
+
+        <div class="section span-8">
+            <div class="section-row-titles">
+                <span class = "nav-item"><a class="anchor-name" name ="board">ARTBASE POLICIES</a></span>
+            </div>
+            <hr class="hr3-no-margin">
+            <div class="about-content">
+                <a href = "/artbase/policy/#cm" >Collections Management Policy</a>
+                <br />
+                <a href = "/artbase/policy/#aa" >Artist Agreement License</a>
+            </div>   
+        </div>
+    
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,84 @@
+ {% load comments threadedcomments_tags markup bbcode %}
+ <!--COMMENTS LIST-->
+{% get_comment_list for announcement as comment_list %}
+{% if comment_list %}
+    <div class="section-row-titles mini-nav">Comments ({% get_comment_count for announcement as comment_count %}{{comment_count}})</div>
+    <hr class= "hr3">
+    
+    <div class = "comments span-15">
+    {% for comment in comment_list|fill_tree|annotate_tree %}
+        {% ifchanged comment.parent_id %}
+            {% else %}
+            </li>
+            {% endifchanged %}
+            
+            {% if not comment.open and not comment.close %}
+            </li>
+            {% endif %}
+            
+            {% if comment.open %}
+            <ul class = "object-comment-children">
+                {% endif %}
+                {% if not forloop.first %}
+                    <hr class="black-thin-no-margin">
+                {% endif %}
+                <a name = "{{ comment.id }}"></a>
+                <li class="object-comment-child {% if comment.last %} last {% endif %}" rel="{{ comment.id }}" >
+                    <div class="object-comment-child-details">
+                        {{ comment.user.get_profile.get_medium_miniprofile|markdown }}                    
+                        <span class="authors bold-upper">
+                            <a href="{{comment.user.get_profile.get_absolute_url}}">{{ comment.user.get_profile }}</a> 
+                            <span class="dark-gray">| {{ comment.submit_date|date:"D M jS, Y P" }}</span>
+                        </span>
+                    </div>
+
+                    <div class="comment-body">
+                        {% bbcode comment.comment %}
+                    </div>
+               
+                    <div class = "reply">
+                        <div class="reply-button">
+                            <a class="comment-reply" rel="{{ comment.id }}">reply</a>
+                        </div>
+                        <div class = "add-comment">
+                        {% if request.user.is_authenticated %}
+                            {% render_comment_form for announcement with comment.id %}
+                        {% else %}
+                        <div class= "login">
+                            You must be logged in to post a comment.
+                            <a id="section-login" class="round-blue" href = "/login/?next={{ request.GET.parent  }}">Log In</a>
+                            </a>
+                        </div>
+                        {% endif %}
+                        </div>
+                    </div>
+                    
+                     </li>
+                {% for close in comment.close %}
+            </ul>
+        {% endfor %}
+    {% endfor %}
+    </div>
+{% endif %}<!--END COMMENTS LIST-->
+
+<!--ADD COMMENT -->	
+{% if announcement.allow_comments %}
+ <!--ADD COMMENT -->
+ <a name = "{{announcement.id}}"></a>
+<div class="section-row-titles mini-nav">Reply to this Announcement</div>
+    <hr class="hr3"> 	
+        {% if request.user.is_authenticated %}
+            {% render_comment_form for announcement %}
+        {% else %}
+            <div class= "login">
+                You must be logged in to post a comment.
+                <a id="section-login" class="round-blue" href = "/login/?next={{ request.GET.parent  }}">Log In</a>
+            </div>
+        {% endif %}
+    {% else %}
+<div id="comment_form">
+    <h3>Comments are closed.</h3>
+    <p>Comments have been closed for this post.</p>
+</div>
+{% endif %}
+<!--END ADD COMMENT -->

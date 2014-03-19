@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load block_tags %}
+
+{% block pageTitle %} Login {% endblock %}
+
+{% block navbars %}
+{% get_nav 'Membership' None %}
+{% endblock %}
+
+{% block content %}
+    <div class="section-content">
+        <form id="login" method="post" action="{{ request.path }}">
+        {% csrf_token %}
+        <input type="hidden" name="next" value="{{ request.GET.next }}" />
+            <div class="username-password">{{ form.username }}</div>
+            <div class="username-password">{{ form.password }}</div>
+            <button id ="login" class="round-blue float-right" type="submit" value="Login">LOGIN</button>
+            <div id="login-text">
+                New to Rhizome? <a href="{% url 'accounts_register' %}">Click here to sign up</a><br/>
+                Forgot your username or password? <a href="/password_reset/">Click here</a>
+            </div>
+        </form>
+    </div>
+{% endblock %}

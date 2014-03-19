@@ -1,0 +1,18 @@
+{% extends "artbase/base.html" %}
+{% load block_tags %}
+
+{% block page_assets_css %}
+	<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}artbase/styles/artbase.css" />
+	<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}artbase/styles/exhibitions.css" />
+	<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}artbase/styles/edit_exhibition.css" />
+{% endblock %}
+
+{% block page_assets_js %}
+	<script type="text/javascript" src="{{ STATIC_URL }}artbase/scripts/view_exhibition.js"></script>
+	<script type="text/javascript" src="{{ STATIC_URL }}artbase/scripts/exhibition.js"></script>
+	<script type="text/javascript" src="{{ STATIC_URL }}js/loadingOverlay.js"></script>
+{% endblock %}
+
+{% block navbars %}
+	{% get_nav 'Artbase' 'Member Exhibitions' %}
+{% endblock %}

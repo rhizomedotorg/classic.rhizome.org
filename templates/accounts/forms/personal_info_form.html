@@ -1,0 +1,25 @@
+<form action="{{ request.path }}" method="POST">
+{% csrf_token %}
+<input type = "hidden" name = "form" value = "personal_info">
+<div class = "edit-profile-form span-24">
+    {% for field in personal_info_form %}
+        <div class = "fieldset span-10">
+            <div class = "h6 light-gray">{{field.label}}</div>
+            <fieldset> 
+                  {% if field.errors %}<span class="form_errors">{{ field.errors }}</span>{% endif %}   
+                 {% if field.label == icon %}<img class = "float-left" src="{{user.get_profile.icon.url}}">{% endif %}
+                <div class = "edit-profile-form-input">{{field}}</div>
+            </fieldset>
+        </div>
+          {% endfor %}
+          
+        <div class="span-22 bold">**Note: Changing your username will change your profile url (<a href="http://rhizome.org{{request.user.get_profile.get_absolute_url}}">http://rhizome.org{{request.user.get_profile.get_absolute_url}}</a>). No spaces, please. Spaces in username will be replaced by underscores "_".
+        </div>
+
+    <div class = "span-22 end">
+        <fieldset id ="edit-button" class="float-right">
+            <input class="round-blue" type="submit" value="update" name="update">
+        </fieldset>
+    </div>  
+</div>
+</form>

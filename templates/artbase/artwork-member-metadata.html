@@ -1,0 +1,111 @@
+{% if artwork.format %}
+    <li>
+        <span class="list-label-gray">Format:</span>
+        <span class="list-item">
+            <div>
+                {{artwork.format}}
+            </div>
+        </span>
+    </li>
+{% endif %}
+
+{% if artwork.state_ed %}
+    <li>
+        <span class="list-label-gray">State or Edition:</span>
+        <span class="list-item">
+            <div>
+                {{artwork.state_ed}}
+            </div>
+        </span>
+    </li>
+{% endif %}
+
+{% if artwork.get_technologies %}
+    <li>
+        <div class="list-label-gray">Technologies:</div>
+        <div class="list-item">
+        {% for technology in artwork.get_technologies %}
+            {{technology.display_string}}{% if not forloop.last %}, {% endif %}
+        {% endfor %}
+        </div>
+    </li>
+{% endif %}
+
+{% if artwork.license %}
+    <li>
+        <span class="list-label-gray">License:</span>
+        <span class="list-item">
+            {% if artwork.license.slug != "arr" %}
+            <a target="_blank" href="{{artwork.license.url}}">
+                <img src="{{artwork.license.image}}" />
+            </a>
+            {% endif %}
+            <div>
+                <a target="_blank" href="{{artwork.license.url}}">
+                    {{artwork.license.title}}
+                </a>
+            </div>
+        </span>
+    </li>
+{% endif %}
+
+{% if artwork.get_document.exhibitions %}
+    <li>
+        <span class="list-label-gray">Exhibitions:</span>
+        <span class="list-item">
+        {% for exhibition in artwork.get_document.exhibitions %}
+           <div>&middot;
+           {% if exhibition.link %}
+                <a target="_blank" href="{{exhibition.link}}">{{exhibition.title}}</a>{% if exhibition.curator %}, curated by {{exhibition.curator}}{% endif %}{% if exhibition.location %}, {{exhibition.location}}{% endif %}
+            {% else %}
+                {{exhibition.title}}{% if exhibition.curator %}, curated by {{exhibition.curator}}{% endif %}{% if exhibition.location %}, {{exhibition.location}}{% endif %}
+            {% endif %}
+            </div>
+        {% endfor %}
+        </span>
+    </li>
+{% endif %}
+
+{% if artwork.get_document.articles %}
+    <li>
+        <span class="list-label-gray">Articles:</span>
+        <span class="list-item">
+            {% for a in artwork.get_document.articles %}
+            <div>
+                {% if a.link %}
+                    <a target="_blank" href="{{a.link}}">{{a.title}}</a> 
+                {% else %}
+                    {{a.title}}
+                {% endif %}
+                {% if a.author %}by {{a.author}}{% endif %}{% if a.publication %} in {{a.publication}}{% endif %}
+            </div>
+            {% endfor %}
+        </span>
+    </li>
+{% endif %}
+
+{% if artwork.get_document.support %}
+    <li>
+        <span class="list-label-gray">Support:</span>
+        <span class="list-item">
+            {% for s in artwork.get_document.support %}
+            <div>
+                {{s.title}}: {{s.amount}}, {{s.benefactor}}
+            </div>
+            {% endfor %}
+        </span>
+    </li>
+{% endif %}
+
+{% if artwork.get_document.footnotes %}
+    <li>
+        <span class="list-label-gray">Footnotes:</span>
+        <span class="list-item">
+            {% for footnote in artwork.get_document.footnotes %}
+            <div>
+                <a target="_blank" href="{{footnote.link}}">{{footnote.title}}</a>
+            </div>
+            {% endfor %}
+        </span>
+    </li>
+{% endif %}

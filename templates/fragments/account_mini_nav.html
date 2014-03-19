@@ -1,0 +1,18 @@
+<div class="section span-24">
+    <div class="section-row-titles mini-nav">
+        <span class="nav-item first {% if selected == 'Edit Your Profile' %}selected{% endif %}"><a href="/profile/edit/">Edit Your Profile</a></span>
+
+        <span class="nav-item {% if selected == 'Manage Member Benefits' %}selected{% endif %}"><a href="/profiles/manage-membership/">Manage Member Benefits</a></span>
+
+        <span class="nav-item {% if selected == 'Commissions Voting' %}selected{% endif %}"><a href="/profile/commissions-voting/">Commissions Voting</a></span>
+        
+        {% if request.user.get_profile.org_sub_admin %}
+            <span class="nav-item {% if selected == 'Manage Organizational Subscription' %}selected{% endif %}"><a href="/profile/manage-orgsub/">Manage Organizational Subscription</a></span>
+        {% endif %}
+        
+        <span class = "nav-item"><a target = "_blank" href="{{ request.user.get_profile.get_absolute_url }}">View Your Profile</a></span>
+
+        <span class="nav-item last"><a href="/logout/">Logout</a></span>
+        <hr class="hr3-no-margin">
+    </div>
+</div>

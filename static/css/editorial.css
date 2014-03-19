@@ -1,0 +1,120 @@
+/*
+#editorial-landing .section{
+    margin-bottom: 20px;
+}
+
+#editorial-landing img, #editorial-landing object, #editorial-landing object embed {
+    max-width: 400px !important;
+    max-height: 300px !important;
+    text-align: center;
+    display: inline;
+}
+
+#editorial-landing .post-body{
+    max-height: 410px;
+    overflow: hidden;
+}
+
+#editorial-landing p{
+    max-width: 430px !important;
+}
+
+#editorial-landing .post{
+    margin-bottom: 0px;
+}
+
+#editorial-landing .editorial-section-title{
+    background-color:#F1F1F1;
+    margin: 0 auto;
+    text-align: center;
+    padding: 12px;
+    font-family: Georgia;
+    font-size: 22px;
+    border: 1px solid #DBDBDB;
+}
+
+#editorial-landing .editorial-section-description{
+    background-color: #f9f9f9;
+    border-left:1px solid #cbcbcb;
+    border-right:1px solid #c4c4c4;
+    border-bottom: #ececec;
+    border: 1px solid #D4D3D3;
+    padding: 10px 20px;
+    font-size: 15px;
+    border-top: none;
+    width:388px;
+    padding-bottom: 20px;
+}
+
+#editorial-landing .editorial-section-button{
+    text-align: center;
+}
+
+#editorial-landing .editorial-section-button button{
+    padding: 17px 10px;
+    height: 55px;
+    width: 233px;
+    font-size: 15px;
+    color: #6494B2;
+}
+
+#editorial-landing .editorial-section-description #subscribe-title {
+    font-size: 13px;
+    text-align: center;
+    font-weight: bold;
+}
+
+#editorial-landing .editorial-section-description #subscribe-content{
+    width:250px;
+    margin: 10px 50px;
+}
+
+#editorial-landing .editorial-section-description #rss-icon{
+    float: left;
+    margin-top:10px;
+}
+
+#editorial-landing .editorial-section-description div{
+    margin: 5px 0px;
+}
+
+#editorial-landing .editorial-section-description .rss-links{
+    float: right;
+    font-size: 13px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+*/
+
+#artists-profiles {
+    font-size: 15px;
+}
+
+
+#artists-profiles .group{
+    width: 100%;
+    float: left;
+    padding: 5px;
+    min-height: 75px;
+}
+
+#artists-profiles #groups{
+    margin: 0 auto;
+}
+
+#artists-profiles #main-image{
+    text-align: center;
+    margin: 0px auto 25px;
+    display: none;
+}
+
+#artists-profiles .byline{
+    font-size: 13px;
+}
+
+#artists-profiles .group-letter{
+    font-weight: bold;
+    font-family: Georgia;
+    font-size: 17px;
+    text-decoration: underline;
+}

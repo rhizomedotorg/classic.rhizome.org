@@ -1,0 +1,9 @@
+{% extends "admin/change_form.html" %}
+
+{% block extrahead %}
+  {% load inlines_tags %}
+  {{ block.super }}
+  
+  <script type="text/javascript" src="{{ STATIC_URL }}js/tiny_mce/tiny_mce.js"></script>
+
+{% endblock %}

@@ -1,0 +1,117 @@
+################################################################################
+#
+# What is this?
+#
+################################################################################
+
+A fork by jnhasty of https://github.com/marcinn/django-bbcode.
+Used on rhizome.org. 
+
+
+django-bbcode is a django application which was written to render BBCode syntax
+to HTML using python and django. However it does not restrict you to BBCode like
+syntax, you can use it to parse anything you like into anything you like.
+
+################################################################################
+#
+# Quickstart
+#
+################################################################################
+
+For those in a hurry:
+
+1.) Put django-bbcode into your python path into a folder called 'bbcode'.
+2.) Add 'bbcode' to your INSTALLED_APPS in django
+3.) Optional: Add/edit bbcode tags
+4.) Put {% load bbcode %} into the template where you want to render stuff.
+5.) Put {% bbcode varname %} where you want the stuff, here called 'varname', to
+    be rendered.
+6.) Done.
+
+################################################################################
+#
+# Slowstart
+#
+################################################################################
+
+For those who want to do it right:
+
+1.) Put django-bbcode into your python path into a folder called 'bbcode'.
+2.) Add 'bbcode' to your INSTALLED_APPS in django
+3.) Make sure all bbcode you have is valid. This can be done by using 
+    bbcode.validate(content, namespaces) (namespaces is optional) with the
+    content you want to save. This will either return None if no errors were
+    found or a list of errors that occured.
+4.) Put {% load bbcode %} into the template where you want to render stuff.
+5.) Put {% bbcode varname namespace1 "namespace2" %} where you want the stuff,
+    here called 'varname', to be rendered. Namespaces are optional. 'namespace1'
+    is a template variable holding either a string or a list (or tuple) of
+    strings. Those namespaces are used to filter the tags which are used to
+    render the content. You can also give it hardcoded strings like
+    '"namespace2"'. To exclude a namespace you can prefix the name with a 'no-'.
+    For example: "no-mynamespace". For more information on namespaces look
+    below.
+6.) Done.
+
+################################################################################
+#
+# What are those so called 'namespaces'?
+#
+################################################################################
+
+ - "Namespaces are one honking great idea -- let's do more of those!" - PEP0020
+
+I totally agree with that quote from the Zen of Python, thus I included
+namespaces to django-bbcode. Namespaces are used to dynamcially filter what tags
+are used to render a context. The main reason I introduced this feature was to
+turn off smilies in my project for users who disable smilies (like me, I hate
+those silly graphics). In this case I'd just use the namespace "no-smilies".
+
+By default every tag gets 3 namespaces: "__all__" (which holds all tags), the
+django app name (for all builtin tags: "bbcode") and the name of the module the
+tag is defined in (for smilies: "smilies",...). Additionaly you can add
+namespaces to tags by giving their class an attribute 'namespace' which holds a
+list of strings. Those namespaces will be used additionally to the default ones.
+
+You can then use those namespaces in the bbcode template tag as additional 
+arguments after 'content'. It allows you to give template variables holding 
+lists or tuples of strings or a single string. You can also put hardcoded 
+namespaces there (wrapped in single or double quotes).
+
+################################################################################
+#
+# How do I write a custom tag?
+#
+################################################################################
+
+Basically where you wanna start is by reading the examples (builtin tags). A tag
+is created by subclassing the TagNode class (or some of the specialized base 
+classes such as ReplaceTagNode, ArgumentTagNode, MultiArgumentTagNode,....).
+
+Every tag class needs a couple of attributes:
+
+open_pattern: a compiled regular expression which matches the opening tag.
+close_pattern: a compiled regular expression which matches the ending tag.
+parse: a function which returns a string.
+
+For each match of open_pattern/close_pattern pairs an instance of the class will
+be created. Each class gets the parent node, the regular expression match object
+and the full content as arguments.
+Also each instance of a tag class as an attribute called 'nodes' which is the
+list of child-tags (tags nested within this tag).
+
+################################################################################
+#
+# What are soft exceptions?
+#
+################################################################################
+
+Python exceptions stop the flow of code, thus I wrote the SoftExceptionManager
+(SEM). If a tag was used wrong, this will not stop the parser, but create an
+entry in the SEM. This way if several independent errors occur you will get them
+at once instead of one after another. If you use bbcode.validate (which you 
+really should!) and the content fails to parse correctly, you will get all 
+errors from the SEM. The bbcode.parse function also returns a tuple with the
+parsed content and the list of errors as items.
+
+Each error in the SEM is a tuple of (line_number, error_text).

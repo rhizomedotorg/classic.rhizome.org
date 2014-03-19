@@ -1,0 +1,128 @@
+{% load bbcode  markup  %}
+
+
+<div id ="commissions-proposal" class="column-wrapper span-24">
+        
+    <h2 id="proposal-title" class="italic center span-24">{{proposal.title}}</h2>
+    
+    {% if proposal.image %}
+    <div class="span-24">
+        <img id="main-img" src = "{{ MEDIA_URL }}{{proposal.image}}" />
+    </div>
+    {% endif %}
+    
+    <div id="proposal-summary" class="span-24">
+        {{proposal.summary}}
+    </div>
+        
+    <div class= "left-column span-11">
+        <div class="section span-11">
+            <div class="section-row-titles">
+                <span class = "nav-item">Submitted by</span>
+            </div>
+            <hr class="hr3-no-margin">
+            <div class="proposal-content">
+                <a href="{{proposal.author.get_profile.get_absolute_url}}">{{ proposal.username}}</a>                                 
+            </div>   
+        </div>
+                            
+        <div class="section span-11">
+            <div class="section-row-titles">
+                <span class = "nav-item">Project Location</span>
+            </div>
+            <hr class="hr3-no-margin">
+            <div class="proposal-content">
+                {% if proposal.city %}{{ proposal.city }}{%endif%}
+                {% if proposal.state %}{{ proposal.state }}{%endif%}
+                {% if proposal.country %}{{ proposal.country}}{%endif%}
+            </div>   
+        </div>
+    </div>
+        
+        
+    <div class= "right-column span-11">         
+         <div class="section span-11">
+            <div class="section-row-titles">
+                <span class = "nav-item">Artists Involved</span>
+            </div>
+            
+            <hr class="hr3-no-margin">
+            
+            <div class="proposal-content span-11">
+                {% if proposal.other_artists %} {{ proposal.other_artists }}<br/> {% endif %}
+                
+                {% for artist in proposal.get_artists %}
+                    <a href="{{artist.get_profile.get_absolute_url}}">{{artist.get_profile}}{%if not forloop.last%},{%endif%}</a>
+                {% endfor %}
+            </div>  
+        </div>
+        
+        {% if proposal.external_url %}
+        <div class="section span-11">
+            <div class="section-row-titles">
+                <span class = "nav-item">Project URL</span>
+            </div>
+            <hr class="hr3-no-margin">
+            <div class="proposal-content span-11">
+                <a href="{{proposal.external_url}}">{{proposal.external_url}}</a>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+    
+    <div id="proposal-content" class="span-24">
+        <div class="section-row-titles">
+            <span class = "nav-item">Project Description</span>
+        </div>
+        <hr class="hr3-no-margin">
+        <div class = "proposal-content span-20">
+        {% if proposal.cycle.id > 6 %}
+            {% bbcode proposal.description %}
+        {% else %}
+            {{ proposal.description|markdown }}
+        {% endif %}
+        </div>
+    </div>
+    
+    <div id="proposal-content" class="span-24">
+        <div class="section-row-titles">
+            <span class = "nav-item">Project Timeline and Budget</span>
+        </div>
+        <hr class="hr3-no-margin">
+        <div class = "proposal-content span-20">
+        {% if proposal.cycle.id > 6 %}
+            {% bbcode proposal.timeline_and_budget %}
+        {% else %}
+            {{ proposal.timeline_and_budget|markdown }}
+        {% endif %}
+        </div>
+    </div>
+    
+    <div id="proposal-content" class="span-24">
+        <div class="section-row-titles">
+            <span class = "nav-item">About the Artist(s) Involved</span>
+        </div>
+        <hr class="hr3-no-margin">
+        <div class = "proposal-content span-20">
+        {% if proposal.cycle.id > 6 %}
+            {% bbcode proposal.resume_or_cv %}
+        {% else %}
+            {{ proposal.resume_or_cv|markdown }}
+        {% endif %}
+        </div>
+    </div>
+    
+    <div id="proposal-content" class="span-24">
+        <div class="section-row-titles">
+            <span class = "nav-item">Artist(s) Work Samples</span>
+        </div>
+        <hr class="hr3-no-margin">
+        <div class = "proposal-content span-20">
+        {% if proposal.cycle.id > 6 %}
+            {% bbcode proposal.work_samples %}
+        {% else %}
+            {{ proposal.work_samples|markdown }}
+        {% endif %}
+        </div>
+    </div>
+</div>

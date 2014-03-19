@@ -1,0 +1,11 @@
+<ul id="existing-artists-list">
+    {% for artist in other_artists %}
+    {% if artist.rhizome_profile_url %}
+    <li>
+        <a href="{{ artist.rhizome_profile_url }}">{{ artist.name }}</a>: {{ artist.role }} | <a class="remove-artist" href="remove/artist/{{ artist.index }}">REMOVE</a>
+    </li>
+    {% else %}
+    <li>{{ artist.name }}: {{ artist.role }} | <a class="remove-artist" href="remove/artist/{{ artist.index }}">REMOVE</a></li>
+    {% endif %}
+    {% endfor %}
+</ul>

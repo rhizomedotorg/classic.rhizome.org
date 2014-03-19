@@ -1,0 +1,115 @@
+{% extends "programs/base.html" %}
+{% load inlines_tags markup %}
+
+{% block pageTitle %} 
+{{ event.title }}
+{% endblock %}
+
+{% block content %}
+
+<div class="section span-24">
+    <div class="section-row-titles">
+        <span class = "nav-item">Rhizome Events</span>
+        <hr class="hr3-no-margin">
+    </div>  
+      
+     <div id = "recent-events" class = "span-24">
+        <div class = "event span-24">
+        
+        {% if event.image %}
+            <div class = "left-content center span-10">    
+                <img src="{{MEDIA_URL}}{{event.image}}"/>
+            </div>
+        
+            <div class="right-content span-11 prepend-2">
+                <div class = "programs-title center">
+                    <a href= "{{event.url}}">{{ event.title }}</a>
+                </div>
+                <hr class="thin-no-margin">
+                    
+                {% if event.is_new_silent %}
+                    <div class = "new-silent">
+                        <span class="red">New Silent Series:</span> <span class="blue">Curated by Lauren Cornell</span>
+                    </div>
+                {% endif %}
+
+                {% if event.get_curators or event.curator_other %}
+                 <div class="curators">
+                    Curated by
+                    {% if event.get_curators %}
+                       {% for curator in event.get_curators %}
+                        <a href="{{ curator.get_profile.get_absolute_url }}">
+                                {{ curator.get_profile }}
+                        </a>{% if not forloop.last %}, {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                    
+                    {% if event.curator_other %}
+                        {{event.curator_other}}
+                    {% endif %}
+                </div>
+                {% endif %}
+                    
+                    <div class="date">
+                        {% if event.is_online %} Launched {% endif %}
+                        {{ event.start_date|date:"l, F jS Y" }} 
+                        {% if event.location_title %} at {{ event.location_title }}{% endif %}
+                    </div>
+                    
+                    <div class = "summary">
+                        {{ event.description|markdown }}
+                    </div>
+
+                </div>
+            
+        {% else %}
+          
+          <div class="program-no-image span-24">
+                <div class = "programs-title center">
+                    <a href= "{{event.url}}">{{ event.title }}</a>
+                </div>
+                <hr class="thin-no-margin">
+                    
+                {% if event.is_new_silent %}
+                    <div class = "new-silent">
+                        <span class="red">New Silent Series:</span> <span class="blue">Curated by Lauren Cornell</span>
+                    </div>
+                {% endif %}
+                
+                {% if event.get_curators or event.curator_other %}
+                 <div class="curators">
+                    Curated by
+                    {% if event.get_curators %}
+                       {% for curator in event.get_curators %}
+                        <a href="{{ curator.get_profile.get_absolute_url }}">
+                                {{ curator.get_profile }}
+                        </a>{% if not forloop.last %}, {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                    
+                    {% if event.curator_other %}
+                        {{event.curator_other}}
+                    {% endif %}
+                </div>
+                {% endif %}
+
+                    
+                <div class="date">
+                    {% if event.is_online %} Launched {% endif %}
+                        {{ event.start_date|date:"l, F jS Y" }}
+                        {% if event.location_title %}
+                            at {{ event.location_title }}
+                        {% endif %}
+                </div>
+                    
+                <div class = "summary">
+                    {{ event.description|markdown }}
+                </div>
+            </div>
+        {% endif %}
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

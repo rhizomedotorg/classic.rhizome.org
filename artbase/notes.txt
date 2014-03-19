@@ -1,0 +1,5 @@
+NOTES
+================================================================================
+
+Creator models are really meant not meant to be many to many. A list of them
+is specific to an artwork. This is an important distinction.

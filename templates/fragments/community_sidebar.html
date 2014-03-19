@@ -1,0 +1,139 @@
+{% load discuss comments announce_tags %}
+
+<div id ="sidebar">
+
+     <div class="sidebar-element ">
+        <div class="section-title"><a href="/announce/jobs/">Rhizome Jobs Board</a></div>
+        <div class="content-wrap ">
+            <div class="content ">
+                {% get_jobs_board 4 as jobs %}
+                {% for job in jobs %}
+                <div class="content-body  ">
+                    <div class="deadline ">
+                        {% if job.get_thumbnail %}
+                        <div class = "announce-thumbnail ">
+                            <a href="{{job.get_absolute_url}}">
+                                <img width="80" height="80" src = "{{MEDIA_URL}}{{ job.get_thumbnail }}"></img>
+                            </a>
+                        </div>
+                        <div class="announce-title ">
+                            <a class = "bold" href="{{job.get_absolute_url}}">{{ job.title }}</a>                                   
+                        </div>
+                        {% else %}
+                        <div class="announce-title-no-image">
+                            <a class = "bold" href="{{job.get_absolute_url}}">{{ job.title }}</a>                                   
+                        </div>                  
+                        {% endif %}
+
+                        <div class="announce-user">
+                            <span class="descriptor">Posted by</span> <a class = "bold" href="{{job.user.get_profile.get_absolute_url}}">{{ job.user.get_profile }}</a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <div class="sidebar-element">
+        <div class="section-title"><a href="/discuss">Active Discussions</a></div>
+        <div class="content-wrap">
+            <div class="content">
+                {% get_active_threads 4 as threads %}
+                {% for thread in threads %}
+                <div class="content-body">
+                    <div class="comment">
+                        <div class="comment-title">
+                        {% if thread.content_type_id == 112 %}
+                        {% get_comment_count for thread as comment_count %}
+                            <a class="discuss-title" href = "/discuss/view/{{thread.id}}">{{ thread.content_object.title }}                                   
+                            ({{comment_count}} post{{comment_count|pluralize}})  
+                            </a>                       
+                        {% else %}
+                        {% get_comment_count for thread.content_object as comment_count %}
+                            <a  href="{{thread.content_object.get_absolute_url}}">{{ thread.content_object.title }}                                   
+                            ({{comment_count}} post{{comment_count|pluralize}})   
+                            </a> 
+                        {% endif %}
+                        </div>
+                        <div class="comment-info right">
+                            <span class="descriptor">
+                                Last comment {{ thread.last_comment.submit_date|timesince }} ago by<br />
+                            </span>
+                            <a class = "bold" href="{{ thread.last_comment.user.get_profile.get_absolute_url }}">                
+                                {{ thread.last_comment.user.get_profile }}
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    
+     <div class="sidebar-element">
+        <div class="section-title"><a href="/announce/deadlines">Community Deadlines</a></div>
+        <div class="content-wrap">
+            <div class="content">
+                {% get_upcoming_deadlines 4 as deadlines %}
+                {% for deadline in deadlines %}
+                <div class="content-body ">
+                    <div class="deadline">
+                        <div class = "day ">
+                            <div class = "day-month">{{ deadline.deadline|date:"M" }}</div>
+                            <div class = "day-number">{{ deadline.deadline|date:"j" }}</div>
+                            <div class = "day-title">{{ deadline.deadline|date:"D" }} </div>
+                        </div>
+                        <div class = "deadline-details">
+                            <div class="deadline-title">
+                                <b class="red">{% if deadline.type == "job" %}Job | {% endif %}{{ deadline.subtype }}:</b><br />
+                                <a class = "bold" href="{{deadline.get_absolute_url}}">{{ deadline.title }}</a>
+                            </div>
+                            <div class="deadline-user">
+                                <span class="descriptor">Posted by</span> <a class = "bold" href="{{deadline.user.get_profile.get_absolute_url}}">{{ deadline.user.get_profile }}</a>
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    
+     <div class="sidebar-element ">
+        <div class="section-title"><a href="/announce">Community Announcements</a></div>
+        <div class="content-wrap ">
+            <div class="content ">
+                {% get_events_and_opps 4 as events_and_opps %}
+                {% for announcement in events_and_opps %}
+                <div class="content-body  ">
+                    <div class="deadline ">
+                        {% if announcement.get_thumbnail %}
+                        <div class = "announce-thumbnail ">
+                            <a href="{{announcement.get_absolute_url}}">
+                                <img width="80" height="80" src = "{{MEDIA_URL}}{{ announcement.get_thumbnail }}"></img>
+                            </a>
+                        </div>
+                        <div class="announce-title ">
+                            <b class="red">{% if announcement.type == "job" %}Job | {% endif %}{{ announcement.subtype}}:</b>
+                            <a class = "bold" href="{{announcement.get_absolute_url}}">{{ announcement.title }}</a>                                   
+                        </div>
+                        {% else %}
+                        <div class="announce-title-no-image">
+                            <b class="red">{% if announcement.type == "job" %}Job | {% endif %}{{ announcement.subtype}}:</b>
+                            <a class = "bold" href="{{announcement.get_absolute_url}}">{{ announcement.title }}</a>                                   
+                        </div>                  
+                        {% endif %}
+
+                        <div class="announce-user">
+                            <span class="descriptor">Posted by</span> <a class = "bold" href="{{announcement.user.get_profile.get_absolute_url}}">{{ announcement.user.get_profile }}</a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    
+ </div>

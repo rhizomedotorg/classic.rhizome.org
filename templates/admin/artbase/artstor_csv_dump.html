@@ -1,0 +1,59 @@
+{% extends "admin/base_site.html" %}
+{% load i18n admin_modify  admin_list %}
+
+{% block extrahead %}
+<script src="{{ STATIC_URL }}js/admin/RelatedObjectLookups.js"></script>
+{% endblock %}
+
+{% block breadcrumbs %} 
+<div class="breadcrumbs">
+<a href="../../../">Home</a> &rsaquo;
+<a href="../../">{{ app_label|capfirst|escape }}</a> &rsaquo;
+<a href="../">{{ opts }} </a>&rsaquo; Dump CSV for ArtStor
+</div> 
+{% endblock %}
+
+{% block form_top %}
+  <h1>Create CSV for ArtStor</h1>
+{% endblock %}
+
+{% block content %}
+    {% csrf_token %}
+    <form  method="post" action="{{request.path}}">
+    {% csrf_token %}
+    <div id="content" class ="flex">
+        <div id="content-main">
+            <div id="changelist" class="module">
+                <table id="result_list" cellspacing="0">
+                    <tbody>
+                        <tr>     
+                            <p style = "padding:10px;font-weight:bold;">
+                                Artworks missing required data will NOT be added to list.
+                            </p>   
+                        </tr>
+                        
+                        <tr>            
+                            <td style = "padding:10px">
+                                <label for="id_old_user" class="required">Select a list of artworks:</label>
+                                <input style="width:250px;" class="vManyToManyRawIdAdminField" type="text" name="artworks" value="" id="id_artworks" /><a href="../../../artbase/artworkstub/" class="related-lookup" id="lookup_id_artworks" onclick="return showRelatedObjectLookupPopup(this);"> 
+                                <img src="/media/amedia/img/admin/selector-search.gif" width="16" height="16" alt="Lookup" /></a>   
+                                <input style ="margin-left:10px;"class="default" type="submit" name="dump_list" value="Create CSV from this list"/>
+                                
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+
+                                <input class="default" style ="float:left;" type="submit" name="dump_all_artworks" value="Create CSV for all artbase artworks"/>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</form>
+
+
+
+{% endblock %}

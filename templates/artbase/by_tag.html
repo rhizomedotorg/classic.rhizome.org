@@ -1,0 +1,45 @@
+{% extends "artbase/browse_base.html" %}
+
+{% block pageTitle %} Artbase: Browse by Tags {% endblock %}
+
+{% block content %}
+
+{% include "artbase/browse_nav.html" %}
+
+<div class="section-content span-24">
+
+    <div id = "section-search">
+        <form action="/search/" method="get">
+            <input id ="search" type="text" name="q" value="SEARCH THE ARTBASE"  class = "section-search-input" />
+            <input type="hidden" name="models" value="artbase.artworkstub" id="id_models_13" />
+            <button id ="directory-search"  class="round-blue-fat" type="submit">SEARCH</button>
+        </form>
+    </div>
+
+    <table id="browse-tags-table" class="browse-table" cellspacing="0" cellpadding="0" border="0">
+        {% for row in grouped %}
+        <tr>
+            {% for tag in row %}
+            {% if tag %}
+            <td>
+                <a class="listing-title upper" href="{{tag.url}}">
+                    {{ tag.name }}
+                </a>
+            </td>
+            {% else %}
+            <td>&nbsp;</td>
+            {% endif %}
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+{% if browse_paginator.total_pages > 1 %}
+<hr class="hr2-grey-no-margin">
+<span id="feed-paginator" class="span-24">
+    {{ browse_paginator.render }}
+    <hr class="hr2-grey">
+</span>
+{% endif %}
+{% endblock %}

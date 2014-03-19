@@ -1,0 +1,29 @@
+body{
+    background-color:white;
+    text-align:center;
+    margin: 0;
+    padding: 0;
+}
+
+a, img{
+    text-decoration: none;
+    border: none;
+    outline: 0;
+}
+
+a:hover{
+    text-decoration: none;
+}
+
+a {
+	color: #0099cf;
+}
+
+h3, h4 {
+	font-family: georgia;
+	font-weight: normal;
+	text-transform: uppercase;
+	margin: 0;
+	padding: 0;
+	font-size: 14px;
+}

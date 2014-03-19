@@ -1,0 +1,91 @@
+{% extends 'new_base.html' %}
+{% load block_tags %}
+
+{% block pageTitle %}Make a Donation{% endblock %}
+
+{% block navbars %}
+    {% get_nav 'Membership' 'Donate' %}
+{% endblock %}
+
+{% block content %}
+    <div class="header">
+        <div class="section">
+            <h2>Checkout with Credit Card</h2>
+
+           
+        </div>
+    </div>
+    <div class="section">
+        <div class="left-col"> 
+        
+            <form class="rz-form" data-endpoint="/api/v1/donation/?format=json" data-next="{% url 'support_thanks' %}">{% csrf_token %}
+                <input type="hidden" name="amount" value="{{ amount }}" />
+                <input type="hidden" name="gift" value="{{ gift }}" />
+
+                <div class="field">
+                    {{ form.first_name.label_tag }}<br>
+                    {{ form.first_name }}
+                </div>
+                <div class="field">
+                    {{ form.last_name.label_tag }}<br>
+                    {{ form.last_name }}
+                </div>
+                <div class="field col-2">
+                    {{ form.contact_email.label_tag }}<br>
+                    {{ form.contact_email }}
+                </div>
+                <div class="field">
+                    {{ form.card_number.label_tag }}<br>
+                    {{ form.card_number }}
+                </div>
+                <div class="field">
+                    {{ form.exp_date.label_tag }}<br>
+                    {{ form.exp_date }}
+                </div>
+                <div class="field col-2">
+                    {{ form.cvv.label_tag }}<br>
+                    {{ form.cvv }}
+                </div>
+                <div class="field">
+                   <button id="login" class="round-blue" type="submit" value="Submit">Submit</button>
+                </div>
+            </form>
+
+            <h2>or</h2><br>
+
+            <form action="{{ paypal.paypal_url }}" method="post">
+                <input type="hidden" name="cmd" value="_ext-enter"></input>
+                <input type="hidden" name="redirect_cmd" value="_xclick"></input>
+                <input type="hidden" name="business" value="{{ paypal.business }}"></input> 
+                {% if gift %}
+                    <input type="hidden" name="custom" value="{{ gift }}"></input> 
+                {% endif %}
+                <input type="hidden" name="currency_code" value="USD" ></input>
+                <input type="hidden" name="charset" value="utf-8"></input> 
+                <input type="hidden" name="amount" value="{{ amount }}"></input> 
+                <input type="hidden" name="item_name" value="{{ paypal.item_name }}"></input>
+                <div class = "center">      
+                    <input class="donate-button" type="submit" value="Click here to pay via PayPal">
+                </div>
+            </form>
+        </div>
+        <div class="right-col">
+            <div class="sidebar-module">
+                <div class="title">Donation Details</div>
+                <div class="box">
+                    <div class="content-body">
+                        <p>${{ amount }}</p> 
+                        {% if gift %}
+                            <p>with:</p> 
+                            <p>{{ gift }}</p> 
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block extra_js %}
+    <script type="text/javascript" src="{{ STATIC_URL }}js/forms.js"></script>
+{% endblock %}

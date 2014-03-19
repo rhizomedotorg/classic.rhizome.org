@@ -1,0 +1,68 @@
+{% extends "commissions/base.html" %}
+{% load url from future %}
+
+{% block pageTitle %} 
+Submit a Commissions Proposal
+{% endblock %}
+
+{% block bottom_js %}
+    <script type="text/javascript" src="{{ STATIC_URL }}js/bbcode/editor.js"></script>   
+    <script type="text/javascript" src="{{ STATIC_URL }}js/bbcode/color_palette.js"></script> 
+    <script type="text/javascript" src="{{ STATIC_URL }}commissions/scripts/instructions.js"></script>   
+{% endblock %}
+
+{% block customStyleSheets %}
+<link rel="stylesheet" href="{{ STATIC_URL }}commissions/styles/commissions.css" type="text/css" charset="utf-8"></link>
+{% endblock %}
+
+
+{% block content %}
+    {% if cycle.is_tumblr_commission %}
+        <img class="tumblr" src="{{ STATIC_URL }}commissions/images/tumblr.png" />
+    {% endif %}
+    <div class="section span-24">
+        <div class="section-row-titles">
+            <span class = "nav-item">Submit a Commissions Proposal</span>
+            |
+            <a id = "proposal-instructions-link" href="#">Click here for application instructions</a>
+            <hr class="hr3-no-margin">
+        </div>
+    </div>   
+    
+    <div id= "proposal-instructions-wrap" class="span-24">    
+        <div id = "proposal-instructions">
+            <span href="#" id="close">X</span>
+            <div id = "instructions">    
+                <h2 class="center">{% if cycle.is_tumblr_commission %}Rhizome Tumblr Internet Art Grant {% endif %}Application Instructions</h2>
+                <h4 class="instructions-header">Hosting</h4>
+                <p class="indent">Commission proposals require a webpage, and this page can either be hosted by Rhizome or by the applicant. If you want your commission application hosted by Rhizome, be sure to check the box next to "This proposal should be hosted by Rhizome" at the bottom of the application form. If you want to host your own proposal, be sure to add the url to the proposal in the "External Link" part of the application form.</p>
+                
+                <h4 class="instructions-header">Saving</h4>
+                <p class="indent">Every commission proposal must have ALL required fields filled out in order to be considered. You can, however, edit and save this proposal multiple times before the final proposal deadline. In order for a proposal to be saved, it must have a *title* and a *summary*.</p>
+                
+                <h4 class="instructions-header">Images</h4>
+                <p class="indent">You can submit one main image to be attached with the project (600px max). This image will also be saved as a 100x100 thumbnail for use as this proposal's icon. You can add *multiple* images and other media in your proposal, however, by using the bbcode markup in the fields with rich text editors.</p>
+                
+                <h4 class="instructions-header">Media and Markup</h4>
+                <p class="indent">The proposal fields with rich text editors support BBcode for markup. This markup allows you to add images, video, and other media and also allows for text styling. You must provide links to these Images and other media, as they will not be uploaded to the Rhizome site. For questions details about how to use bbcode, refer to the markup reference guide here: <a href="/discuss/bbcode" onclick="javascript:void window.open('/discuss/bbcode','1276814637707','width=700,height=500,toolbar=0,menubar=0,location=0,status=1,scrollbars=1,resizable=1,left=0,top=0');return false;">BBCode Guide</a>
+                </p>
+                {% if not cycle.is_tumblr_commission %}
+                <h4 class="instructions-header">Member Vote</h4>
+                <p class="indent">Two commissions will be chosen by vote via Rhizome's membership base. In order to be eligible for these awards, your proposal must be viewable by the public. If you DO NOT wish to be entered into the member vote and would like your proposal to be PRIVATE (and only viewable by Rhizome staff and the jurors), please *uncheck* the "Enter proposal in member vote" button at the bottom of the application. </p>
+                {% endif %}
+
+                <h4 class="instructions-header">Complete Rules and Procedures</h4>
+                <p class="indent">Read the <a target="_blank" href="{% url 'commissions_procedures' cycle.id %}">commissions procedures</a> for complete details on the {% if cycle.is_tumblr_commission %}Rhizome Tumblr Internet Art Grant {% else %}commissions{% endif %} program.</p>
+            </div>
+        </div>  
+    </div>          
+                    
+    <div class = "post-form span-24">
+        <form action="{{ request.path }}" name="proposal_form" id="proposal_form" enctype="multipart/form-data" method="POST">
+            {% csrf_token %}
+            {% include "commissions/submission_form.html" %}
+        </form>
+    </div>
+    
+</div>           
+{% endblock %}

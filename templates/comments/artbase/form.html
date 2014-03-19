@@ -1,0 +1,77 @@
+{% load comments i18n %}
+
+
+{% if "artbase/exhibitions" in request.path %}
+
+<form id="comment-form" action="{% comment_form_target %}" method="post">
+    <input type="hidden" name="next" value="{{ exhibition.get_absolute_url }}" />
+    {% csrf_token %}
+    {% for field in form reversed %}
+
+        {% if field.is_hidden %}
+        {{ field }}
+        {% else %}
+        {% if field.errors %}{{ field.errors }}{% endif %}
+        <p
+         {% if field.errors %} class="error"{% endif %}
+         {% ifequal field.name "honeypot" %} style="display:none;"{% endifequal %}
+         {% ifequal field.name "name" %} style="display:none;"{% endifequal %}
+         {% ifequal field.name "url" %} style="display:none;"{% endifequal %}
+         {% ifequal field.name "title" %} style="display:none;"{% endifequal %}
+         {% ifequal field.name "email" %} style="display:none;"{% endifequal %}
+        >
+
+        {% ifequal field.name "comment" %} 
+            {{ field }}
+        {% else %}
+            {{ field.label_tag }}       
+            {{ field }}
+        {% endifequal %}
+        </p>
+        {% endif %}
+        
+    {% endfor %}
+    
+    <p class="submit">
+        <button class="float-right round-blue" value="1" name="publish">Post Comment</button>
+    </p>
+</form>
+
+{% else %}
+
+<form id="comment-form" action="{% comment_form_target %}" method="post">
+ <input type="hidden" name="next" value="{{ artwork.get_absolute_url }}" />
+    {% csrf_token %}
+    {% for field in form reversed %}
+
+        {% if field.is_hidden %}
+        {{ field }}
+        {% else %}
+        {% if field.errors %}{{ field.errors }}{% endif %}
+        <p
+         {% if field.errors %} class="error"{% endif %}
+         {% ifequal field.name "honeypot" %} style="display:none;"{% endifequal %}
+         {% ifequal field.name "name" %} style="display:none;"{% endifequal %}
+         {% ifequal field.name "url" %} style="display:none;"{% endifequal %}
+         {% ifequal field.name "title" %} style="display:none;"{% endifequal %}
+         {% ifequal field.name "email" %} style="display:none;"{% endifequal %}
+        >
+
+        {% ifequal field.name "comment" %} 
+<!--             <label class="h6 light-gray" for="id_title"><span class="red">YOU</span><span class="timestamp">| NOW</span></label> -->
+            {{ field }}
+        {% else %}
+            {{ field.label_tag }}       
+            {{ field }}
+        {% endifequal %}
+        </p>
+        {% endif %}
+        
+    {% endfor %}
+    
+    <p class="submit">
+        <input id="submit-comment" type="submit" name="post" class="submit-post" value="{% trans "Post Comment" %}" />
+    </p>
+</form>
+
+{% endif %}

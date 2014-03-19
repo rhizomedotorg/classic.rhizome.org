@@ -1,0 +1,165 @@
+{% extends "artbase/base.html" %}
+{% load inlines_tags comments tagging_tags markup block_tags %}
+
+{% block pageTitle %}ArtBase{% endblock %}
+
+{% block customScripts %}
+    <script type="text/javascript" src="{{ STATIC_URL }}artbase/scripts/featured-rotate.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}artbase/scripts/highlights.js"></script>
+{% endblock %}
+
+{% block body_class %}artbase{% endblock %}
+{% block content_class %}artbase-featured-content{% endblock %}
+
+{% block flash_message %}
+{% if flash_msg == "artwork_deleted" %}
+The artwork was deleted
+{% endif %}
+{% if flash_msg == "exhibition_deleted" %}
+The exhibition was deleted
+{% endif %}
+{% endblock %}
+
+{% block navbars %}
+    {% get_nav 'Artbase' None %}
+{% endblock %}
+
+{% block artbase_section_header %}
+<div id="artbase-top">
+    <div id="featured-work">
+        <a href="{{ featured_artwork.view_url }}" id="featured-work-image-link">
+            <img id="featured-work-image" class="image" width="950" src="{{MEDIA_URL}}{{ featured_artwork.image_featured}}"></img>
+        </a>
+    </div>
+    <img id="featured-details-triangle-flap" src="{{ STATIC_URL }}images/small_triangle_flap.png"></img>
+    <div id="featured-details-bottom-left">
+        <div class="featured-mask"></div>
+        <div id="featured-work-content" class="content">
+            {% include "artbase/featured_work_new.html" %}
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
+{% block content %}
+<div class="span-24" id="artbase-featured-wrap">
+    
+    <div class="span-24" id="artbase-description-wrap">
+        <div class="span-12" id="section-description">
+            {{ artbase_section_description|markdown }}
+        </div>
+        
+        <div class="prepend-1" id="artbase-fp-browse-search">
+                
+            <form action="/search/" method="get" id="search-form">
+                <input id ="artbase-search-input" type="text" name="q" value="SEARCH THE ARTBASE" />
+                <input type="hidden" name="models" value="artbase.artworkstub" id="id_models_13" />
+                <button id ="search-button" class="round-blue-fat" type="submit"></button>
+            </form>
+                        
+            <div id="artbase-browse">
+                <span id="artbase-browse-browse">Browse:</span> 
+                <span class="artbase-browse-type"><a href="/artbase/browse/title/">Works</a></span> 
+                <span class="artbase-browse-type"><a href="/artbase/browse/artist/">Artists</a></span> 
+                <span class="artbase-browse-type"><a href="/artbase/browse/tag/">Tags</a></span></div>
+        </div>
+    </div>
+    
+    <h6>Collections</h6>
+    <hr class="hr3">
+<!--
+    
+    <div id="collection-left-nav"><</div>
+    <div id="collection-right-nav">></div>
+-->
+
+    <div class="span-24" id="artbase-collections">
+    {% for collection in frontpage_collections %}
+        <a href="{{ collection.get_absolute_url }}" class="collection-link">
+            <div class="collection {% if forloop.counter = 2 or forloop.counter = 5 %}middle{% endif %}">
+                <h3>{{ collection.title }}</h3>
+                <div class="collection-artworks">
+                {% for artwork in collection.get_artworks_for_fp %}
+                    <img title="{{artwork.title}} by {{artwork.byline}}" class="collection-artwork-image {% if not forloop.first %}overlap{% else %} first {% endif %}" src="{{MEDIA_URL}}{{ artwork.image_small }}" />
+                {% endfor %}
+                </div>
+                <div class="collection-summary">
+                    {{ collection.summary }}
+                </div>
+            </div>
+        </a>
+    {% endfor %}
+    </div>
+    
+    <div class="span-24" id="artbase-fp-archived-favorite">
+        <div id="artbase-fp-favorite">
+            <h6><a class="anchor-name" href="/artbase/browse/favorites/">Member Favorite</a></h6>
+            <hr class="hr3">
+            <a href="{{favorite.get_absolute_url}}">
+                <img width="460" height="350" src="http://media.rhizome.org/{{favorite.image_medium}}" />
+            </a>
+            <img id="favorite-triangle-flap" src="{{ STATIC_URL }}images/small_triangle_flap.png"></img>
+            <div class="overlay">
+                <div class="overlay-mask"></div>
+                <div class="overlay-details">
+                    <div class="overlay-title"><a href="{{favorite.get_absolute_url}}">{{favorite.title}}</a></div>
+                    <div class="overlay-byline">
+                        <a href="{{favorite.user.get_profile.get_absolute_url}}">{{favorite.byline}}</a> ({{ favorite.created_date|date:"Y" }})
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="artbase-fp-archived">
+            <h6><a class="anchor-name" href="/artbase/browse/archived/">Recently Archived</h6>
+            <hr class="hr3">
+            <a href="{{archived.get_absolute_url}}">
+                <img width="460" height="350" src="http://media.rhizome.org/{{archived.image_medium}}" />
+            </a>
+            <img id="archived-triangle-flap" src="{{ STATIC_URL }}images/small_triangle_flap.png"></img>
+            <div class="overlay">
+                <div class="overlay-mask"></div>
+                <div class="overlay-details">
+                    <div class="overlay-title"><a href="{{archived.get_absolute_url}}">{{archived.title}}</a></div>
+                    <div class="overlay-byline">
+                        <a href="{{archived.user.get_profile.get_absolute_url}}">{{archived.byline}}</a> ({{ archived.created_date|date:"Y" }})
+                    </div>                
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="span-24" id="artbase-fp-member-exhibitions">
+        <h6><a class="anchor-name" href="/artbase/exhibitions">Member Exhibitions</a></h6>
+        <hr class="hr3">
+        {% for exhibition in exhibitions %}
+        <div class="exhibition {% if forloop.counter = 2 %}middle{% endif %}">
+            <a href="{{ exhibition.url }}"><img width="285" height="200" src="{{MEDIA_URL}}{{ exhibition.image }}"></img></a>
+            <a href="{{ exhibition.url }}"><h3>{{ exhibition.title }}</h3>
+            <h4>{{ exhibition.subtitle}}</h4></a>
+            <hr class="thin">
+            <div class="bold-upper blue">Curated by
+                <a href="{{ exhibition.user.get_profile.get_absolute_url }}">{{ exhibition.user.get_profile }}</a>
+            </div>
+            <div class="small-italic">
+                With works by
+                {% for artist in exhibition.artists %}
+                    <a href="{{ artist.get_profile.get_absolute_url }}">
+                    {{artist.get_profile}}</a>{% if not forloop.last %}, {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+        {% endfor %}
+        <hr class="hr2"></hr>
+        <a href="/artbase/exhibitions">
+            <button class="bold-upper more blue"><span>More</span><span class="more-arrow"></span></button>
+        </a>
+
+    </div>
+
+
+</div>
+{% endblock %}
+
+

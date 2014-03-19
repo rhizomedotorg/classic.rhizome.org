@@ -1,0 +1,48 @@
+{% extends "commissions/base.html" %}
+{% load  hitcount_tags %}
+
+{% block pageTitle %} 
+{{proposal.title}}
+{% endblock %}
+
+    
+{% block bottom_js %}
+    <script type="text/javascript" src="{{ STATIC_URL }}js/bbcode/editor.js"></script>   
+    <script type="text/javascript" src="{{ STATIC_URL }}js/bbcode/color_palette.js"></script> 
+    <script type="text/javascript" src="{{ STATIC_URL }}discuss/scripts/add_comment_toggler.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/loadingOverlay.js"></script>
+
+    <script type="text/javascript">
+        window.addEvent('domready', function() {
+            {% get_hit_count_javascript for proposal %}
+        });
+    </script>
+{% endblock %}
+    
+
+{% block fixedSideContent %}
+    {% if can_edit %}
+         <div id="edit-proposal" class="span-24">
+            <a href="{{proposal.edit_url}}">EDIT THIS PROPOSAL</a>
+         </div>
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+
+{% if request.GET.thanks %}
+<div style = "background-color:#FFFEB3;margin-left:30px;" class="notice bold upper center">
+    {% if request.GET.thanks %}
+    Thanks for submitting a Commission! <a href="{{proposal.edit_url}}">EDIT THIS PROPOSAL</a>
+    {% endif %}
+</div>
+{% endif %}
+
+
+{% include "commissions/proposal.html" %}
+
+{% if proposal.allow_comments %}
+    <!--#include virtual="/commissions/comment_fragment/?proposal_id={{proposal.id}}&parent={{request.get_full_path}}" -->
+{% endif %}
+
+{% endblock %}

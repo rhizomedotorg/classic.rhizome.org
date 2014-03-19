@@ -1,0 +1,7 @@
+ORG SUBS
+
+- automatically send email near expiration date with invoice and terms
+- have terms pdf stored
+- create pdf invoice with info 
+- send invoice and terms to org sub admin
+- send email 30, 15, 1, days until expries

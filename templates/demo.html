@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>RHIZOME</title>
+   <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.8.3.min.js"></script>
+  d
+</head>
+<style>
+  body, html {
+    height: 99%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    color: white;
+    font-family: sans-serif;
+    overflow: hidden;
+    background: black;
+  }
+
+  .header, .footer {
+    width: 100%;
+    background: black;
+    position: fixed;
+    z-index: 22;
+    padding-top: 8px;
+    padding-bottom: 8px;
+  }
+
+  .header {
+    top: 0;
+  }
+
+  .footer {
+    bottom: 0;
+  }
+
+  .obscuritron {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 20;
+    width: 100%;
+    height: 100%;
+    background: rgb(0, 0, 0, 10);
+  }
+
+  #bg {
+    position: absolute;
+  }
+
+</style>
+
+<body>
+<div class="obscuritron"></div>
+<div class="header">&nbsp;&nbsp;&nbsp;&nbsp;Journal&nbsp;&nbsp;&nbsp;&nbsp;ArtBase&nbsp;&nbsp;&nbsp;&nbsp;Editorial&nbsp;&nbsp;&nbsp;&nbsp;Community&nbsp;&nbsp;&nbsp;&nbsp;Programs</div>
+<div class="footer">&nbsp;&nbsp;&nbsp;&nbsp;Molly Crabapple&nbsp;&nbsp;&nbsp;&nbsp;10/10/13</div>
+<!-- <object type="application/x-shockwave-flash" id="UstreamViewer" name="UstreamViewer" data="http://static-cdn1.ustream.tv/swf/live/viewer:228.swf?vrsl=c:558&amp;amp;ulbr=100" width="100%" height="100%" style="visibility: visible;"><param name="wmode" value="direct"><param name="allowfullscreen" value="false"><param name="bgcolor" value="#444444"><param name="allowscriptaccess" value="always"><param name="flashvars" value="cid=9979779&amp;locale=en_US&amp;sessionid=false&amp;autoplay=true&amp;enablejsapi=1&amp;sv=6&amp;ts=1382110475556"></object> -->
+
+<div id="bg" >
+<object type="application/x-shockwave-flash" data="http://cdn.livestream.com/swf/hdplayer-2.0.swf" width="100%" height="100%" id="live_player_32523120" style="visibility: visible;"><param name="wmode" value="opaque"><param name="allowFullScreen" value="true"><param name="allowScriptAccess" value="always"><param name="bgcolor" value="#000000"><param name="flashvars" value="account=572122&amp;event=2448089&amp;autoPlay=true&amp;mute=false&amp;play_url=http://api.new.livestream.com/broadcasts/32523120.smil&amp;broadcastStartTime=undefined&amp;generatedAt=undefined&amp;delayTuneIn=null&amp;thumbnail=http://img.new.livestream.com/events/0000000000255ad9/4bbd42ae-2c58-4a86-aef8-38da41c76cd8_780.jpg&amp;qualities_bitrate=520000&amp;qualities_height=720&amp;isVOD=false&amp;showLike=true&amp;isLiked=false&amp;showShare=true&amp;isWhiteLabel=false&amp;isStandAlone=false&amp;ad_account_id=null&amp;ad_provider_id=null&amp;ad_custom_params=null&amp;ad_enabled_for_vod=null&amp;ad_enabled_for_live=null&amp;ad_types=null&amp;isAdvancedAnyalitcsEnabled=null&amp;eventFullName=The Million&amp;token=null&amp;callback=Application.flashPlayerCallbacks._32523120"></object>
+</div>
+</body>
+
+
+</html>

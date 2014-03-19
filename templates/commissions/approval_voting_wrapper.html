@@ -1,0 +1,102 @@
+{% extends "blank_slate.html" %}
+
+{% load bbcode comments threadedcomments_tags markup hitcount_tags %}
+{% load url from future %}
+
+{% block customStyleSheets %}
+<link rel="stylesheet" href="{{ STATIC_URL }}commissions/styles/commissions.css" type="text/css" charset="utf-8"></link>
+{% endblock %}
+
+{% block pageTitle %} 
+Rhizome Commissions Voting
+{% endblock %}
+
+{% block content %}
+<div id = "voting">
+
+    {% if awaiting_length  != 0 %}
+ 
+        <div id ="commissions-voting-iframe-header">
+
+            <div class="float-right">
+                Direct Approval Voting Link for this Proposal:<br />
+                <a href="{% url 'commissions_indiv_approval_voting_wrapper' current_proposal.id %}">http://rhizome.org{% url 'commissions_indiv_approval_voting_wrapper' current_proposal.id %}</a>
+            </div>
+                
+            <div><a href="{% url 'commissions_voting' current_proposal.cycle.id %}">RHIZOME COMMISSIONS VOTING</a></div>
+            <div class="current">
+                You have {{ awaiting_length }} proposals awaiting approval.
+            </div>
+
+
+           <form method="POST" id="approval-voting-form" action="{{ request.build_absolute_url }}"> 
+                {% for field in voting_form %}
+                    {% if not field.is_hidden %}
+                        <label>Do you feel this {% for proposal in awaiting_approval.object_list %}<a target="_blank" href="{{proposal.get_absolute_url}}">proposal</a>{% endfor %} meets our <a target="_blank" href="{% url 'commissions_procedures' current_proposal.cycle.id %}#criteria">criteria</a>?</label> {{field}}
+                    {% endif %}
+                {% endfor %}
+                
+                {% if approval_status %}
+                    <span id="status" style="margin-left:5px;padding:1px 3px;color:red;text-transform:uppercase;">{{approval_status}}</span>
+                {% else %}
+                    <span id="status" style="margin-left:5px;padding:1px 3px;color:red;text-transform:uppercase;"></span>            
+                {% endif %}
+            </form>
+            
+            <div class="pagination left">
+                <span><a href="/profile/commissions-voting/">Review your votes</a></span>
+                <span class="step-links">                
+                    {% if awaiting_length != 0 %}
+                        <a href="?page={{ awaiting_approval.next_page_number }}">Continue Voting &rarr;</a> 
+                    {% endif %}
+                </span>
+            </div>
+ 
+        </div>
+        
+        <iframe id = "commissions-proposal-iframe" src="{{current_proposal.voting_view_url}}"></iframe>
+
+        <script type="text/javascript">            
+            $('id_approved_0').addEvent('click', function(e){
+                if (this.checked){
+                    new Request({
+                        method: 'post',
+                        url: '/commissions/proposal/{{current_proposal.id}}/approve/', 
+                        data:  {approved: 'true'}, 
+                        onError: function(rtxt) {},
+                        onSuccess: function(rtxt){$('status').set('text',rtxt);}
+                    }).send();
+                 $('continue-voting').setStyle('display', 'visible');  
+                } 
+            });
+            
+            $('id_approved_1').addEvent('click', function(e){
+                if (this.checked){
+                    new Request({
+                        method: 'post',
+                        url: '/commissions/proposal/{{current_proposal.id}}/approve/', 
+                        data:  {approved: 'false' }, 
+                        onError: function(rtxt) {},
+                        onSuccess: function(rtxt){$('status').set('text',rtxt);}
+                    }).send();
+                }
+            });
+            </script>
+
+    {% else %}
+        <div id ="no-votes">
+            <div>
+                Congratulations! You've voted on all the proposals. Click here to <span><a href="/profile/commissions-voting/">review your votes</a></span>
+            </div>
+        </div>
+    {% endif %}
+
+</div>
+   <script type="text/javascript">
+      (function() {
+        var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+        po.src = 'https://apis.google.com/js/plusone.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+      })();
+    </script>
+{% endblock %}

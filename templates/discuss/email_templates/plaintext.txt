@@ -1,0 +1,10 @@
+{{ comment_body }}
+
+--{{ comment.user.get_profile }}
+
+REPLY TO THIS MESSAGE: 
+    
+{{ comment_url }}
+
+________________________________
+unsubscribe: http://rhizome.org/unsubscribe/

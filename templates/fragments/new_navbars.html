@@ -1,0 +1,39 @@
+<div id="new_header">
+    <ul>
+        {% for item in primary_nav|slice:':5' %}
+            <li><a {% if item.0 == section_name %}class="active"{% endif %} href="{{ item.1 }}?ref=header">{{ item.0 }}</a></li>
+        {% endfor %}
+
+        <li id="search">
+            <form action="/search/" method="get">
+                <input type="text" name="q" placeholder=""><a id="search-addon"><i class="fa fa-search"></i></a>
+            </form>
+        </li>
+
+        <li id="account">
+            {% if request.user.is_authenticated %}
+                <a href="{% url 'edit_profile' %}?ref=header">{{ request.user }}&nbsp;&nbsp;<i class="fa fa-user"></i></a>
+            {% else %}
+                <a href="{% url 'login' %}?ref=header"><i class="fa fa-key"></i></a>
+            {% endif %}
+        </li>
+    </ul>
+</div>
+
+<div id="new_footer">
+    <ul>
+        {% for item in primary_nav %}
+            {% if item.0 == section_name %}<li><a class="active" href="{{ item.1 }}?ref=footer"><span class="underline">{{ item.0 }}</span> &raquo;</a></li>{% endif %}
+        {% endfor %}
+
+        {% for item in sub_nav %}
+            <li><a {% if item.0|lower == sub_section_name|lower or item.0|lower == sub_section_name|add:'s' %}class="active"{% endif %} href="{{ item.1 }}?ref=footer">{{ item.0 }}</a></li>
+        {% endfor %}
+
+        {% if html_credits %}{{ html_credits|safe }}{% endif %}
+
+        {% for item in primary_nav|slice:'5:' reversed %}
+            <li class="reversed"><a {% if item.0 == section_name %}class="active"{% endif %} href="{{ item.1 }}?ref=footer">{{ item.0 }}</a></li>
+        {% endfor %}
+    </ul>
+</div>

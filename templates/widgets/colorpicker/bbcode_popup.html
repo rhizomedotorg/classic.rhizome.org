@@ -1,0 +1,109 @@
+<head>
+<link rel="stylesheet" href="/media/admin/widgets/colorpicker/farbtastic.css" type="text/css">
+<script type="text/javascript" src="/media/js/jquery-min.js"></script>
+<script type="text/javascript" src="/media/admin/widgets/colorpicker/farbtastic.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}discuss/scripts/basic_bbcode_editor/editor.js"></script>   
+</head>
+ <script type="text/javascript" charset="utf-8">
+  $(document).ready(function() {
+    $('#picker').farbtastic('#color');
+  });
+
+    function getUrlVar(requestedKey) {
+    	var vars = [], hash;
+    	var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+    
+    	for (var i = 0; i < hashes.length; i++) {
+    		hash = hashes[i].split('=');
+    		vars.push(hash[0]);
+    		vars[hash[0]] = hash[1];
+    	}
+    	if (typeof requestedKey == 'undefined') {
+    		return vars;
+    	} else {
+    		return vars[requestedKey];
+    	}
+    }
+    
+    
+    function colorpicker_bbfontstyle(bbopen, bbclose){
+    	theSelection = false;
+        
+        var form_name = getUrlVar("form_name")
+        var text_name = getUrlVar("text_name")
+        
+    	var textarea = document.forms[form_name].elements[text_name];
+    
+    	textarea.focus();
+    
+    	if ((clientVer >= 4) && is_ie && is_win)
+    	{
+    		// Get text selection
+    		theSelection = document.selection.createRange().text;
+    
+    		if (theSelection)
+    		{
+    			// Add tags around selection
+    			document.selection.createRange().text = bbopen + theSelection + bbclose;
+    			document.forms[form_name].elements[text_name].focus();
+    			theSelection = '';
+    			return;
+    		}
+    	}
+    	else if (document.forms[form_name].elements[text_name].selectionEnd && (document.forms[form_name].elements[text_name].selectionEnd - document.forms[form_name].elements[text_name].selectionStart > 0))
+    	{
+    		mozWrap(document.forms[form_name].elements[text_name], bbopen, bbclose);
+    		document.forms[form_name].elements[text_name].focus();
+    		theSelection = '';
+    		return;
+    	}
+    	
+    	//The new position for the cursor after adding the bbcode
+    	var caret_pos = getCaretPosition(textarea).start;
+    	var new_pos = caret_pos + bbopen.length;		
+    
+    	// Open tag
+    	insert_text(bbopen + bbclose);
+    
+    	// Center the cursor when we don't have a selection
+    	// Gecko and proper browsers
+    	if (!isNaN(textarea.selectionStart))
+    	{
+    		textarea.selectionStart = new_pos;
+    		textarea.selectionEnd = new_pos;
+    	}	
+    	// IE
+    	else if (document.selection)
+    	{
+    		var range = textarea.createTextRange(); 
+    		range.move("character", new_pos); 
+    		range.select();
+    		storeCaret(textarea);
+    	}
+    
+    	textarea.focus();
+    	return;
+    }
+    
+
+    function sendValue (s){
+        var selvalue = new Array('[color="+s.value+"]','[/color]');
+        var id = getUrlVar("id")
+        var target = window.opener.document.getElementById(id);
+        colorpicker_bbfontstyle(selvalue[0],selvalue[1]);
+        window.close();
+    }
+
+</script>
+
+<script language="javascript">
+//var id = window.opener.id;
+</script> 
+
+<form name="color-picker" action="" style="width:400px;">
+<div class="form-item"><label for="color">Color:</label><input type="text" id="color" name="color" value="#123456" /></div><div id="picker"></div>
+
+<input type="button" value="choose" onClick="sendValue(this.form.color);">
+
+</form>
+

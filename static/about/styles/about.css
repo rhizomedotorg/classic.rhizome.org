@@ -1,0 +1,83 @@
+.about-website {
+    margin-top: 18px;
+}
+
+.advertise-section {
+    background-color:#F7F7F7;
+    border:1px solid #CFCFCF;
+    font-size:12px;
+    padding:12px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.advertise-notice {
+    text-align: center;
+    text-transform: upper;
+    color:#a9a9a9;
+    font-weight: bold;
+    font-size: 14px;
+    margin-top: 25px;
+}
+
+
+#arrow1{
+    margin: 130px 0px 125px 0px;
+}
+
+#arrow2{
+    margin: 139px 0px 125px 0px;
+}
+
+#arrow3{
+    margin: 115px 0px 120px  0px;
+}
+
+#piechart{
+    margin-bottom: 15px;
+}
+
+.rate-box{
+    margin-bottom: 15px;
+}
+
+.rate-box .advertise-section {
+    margin-bottom: 0px;
+    border-bottom: none;
+}
+
+
+.rate-box img {
+    text-align: center;
+}
+
+.rate-box .advertise-section img {
+    text-align: center;
+    padding: 1px;
+}
+
+.advertise-description {
+    font-family:Georgia;
+    font-size:14px;
+    margin:5px 25px;
+    text-align:center;
+    color:333;
+}
+
+.specs {
+    margin: 5px 15px;
+    color:#A8ADB3;
+    font-family: Helvetica;
+}
+
+textarea.policy{
+    width: 910px;
+    height: 350px;
+    text-align:left;
+    margin-left: 15px; 
+    background-color:#F7F7F7;
+    font-size:9pt;
+    padding-left:5px;
+    font-size:11pt;
+    margin-bottom: 30px;
+}

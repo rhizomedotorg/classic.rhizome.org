@@ -1,0 +1,113 @@
+<input type = "hidden" name = "form" value = "artwork_media">
+
+<div class = "post-form-content span-23">
+    <h6 class = "span-8">Images</h6>
+    <fieldset id="images-fieldset" class="span-23">
+        
+        <div class = "span-23">
+            <div class = "image-container span-10">
+                {{form.image_medium.errors}}<br/>
+                <label>MAIN IMAGE <span class="light-gray">(470w x 355h)</span></label><br/>
+                <hr>
+                {{form.image_medium}}
+            </div>
+        
+            <div class = "image-container span-10 prepend-2">
+                {{form.image_small.errors}}<br/>
+                <label>THUMBNAIL IMAGE <span class="light-gray">(135w x 170h)</span></label><br/>
+                <hr>
+                {{form.image_small}}
+            </div>
+        </div>
+
+        <div class = "span-23">
+
+            <div class = "image-container span-10">
+                {{form.image_large.errors}}<br/>
+                <label>LARGE, SCREEN SIZED IMAGE <span class="light-gray">(1024w x 768h)</span></label>
+                <hr>
+                {{form.image_large}}
+            </div>
+    
+            <div class = "image-container span-10 prepend-2">
+                {{form.image_featured.errors}}<br/>
+                <label>WIDE IMAGE <span class="light-gray"></span>(950w x 375h, can be cropped or padded)</label><br/>
+                <hr>
+                {{form.image_featured}}
+            </div>
+        </div>
+
+
+    </fieldset>
+</div>
+
+
+<div class = "post-form-content span-11">
+    <h6 class = "span-8">Video </h6>
+    <fieldset id="audio-video-fieldset" class="span-11">
+        {% if work.get_video %}
+            <div>
+                <label>Existing Video</label><br/>
+                <hr class="thin-no-margin">
+                {% for video in work.get_video %}
+                    <div><a href="{{MEDIA_UL}}{{video.url}}">{{video.url}}</a>  | <a class="red" href="{{request.path}}?delete_video={{video.id}}">REMOVE</a></div>
+                {% endfor %}
+            </div>
+        {% endif %}
+        
+        
+<!--
+        <div>
+            {{form.video.errors}}<br/>
+            <label>Upload a video file</label><br/>
+            {{form.video}}
+        </div>
+-->
+        <div>
+            {% if form.audio.errors %}{{form.video_url.errors}}<br/>{%endif%}
+            <label>Link to an external video (YouTube, Vimeo, Blip.tv, etc)</label>
+            <hr class="thin-no-margin">
+            {{form.video_url}}
+        </div>
+
+    </fieldset>
+</div>
+
+
+<div class = "post-form-content span-11 prepend-1">
+    <h6 class = "span-8">AUDIO</h6>
+    <fieldset id="audio-video-fieldset" class="span-11">
+        
+        {% if work.get_audio %}
+            <div>
+            <label>Existing Audio</label>
+            <hr class="thin-no-margin">
+            {% for audio in work.get_audio %}
+                {% if audio.url %}
+                <div><a href="{{audio.url}}">{{audio.url}}</a> | <a class="red" href="{{request.path}}?delete_audio={{audio.id}}">REMOVE</a></div>
+                {% endif %}
+                
+                {% if audio.file_path %}
+                <div><a href="{{MEDIA_URL}}{{audio.file_path}}">{{audio.file_name}}</a> | <a class="red" href="{{request.path}}?delete_audio={{audio.id}}">REMOVE</a></div>
+                {% endif %}
+            {% endfor %}
+            </div>
+        {% endif %}
+        
+
+        <div>
+            {% if form.audio.errors %} {{form.audio.errors}}<br/>{%endif%}
+            <label>Upload an audio file (5MB max)</label><br/>
+            <hr class="thin-no-margin">
+            {{form.audio}}
+        </div>
+        
+        <div>
+            {% if form.audio_url.errors %}{{form.audio_url.errors}}<br/>{%endif%}
+            <label>Link to an external audio file</label><br/>
+            <hr class="thin-no-margin">
+            {{form.audio_url}}
+        </div>
+
+    </fieldset>
+</div>

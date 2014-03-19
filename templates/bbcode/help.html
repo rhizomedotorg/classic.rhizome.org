@@ -1,0 +1,28 @@
+<style type="text/css">
+    body{
+
+        width: 100%;
+    }
+    #container{
+        margin: 0 auto;
+        width: 90%;
+        text-align: left;
+    }
+    .tag{
+        width: 100%;
+    }
+</style>
+{% load bbcode %}
+
+{% block content %}
+<div id="container">
+<h2 style="text-align:center; text-decoration:underline;">Rhizome BBCode Guide</h2>
+<p>When submitting content to Rhizome, such as announcements and discussion posts, you can use BBCode markup to add formatting and special entities to your post. Below is a guide to the available markup for adding styles and media.</p>
+
+<p>When using bbcode, simple place your content between the desired bbcode tags, and that content will be displayed via the bbcode tags functionality. If you highlight existing text and then click on a bbcode button, that button's functionality will be applied to the text.</p>
+
+<hr>
+{% bbhelp url img youtube flash vimeo quicktime director html5audio ul html5video hr em strong u size color  quote text code using "bbcode/bbtag.html" %}
+</div>
+{%endblock%}
+

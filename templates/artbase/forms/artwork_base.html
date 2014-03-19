@@ -1,0 +1,90 @@
+<input type="hidden" name="form" value="artwork_base">
+
+<div id="artbase-base-form">
+    
+    <div class="artbase-base-form-section">
+        <div>
+            <h6 class="upper">{{ form.title.label }}</h6>
+        </div>
+        {% if form.title.errors %}
+            {{form.title.errors}}
+        {% endif %}
+        <div>
+            {{ form.title }}
+        </div>        
+    </div>
+    
+    <div class="artbase-base-form-section">
+        <div>
+            <h6 class="upper">{{ form.url.label }}</h6>
+        </div>
+        {% if form.url.errors %}
+            {{form.url.errors}}
+        {% endif %}
+        <div>
+            {{ form.url }}
+        </div>        
+    </div>
+    
+    <div class="artbase-base-form-section">
+        <div>
+            <h6 class="upper">{{ form.summary.label }}</h6>
+        </div>
+        {% if form.summary.errors %}
+            {{form.summary.errors}}
+        {% endif %}
+        <div>
+            {{ form.summary }}
+        </div>        
+    </div>
+    
+    <div class="artbase-base-form-section">
+        <div>
+            <h6 class="upper">{{ form.statement.label }}</h6>
+        </div>
+        {% if form.statement.errors %}
+            {{form.statement.errors}}
+        {% endif %}
+        <div>
+            {{ form.statement }}
+        </div>        
+    </div>
+
+    <div class="artbase-base-form-section">
+        <div>
+            <h6 class="upper">{{ form.description.label }}</h6>
+        </div>
+        {% if form.description.errors %}
+            {{form.description.errors}}
+        {% endif %}
+        <div>
+            {{ form.description }}
+        </div>        
+    </div>
+    
+    <div class="artbase-base-form-section base-inline-input">
+        <div>
+            <h6 class="upper">{{ form.created_date.label }}</h6>
+        </div>
+        {% if form.created_date.errors %}
+            {{form.created_date.errors}}
+        {% endif %}
+        <div>
+            {{ form.created_date }}
+        </div>        
+    </div>
+    
+    <div class="artbase-base-form-section base-inline-input">
+        <div>
+            <h6 class="upper">{{ form.byline.label }}</h6>
+            <label> Default will be "{{request.user.get_profile}}"</label>
+        </div>
+        {% if form.byline.errors %}
+            {{ form.byline.errors }}
+        {% endif %}
+        <div>
+            {{ form.byline }}
+        </div>        
+    </div>
+        
+</div>

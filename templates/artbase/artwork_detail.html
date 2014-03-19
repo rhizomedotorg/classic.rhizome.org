@@ -1,0 +1,290 @@
+{% load comments threadedcomments_tags tagging_tags inlines_tags markup bbcode  %}
+
+<div id="artwork-top-info" class="span-24">
+    
+    <div id="artwork-main-image" class="span-12" align="center">
+    {% if artwork.location_type == "cloned" and artwork.location %}
+        <a target="_blank" href="{{artwork.location}}">
+    {% else %}
+        <a target="_blank" href="{{artwork.url}}">
+    {% endif %}
+            <table id = "artwork-bg" width="100%" height="100%" align="center" valign="center">
+                <tr>
+                    {% if artwork.status == "approved" %}
+                    <td id="artbase-selection">
+                        ArtBase Selection
+                    </td>
+                    {% endif %}
+                    <td>
+                        {% if "rhizome_art_default" not in artwork.image_medium.url %}
+                                <img id = "work-image" src="{{ MEDIA_URL }}{{ artwork.image_medium }}" ></img>
+                        {% else %}
+                            {% if "rhizome_art_default" not in artwork.image_large.url %}
+                                <img id = "work-image" src="{{ MEDIA_URL }}{{ artwork.image_large }}" ></img>
+                            {% else %}
+                                <img id = "work-image" src="{{ MEDIA_URL }}{{ artwork.image_small }}" ></img>
+                            {% endif %}
+                        {% endif %}
+                    </td>
+                </tr>
+            </table>
+        </a>
+        {% if can_edit_artwork or request.user.is_staff %}
+        <a href="{% url 'edit_artwork_media' artwork.id %}">Image too small? Update your artwork!</a>
+        {% endif %}
+    </div>
+    
+    <div id ="artwork-controls" class="span-11 last">
+        {% if request.user.get_profile.is_member %}
+        <span id="user-controls">
+            <form id ="save-artwork-form" method="post" action="/profiles/favorites/{{request.user.id}}/{{artwork.id}}/">
+                {% csrf_token %}
+                
+                {% if artwork in request.user.get_profile.get_saved_artworks %} 
+                     <button id="save-artwork-button" type="submit" class="saved-artwork h6">Saved!</button>    
+                {% else %} 
+                    <button id="save-artwork-button" type="submit" class="unsaved-artwork h6">Save this</button>
+                {% endif %}
+                
+            </form>
+            <button id="add-to-exhibition" class="h6 blue">Add to exhibition</button>
+        </span>
+        {% endif %}
+        
+            <span id="social-controls"> 
+                <iframe src="http://www.facebook.com/plugins/like.php?href={{request.build_absolute_uri}}&amp;layout=button_count&amp;show_faces=false&amp;width=79&amp;action=like&amp;colorscheme=light&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:79px; height:21px;" allowTransparency="true"></iframe>
+                <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-url="{{request.build_absolute_uri}}">Tweet</a>
+        
+            </span>
+        </div>
+
+        <div id="artwork-summary"  class="span-11 last">
+    	    {% if artwork.summary %}
+        	    {{ artwork.summary|markdown }}
+            {% else %}
+        	    {{ artwork.description|markdown|truncatewords:150 }}
+            {% endif %}
+        </div>
+        
+        <div id="artwork-tags" class="span-11 last">
+            <label>Tags:</label>
+            {% for tag in artwork.get_tags %}
+            <a class="tag" href="{{ tag.url }}">{{ tag }}</a>
+            {% endfor %}
+        </div>
+            
+</div>
+
+<div id="artwork-detail-info" class="span-24 last">
+    
+    <div class="left-col span-12">
+       
+       {% if artwork.description %} 
+        <h6>Full Description</h6>
+        <hr class="hr3-no-margin">
+        <div id="artwork-description">
+        {{ artwork.description|markdown }}
+        </div>
+       {% endif %}
+        
+        <h6>Work metadata</h6>
+        <hr class="hr3">
+        <ul class="details top">
+            <li class="">
+                <span class="list-label-gray">Year Created:</span>
+                <span class="list-item">{{ artwork.created_date|date:"Y" }}</span>
+            </li>
+            
+            {% if artwork.submitted_date %}
+            <li class="">
+                <span class="list-label-gray">Submitted to ArtBase:</span>
+                <span class="list-item">{{ artwork.submitted_date|date:"l M jS, Y" }}</span>
+            </li>
+            {% endif %}
+
+            {% if artwork.url %}
+            <li class="">
+                <span class="list-label-gray">Original Url:</span>
+                <span class="list-item">
+                    <a target="_blank" class="artwork-permalink" href="{{artwork.url}}">{{artwork.url}}</a>
+                </span>
+            </li>
+            {% endif %}
+            
+            {% if artwork.location %}
+            <li class="">
+                <span class="list-label-gray">Permalink:</span>
+                <span class="list-item">
+                        <a target="_blank" class="artwork-permalink" href="{{artwork.location}}">{{artwork.location}}</a>
+                </span>
+            </li>
+            {% endif %}
+
+            
+            {% if artwork.get_document.creators %}
+            <li class="">
+                <span class="list-label-gray">Work Credits:</span>
+                <ul class="list-item sub">
+                    
+                    {% for artist in artwork.get_document.creators %}
+                    <li class="last-item">
+                        <span>
+                        {{artist.name.display_string}},
+                        </span>
+                        
+                        {% if artist.roles == None %}
+                            <span class="italic">creator</span>
+                        {% else %}
+                            <span class="italic">{{artist.roles}}</span>
+                        {% endif %}
+                    </li>                    
+                    {% endfor %}
+        
+                </ul>
+            </li>
+            {% endif %}
+            
+            {% if artwork.collective %}
+            <li class="">
+                <span class="list-label-gray">Collective:</span>
+                <span class="list-item">
+                    {{artwork.collective}}
+                </span>
+            </li>
+            {% endif %}
+        
+        {% if request.user.get_profile.is_member or is_orgsub_ip or can_edit_artwork %}
+            {% include "artbase/artwork-member-metadata.html" %}
+        {% endif %}
+       
+       </ul>
+
+        {% if request.user.get_profile.is_member or is_orgsub_ip or can_edit_artwork %}
+            {% include "artbase/artwork-member-extra.html" %}
+        {% endif %}
+        
+        {% if not request.user.get_profile.is_member and not is_orgsub_ip and not can_edit_artwork %}
+            <div class="bold center upper">
+                Want to see more? 
+                <br />
+                Take full advantage of the ArtBase by <a href="/support/individual">Becoming a Member</a> 
+            </div>  
+        {% endif %}
+           
+    </div>
+        
+    <div class="prepend-1 right-col span-11 last">
+        {% if artwork.statement and artwork.statement != artwork.description and artwork.statement != artwork.summary %}
+            <h6>Artist Statement</h6>
+            <hr class="hr3-no-margin">
+            <div id="artwork-description">
+            {{ artwork.statement|markdown }}
+            </div>
+        {% endif %}
+            
+        {% if related_works %}
+            <h6>Related works</h6>
+            <hr class="hr3">
+            <div id="artwork-similar-works" class="span-11 last slider">
+                {% for related in related_works %}
+                <div class="artwork">
+                    <a href="{{ related.view_url }}">
+                        <img title = "{{related.title}}" src="{{ MEDIA_URL }}{{ related.image_small }}"></img>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+        {% endif %}    
+            
+        {% if exhibitions %}
+            <h6>Featured in {{ exhibitions_count }} Exhibition{{exhibitions_count|pluralize}}</h6>
+            <hr class="hr3">
+            <div id="artwork-featured-in" class="span-11 last slider">
+                <table valign ="top">
+                {% for row in exhibitions %}
+                <tr>
+                    {% for exhibition in row %}
+                        {% if exhibition %}
+                        <td>
+                            <a href="{{exhibition.get_absolute_url}}">
+                                <div class="artwork exhibition">
+                                    <img src="{{ MEDIA_URL}}{{ exhibition.image }}" width="110" height="80px" ></img>
+                                    <h4 class="blue italic">{{ exhibition.title }}</h4>
+                                </div>
+                            </a>
+                        </td>
+                        {% endif %}
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+                </table>
+            </div>
+        {% endif %}
+
+        {% if saved_by %}
+            <h6>Saved By</h6>
+            <hr class="hr3">
+            <div id="artwork-similar-works" class="span-11 last slider">
+                {% for user in saved_by %}
+                    {{user.get_large_miniprofile|markdown}}               
+                {% endfor %}
+            </div>
+        {% endif %}
+        
+        {% if artwork.allow_comments %}
+            <a name="comments"></a>
+            <h6>Comments</h6>
+            <hr class="hr3">
+            <div id="artbase-comments" class="comments">
+                <!-- START THREADED COMMENTS -->
+                
+                {% get_comment_list for artwork as comment_list %}
+                {% if comment_list %}
+                    {% for comment in comment_list|fill_tree|annotate_tree %}
+                        {% ifchanged comment.parent_id %}{% else %}
+                        </li>
+                        {% endifchanged %}
+                 
+                        {% if not comment.open and not comment.close %}
+                        </li>
+                        {% endif %}
+                    
+                        {% if comment.open %}
+                        <ul>
+                           <li id ="threaded-comment" {% if comment.last %} class="last"{% endif %}>
+                           <a class="h6 blue" href="{{ comment.user.get_profile.get_absolute_url }}">{{ comment.user_name }}</a> <span class="h6 light-gray">| {{ comment.submit_date|timesince }} ago</span><br/>
+                           <div class= "comment-body">
+                                {% bbcode comment.comment %}
+                            </div>
+                        {% endif %}
+                        {% if comment.added_path %} ADDED {% endif %}
+                        {% for close in comment.close %}
+                           </li>
+                        </ul>
+                        {% endfor %}
+           
+                    {% endfor %}
+                {% else %}
+                    <div class="bold">
+                        This artwork has no comments. You should add one!
+                    </div>
+                {% endif %}
+                    <!-- END THREADED COMMENTS -->
+                    <div class="span-11 mini-nav">
+                        <span class="bold upper">Leave a Comment</span>
+                        <hr class="hr3"/>
+                     
+                    {% if request.user.is_authenticated %}
+                            {% render_comment_form for artwork %}
+                    {% else %}
+                        <div class= "login">
+                            You must be logged in to post a comment.
+                            <a id="section-login" class="round-blue" href = "/login/?next={{ request.path }}">Log In</a>                                        
+                        </div>
+                    {% endif %}
+                    </div>
+            </div>
+        {% endif %}
+    </div>
+</div>        
+

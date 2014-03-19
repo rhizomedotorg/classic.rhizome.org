@@ -1,0 +1,112 @@
+{% extends 'about/base.html' %}
+{% load block_tags %}
+
+{% block pageTitle %}About{% endblock %}
+
+{% block navbars %}
+    {% get_nav 'About Us' None %}
+{% endblock %}
+
+{% block content %}
+<div class="column-wrapper span-24">
+    <div class= "left-column span-15">
+        <div class="section span-15">
+            <div class="section-row-titles">
+                <span class="nav-item"><a class="anchor-name" name="mission">MISSION</a></span>
+            </div>
+            <hr class="hr3-no-margin">
+            <div class="about-content">
+                <p>{% get_text 'mission' %}</p>
+            </div>
+            <div class="about-images span-4">
+                <img src="{{ STATIC_URL }}about/images/rhizome_logo_1998.jpg" />
+                <img src="{{ STATIC_URL }}about/images/rhizome_logo_2004.jpg" />
+                <img src="{{ STATIC_URL }}about/images/rhizome_logo_2010.jpg" />
+            </div>
+            <div class="about-content span-10">
+                <p>{% get_text 'history' %}</p>
+            </div>    
+        </div>
+        
+        <div class="section span-15">
+            <div class="section-row-titles">
+                <span class = "nav-item"><a class="anchor-name" name ="access">ACCESS & MEMBERSHIP</a></span>
+            </div>
+            <hr class="hr3-no-margin">
+            <div class="about-content">
+                {% get_text 'access & membership' %}
+            </div>
+       </div>
+       
+    </div>
+    
+    <div class= "right-column span-8"> 
+        
+        <div class="section span-8">
+            <div class="section-row-titles">
+                <span class = "nav-item"><a class="anchor-name" name ="contact">CONTACT</a></span>
+            </div>
+            <hr class="hr3-no-margin">
+            <div class="about-content">
+                <span class="center">
+                    <img src = "{{ STATIC_URL }}about/images/newmuseum.jpg" />
+                </span>
+                <p>{% get_text 'contact' %}</p>
+            </div>   
+        </div>
+        
+        <div class="section span-8">
+            <div class="section-row-titles">
+                <span class = "nav-item"><a class="anchor-name" name="board">BOARD OF TRUSTEES</a></span>
+            </div>
+            <hr class="hr3-no-margin">
+            <div class="about-content">
+                <p>{% get_text 'board of trustees' %}</p>
+            </div>   
+        </div>
+
+        <div class="section span-8">
+            <div class="section-row-titles">
+                <span class = "nav-item"><a class="anchor-name" name ="board">Support</a></span>
+            </div>
+            <hr class="hr3-no-margin">
+            <div class="about-content">
+                {% get_text 'support' %}
+                <div style="margin-top:10px; text-align:center;">
+                    <img src="{{ STATIC_URL }}images/ny_culture_logo.png" width="125" style="float:left;margin:0 20px;"/>               
+                    <img src="{{ STATIC_URL }}images/nycsa_rgb.png" width="90" style="float:left;margin:0 20px;"/> 
+                    <div class="clear"></div>
+                </div>
+            </div>   
+        </div>
+
+    
+    </div>
+</div>
+
+<div class="section span-24">
+    <div class="section-row-titles">
+        <span id ="staff" name ="staff" class = "nav-item"><a class="anchor-name" name ="staff">Rhizome Staff</a></span>
+    </div>
+    <hr class="hr3-no-margin">
+    {% for staff in staff_members %}
+    <div class="about-content span-24">
+
+        <h5 id="press-h3"><a href="{{staff.user.get_profile.get_absolute_url}}">{{ staff.first_name }} {{ staff.last_name }}</a></h5>
+        <div>
+            <b>{{ staff.position }}</b><br/>
+            <div class="span-20">{{ staff.bio }}</div>
+        </div>
+    </div>   
+    {% endfor %}
+</div>
+<div class="section span-24 about-website">
+    <div class="section-row-titles">
+        <span class = "nav-item"><a class="anchor-name" name ="website">WEBSITE</a></span>
+    </div>
+    <hr class="hr3-no-margin">
+    <div class="about-content">
+        {% get_text 'site info' %}
+    </div>
+</div>
+{% endblock %}

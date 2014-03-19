@@ -1,0 +1,12 @@
+<form action="{{ request.path }}" method="POST">
+    {% csrf_token %}
+    {% for hidden in form.hidden_fields %}
+        {{ hidden }}
+    {% endfor %}
+    {% for field in form.visible_fields %}
+        {% if field.errors %}<span class="form_errors">{{ field.errors }}</span>{% endif %}
+        <div class = "bold upper">{{field}} {{field.label}}</div>
+    {% endfor %}
+
+     <input class="round-blue float-right" type="submit" value="update" name="update">
+</form>

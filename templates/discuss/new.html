@@ -1,0 +1,37 @@
+{% extends 'discuss/base.html' %}
+
+{% load threadedcomments_tags %}
+{% load url from future %}
+{% load blog_tags tagging_tags inlines_tags markup bbcode%}
+
+{% block customScripts %}
+    <script type="text/javascript" src="{{ STATIC_URL }}js/bbcode/editor.js"></script>   
+    <script type="text/javascript" src="{{ STATIC_URL }}js/bbcode/color_palette.js"></script>   
+    <script type="text/javascript" src="{{ STATIC_URL }}js/loadingOverlay.js"></script>
+{% endblock %}
+
+{% block pageTitle %}Post a Discussion{% endblock %}
+
+{% block content %}
+    <div class="section span-24">
+        <div class="section-row-titles post-mini-nav">
+            <span class="nav-item first selected"><a href="/discuss/submit/">Post a Discussion Thread</a></span>
+            <span class="nav-item"><a href="/announce/opportunities/submit">Post an Opportunity</a></span>
+            <span class="nav-item"><a href="/announce/events/submit">Post an Event</a></span>
+
+            <span class="nav-item last"><a href="/announce/jobs/submit">Post a Job</a></span>
+            <hr class="hr3-no-margin">
+        </div>    
+
+        <div class="post-form span-24">
+            <form id="comment_form" action="{% url 'discuss-new' %}" method="POST">
+               {% csrf_token %}
+               {{ form }}
+                <div class="float-right-align-right span-22">
+                    <input class="round-gray" type="submit" value="preview" name="status">
+                    <input class="round-blue" type="submit" value="publish" name="status">
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,16 @@
+{% load support %}
+
+<div class="sidebar-module">
+    <div class="box">
+        <div class="content-body">
+            <h3>Benefits of <a href="{% url 'individual' %}">Membership:</a></h3>
+
+            {% get_member_benefits as member_benefits %}
+            <ul>
+                {% for benefit in member_benefits %}
+                    <li> + <a  href="{{ benefit.link }}">{{ benefit.title }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>    

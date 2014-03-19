@@ -1,0 +1,35 @@
+{% extends "blank_slate.html" %}
+{% load  markup hitcount_tags %}
+
+{% block bottom_js %}
+
+<script type="text/javascript">
+    window.addEvent('domready', function() {
+        {% get_hit_count_javascript for proposal %}
+    });
+</script>
+{% endblock %}
+
+{% block customStyleSheets %}
+<link rel="stylesheet" href="{{ STATIC_URL }}commissions/styles/commissions.css" type="text/css" charset="utf-8"></link>
+<link rel="stylesheet" href="{{ STATIC_URL }}programs/styles/programs.css" type="text/css" charset="utf-8"></link>
+
+<style type="text/css">
+    body{
+        width:960px;
+        display: block;
+        margin: 0 auto;
+        margin-top: -1px;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+
+<div class="span-24">
+    {% include "commissions/proposal.html" %}
+</div>
+
+
+
+{% endblock %}

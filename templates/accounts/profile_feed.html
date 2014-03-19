@@ -1,0 +1,122 @@
+{% load markup bbcode %}
+
+<div class="profile-section span-24 last">
+    <div class="section-title">
+        <a name="activity_stream"><span>RHIZOME ACTIVITIES</span></a>
+        <hr class="hr3-no-margin">
+    </div>
+
+    <div id = "feed-filter" class="span-24">
+        <form action="{{ request.path }}" method="get" >
+            <div id="feed-filter-checkboxes" class="span-16">
+                <span><input type="checkbox" name="discuss" {% for check in auto_checks %} {% ifequal check "discuss" %} checked="true" {% endifequal %}{% endfor %}> Discussions ({{ activities_count.comments }})</span>
+                <span><input type="checkbox" name="opportunity" {% for check in auto_checks %} {% ifequal check "opportunity" %} checked="true" {% endifequal %}{% endfor %}>Opportunities ({{ activities_count.opportunities }})</span>
+                <span><input type="checkbox" name="event" {% for check in auto_checks %} {% ifequal check "event" %} checked="true" {% endifequal %}{% endfor %}>Events ({{ activities_count.events }})</span>
+                <span><input type="checkbox" name="job" {% for check in auto_checks %} {% ifequal check "job" %} checked="true" {% endifequal %}{% endfor %}>Jobs ({{ activities_count.jobs }})</span>
+            </div>
+            <div id="feed-filter-button" class="span-4">
+                <button id ="filter" class="round-blue" type="submit" value="filter_profile_feed">Filter Results</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="section-content span-24">
+    {% for a in activities_paginator.object_list %}
+        <div class = "feed-item span-24">
+            <div class = "feed-item-meta span-3">
+                <div class = "feed-item-meta-type">
+                {% if a.content_type.name == "Threaded comment" %} 
+                    DISCUSSION 
+                {% else %} 
+                    {{ a.content_type.name|upper }}
+                {% endif %}
+                </div>
+                {% if a.content_object.created %}
+                <div class = "feed-item-meta-data">Posted on {{ a.content_object.created|date:"D M d, Y" }} </div>
+                {% else %}
+                <div class = "feed-item-meta-data">Posted on {{ a.content_object.submit_date|date:"D M d, Y" }} </div>
+                {% endif %}
+            </div>
+            
+            <div class="feed-item-listing span-19">   
+                
+                <h2 class ="item-listing-title">
+                    {% if a.content_type.name == "Threaded comment" %} 
+                        <a href="{{ a.content_object.content_object.get_absolute_url }}">{{ a.content_object.title }}</a>
+                    {% else %}
+                         <a href="{{ a.content_object.get_absolute_url }}">{% if a.subtype %} {{ a.content_object.subtype }}:{% endif %} {{ a.content_object.title }}</a>   
+                    {% endif %}
+                </h2>
+                <hr class="thin">
+                
+                {% if a.content_object.deadline %}
+                <div class="feed-item-listing span-19">   
+                    <div class ="feed-item-listing-row">
+                        <div class = "feed-item-listing-row-title span-3">Deadline:</div>  
+                        <div class = "feed-item-listing-row-details span-12">{{ a.content_object.deadline|date:"D M d, Y H:i" }}</div>
+                    </div>    
+                    <hr class="thin">
+                </div> 
+                {% endif %}
+              
+                {% if a.content_object.start_date %}
+                <div class="feed-item-listing span-19">   
+                    <div class ="feed-item-listing-row">
+                        <div class = "feed-item-listing-row-title span-3">Dates:</div>  
+                        <div class = "feed-item-listing-row-details span-12">{{ a.content_object.start_date|date:"D M d, Y H:i" }} {% if a.content_object.end_date %}- {{ a.content_object.end_date|date:"D M d, Y" }}{% endif %}</div>
+                    </div>
+                    <hr class="thin">
+                </div> 
+                {% endif %}
+               
+                {% if a.content_object.country %}
+                <div class="feed-item-listing span-19">   
+                    <div class ="feed-item-listing-row">
+                        <div class = "feed-item-listing-row-title span-3">Location:</div>
+                        <div class = "feed-item-listing-row-details span-12">
+                          {% if a.content_object.location_title %} {{ a.content_object.location_title }}<br/>{% endif %}
+                          {% if a.content_object.city %} {{ a.content_object.city }},{% endif %}
+                          {% if a.content_object.state %} {{ a.content_object.state }}<br/>{% endif %}  
+                          {% if a.content_object.country %} {{ a.content_object.country }}<br/> {% endif %}    
+                          {% if a.content_object.location %} {{ a.content_object.location }}<br/> {% endif %}
+                        </div>
+                    </div>
+                    <hr class="thin">
+                </div> 
+                {% endif %}
+            
+                {% if a.content_object.description %}
+                <div class="feed-item-listing span-19">   
+                    <div class ="feed-item-listing-row">
+                        <div class = "feed-item-listing-row-details span-19">
+                            {% bbcode a.content_object.description %}
+                        </div>
+                    </div>
+                    <hr class="thin">
+                </div> 
+                {% endif %}
+                                  
+                {% if a.content_object.comment %}
+                <div class="feed-item-listing span-19">   
+                    <div class = "feed-item-listing-row-details span-19">
+                        {% bbcode a.content_object.comment %}
+                    </div>
+                </div> 
+                {% endif %}
+                                    
+                {% if a.content_object.url %}
+                <div class="feed-item-listing span-19">  
+                    <div class ="feed-item-listing-row"><a href="{{ a.content_object.url }}">{{ a.content_object.url }}</a></div>
+                </div> 
+                {% endif %}
+                
+             </div><!--END FEED ITEM LISTING-->
+        </div><!--END FEED ITEM-->
+        <hr class="hr2-grey-no-margin">    
+    {% endfor %}
+    <span id="feed-paginator" class="span-24">
+        {{ activities_paginator.render }}
+        <hr class="hr2-grey">
+    </span>
+    </div><!--END SECTION CONTENT-->
+</div>

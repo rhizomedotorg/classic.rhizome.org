@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% load block_tags %}
+
+{% block customStyleSheets %}
+	<link rel="stylesheet" href="{{ STATIC_URL }}accounts/styles/accounts.css" type="text/css" charset="utf-8"></link>
+{% endblock %}
+
+{% block navbars %}
+	{% get_nav 'Community' 'Profiles' %}
+{% endblock %}

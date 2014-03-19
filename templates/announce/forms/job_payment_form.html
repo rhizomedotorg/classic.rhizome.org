@@ -1,0 +1,115 @@
+<div class = "donation-form span-15">
+    {% csrf_token %}
+    <div class = "donation-input span-15">
+        <label>Amount:</label>  <span class="bold alert">$25.00 USD</span>
+    </div>
+    {{job_payment_form.amount}}
+    
+    <div class = "span-14">
+        <div class = "donation-input span-7">
+            <label>Cardholder's First Name</label><br /> 
+            <span class="form_errors">{{ job_payment_form.first_name.errors }}</span>
+            <span class = "donation-form-input">{{ job_payment_form.first_name }}</span>
+        </div>
+
+        <div class = "donation-input span-7">
+            <label>Cardholder's Last Name</label><br /> 
+            <span class="form_errors">{{ job_payment_form.last_name.errors }}</span>
+            <span class = "donation-form-input">{{ job_payment_form.last_name }}</span>
+        </div>
+    </div>
+
+    <div class = "span-14">
+        <div class = "donation-input span-7">
+            <label>Card Type<br /> 
+            <span class="form_errors">{{ job_payment_form.cc_type.errors }}</span>
+            <span class = "donation-form-input">{{ job_payment_form.cc_type }}</span>
+        </div>
+    
+        <div class = "donation-input span-7">
+            <label>Card number*</label><br /> 
+            <span class="form_errors">{{ job_payment_form.cc_number.errors }}</span>
+            <span class = "donation-form-input">{{ job_payment_form.cc_number }}</span>
+        </div>
+    </div>
+
+    <div class = "span-14">
+        
+        <div class = "donation-input span-7">
+            <label>Card sercurity code</label><br /> 
+            <span class="form_errors">{{ job_payment_form.cc_card_code.errors }}</span>
+            <span class = "donation-form-input">{{ job_payment_form.cc_card_code }}</span>
+        </div>
+    
+        <div class = "donation-input span-7">
+            <label>Card expiration date</label><br /> 
+            <span class="form_errors">{{ job_payment_form.cc_exp_date.errors }}</span>
+            <span class = "donation-form-input">{{ job_payment_form.cc_exp_date }}</span>
+        </div>
+    
+    </div>
+
+    <div class = "span-14">
+
+        <div class = "billing-input span-7">
+            {% if billing_address_form.street1.errors %}<span class="form_errors">{{ billing_address_form.street1.errors }}</span>{% endif %}
+            <label>Cardholder Address 1</label><br /> 
+            <span class = "donation-form-input">{{ billing_address_form.street1 }}</span>
+        </div>
+        
+        <div class = "billing-input span-7">
+            {% if billing_address_form.street2.errors %}<span class="form_errors">{{ billing_address_form.street2.errors }}</span>{% endif %}
+            <label>Cardholder Address 2</label><br />
+            <span class = "donation-form-input">{{ billing_address_form.street2 }}</span>
+        </div>
+        
+        </div>
+    
+    
+    <div class = "span-14">
+
+        <div class = "billing-input span-7">
+            {% if billing_address_form.city.errors %}<span class="form_errors">{{ billing_address_form.city.errors }}</span>{% endif %}
+            <label>Cardholder City</label> <br />
+            <span class = "donation-form-input">{{ billing_address_form.city }}</span>
+        </div>
+        
+        <div class = "billing-input span-7">
+            {% if billing_address_form.city.locality_province.errors %}<span class="form_errors">{{ billing_address_form.locality_province.errors }}</span>{% endif %}
+            <label>Locality/Province (optional)</label><br />
+            <span class = "donation-form-input">{{ billing_address_form.locality_province }}</span> 
+        </div>
+    
+    </div>
+
+    <div class = "billing-input span-14">   
+        {% if billing_address_form.zip_postal_code.errors %}<span class="form_errors">{{ billing_address_form.zip_postal_code.errors }}</span>{% endif %}
+        <label>Cardholder Zip/Postal Code</label> <br />
+        <span class = "donation-form-input">{{ billing_address_form.zip_postal_code }}</span><br />
+    </div>
+    
+    <div class = "billing-input span-14">   
+        {% if billing_address_form.state.errors %}<span class="form_errors">{{ billing_address_form.state.errors }}</span>{% endif %}
+        <label>Cardholder US State (if applicable)</label><br />
+        <span class = "donation-form-input">{{ billing_address_form.state }}</span>
+    </div>
+
+
+
+    <div class = "billing-input span-14">      
+        {% if billing_address_form.country.errors %}<span class="form_errors">{{ billing_address_form.country.errors }}</span>{% endif %}
+        <label>Cardholder Country</label><br /> 
+        <span class = "donation-form-input">{{ billing_address_form.country }}</span>
+    </div>
+    
+    <div class="about-content span-14">                        
+        <div>*Rhizome does not store any credit card information. Your payment will be processed via a secure third-pary authorization service.</div>
+    </div>
+    
+     <div id="thawteseal" class="center span-14" style="padding: 10px 0px;" title="Click to Verify - This site chose Thawte SSL for secure e-commerce and confidential communications.">
+        <script type="text/javascript" src="https://seal.thawte.com/getthawteseal?host_name=rhizome.org&amp;size=L&amp;lang=en"></script>
+        <br />
+        <a href="http://www.thawte.com/products/" target="_blank" style="color:#000000; text-decoration:none; font:bold 10px arial,sans-serif; margin:0px; padding:0px;">ABOUT SSL CERTIFICATES</a>
+    </div>
+
+</div>

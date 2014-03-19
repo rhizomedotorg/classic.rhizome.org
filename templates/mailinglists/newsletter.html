@@ -1,0 +1,497 @@
+{% load blog_tags inlines_tags markup comments %} 
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.02 Final//EN">
+<html>
+<head>
+	<title>RHIZOME NEWS: {{ article.publish|date:"n.j.Y" }}</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <style type = "text/css">
+        a, img,a img {
+	       text-decoration: none;
+	       border: 0 none;
+	     }
+    </style>
+
+</head>
+<body style="margin:0;" bgcolor="#ffffff">
+
+<table width="700" align="center" cellspacing="0" cellpadding="0" border="0" style="border-collapse:seperate;">
+    <tr>
+        <td width="700" height="19" align="center" style="font:11px Arial, Helvetica, sans-serif; color:#666;">
+        	If you have trouble reading this email, <a style="color:#026784; text-decoration:none;" href="{{SITE_URL}}/editorial/news/">click here</a>.
+        </td>
+    </tr>
+
+    <tr>
+        <td width="700" height="78" bgcolor="#000000">
+        	<table width="700" align="center" cellpadding="0" border="0" style="border-collapse:seperate;">
+            	<tr>
+                	<td width="400" height="75" style="line-height:0;"><a href="{{SITE_URL}}/editorial/news/"><img src="{{ STATIC_URL }}editorial/newsletter/banner_images/newsletter_banner.jpg" alt="" /></a></td>
+                	<td width="400" height="75" align="right" valign="bottom" style="font:italic bold 14px Georgia, 'Times New Roman', Times, serif; color:#ccc;">
+                		<p style="padding:0 10px 6px 0; margin:0;">{{ article.publish|date:"n.j.Y" }}</p>
+                	</td>
+            	</tr>
+        	</table>
+        </td>
+    </tr>
+
+	{% if banner_ad %}
+ 	<tr>
+        <td width="700" bgcolor="#f3f3f3">
+ 			<table width="700" align="center" cellpadding="0" border="0" style="border-collapse:seperate;margin-top:10px;">
+                <tr>
+                    <td width="700" style="line-height:0;text-align:center;background-color:#f3f3f3;">
+                        <a target="_blank" href="http://engine.nectarads.com/s/redirect/12843/0/4/51311701"><img border="0" src="http://engine.nectarads.com/s/12843/0/4/51311701"/></a>
+                        
+                        <p style="background-color:#f3f3f3;font-size:11px;color:#555555;text-align:right;padding-top:6px;padding-bottom:0px;padding-right:20px;padding-left:0;margin-top:5px;margin-bottom:0;margin-right:0;margin-left:0;">
+                            <a style="color:#888888;text-decoration:none;" href="http://nectarads.com/">Advertise with Nectar Ads</a>
+                        </p>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    {% endif %}
+
+	<tr>
+		<td width="700" bgcolor="#f3f3f3">
+			<table width="680" align="center" cellpadding="0" border="0" style="border-collapse:seperate;margin-top:10px;">
+				<tr>
+					<td width="480" valign="top">
+						<table width="480" align="center" cellpadding="0" border="0" style="border-collapse:seperate; border:1px solid #ccc;" bgcolor="#ffffff">
+							<tr>
+								<td width="478">
+									<table width="441" align="center" cellpadding="0" border="0" style="border-collapse:seperate;">
+										<tr><td width="441" height="15" style="line-height:0;">&nbsp;</td></tr>
+										<tr>
+											<td width="441">
+												<table>
+													<tr>
+														<td style="background-color:#d6d6d6" height="16">
+														  <a name="feature"></a>
+															<p style="font:bold 11px Arial, Helvetica, sans-serif; color:#000; padding:0 5px; margin:0; text-transform:uppercase;">Featured Article</p>
+														</td>
+													</tr>
+												</table>
+											</td>
+										</tr>
+										<tr><td width="441" height="10"><img src="{{ STATIC_URL }}editorial/newsletter/template_images/hr.gif" alt="" /></td></tr>
+										<tr>
+											<td width="441" height="40" style="font:bold 18px Georgia, 'Times New Roman', Times, serif; color:#000;"><a style ="color:black;text-decoration:none;" href="http://rhizome.org/{{article.get_absolute_url}}">{{article.title}}</a></td>
+										</tr>
+										<tr>
+											<td width="441" height="15" style="font:12px Georgia, 'Times New Roman', Times, serif; color:#000;">
+											  <span class="nowrap">
+											  {% if authors %}
+											     By {% for a in authors %}
+												    <b><a style="font: 12px Georgia, 'Times New Roman', Times, serif; color:#026784; padding:0; margin:0;text-decoration:none;" href="http://rhizome.org{{a.get_profile.get_absolute_url}}/">{{a.get_profile}}</a></b>
+								                 {% endfor %}
+								              {% else %}
+								                <b>{{ article.byline }}</b>
+								              {% endif %}
+												on {{article.publish|date:"l M jS, Y" }}
+												</span>
+											</td>
+										</tr>
+										<tr>
+											<td width="441" style="font:13px/18px Arial, Helvetica, sans-serif; color:666;">
+											  {{ article.get_formatted_news_excerpt|markdown }}
+											</td>
+										</tr>
+										<tr>
+											<td width="441" style="font:13px/18px Arial, Helvetica, sans-serif; color:666; text-align:right;">
+											  <table align="right">
+													<tr>
+														<td bgcolor="#ffcaff" height="16">
+															<a href="http://rhizome.org{{article.get_absolute_url}}" style="font:bold 10px Arial, Helvetica, sans-serif; color:#000; padding:0 5px; margin:0; text-transform:uppercase; text-decoration:none;">MORE &raquo;</a>
+														</td>
+													</tr>
+												</table>
+											</td>
+										</tr>
+										<tr><td width="441" height="15" style="line-height:0;">&nbsp;</td></tr>
+									</table>
+								</td>
+							</tr>						
+						</table>
+						
+						
+						<table width="480" align="center" cellpadding="0" border="0" style="border-collapse:seperate; border:1px solid #ccc; margin-top:10px;" bgcolor="#ffffff">
+							<tr>
+								<td width="478">
+									<table width="454" align="center" cellpadding="0" border="0" style="border-collapse:seperate;">
+										<tr><td width="454" height="15" style="line-height:0;">&nbsp;</td></tr>
+										<tr>
+											<td width="454">
+												<table width="215" align="left" cellpadding="0" border="0" style="border-collapse:seperate;">
+													<tr>
+														<td width="215">
+															<table>
+																<tr>
+																	<td bgcolor="#d6d6d6" height="16">
+																	  <a name="news"></a>
+																		<p style="font:bold 11px Arial, Helvetica, sans-serif; color:#000; padding:0 5px; margin:0; text-transform:uppercase;">News</p>
+																	</td>
+																</tr>
+															</table>
+														</td>
+													</tr>
+													<tr><td width="215" height="10"><img src="{{ STATIC_URL }}editorial/newsletter/template_images/hr2.gif" alt="" /></td></tr>
+													<tr><td width="215" height="10" style="line-height:0;">&nbsp;</td></tr>
+													
+                          						
+													
+													{% for article in featured_articles %}
+													<tr>
+														<td width="215">
+															<p style="font:10px Arial, Helvetica, sans-serif; color:#666; padding:0; margin:0;">{{ article.publish|date:"j F Y" }}</p>
+															<a href="http://rhizome.org{{ article.get_absolute_url }}" style="font:italic 14px Georgia, 'Times New Roman', Times, serif; color:#026784; padding:0; margin:0;text-decoration:none;">{{ article.title }}</a>
+														</td>
+													</tr>
+													<tr><td width="215" height="15" style="line-height:0;">&nbsp;</td></tr>
+                                                    {% endfor %}
+                          
+                          
+													<tr>
+														<td width="215">
+															<table>
+																<tr>
+																	<td bgcolor="#ffcaff" height="16">
+																		<a href="http://rhizome.org/editorial/" style="font:bold 10px Arial, Helvetica, sans-serif; color:#000; padding:0 5px; margin:0; text-transform:uppercase; text-decoration:none;">SEE ALL NEWS</a>
+																	</td>
+																</tr>
+															</table>
+														</td>
+													</tr>
+													<tr><td width="215" height="15" style="line-height:0;">&nbsp;</td></tr>
+												</table>
+												<table width="215" align="right" cellpadding="0" border="0" style="border-collapse:seperate;">
+													<tr>
+														<td width="215">
+															<table>
+																<tr>
+																	<td bgcolor="#d6d6d6" height="16">
+																		<p style="font:bold 11px Arial, Helvetica, sans-serif; color:#000; padding:0 5px; margin:0; text-transform:uppercase;">FROM THE BLOG</p>
+																	</td>
+																</tr>
+															</table>
+														</td>
+													</tr>
+													<tr><td width="215" height="10"><img src="{{ STATIC_URL }}editorial/newsletter/template_images/hr2.gif" alt="" /></td></tr>
+													<tr><td width="215" height="10" style="line-height:0;">&nbsp;</td></tr>
+													
+													{% get_latest_posts 5 as latest_post_list %}
+													{% for post in latest_post_list %}
+													<tr>
+														<td width="215">
+															<p style="font:10px Arial, Helvetica, sans-serif; color:#666; padding:0; margin:0;">{{ post.publish|date:"j F Y" }}</p>
+															<a href="http://rhizome.org{{ post.get_absolute_url }}" style="font:italic 14px Georgia, 'Times New Roman', Times, serif; color:#026784; padding:0; margin:0;text-decoration:none;">{{ post.title }}</a>
+														</td>
+													</tr>
+													<tr><td width="215" height="15" style="line-height:0;">&nbsp;</td></tr>
+                                                    {% endfor %}													
+													<tr>
+														<td width="215">
+															<table>
+																<tr>
+																	<td bgcolor="#ffcaff" height="16">
+																		<a href="http://rhizome.org/editorial/" style="font:bold 10px Arial, Helvetica, sans-serif; color:#000; padding:0 5px; margin:0; text-transform:uppercase; text-decoration:none;">SEE THE BLOG</a>
+																	</td>  
+																</tr>
+															</table>
+														</td>
+													</tr>
+													<tr><td width="215" height="15" style="line-height:0;">&nbsp;</td></tr>
+												</table>
+											</td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+						</table>
+						<table width="480" align="center" cellpadding="0" border="0" style="border-collapse:seperate; border:1px solid #ccc; margin-top:10px;" bgcolor="#ffffff">
+							<tr>
+								<td width="478">
+									<table width="454" align="center" cellpadding="0" border="0" style="border-collapse:seperate;">
+										<tr><td width="454" height="15" style="line-height:0;">&nbsp;</td></tr>
+										<tr>
+											<td width="454">
+												<table width="215" align="left" cellpadding="0" border="0" style="border-collapse:seperate;">
+													<tr>
+														<td width="215">
+															<table>
+																<tr>
+																	<td bgcolor="#d6d6d6" height="16">
+																	  <a name="announce"></a>
+																		<p style="font:bold 11px Arial, Helvetica, sans-serif; color:#000; padding:0 5px; margin:0; text-transform:uppercase;">OPPORTUNITIES</p>
+																	</td>
+																</tr>
+															</table>
+														</td>
+													</tr>
+													<tr><td width="215" height="10"><img src="{{ STATIC_URL }}editorial/newsletter/template_images/hr2.gif" alt="" /></td></tr>
+													<tr><td width="215" height="10" style="line-height:0;">&nbsp;</td></tr>
+													<tr>
+														<td width="215">												  
+															{% for opp in opps %}		
+															<p style="font:13px Georgia, 'Times New Roman', Times, serif; color:#000; padding:0 0 5px; margin:0;"><img src="{{ STATIC_URL }}editorial/newsletter/template_images/arrow.gif" alt="" /> <a style="color:#026784; text-decoration:none;" href="http://rhizome.org{{ opp.get_absolute_url }}">{{ opp.title }}</a></p>
+													       {% endfor %}
+														</td>
+													</tr>
+													<tr><td width="215" height="10" style="line-height:0;">&nbsp;</td></tr>
+													<tr>
+														<td width="215">
+															<table>
+																<tr>
+																	<td bgcolor="#ffcaff" height="16">
+																		<a href="http://rhizome.org/announce/opportunities/" style="font:bold 10px Arial, Helvetica, sans-serif; color:#000; padding:0 5px; margin:0; text-transform:uppercase; text-decoration:none;">SEE ALL</a>
+																	</td>
+																</tr>
+															</table>
+														</td>
+													</tr>
+													<tr><td width="215" height="15" style="line-height:0;">&nbsp;</td></tr>
+												</table>
+												<table width="215" align="right" cellpadding="0" border="0" style="border-collapse:seperate;">
+													<tr>
+														<td width="215">
+															<table>
+																<tr>
+																	<td bgcolor="#d6d6d6" height="16">
+																		<p style="font:bold 11px Arial, Helvetica, sans-serif; color:#000; padding:0 5px; margin:0; text-transform:uppercase;">CALENDAR</p>
+																	</td>
+																</tr>
+															</table>
+														</td>
+													</tr>
+													<tr><td width="215" height="10"><img src="{{ STATIC_URL }}editorial/newsletter/template_images/hr2.gif" alt="" /></td></tr>
+													<tr><td width="215" height="10" style="line-height:0;">&nbsp;</td></tr>
+													<tr>
+														<td width="215">
+														  {% for event in events %}
+												        <p style="font:13px Georgia, 'Times New Roman', Times, serif; color:#000; padding:0 0 5px; margin:0;"><img src="{{ STATIC_URL }}editorial/newsletter/template_images/arrow.gif" alt="" /> <a style="color:#026784; text-decoration:none;" href="http://rhizome.org{{event.get_absolute_url}}">{{ event.title }}</a></p>
+												          {% endfor %}
+														</td>
+													</tr>
+													<tr><td width="215" height="10" style="line-height:0;">&nbsp;</td></tr>
+													<tr>
+														<td width="215">
+															<table>
+																<tr>
+																	<td bgcolor="#ffcaff" height="16">
+																		<a href="http://rhizome.org/announce/events" style="font:bold 10px Arial, Helvetica, sans-serif; color:#000; padding:0 5px; margin:0; text-transform:uppercase; text-decoration:none;">SEE ALL</a>
+																	</td>
+																</tr>
+															</table>
+														</td>
+													</tr>
+													<tr><td width="215" height="15" style="line-height:0;">&nbsp;</td></tr>
+												</table>
+											</td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+						</table>
+						<table width="480" align="center" cellpadding="0" border="0" style="border-collapse:seperate; border:1px solid #ccc; margin-top:10px;" bgcolor="#ffffff">
+							<tr>
+								<td width="478">
+									<table width="454" align="center" cellpadding="0" border="0" style="border-collapse:seperate;">
+										<tr><td width="454" height="15" style="line-height:0;">&nbsp;</td></tr>
+										<tr>
+											<td width="454">
+												<table width="454" align="left" cellpadding="0" border="0" style="border-collapse:seperate;">
+													<tr>
+														<td width="454">
+															<table>
+																<tr>
+																	<td bgcolor="#d6d6d6" height="16">
+																	  <a name="discuss"></a>
+																		<p style="font:bold 11px Arial, Helvetica, sans-serif; color:#000; padding:0 5px; margin:0; text-transform:uppercase;">DISCUSSION</p>
+																	</td>
+																</tr>
+															</table>
+														</td>
+													</tr>
+													<tr><td width="454" height="10"><img src="{{ STATIC_URL }}editorial/newsletter/template_images/hr3.gif" alt="" /></td></tr>
+													<tr><td width="454" height="10" style="line-height:0;">&nbsp;</td></tr>
+													<tr>
+														<td width="454">
+												        {% for thread in threads %}
+														  														  
+                                                            {% if thread.content_type_id == 112 %}
+                                                                {% get_comment_count for thread as thread_count %}
+                                				                <p style="font:13px Georgia, 'Times New Roman', Times, serif; color:#000; padding:0 0 5px; margin:0;"><img src="{{ STATIC_URL }}editorial/newsletter/template_images/arrow.gif" alt="" /> 
+        														      <a style="color:#026784; text-decoration:none;" href="http://rhizome.org/discuss/view/{{thread.id}}/">{{ thread.content_object.title }} ({{ thread_count }} posts)
+        														      </a>
+        														  </p>
+    												        {% else %}
+    														  
+    														   {% get_comment_count for thread.content_object as thread_count %}
+    														  <p style="font:13px Georgia, 'Times New Roman', Times, serif; color:#000; padding:0 0 5px; margin:0;"><img src="{{ STATIC_URL }}editorial/newsletter/template_images/arrow.gif" alt="" /> 
+    														      <a style="color:#026784; text-decoration:none;" href="http://rhizome.org/discuss/view/{{thread.id}}/">{{ thread.content_object.title }} ({{ thread_count }} posts)
+    														      </a>
+    														  </p>
+    														  {% endif %}														  
+														  
+												        {% endfor %}
+															
+														</td>
+													</tr>
+													<tr><td width="454" height="10" style="line-height:0;">&nbsp;</td></tr>
+													<tr>
+														<td width="454">
+															<table>
+																<tr>
+																	<td bgcolor="#ffcaff" height="16">
+																		<a href="{{SITE_URL}}/discuss/" style="font:bold 10px Arial, Helvetica, sans-serif; color:#000; padding:0 5px; margin:0; text-transform:uppercase; text-decoration:none;">SEE ALL</a>
+																	</td>
+																</tr>
+															</table>
+														</td>
+													</tr>
+													<tr><td width="215" height="15" style="line-height:0;">&nbsp;</td></tr>
+												</table>
+											</td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+						</table>
+					</td>
+					<td width="8" height="100%" style="line-height:0;">&nbsp;</td>
+					<td width="192" valign="top">
+						<table width="192" align="center" cellpadding="0" border="0" style="border-collapse:seperate; border:1px solid #ccc;" bgcolor="#ffffff">
+							<tr>
+								<td width="190">
+									<table width="174" align="center" cellpadding="0" border="0" style="border-collapse:seperate;">
+										<tr><td width="174" height="10" style="line-height:0;">&nbsp;</td></tr>
+									<tr>
+											<td width="174" height="16" bgcolor="#000000" style="font:bold 11px Arial, Helvetica, sans-serif; color:#fff;" align="center">
+										RHIZOME NEWS CONTENTS
+											</td>
+										</tr>
+										<tr><td width="174" height="10" style="line-height:0;"><img src="{{ STATIC_URL }}editorial/newsletter/template_images/hr4.gif" alt="" /></td></tr>
+										<tr>
+											<td width="174" style="font:bold 12px Arial, Helvetica, sans-serif; padding:10px 0;" align="center">
+												<a style="color:#026784; text-decoration:none;" href="#feature">Featured Article</a>
+											</td>
+										</tr>
+										<tr><td width="174" height="10" style="line-height:0;"><img src="{{ STATIC_URL }}editorial/newsletter/template_images/hr4.gif" alt="" /></td></tr>
+										<tr>
+											<td width="174" style="font:bold 12px Arial, Helvetica, sans-serif; padding:10px 0;" align="center">
+												<a style="color:#026784; text-decoration:none;" href="#news">News &amp; From the Blog</a>
+											</td>
+										</tr>
+										<tr><td width="174" height="10" style="line-height:0;"><img src="{{ STATIC_URL }}editorial/newsletter/template_images/hr4.gif" alt="" /></td></tr>
+										<tr>
+											<td width="174" style="font:bold 12px Arial, Helvetica, sans-serif; padding:10px 0;" align="center">
+												<a style="color:#026784; text-decoration:none;" href="#announce">Opportunities &amp; Calendar</a>
+											</td>
+										</tr>
+										<tr><td width="174" height="10" style="line-height:0;"><img src="{{ STATIC_URL }}editorial/newsletter/template_images/hr4.gif" alt="" /></td></tr>
+										<tr>
+											<td width="174" style="font:bold 12px Arial, Helvetica, sans-serif; padding:10px 0;" align="center">
+												<a style="color:#026784; text-decoration:none;" href="#discuss">Discussion</a>
+											</td>
+										</tr>
+										<tr><td width="174" height="10" style="line-height:0;">&nbsp;</td></tr>
+									</table>
+								</td>
+							</tr>
+						</table>
+						
+                        <table width="192" align="center" cellpadding="0" border="0" style="border-collapse:seperate; border:1px solid #ccc; margin-top:10px; bgcolor:#ffffff;">		
+							<tr>
+								<td width="190">
+		
+									<table width="190" align="center" cellpadding="0" border="0" style="border-collapse:seperate;" bgcolor="#ffffff">
+										<tr><td width="174" height="10" style="line-height:0;">&nbsp;</td></tr>
+								        <tr>
+								            <td width="174" style="line-height:0; text-align:center;">
+								                <p style="font:bold 11px Arial, Helvetica, sans-serif; color:#000; padding:0 5px; margin:0; text-transform:uppercase;"><a style="font:bold 12px Arial, Helvetica, sans-serif; color:#026784; text-decoration:none;" href="https://rhizome.org/support/donate">  <img style = "border:none;" width = "175" src = "{{ STATIC_URL }}support/images/individual/member_price.png" /></a>
+                                                </p>
+                            
+                                                <p style="font:11px Arial, Helvetica, sans-serif; padding:0; margin-bottom:5px;"><a href="https://rhizome.org/support/donate" style="font:bold 12px Arial, Helvetica, sans-serif; color:#026784; text-decoration:none;margin:0px 3px;">Become a Rhizome Member!</a></p>   											
+								            </td>
+										</tr>                                    
+                                    </table>
+				                </td>
+							</tr>
+						</table>
+																	
+						
+						<!--START ADS TABLE-->
+						
+						<table width="192" align="center" cellpadding="0" border="0" style="border-collapse:seperate; border:1px solid #ccc; margin-top:10px;" bgcolor="#ffffff">
+							<tr>
+								<td width="190">
+									
+									<table width="174" align="center" cellpadding="0" border="0" style="border-collapse:seperate;" bgcolor="#ffffff">
+										<tr>
+										<td width="174" height="10" style="line-height:0;">&nbsp;</td></tr>
+											
+											<tr>
+												<td width="174">
+													
+													<table align="center">
+														<tr>
+															<td bgcolor="#ffcaff" height="16">
+																<p style="font:bold 11px Arial, Helvetica, sans-serif; color:#000; padding:0 5px; margin:0; text-transform:uppercase;">RHIZOME NEWS ADS</p>
+										
+															</td>
+														</tr>
+													</table>
+													
+												</td>
+											</tr>
+											 
+
+											<tr><td width="174" height="10" style="line-height:0;text-align:center;"><img src="{{ STATIC_URL }}editorial/newsletter/template_images/hr4.gif" alt="" /></td></tr>
+								            
+								            <tr><td width="174" height="10" style="line-height:0;">&nbsp;</td></tr>
+	
+								<!--start ad-->	
+									
+                                        <tr>
+							             <td width="174" align="center" style="padding: 0px;">
+
+								        <p style="font:bold 11px Arial, Helvetica, sans-serif; color:#000; padding:0 5px; margin:0; text-transform:uppercase;">
+								            <a style="font:bold 12px Arial, Helvetica, sans-serif; color:#026784; text-decoration:none;" href="mailto:advertise@rhizome.org">
+								                <img style = "border:none;" width = "175" src = "{{ STATIC_URL }}/support/images/advertise@rhizome-news.gif" />
+								            </a>
+                                        </p>
+                                        <p style="font:11px Arial, Helvetica, sans-serif; padding:0; margin-bottom:5px;"><a href="http://nectarads.com/" style="font:bold 12px Arial, Helvetica, sans-serif; color:#026784; text-decoration:none;margin:0px 3px;">Contact our partner Nectar Ads for details</a></p>    
+                                        </td>
+										</tr>	                                         
+								<!--end ad-->
+										
+                                        <tr><td width="174" height="10" style="line-height:0;">&nbsp;</td></tr>
+
+									</table>
+								</tr>
+							</table>
+									<!--END ADS TABLE-->	
+                <tr><td width="441" height="15" style="line-height:0;">&nbsp;</td></tr>
+
+										</td>
+									</table>
+								</td>
+							</tr>
+				
+	<tr>
+		<td width="700" align="center" bgcolor="#ffffff">
+			<table width="680" align="center" cellpadding="0" border="0" style="border-collapse:seperate;" >
+				<tr><td width="680" height="15" style="line-height:0;">&nbsp;</td></tr>
+				<tr>
+					<td width="680" style="font:11px Arial, Helvetica, sans-serif; color:#666;">
+						The Rhizome News is supported, in part, by the Andy Warhol Foundation for the Visual Arts, The New York City Department of Cultural Affairs and The New York State Council on the Arts. You are receiving this email because, at one point, you signed up for Rhizome News.<br/><div style="text-align:center; margin-top: 3px;"><a style="background-color:#d6d6d6; font:bold 11px Arial, Helvetica, sans-serif; color:#000; padding:0 5px; margin:0; text-transform:uppercase; text-decoration:none;" href="http://rhizome.list-manage.com/subscribe?u=a1487b13ca8ed17d052f71f12&id=6f6e0ea86b">SUBSCRIBE TO RHIZOME NEWS</a> | <a style="background-color:#d6d6d6; font:bold 11px Arial, Helvetica, sans-serif; color:#000; padding:0 5px; margin:0; text-transform:uppercase; text-decoration:none;" href="http://rhizome.list-manage.com/unsubscribe?u=a1487b13ca8ed17d052f71f12&id=6f6e0ea86b">UNSUBSCRIBE FROM RHIZOME NEWS</a></div>
+					</td>
+				</tr>
+				<tr><td width="680" height="10" style="line-height:0;">&nbsp;</td></tr>
+			</table>
+		</td>
+	</tr>
+	</table>
+</table>
+</body>
+</html>

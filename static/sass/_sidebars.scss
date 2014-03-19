@@ -1,0 +1,55 @@
+@mixin linear-gradient($color-stop1, $color-stop2) {
+  background: -webkit-linear-gradient($color-stop1, $color-stop2); /* For Safari */
+  background: -o-linear-gradient($color-stop1, $color-stop2); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient($color-stop1, $color-stop2); /* For Firefox 3.6 to 15 */
+  background: linear-gradient($color-stop1, $color-stop2); /* Standard syntax */
+}
+
+.sidebar-module {
+  margin-bottom: 5px;
+
+  .title {
+    background: black;
+    text-align: center;
+    color: white;
+    font: {
+      size: 16px;
+      family: 'Titillium Web', sans-serif;
+    }
+  }
+
+  .box {
+    @include linear-gradient(#e3f6f7, #eadaea);
+    padding: 10px 0;
+
+    .content-body {
+      background: white;
+      margin: 0 20px;
+      padding: 4px;
+      border-radius: 5px;
+    }
+
+    h3 {
+      font: {
+        size: 20px;
+        weight: bold;
+      }
+      text: {
+        decoration: underline;
+        align: center;
+      }
+    }
+
+    ul {
+      li {
+        margin-left: 15px;
+        padding-top: 5px;
+        font: {
+          size: 14px;
+          weight: bold;
+        }
+        color: $link-color;
+      } 
+    }
+  }
+}

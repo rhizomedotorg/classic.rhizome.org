@@ -1,0 +1,114 @@
+body{background-image:url('../img/bigtriangles.gif');background-repeat:no-repeat;background-position:top right;text-align: center;}
+.wrapper { text-align: left; width: 900px; margin-left: auto; margin-right: auto; } 
+.bluebar { position: absolute; left: 0px; top: 45px; width: 100%; height: 215px; margin: 0px; background-image: url('../img/bluebar.png'); z-index:-1;}
+.bluebar-big { position: absolute; left: 0px; top: 45px; width: 100%; height: 331px; margin: 0px; background-image: url('../img/bluebar-big.png'); z-index:-1;}
+img{border: none;}
+
+/* HEADERS */
+h1 { font-family: Georgia,  serif; font-size: 24px; font-weight: 100; }
+h2 { font-family: Georgia,  serif; font-size: xx-large; font-weight:normal; margin:0px; margin-bottom: 5px; color: #3399cc;}
+h3 { font-size: x-large; margin-top: 0px;font-weight: normal; margin: 0px;}
+h4 { color: #333;font-family: Georgia;font-size: 19px;text-align: right;width: 300px;font-weight: normal;margin: 0px;}
+h5 { color: #333;font-family: Georgia;font-size: 19px;text-align: left; font-weight: normal;margin: 0px;}
+/* LINKS */
+a:link { color: #000; text-decoration: none; border: hidden; }
+a:visited { color: #000; text-decoration: none; }
+a:hover { text-decoration: underline; color: #666; }
+a:active { text-decoration: none; }
+
+
+/* SIDEBAR */
+
+.leftcolumn { margin-top: 32px; text-align: center; width: 320px; z-index:2; float: left;}
+
+.tickets {	width: 320px; margin-top: 0px; padding: 20px 10px 40px 10px; color: #333333; font-size: 19px; font-family: Georgia,  serif; text-align: left; margin-left: 0px;}
+
+.event-info{width: 300px; padding: 20px 0px 0px; color: #333333; font-size: 19px; font-family: Georgia; text-align: right; margin-left: 0px;height:600px;height:290px}
+
+.tickets ul { padding-left: 0px;display:inline;}
+.tickets ul li { list-style: none;color: #333;list-style-type: none; font-family: 'Georgia'; font-size: 22px; margin-top: 0px; padding: 0px; text-align: left; height:30px; }
+
+ul#reg {margin:0px 0px 5px 0px;display:inline;float:left;padding-top: 0px;}
+ul#images {width:50px; float:right;display:inline;margin: 0px 0px 5px 0px;padding-top: 0px;}
+.tickets ul li.1 { margin-bottom: 5px; }
+
+.desc,.videos { margin: 10px auto; width:405px;}
+
+.eventschedule { width: 300px; font-size: 19px; font-family: Georgia; text-align: right; color: #333333; padding-top: 10px;margin-right: 0px !important;clear:both;}
+
+.credits-wrapper { width: 300px; font-family: Georgia; text-align: right; color: #333333;margin-right: 0px !important;margin-top: 20px;}
+
+.credits { 
+    font-size: 12px;
+	text-align: right;
+	margin-right: 0;
+	color: gray;
+}
+
+.eventschedule h2{margin-top: 0px;padding-top: 0px;}
+
+.disclaimer-tickets { font-size: 13px; margin: 0px 0px 0px 0px; text-align: right;width:300px;clear:both;}
+
+#documentation {
+    float:right;
+	border-bottom: 1px solid gray;
+	border-top: 1px solid gray;
+	padding: 5px 3px;
+	list-style-type: none;
+	margin-top: 10px;
+	margin-right: 20px;
+}
+
+/* MAIN CONTENT */
+
+.middleblock { width: 460px; height: 3400px; top: 30px; background-image: url('../img/middleblock-big.png'); background-position: top left; background-repeat: no-repeat; float: left; font-family: Georgia; font-size: 16px; color: #333333; text-align: left; behavior: url(/css/resources/iepngfix.htc);
+	padding: 20px;
+	margin-top: 10px;
+	margin-left: 10px;
+	margin-right: 18px;
+}
+.information {width: 211px;height: 115px;margin-top: 70px;float: left;}
+
+.middleblock iframe{
+    margin-top: 5px;
+}
+
+#logo{
+    margin:0px auto;
+    display: block;
+    margin-bottom: 20px;
+    border-bottom: 1px solid gray;
+}
+
+#people {margin: 0px auto;width:410px;border-bottom: 1px solid gray;}
+
+.art { text-align: left; float: left;margin-left: 0px; }
+.art ul { float: left;text-align:left;margin-left: 0px;padding-left: 0px;}
+.art ul li { list-style: none; text-align: left;}
+
+.technology { text-align: right; float: right; }
+.technology ul li { list-style: none; text-align: right;}
+.technology ul { float:left; }
+
+.vidTitle {
+	font-size: 18px;
+}
+
+.caption {
+    margin-top: 10px;
+	font: x-small/1px "Lucida Grande", Lucida, Verdana, sans-serif;
+}
+
+.disclaimer { font-size: 13px; margin-top:0px;}
+
+.lightdisclaimer { font-size: 12px; color: #999999; }
+
+
+.sponsorblock { width: 200px; }
+.spacer { width: 340px; margin-top: 0px; margin-left: 60px; float: left; }
+
+#sponsor-images img{
+    float:right;
+    padding-right: 3px; 
+    padding-bottom: 3px; 
+}

@@ -1,0 +1,110 @@
+<input type="hidden" name="form-type" value="opportunity-form">
+{% if announcement_form.errors %}
+    <div class="form-errors bold upper center">There were errors with your announcement. Please check the form below.</div>
+{% endif %}
+<h6 class = "span-24">Opportunity Title</h6>
+<div class = "post-form-input-title span-24">{{ announcement_form.title.errors }}{{ announcement_form.title }}</div>
+
+<div id="cols" class="span-24 last">
+    <div id="left-col" class="span-11">
+            <div class = "post-form-content span-9">
+                <h6 class = "span-8">Opportunity Type</h6>
+                <fieldset class="span-9">{{ announcement_form.subtype.errors }}{{ announcement_form.subtype }}</fieldset>
+            </div>
+        
+            <div class = "post-form-content span-9">
+                <h6 class = "span-8">Deadline</h6>
+                <fieldset class="span-9">{{ announcement_form.deadline.errors }}{{ announcement_form.deadline }}
+                        <span class="light-gray">* Date format = YYYY-MM-DD / time = 24hr clock</span>
+                </fieldset>
+                <script type="text/javascript">
+                    window.addEvent('domready', function() {
+                            startDatePicker = new Picker.Date($('id_deadline_0'), { 
+                            positionOffset: {x: 5, y: 0}, 
+                            pickerClass: 'datepicker', 
+                            useFadeInOut: !Browser.ie,
+                            format: "%Y-%m-%d",
+                            pickerPosition:'right'
+                        });                                
+                        startTimePicker = new Picker.Date($('id_deadline_1'), {
+                            pickOnly: 'time',
+                            timeWheelStep: 5,
+                            format: "%H:%M:00",
+                            pickerPosition:'right',
+                            pickerClass:"datepicker datepicker-time",
+                            positionOffset:{x: 5, y: 0}
+                        });
+                    });     
+                </script>
+            </div>
+            
+             <div class = "post-form-content span-9">
+                <h6 class = "span-8">Location</h6>
+                <fieldset class="span-9">	
+                <h6 class = "light-gray span-9">Venue Name</h6>
+                {{ announcement_form.venue_name.errors }}{{ announcement_form.venue_name }}
+                <hr class="hr-thin-gray">
+                <h6 class = "light-gray span-9">Street Address</h6>
+                {{ announcement_form.venue_address.errors }}{{ announcement_form.venue_address }}<br/>
+                 <h6 class = "light-gray span-9">City</h6>
+                {{ announcement_form.city.errors }}{{ announcement_form.city }}<br/>
+                <h6 class = "light-gray span-9">State</h6>
+                {{ announcement_form.state.errors }}{{ announcement_form.state }}<br/>
+                <h6 class = "light-gray span-9">Locality/Provice</h6>
+                {{ announcement_form.locality_province.errors }}{{ announcement_form.locality_province }}<br/> 
+                 <h6 class = "light-gray span-9">Zip/Postal Code</h6>
+                {{ announcement_form.zip_postal_code.errors }}{{ announcement_form.zip_postal_code }}<br/>
+                <h6 class = "light-gray span-9">Country</h6>
+                {{ announcement_form.country.errors }}{{ announcement_form.country }}<br/>
+                </fieldset>
+            </div>
+    </div>
+
+    <div id="right-col" class="span-12">
+        
+        <div class = "post-form-content span-12">
+            <h6 class = "span-8">Description</h6>
+            <fieldset class="span-12">
+                {% include "comments/basic_bbcode.html" %}
+                {{ announcement_form.description.errors }}{{ announcement_form.description }}
+            </fieldset>
+        </div>
+        
+       <div class = "post-form-content span-12">
+            <h6 class = "span-8">Link</h6>
+            <fieldset class="span-12">
+            {{ announcement_form.url.errors }}{{ announcement_form.url }}
+            </fieldset>
+        </div>
+        
+      <div class = "post-form-content span-12">
+            <h6 class = "span-8">Image</h6>
+            <fieldset class="span-12">{{ announcement_form.image.errors }}{{ announcement_form.image }}
+            <!--edit image added via form.py-->
+            <div class="h6 light-gray">Submit a png / jpg / gif image*</div>
+            <span class="light-gray">*Images can be up to 590px wide, and will also be cropped to a 100px x 100px thumbnail.</span>
+            </fieldset>
+        </div>
+
+                
+         <div class = "post-form-content span-12">
+            <h6 class = "span-8">Submit</h6>
+            <fieldset class="span-12">
+                <div class="float-right span-12">
+                    {% if announcement_form.instance.status %}
+                        <div>This announcement is: <span class="red">published</span></div>
+                        <span class="light-gray span-4 prepend-3">{{ announcement_form.allow_comments }} Allow Comments?</span>
+                        <input class="round-red" type="submit" value="unpublish" name="status">
+                        <input class="round-gray" type="submit" value="update" name="status">
+                    {% else %}
+                        <div>This announcement is: <span class="red">not published</span></div>
+                        <span class="light-gray span-4 prepend-3">{{ announcement_form.allow_comments }} Allow Comments?</span>
+                        <input class="round-gray" type="submit" value="preview" name="status">
+                        <input class="round-blue" type="submit" value="publish" name="status">
+                    {% endif %}
+                </div>
+            </fieldset>          
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,89 @@
+{% load discuss archive comments support tagging_tags %}
+
+{% block CustomScripts %}
+<script type="text/javascript" src="{{ STATIC_URL }}fragments/scripts/accordion_sidebar.js"></script>
+{% endblock %}
+
+<div id ="accordion-sidebar" class="span-8">
+
+    <div id="normal-elements"  class="span-8">
+        
+        <div class="normal-element">
+           <div id = "support-sidebar" class="span-8">    
+                <div id="support-sidebar-content">
+                    <div>
+                        <a href="/support/donate/"><img src = "{{ STATIC_URL }}support/images/support-rhizome.png" /></a>
+                    </div>
+                    
+                    <h6 class="center gray">MEMBERSHIP INCLUDES</h6>
+                    {% get_member_benefits as member_benefits %}
+                    {% for benefit in member_benefits %}
+                        <hr class="thin-blue-no-margin">
+                        <div>
+                            <span class="bold blue">{{ benefit.title }}</span> - {{ benefit.summary }}
+                        </div>
+                    {% endfor %}
+                    <a class="span-6 last" id="support-sidebar-button" href="/support/donate/">JOIN TODAY</a>
+                </div>
+            </div>
+        </div>   
+        
+        <div class="normal-element">
+            <h3>Latest Comments</h3>
+            <div class="normal-element-body">	
+                <div class="normal-element-body-content" id="comments">
+                    {% get_active_threads 10 as threads %}
+                    {% for thread in threads %}
+                        <div class="accordion-sidebar-comment">
+                            {% get_comment_count for thread.content_object as comment_count %}
+                            - <a href="{{thread.content_object.get_absolute_url}}">{{ thread.content_object.title }}</a> 
+                            ({{comment_count}}) by 
+                            <a href="{{ thread.last_comment.user.get_profile.get_absolute_url }}">{{ thread.last_comment.user }}</a>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+    <div id="accordion-elements" class="span-8">
+        
+        <div class="accordion-element">
+            <h3 class="accordion-toggler" id="accordion-toggler-tags">Editorial Archives</h3>
+            <div class="accordion-element-body">
+                <div class="accordion-element-body-content clear" id="archives-sidebar" >
+                    {% get_post_archive as archive %}
+                    {% for years,months in archive %}
+                    <div class = "archive-row {% if forloop.last %} last {% endif %} ">
+                        <div class = "year">
+                            {{ years|date:"Y" }}<br/>
+                            {% for m in months %}
+                                <div class="month">
+                                    <a href="/editorial/archive/{{m|date:'Y' }}/{{ m|date:'b' }}/">{{ m|date:'F' }}</a>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>   
+            </div>
+        </div> 
+            
+        <div class="accordion-element">
+            <h3 class="accordion-toggler" id="accordion-toggler-tags">Editorial Tags</h3>
+            <div class="accordion-element-body">
+                <div class="accordion-element-body-content"  id="tags">
+                    {% tag_cloud_for_model blog.Post as editorial_tags with steps=9 min_count=3 distribution=log  %}
+                    <div class="tags tag-cloud post-tags-and-share" id="sidebar-tags">
+                    {% for tag in editorial_tags %}
+                       <a class="tag blue tag{{ tag.font_size }}" href="/editorial/tags/{{ tag.compact_name }}">{{ tag.name }}</a>
+                    {% endfor %}
+                    </div>
+                </div>   
+            </div>
+        </div> 
+            
+    </div>
+    
+</div>

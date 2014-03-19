@@ -1,0 +1,6 @@
+{% load markup %}
+
+Dear {{user.get_profile}},
+
+{{ email_body|markdown }}
+

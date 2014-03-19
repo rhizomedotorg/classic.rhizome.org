@@ -1,0 +1,96 @@
+{% extends "support/base.html" %}
+{% load markup support %}
+{% block pageTitle %}Job Posting Payment{% endblock %}
+
+{% block content %}
+<div class = "section span-24" >
+    <div class="section-row-titles span-24">
+        <span class = "nav-item">Job Posting Payment</span>
+        <hr class="hr3">
+    </div>
+    
+    {% if notice %}
+        <div class="form-errors">{{notice}}</div>
+    {% endif %}
+    
+    <div class= "left-column span-15">
+
+        <div class = "about-content">
+            <p>Job postings on Rhizome cost <b>$25 for non-members</b>. Please use the form below to pay, or find out more about <a href="/support/individual">becoming a member</a>.</p>
+        </div>
+    
+    <h4>1) Pay Securely with a Credit Card</h4>
+        <div class="indent">
+            <form action="{{request.get_full_path}}" class= "span-15" method = "post" id="job-payment-form">
+                {% include 'announce/forms/job_payment_form.html' %}
+                <div class = "span-15 center">      
+                    <button class="donate-button" value="1" name="submit">SUBMIT PAYMENT</button>
+                </div>
+            </form>
+        </div>
+    <h4>2) Pay Via Paypal </h4>
+        <div class="indent">
+            <form action="{{paypal_url}}" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="cmd" value="_ext-enter" ></input>
+                <input type="hidden" name="redirect_cmd" value="_xclick" ></input>
+                <input type="hidden" name="hosted_button_id" value="4388428" ></input>
+                <input type="hidden" name="business" value="{{paypal_email}}" ></input> 
+                <input type="hidden" name="item_name" value="Rhizome Job Posting"></input>
+                <input type="hidden" name="item_number" value="{{job.id}}"></input>
+                <input type="hidden" name="currency_code" value="USD" ></input>
+                <input type="hidden" name="charset" value="utf-8" ></input> 
+                <input type="hidden" name="email" value="{{request.user.email}}"></input> 
+                <input type="hidden" name="charset" value="utf-8" ></input> 
+                <input type="hidden" name="amount" value="{{job_amount}}" ></input> 
+                <input type="hidden" name="first_name" value="{{request.user.first_name}}" ></input> 
+                <input type="hidden" name="last_name" value="{{request.user.last_name}}" ></input> 
+                <input type="hidden" name="return" value="http://{{request.get_host}}/announce/jobs/{{job.id}}/payment/thanks/" ></input> 
+                <div class = "span-15 center">      
+                    <button class="donate-button" value="1" name="submit">PAY VIA PAYPAL</button>
+                </div>                
+        </form>
+    </div>
+        
+    </div>  
+
+    <div class= "right-column about-content span-8">
+        <div id ="sidebar" class="span-8">
+            <div class="sidebar-element span-8">
+                <div class="section-title">Job Posting Overview</div>
+                <div class="content-wrap span-8">
+                    <div class="content span-7">                                                                                    
+                        <div class="content-body span-7">
+                            <div class = "content-text">
+                                <span class="bold upper">Title:</span> {{job.title}}          
+                            </div>               
+                        </div>
+
+                        <div class="content-body span-7">
+                            <div class = "content-text">
+                                <span class="bold upper">Sector:</span>  {{job.subtype}}
+                            </div>                         
+                        </div>
+
+                        <div class="content-body span-7">
+                            <div class = "content-text">
+                                <span class="bold upper">Description:</span> 
+                                <div class="indent" style="max-width:250px;word-wrap:break-word;">{{job.description|truncatewords:60}}</div>
+                            </div>                         
+                        </div>
+
+                        <div class="content-body span-7">
+                            <div class = "content-text">
+                                <div class="bold upper">Link:</div>
+                                <a class="indent" href="{{job.url}}">{{job.url}}</a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>    
+    </div>
+</div>
+            
+{% endblock %}

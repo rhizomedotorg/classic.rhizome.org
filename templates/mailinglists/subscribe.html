@@ -1,0 +1,147 @@
+{% extends 'mailinglists/base.html' %}
+{% load markup %}
+{% load feed_tags %}
+
+
+{% block pageTitle %}Subscribe{% endblock %}
+
+{% block content %}
+<div class="column-wrapper span-24">
+    {% if subscribe_form.errors %}
+        <div><a class="form-errors upper center" style="font-size:16px" href="#mailinglists">There was an error subscribing</a></div>
+    {% endif %}
+    
+    <div class= "left-column span-14">
+        <div class="section-row-titles">
+            <span class = "nav-item">Editorial Publications</span>
+            <hr class="hr3-no-margin">
+        </div> 
+        
+        <div class="about-content">
+                All of our editorial publications focus on art, ideas and events in the international field of art and technology.
+        </div>
+        
+        <div class="about-content">
+            <span class="bold">Rhizome News (1 email/ week)</span> <a class="helvetica" target = "_blank" title = "Subscribe to our Newsletter" href="/subscribe/news/">subscribe</a> | <a class="helvetica" href="/unsubscribe/news/">unsubscribe</a>
+            <div class="indent">
+                Rhizome News comes out every Wednesday as an email newsletter and it presents a summary of the most compelling events, conversations, announcements, and opportunities happening in the field of art and technology. Each edition features one in-depth article, interview, review or essay written by Rhizome's staff writers or commissioned through Rhizome's Writers Initiative.
+            </div>
+        </div>
+        
+        <div class="about-content">
+            <span class="bold">Rhizome Front Page RSS (3-4 updates/ day) </span> <a class="helvetica" target = "_blank" href="{% feedburner_url 'frontpage' %}">subscribe</a> 
+            <div class="indent">Content from Rhizome's publications- Rhizome News and the Rhizome blog- in one RSS feed. Features original coverage of exhibitions, festivals, new projects, and more by Rhizome staff writers and an international network of artists, curators, and critics, while also offering historical insight and links to archival resources. Rhizome Inclusive is your guide to breaking news in the field of art and technology.
+            </div>
+        </div>
+    
+        <div class="section-row-titles">
+            <span class = "nav-item">Art</span>
+            <hr class="hr3-no-margin">
+        </div> 
+        <div class="about-content">
+            <span class="bold">Rhizome Artbase RSS (amount varies)</span> <a class="helvetica" target = "_blank" href="{% feedburner_url 'artbase' %}">subscribe</a>
+            <div class="indent">
+                This feed is updated as artworks are added to the Artbase.
+            </div>
+       </div>
+    
+        <div class="section-row-titles">
+            <span class = "nav-item">Community Content</span>
+            <hr class="hr3-no-margin">
+        </div> 
+        
+        <div class="about-content">
+            <span class="bold">Discuss RSS (amount varies)</span> <a class="helvetica" target = "_blank" href="{% feedburner_url 'discuss' %}">subscribe</a>
+            <div class="indent">
+                Exchange of critical commentary, projects and debates by community members.
+            </div>
+       </div>
+
+        <div class="about-content">
+            <span class="bold">Announce RSS (amount varies)</span> <a class="helvetica" target = "_blank" href="{% feedburner_url 'announce' %}">subscribe</a>
+            <div class="indent">
+            Job listings, grants, calls for participation, and other opportunities as well as exhibitions and events around the world.                              
+            </div>
+       </div>
+        
+        <div class="about-content">
+            <span class="bold"><a href="#" name="mailinglists" class="anchor-name">Community Mailing Lists (amount varies)</a></span> <a class="helvetica" href="/unsubscribe/">unsubscribe</a>
+            <div class="indent">
+                <form action="{{request.full_path}}" method = "post" class= "span-13 mailing-lists-form">
+                    <fieldset>
+
+                    {% if notice and not subscribe_form.errors%}
+                        <div class="red">{{ notice|markdown }}</div>
+                    {% endif %}
+
+                    {% for e in subscribe_form.errors %}
+                        {% if e == "mailinglists" %}
+                            <li class="red">Please select a list</li>
+                        {% else %}
+                            <li class="red">Please submit your email address.</li>
+                        {% endif %}
+                    {% endfor %}
+                        
+                    {% csrf_token %}
+                    {% for f in subscribe_form %}
+                        <b>{{f.label}}</b>
+                        <div class="indent">{{f}}</div>
+                    {% endfor %}
+                    <div class="right">
+                        <input type="submit" class="round-gray" value="Subscribe" />
+                    </div>
+                    </fieldset>
+                </form>
+            </div>
+       </div>
+       
+    </div><!--end left column-->
+
+    <div class= "right-column span-8 prepend-1">
+        <div id ="sidebar" class="span-8">
+            <div class="sidebar-element span-8">
+                <div class="section-title">Subscribe</div>
+                <div class="content-wrap span-8">
+                    <div class="content" id="subscribe">
+                        <div class="content-body">
+                                <img id = "news-sidebar-image" src = "{{ STATIC_URL }}images/rhizome_news_sprite.png">
+                                <div class="subscribe-description">
+                                    Rhizome News is our weekly e-newsletter which features original coverage of exhibitions, festivals, new projects, and more by Rhizome staff writers and an international network of artists, curators, and critics.
+                                </div>
+                                <div class="subscribe-input">
+        <!--                             <input type="text" value="subscribe" id="newsletter-input"><br /> -->
+                                    <a target = "_blank" title = "Subscribe to our Newsletter" href="/subscribe/news/">
+                                        <button class="round-blue-fat">Subscribe Now</button>
+                                    </a>
+                                </div>
+                        </div>
+                        
+                         <div class="content-body">
+                                <div id="connect-links">
+                                    <a target = "_blank" href="http://facebook.com/rhizomedotorg"><img src="{{ STATIC_URL }}images/connect/facebook_sprite.png" /></a>
+                                    <a target = "_blank" href="http://twitter.com/rhizomedotorg"><img src="{{ STATIC_URL }}images/connect/twitter_sprite.png" /></a>
+                                    <a target = "_blank" href="http://vimeo.com/rhizome"><img src="{{ STATIC_URL }}images/connect/vimeo_sprite.png" /></a>
+                                </div>
+                        </div>
+        
+                         <div class="content-body span-7">
+                            <img id = "rss-icon" src = "{{ STATIC_URL }}images/connect/rss_sprite.png">
+                            <span class="rss-links">
+                                <a target = "_blank" href="{% feedburner_url 'frontpage' %}">Front Page</a>
+                                <a target = "_blank" href="{% feedburner_url 'discuss' %}">Discuss</a>
+                                <a target = "_blank" href="{% feedburner_url 'artbase' %}">ArtBase</a>
+                                <a target = "_blank" href="{% feedburner_url 'announce' %}">Announce</a>
+                                <a target = "_blank" href="{% feedburner_url 'opportunities' %}">Opportunities</a> 
+                                <a target = "_blank" href="{% feedburner_url 'jobs' %}">Jobs</a>
+                                <a target = "_blank" href="{% feedburner_url 'events' %}">Events</a>
+                            </span>
+                        </div>
+        
+                    </div>
+                </div>
+            </div>    
+        </div>
+    </div>    
+    
+</div>
+{% endblock %}

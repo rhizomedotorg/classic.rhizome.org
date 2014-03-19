@@ -1,0 +1,264 @@
+{% extends 'base.html' %}
+{% load markup bbcode inlines_tags highlight %}
+
+{% block pageTitle %}
+Search
+{% endblock %}
+
+{% block featured %}
+<div id ="search-wrap">
+    <div class="section container">
+        <div id = "search-header" class = "span-24">
+            <form method="get" action=".">
+                <div id = "search-table">
+                    {% if search_paginator.total_objects %}
+                        <span id="search-header-title">Found {{ search_paginator.total_objects }} Results for: </span>
+                    {% else %}
+                        <span id="search-header-title">Enter your search query here: </span>
+                    {% endif %}
+                    <form action="/search/" method="get">
+                        {{form.q}}
+                        <input type="submit" id = "submit-search" class = "round-gray" value="SEARCH">
+                    </form>
+                    <div>
+                        <div class = "span-24" id="search-header-title">Search within:</div>
+                        {{ form.models}}
+                    </div>
+                </div>
+            </form>
+        </div>
+         <div class = "span-24" id="search-header-title">
+            Be sure to check out the <a target="_blank" href="http://archive.rhizome.org">Rhizome Archive</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+    {% if query %}
+    <div class="section span-24">
+    
+        <div class="section-row-titles">
+            <span class = "nav-item">Results {{ search_paginator.start_index }} - {{ search_paginator.end_index }} of {{ search_paginator.total_objects }}</span>
+            <hr class="hr3">
+        </div>    
+         
+        {% for result in search_paginator.object_list %}
+            <div class = "feed-item-no-padding span-24">
+                <div class = "feed-item-meta span-3">
+                    <div class = "feed-item-meta-type-search left upper span-3">
+                    
+                        {% if result.content_type == "blog.post" %} 
+                            Blog Post
+                        {% endif %}
+                        
+                        {% if result.content_type == "threadedcomments.threadedcomment" %} 
+                            Discussion
+                        {% endif %}
+                        
+                        {% if result.content_type == "artbase.artworkstub" %} 
+                            Artwork
+                            {% endif %}
+
+                        {% if result.content_type == "artbase.memberexhibition" %} 
+                            Member Exhibition
+                        {% endif %}
+
+                         {% if result.content_type == "accounts.rhizomeuser" %} 
+                            User Profile
+                        {% endif %}
+                        
+                        {% if result.content_type == "announce.job" %} 
+                            Job
+                        {% endif %}
+                        
+                        {% if result.content_type == "announce.opportunity" %} 
+                            Opportunity
+                        {% endif %}
+                       
+                         {% if result.content_type == "programs.video" %} 
+                            Rhizome Video
+                        {% endif %}
+                        
+                        {% if result.content_type == "announce.event" %} 
+                            Event
+                        {% endif %}
+                        
+                        {% if result.content_type == "programs.rhizevent" %} 
+                            Rhizome Event
+                        {% endif %}
+                        
+                        {% if result.content_type == "programs.exhibition" %} 
+                            Rhizome Exhibition
+                        {% endif %}
+
+                    </div>
+                </div>
+                <div class="feed-item-listing span-18">   
+                    
+                    <h2 class ="item-listing-title">
+                        {% if result.object.title %}
+                            {% if result.object.get_absolute_url != '' %}
+                                {% if result.content_type == "programs.video" %}
+                                <a href="{{ result.object.url }}ref=search_title">
+                                    {{ result.object.title }}
+                                </a>
+                                {% else %}
+                                    <a href="{{ result.object.get_absolute_url }}?ref=search_title">
+                                    {{ result.object.title }}
+                                </a>
+                                {% endif %}
+                            {% else %}
+                                {{ result.object.title }}
+                            {% endif %}                        
+                        {% endif %}
+                        
+                        {% if result.content_type == "accounts.rhizomeuser" %} 
+                             {{ result.object.get_profile.get_small_miniprofile|markdown }}
+                            <a href="{{ result.object.get_profile.get_absolute_url }}ref=search_title">
+                                {{ result.object.user.get_profile }}
+                            </a>
+                        {% endif %}
+                    
+                        
+                        {% if result.content_type == "orgsubs.organization" %} 
+                            <a href="{{ result.link }}">
+                                {{ result.object.name }}
+                            </a>
+                        {% endif %}
+                    </h2>
+                    
+                    <hr class="thin"><!--begin meta info-->
+                    {% if result.object.publish or result.object.submit_date  %}
+                        <div>
+                            <span class="search_dates_locations">Published on</span>                        
+                            <span>
+                                {{ result.object.publish|date:"D, M jS Y P" }}
+                                {{ result.object.submit_date|date:"D, M jS Y P" }}
+                            </span>
+                        </div>     
+                    {% endif %}
+                    
+                    {% if not result.object.publish and not result.object.submit_date and result.object.created  %}
+                        <div>
+                            <span class="search_dates_locations">Published on</span>                        
+                            <span>
+                                {{ result.object.created|date:"D, M jS Y P" }}
+                            </span>
+                        </div>     
+                    {% endif %}
+                    
+                    
+                    {% if result.object.start_date %}
+                        <div>
+                            <span class="search_dates_locations">Start Date</span>
+                            <span>    
+                                {{ result.object.start_date|date:"D, M jS Y P" }}
+                            </span>
+                        </div>
+                    {% endif %}
+
+                    {% if result.object.deadline %}
+                        <div>
+                            <span class="search_dates_locations">Deadline</span>                        
+                            <span>
+                                {{ result.object.deadline|date:"D, M jS Y P" }}
+                            </span>
+                        </div>     
+                    {% endif %}
+                    
+                     {% if result.object.location_name %}
+                        <div>
+                            <span class="search_dates_locations">Location</span>
+                            <span>    
+                                {{ result.object.location_name }}
+                            </span>
+                        </div>
+                    {% endif %}
+                                        
+                    {% if result.object.user and result.content_type != "artbase.artworkstub" or result.object.get_authors and result.content_type != "accounts.rhizomeuser" %}
+                    {% if result.content_type != "artbase.memberexhibition" %}
+                        <span class="search_dates_locations">Posted by</span>
+                        
+                        {% if result.object.user %}
+                            <a href="{{ result.object.user.get_profile.get_absolute_url }}">
+                                {% if result.object.user.get_profile %}{{ result.object.user.get_profile }}{% else %} {{result.object.user}}{%endif%}
+                            </a>
+                        {% endif %}
+                        
+                        {% if result.object.get_authors %}
+                            {% for author in result.object.get_authors %}
+                                <span class="authors bold-upper blue">
+                                    <a href="{{author.get_profile.get_absolute_url}}">{{ author.get_profile }}</a>
+                                </span>
+                            {% endfor %}
+                        {% endif %}
+
+                    {% endif %}                        
+                    {% endif %}
+                    
+                    {% if result.content_type == "artbase.artworkstub" %}
+                        <span class="search_dates_locations">Creator</span>
+                        
+                            <a href="{{ result.object.user.get_profile.get_absolute_url }}">
+                                {% if result.object.user.get_profile %}{{ result.object.user.get_profile }}{% else %}{{result.object.user}}{%endif%}
+                            </a>                                                
+                    {% endif %}
+
+                    {% if result.content_type == "artbase.memberexhibition" %}
+                        <span class="search_dates_locations">Created by</span>
+                        
+                            <a href="{{ result.object.user.get_profile.get_absolute_url }}">
+                                {% if result.object.user.get_profile %}{{ result.object.user.get_profile }}{% else %}{{result.object.user}}{%endif%}
+                            </a>                                                
+                    {% endif %}
+
+                    <hr class="thin">
+                    <!--end meta info-->
+                                        
+                    {% if result.object.body %}
+                    <div class="feed-item-listing span-18">   
+                        <div class ="feed-item-listing-row">
+                             {% highlight result.object.body with request.GET.q max_length 100 %}
+                        </div>
+                    </div>
+                    {% endif %}
+                    
+                    {% if result.object.comment %}
+                    <div class="feed-item-listing span-18">   
+                        <div class ="feed-item-listing-row">
+                           {% highlight result.object.comment with request.GET.q max_length 100 %}
+                        </div>
+                    </div>
+                    {% endif %}
+
+                    {% if result.object.description %}
+                    <div class="feed-item-listing span-18">   
+                        <div class ="feed-item-listing-row">
+                            {% highlight result.object.description with request.GET.q max_length 100 %}
+                            {{result.object.description }}
+                        </div>
+                    </div>
+                    {% endif %}
+                     
+                    {% if result.object.get_profile.bio %}
+                    <div class="feed-item-listing span-18">   
+                        <div class ="feed-item-listing-row">
+                            {% highlight result.object.get_profile.bio with request.GET.q max_length 100 %}
+                        </div>
+                    </div>
+                    {% endif %}
+
+                </div>
+            </div>
+            <hr class="thin"></hr>
+        {% empty %}
+            <p>No results found.</p>
+        {% endfor %}
+                
+        {{ search_paginator.render }}
+    {% else %}
+        {# Show some example queries to run, maybe query syntax, something else? #}
+    {% endif %}
+    </div>
+{% endblock %}

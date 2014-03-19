@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block customScripts %}
+	<script type="text/javascript" src="{{ STATIC_URL }}artbase/scripts/MerryGoRound.js"></script>
+{% endblock %}
+
+{% block pageJsonData %}
+    {% for name, item in artbase_json_data.items %}
+        var {{ name }} = {{ item }};
+    {% endfor %}
+{% endblock %}
+
+{% block customStyleSheets %}
+	<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}artbase/styles/artbase.css" />
+	<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}artbase/styles/featured.css" />
+	<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}artbase/styles/collections.css" />
+    {% block artbaseStyleSheets %}{% endblock %}
+{% endblock %}

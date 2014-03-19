@@ -1,0 +1,83 @@
+{% extends "announce/base.html" %}
+{% load comments threadedcomments_tags inlines_tags markup bbcode hitcount_tags %}
+
+{% block customScripts %}
+<script type="text/javascript">
+    window.addEvent('domready', function() {
+        {% get_hit_count_javascript for announcement %}
+    });
+</script>
+
+{% endblock %}
+
+{% block pageTitle %} Announce: {{ announcement.title }} {% endblock %}
+    
+{# Start block content #}
+{% block content %}
+
+<div class="column-wrapper span-24">
+    <div class= "left-column span-15">
+    
+        <div class="section-row-titles">
+            <span class = "nav-item">Thanks for posting a Job!</span>
+        </div>
+        <hr class="hr3-no-margin">
+    
+        <div class="about-content">
+            
+            <p>Thanks for Posting to the Rhizome Jobs Board! 
+
+            <p> You can view your post here: </p>
+            <p class = "indent"><a href="{{announcement.get_absolute_url}}">http://rhizome.org{{announcement.get_absolute_url}}</a></p>
+            
+
+
+            <p>A receipt for your payment has been sent to <b>{{announcement.user.email}}</b>.
+
+            <p>Payment Details:</p>    
+            
+            <p class = "indent">
+                <b>Job Title:</b> <i>{{announcement.title}}</i><br />
+                <b>Job URL:</b>  <i><a href="{{announcement.get_absolute_url}}">http://rhizome.org{{announcement.get_absolute_url}}</a></i><br />
+                <b>Amount:</b>  <i>$25.00</i><br />
+                <b>Date Posted:</b>  <i>{{ announcement.created|date:"D M jS, Y  P" }}</i>
+            </p>
+            
+        </div>
+    </div>
+
+   <!--end left column-->
+   
+   
+    <div class= "right-column span-8">
+    {% load support orgsubs %}
+    <div id ="sidebar" class="membership-sidebar">
+        
+        <a class="anchor-name" href="#" name="contacted"></a>
+        <div class="sidebar-element">
+            <div class="section-title">Post Jobs for Free!</div>
+            <div class="content-wrap">
+                <div class="content">
+                   <div class="content-body">
+                        <div class="content-text center">
+                            <div class="content-text bold" style="font-size:16px;padding:10px 15px;">
+                                <a href="/join/individual/">RHIZOME MEMBERS</a> <br />
+                                and <br />
+                                <a href="/join/organizations/">ORGANIZATIONAL SUBSCRIPTIONS</a> <br />
+                                can post jobs for 
+                                <br />FREE<br />
+                                on Rhizome!
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+         
+    </div>
+    </div>
+
+</div>
+
+{% endblock %}

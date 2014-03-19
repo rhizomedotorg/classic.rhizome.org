@@ -1,0 +1,259 @@
+/* General Entrance Links */
+
+.enter
+{
+    display: block;
+    font-size: 13px;
+    background-color: #EDEDED;
+    background-position: 10px -305px;
+    background-repeat: no-repeat;
+    text-align: center;
+    line-height: 2.5; 
+    text-transform: uppercase;  
+    font-weight: bold; 
+    margin:5px auto;
+    font-family: Helvetica;
+}
+
+.winners {
+    font-size: 13px;
+    font-family: Helvetica; 
+}
+
+h3.cycle-title{
+    border-bottom: 1px solid #DDDDDD;
+}
+
+.commissions-enter
+{
+    display: block;
+    font-size: 13px;
+    background-color: #EDEDED;
+    background-position: 10px -305px;
+    background-repeat: no-repeat;
+    text-align: center;
+    line-height: 2.5; 
+    text-transform: uppercase;  
+    font-weight: bold; 
+    margin:5px auto;
+    font-family: Helvetica;
+    width: 80%;
+    border-color: white;
+    border-width: 1px;
+    border-style: solid;
+}
+
+
+.commissions .enter {
+    width: 80%;
+    font-family: Helvetica;
+}
+
+a.enter:hover {
+    color:#262626;
+    text-decoration:none;
+}
+
+.description {
+    text-align: left;
+    width: 300px;
+}
+
+.supporters {
+    text-align: center;
+    font-size: 12px;
+    color:#6494B2;
+    font-style: italic;
+}
+.artists{
+    text-align: center;
+    max-height: 150px;
+    margin-top: .5em !important;
+    overflow-y: hidden;
+}
+
+.current-cycle-description {
+    font-size: 13px;
+}
+
+.current-cycle-enter-wrap{
+    margin-top: 20px;
+}
+
+#commissions-enter-button{
+    height: 200px;
+    vertical-align: middle;
+}
+
+.enter-wrap{
+    text-align: center;
+}
+
+.current-cycle-enter{
+    display: block;
+    margin: 0px 0px 20px 240px;
+    font-size: 16px;
+    background-color: #EDEDED;
+    text-align: center;
+    line-height: 2.5; 
+    text-transform: uppercase;  
+    font-weight: bold; 
+    font-family: Helvetica;
+    font-size: 15px
+    width: 100%;
+    padding: 20px 10px;
+    color: red;
+    border:1px solid #CFCFCF;
+}
+
+.current-cycle-enter:hover{
+    color: red;
+    text-decoration: underline;
+    border:1px solid red;
+}
+
+.program-detail-title{
+    font-size: 23px;
+    font-weight: bold;
+    font-family: Verdana, 'sans-serif';
+    line-height: 1.2;
+    margin: 5px 0px;
+}
+
+.program-detail-title a{
+    color: black;
+}
+
+.program-detail-image{
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.program-detail-image img{
+    max-width: 590px;
+    min-width: 300px;
+}
+
+.programs-more{
+    max-width: 580px;
+}
+
+
+.programs-more a{
+    background-color: #6494B2;
+    color: white;
+    float: right;
+    padding: 1px 2px;
+    font-family: Verdana, 'sans-serif';
+    font-size: 13px;
+}
+
+.program-listing{
+    margin: 0 0 1.45em;
+}
+
+.program-listing-image{
+    padding-right: 10px;
+    width: 250px;
+}
+
+.programs-image-credit {
+    font-style: italic;
+    font-size: 11px;
+    margin-left: 10px;
+}
+
+.programs-program .program-title {
+    background-image:url("../images/programs_bar_background.png");
+    margin: 0 auto;
+    text-align: center;
+    padding: 12px;
+    font-family: Verdana, 'sans-serif';
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.programs-program .program-description {
+    border-left:1px solid #cbcbcb;
+    border-right:1px solid #c4c4c4;
+    border-bottom: 1px solid #D4D3D3;
+    padding: 10px 20px;
+    border-bottom: #ececec;
+    border: 1px solid #D4D3D3;
+    font-family: Verdana, 'sans-serif';
+    font-size: 14px;    
+    background-image:url("../../images/sidebar_body_background.png");
+}
+
+.listing-content{
+    width: 350px;
+}
+
+.programs-title {
+    font-family: Verdana, 'sans-serif';
+    font-weight: 200;
+    font-size: 20px;
+    line-height: 1.2;
+    margin: 5px 0px;
+}
+
+
+.commissions {
+    font-family: Verdana, 'sans-serif';
+    font-size: 13px;
+    }
+
+.summary{
+    font-family: Verdana, 'sans-serif';
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+.event-date,
+.date,
+.curators {
+    font-weight: bold;
+    font-family: Helvetica;
+    font-size:13px;
+}
+
+.event-date{
+    line-height: 1.1;
+    margin: 10px 0px 5px;
+}
+
+
+.new-silent {
+    text-transform: uppercase;
+    padding: 5px 0px;
+    font-weight:bold;
+    color:red;
+}
+
+#main-event {
+    padding: 0;
+}
+
+
+.section{
+    padding-bottom: 10px;
+}
+
+.program-no-image{
+    text-align: center;
+}
+
+.program-no-image .summary{
+    padding: 0px 50px;
+}
+
+.program-video{
+    text-align: center;
+}
+
+img.the-download {
+    width: 110%;
+    position: relative;
+    right: 20px;
+    margin-top: 20px;
+}

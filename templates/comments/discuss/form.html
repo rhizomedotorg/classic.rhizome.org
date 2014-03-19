@@ -1,0 +1,59 @@
+{% load comments i18n %}
+
+
+{% if request.path == "/discuss/submit/" or request.path == "/discuss/submit" %}
+<!-- form for new discussion threads -->        
+    <a id="comment_anchor" name="comment"></a>
+    <form id="comment_form" action="{% comment_form_target %}" method="post">
+        <input type="hidden" name="next" value="{{ thread.get_absolute_url }}" />
+        <div style="display:none;">{{ form.honeypot }}</div>
+        {% csrf_token %}
+        {% for field in form %}
+            {% if field.is_hidden %}
+                {{ field }}
+            {% endif %}
+        {% endfor %}
+        <h6 class = "span-24">Discussion Thread Title</h6>
+        <div class = "post-form-input-title span-24">{{ form.title.errors }}{{ form.title }}</div>
+        
+        <div class = "post-form-content span-24">
+            <h6 class = "span-24">Message</h6>
+            <fieldset>
+                {% include "comments/basic_bbcode.html" %}
+                {{ form.comment.errors }}{{ form.comment }}
+            </fieldset>
+        </div>
+    
+        <div class = "post-form-content span-24">
+            <h6 class = "span-6">Submit</h6><br/>
+            <fieldset>
+                <div class="float-right-align-right span-12">
+                    <input class="round-blue" id ="publish" type="submit" value="publish" name="publish">
+                </div>
+            </fieldset>
+        </div>
+    </form>  
+{% else %}
+<!-- form for comments/replies on discussion threads -->
+    <a id="comment_anchor" name="comment"></a>
+    <form id="comment_form" action="{% comment_form_target %}" method="post">
+        <input type="hidden" name="next" value="{{ thread.get_absolute_url }}" />
+        {% csrf_token %}
+        {% for field in form %}
+            {% if field.is_hidden %}
+                {{ field }}
+            {% endif %}
+        {% endfor %}
+        <div style="display:none;">{{ form.honeypot }}</div>
+
+        <div class = "post-form-content">
+            <fieldset>
+                {% include "comments/basic_bbcode.html" %}
+                {{ form.comment.errors }}{{ form.comment }}
+                <div class="float-right-align-right">
+                    <input class="round-blue" type="submit" value="publish" name="publish">
+                </div>
+            </fieldset>
+        </div>
+    </form>   
+{% endif %}

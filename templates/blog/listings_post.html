@@ -1,0 +1,80 @@
+{% load comments blog_tags tagging_tags inlines_tags markup tagging_tags %}
+
+<div data-live-url="{% url 'post_tease' post.id %}" class="post {% if post.is_live %}live-post{% endif %}{% if post.is_micro %} micro{% endif %}">
+    <h2 class="post-title"><a href="{{ post.get_absolute_url }}?ref={{ parent_ref }}_post_title">{{ post.title|safe }}</a></h2>
+    <div class="post-details">
+
+        <div class="post-meta">
+            {% if post.get_authors %}
+            {% for author in post.get_authors %}
+                <span class="authors bold-upper blue"><a href="{{ author.get_profile.get_absolute_url }}?ref={{ parent_ref }}_post">{{ author.first_name }} {{ author.last_name }}</a> </span>
+            {% endfor %}
+                <span class="blue">|</span>
+                <span class="bold post-date">{{ post.publish|date:"D M jS, Y P" }}</span>
+            {% else %}
+                <span class="authors bold-upper">{{ post.byline }}</span>
+                <span class="blue">|</span>
+                <span class="bold post-date">{{ post.publish|date:"D M jS, Y P" }}</span>
+            {% endif %}
+        </div>
+        {% get_comment_count for post as comment_count %}
+        {% with request.get_host|add:post.get_absolute_url as share_url %}
+            {% include 'fragments/new_share.html' %}
+        {% endwith %}
+    </div>
+    <hr class="black-thin"></hr>
+
+    <div class="post-body">
+        {% if post.fp_news_excerpt %}
+            {{ post.fp_news_excerpt|markdown|render_inlines }}
+            {% if "LINK &raquo;" not in post.fp_news_excerpt %}
+                {% if "READ ON &raquo;" not in post.fp_news_excerpt %}
+                    <p class="more span-15"><a href="{{ post.get_absolute_url }}?ref={{ parent_ref }}_post_readbtn">READ ON &raquo;</a></p>
+                {% endif %}
+            {% endif %}
+        {% else %}
+            {% if post.tease %}
+                {{ post.tease|markdown|render_inlines }}
+                {% if "LINK &raquo;" not in post.tease %}
+                    {% if "READ ON &raquo;" not in post.tease %}
+                        <p class="more span-15"><a href="{{ post.get_absolute_url }}?ref={{ parent_ref }}_post_readbtn">READ ON &raquo;</a></p>
+                    {% endif %}
+                {% endif %}
+            {% else %}
+                {{ post.body|markdown|render_inlines|truncatewords_html:300 }}
+                    {% if "LINK &raquo;" not in post.body %}
+                        {% if "READ ON &raquo;" not in post.body %}
+                            {% if "MORE &raquo;" not in post.body %}
+                                {% if post.post_item_link %}
+                                    <p class="more span-15"><a href="{{ post.post_item_link}}">LINK &raquo;</a></p>
+                                {% else %}
+                                    <p class="more span-15"><a href="{{ post.get_absolute_url }}?ref={{ parent_ref }}_post_readbtn">MORE &raquo;</a></p>
+                                {% endif %}
+                            {% endif %}
+                        {% endif %}
+                    {% endif %}
+            {% endif %}
+        {% endif %}
+        
+        {% if post.is_reblog %}
+            <div class="bold italic">
+                {{ post.is_reblog.comment|markdown }}
+                <p>Originally posted on <a href="{{ post.is_reblog.item_link }}">{{ post.is_reblog.feed_title }}</a> by {{ post.byline }}
+                </p>
+            </div>
+        {% endif %}
+    </div>
+    
+    {% tags_for_object post as tag_list %}
+    {% if tag_list %}
+        <div class="post-tags-and-share span-15">
+            <span class="tags essay-tags">
+                <label>Tags:</label>
+                {% for tag in tag_list %}
+                    <a class="tag blue" href="/editorial/tags/{{ tag.slug }}/?ref={{ parent_ref }}_post">{{ tag.name }}</a>
+                {% endfor %}
+            </span>
+        </div>
+    {% endif %}
+    <hr class="black-thin">
+</div>

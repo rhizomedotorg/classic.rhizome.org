@@ -1,0 +1,59 @@
+{% extends 'announce/base.html' %}
+{% load markup bbcode block_tags %}
+{% load feed_tags %}
+
+{% block pageTitle %}Announce{% endblock %}
+
+{% block section_description %}{% get_text 'opportunities description' %}{% endblock %}
+
+{% block rss_head_link %}
+    <link rel="alternate" type="application/rss+xml" title="Rhizome Announce" href="{% feedburner_url 'opportunities' %}" />
+{% endblock %}
+
+{% block body_class %}announce{% endblock %}
+{% block section_action_class %}submit-opportunity{% endblock %}
+
+{% block content %}
+<a name="filter-top"></a>
+<div class="section span-24">
+    <div class="section-row-titles mini-nav">
+        <span class = "nav-item first"><a href="/announce/#filter-top">Latest Announcements</a></span>
+        <span class = "nav-item selected"><a href="/announce/opportunities/#filter-top">Opportunities</a></span>
+        <span class = "nav-item"><a href="/announce/events/#filter-top">Events</a></span>
+        <span class = "nav-item"><a href="/announce/jobs/#filter-top">Jobs</a></span>
+        <span class = "nav-item last"><a href="/announce/deadlines/#filter-top">Upcoming Deadlines</a></span>
+    </div>    
+    <a class = "rss-link" href="{% feedburner_url 'opportunities' %}">RSS</a>
+    <hr class="hr2-no-margin">
+</div>
+<div id = "feed-filter" class="span-24">
+    <form action="{{ request.get_full_path }}#filter-top" method="get" >
+               <div id ="type" class="span-2">Type</div>
+        <div id="feed-filter-checkboxes" class="span-13 prepend-1">    
+                {% for group in sub_types_grouped %}
+                <div class= "checkbox-container span-4">  
+                    {% for key, value in group %}
+                    <div class="checkbox">
+                        <input type="checkbox" name="{{key}}" {% for check in auto_checks %} {% if check == key %} checked="true" {% endif %}{% endfor %}>
+                        {{ value }}
+                    </div>
+                    {% endfor %}
+                </div>
+                {% endfor %} 
+            </div>
+        <div id="feed-filter-button" class="span-5">
+            <button id ="filter" class="round-blue" type="submit" value="filter_profile_feed">Filter Results</button>
+        </div>
+    </form>
+</div>
+
+<hr class="black-thin">    
+            
+<div class="section-content span-24">
+
+    {% include "announce/object_list.html" %}
+    
+</div>
+
+
+{% endblock %}

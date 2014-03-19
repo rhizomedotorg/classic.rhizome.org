@@ -1,0 +1,99 @@
+<form id="exhibition-form" method="post" enctype="multipart/form-data" action="{% if exhibition_id %}/artbase/exhibitions/edit/{{exhibition_id}}/{% else %}/artbase/exhibitions/edit/{% endif %}">
+
+    {% csrf_token %}
+    <h6 class="light-gray">Exhibition title</h6>
+
+    <div id="exhibition-title" class="gray-box">
+        {{ form.title.errors }}
+        {{ form.title }}
+    </div>
+
+    <div id="exhibition-subtitle" class="gray-box">
+        {{ form.subtitle.errors }}
+        {{ form.subtitle }}
+    </div>
+
+    <div id="cols" class="span-24 last">
+        <div id="left-col" class="span-11">
+            <h6 class="light-gray">Featured works</h6>
+            <div class="span-11">
+                <div id="reorder-prompt" class="gray-box">
+                    <label id="reorder-prompt-label" for="id_artworks">Reorder the works or 
+                    <a id="reorder-prompt-label-browse" target="_blank" href="/artbase/browse/">
+                        <button name="browse" value="1">browse</button>
+                    </a> to add news ones</label>
+                    <!--
+                    <button>Images & Text</button>
+                    <button>Text only</button>
+                    -->
+                </div>
+                {{ form.artworks.errors }}
+                {{ form.artworks }}
+                <ul id="reorder-works" class="reset span-11">
+                    {% for artwork in artworks %}
+                    <li class="first reset gray-box span-11" rel="{{ artwork.id }}">
+                        <div class="handle span-1">
+                            <div class="handle-image"></div>
+                        </div>
+                        <img src="{{ MEDIA_URL }}{{ artwork.image_small }}" class="span-2" width="70" height="85"></img>
+                        <div class="exhibition-artwork-title-author span-6">
+                            <h3 class="exhibition-artwork-title">
+                                <a target="new" href="{{ artwork.view_url }}">
+                                    {{ artwork.title }}
+                                </a>
+                            </h3>
+                            <div>
+                                <span>
+                                    <a target="new" href="{{ artwork.creator.url }}">
+                                        {{ artwork.creator }}
+                                    </a>
+                                </span>
+                                <span>{{ artwork.date }}</span>
+                            </div>
+                        </div>
+                        <a class="span-1 exhibition-artwork-remove" href="/artbase/exhibitions/edit/{{ exhibition.id }}/remove_work/?work_id={{ artwork.id }}"></a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+
+        <div id="right-col" class="span-12 last">
+            <label id="statement-label" for="id_statement" class="h6 light-gray">
+                Curatorial statement
+            </label>
+            {{ form.statement.errors }}
+            {{ form.statement }}
+            <div class="editor"></div>
+            <label for="id_tags" class="h6 light-gray">Tags (seperate by commas)</label>
+            <fieldset>
+                {{ form.tags.errors }}
+                {{ form.tags }}
+                <button id="add-tags-button" class="round-gray">Add</button>
+            </fieldset>
+            <label for="id-image" class="h6 light-gray">Invitation image</label>
+            <fieldset class="upload">
+                {{ form.image.errors }}
+                {{ form.image }}
+                <div class="h6 light-gray">A png / jpg / gif image</div>
+                <div>*Invitation images will be cropped to 290px x 200px</div>
+            </fieldset>
+            <label class="h6 light-gray">Publish</label>
+            <fieldset id="edit-exhibition-controls">
+                {% if form.instance.id %}
+                <div class="float-right">
+                    <button name="update" value="1" class="round-gray">Update</button>
+                    <button name="view" value="1" class="round-gray">View</button>
+                </div>
+                <button name="delete" value="1" class="link float-left" style="color:red !important;">Delete</button>
+                {% else %}
+                <div class="float-right">
+                    <button name="preview" value="1" class="round-gray">Preview</button>
+                    <button name="save_draft" value="1" class="round-gray">Save draft</button>
+                    <button name="publish" value="1" class="round-blue">Publish</button>
+                </div>
+                {% endif %}
+            </fieldset>
+        </div>
+    </div>
+</form>

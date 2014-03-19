@@ -1,0 +1,70 @@
+@font-face {
+    font-family: 'TradeGothic LT CondEighteen';
+    src: url('../fonts/TradeGothicLT-CondEighteen.eot');
+    src: url('../fonts/TradeGothicLT-CondEighteen.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/TradeGothicLT-CondEighteen.woff') format('woff'),
+         url('../fonts/TradeGothicLT-CondEighteen.ttf') format('truetype'),
+         url('../fonts/TradeGothicLT-CondEighteen.svg#TradeGothicLT-CondEighteen') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+#header {
+    background: #333;
+    color: whitesmoke; 
+}
+#header a:link {
+    color: #999;
+}
+#branding h1 {
+   color: #999; 
+}
+#branding h1 span.hl {
+    color: whitesmoke;
+}
+
+/* Deploy button */
+
+.module#deploy-btn {
+	border: none;
+	text-align: center;
+	margin-bottom: 10px;
+}
+
+#deploy_button {
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #3d94f6), color-stop(1, #0e00d6) );
+	background:-moz-linear-gradient( center top, #3d94f6 5%, #0e00d6 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#3d94f6', endColorstr='#0e00d6');
+	background-color:#3d94f6;
+	-moz-border-radius:6px;
+	-webkit-border-radius:6px;
+	border-radius:6px;
+	border:1px solid #337fed;
+	display:inline-block;
+	color:#ffffff;
+	font-size:18px;
+	font-weight:bold;
+	padding:6px 24px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #1570cd;
+}
+
+#deploy_button:hover {
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #0e00d6), color-stop(1, #3d94f6) );
+	background:-moz-linear-gradient( center top, #0e00d6 5%, #3d94f6 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#0e00d6', endColorstr='#3d94f6');
+	background-color:#0e00d6;
+}
+
+#deploy_button:active {
+	position:relative;
+	top:1px;
+}
+
+#deploy_button.disabled {
+    display: none;
+}
+
+#deploy_loading {
+    display: none;
+}

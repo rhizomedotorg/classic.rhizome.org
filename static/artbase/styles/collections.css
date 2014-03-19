@@ -1,0 +1,345 @@
+#collection{
+    font: 14px georgia, serif;
+    line-height: 1.5;
+    box-shadow: 1px 1px 5px #B5B5B5;
+    padding: 10px;
+    margin-top: 50px;
+}
+
+#collection-title-overlay{
+    height: 89px;
+    margin-top: -55px;
+    width: 475px;
+    position:absolute;
+    z-index: 0;
+    margin-left: -20px;
+    background-image: url("../../images/overlay_slanted_right_side.png");
+    background-repeat: no-repeat;
+    background-position: 450px 0px;
+    padding-right: 20px;
+    overflow: hidden;
+}
+
+#collection-triangle-flap{
+    margin-left: -969px;
+    margin-top: 34px;
+}
+
+#collection-red-title{
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: red;
+    font-family: Helvetica;
+    z-index: 5;
+    position: relative;
+    margin: 10px 0px 0px 10px;
+}
+
+
+#collection-title-overlay-title{
+    color: white;
+    font-family: Georgia;
+    font-size: 23px;
+    margin-bottom: 3px;
+    line-height: 1;
+    z-index: 5;
+    position: relative;
+    padding-left: 10px;
+}
+
+#collection-curator{
+    font-size:15px;    
+    color: #D6D6D6;
+    font-family: Georgia;
+    position: relative;
+    padding-left: 10px;
+}
+
+
+#collection-title-overlay-mask{
+    position: absolute;
+    width: 413px;
+    height: 49px;
+    background-color: black;
+    padding: 20px 19px;
+    z-index: 0;
+}
+
+#collection-title-overlay-title {
+    color:white;
+}
+
+#collection-title-overlay-byline{
+    font-family: Helvetica;
+    font-size: 14px;
+    color:white;
+    position: relative;
+}
+
+#top-section{
+    margin-bottom: 30px;
+}
+
+#collection-statement,
+#featuring,
+#curator {
+    font-size: 16px;
+    line-height: 25px;
+}
+
+#featuring,
+#curator {
+    background-color: #EDEDED;
+    box-shadow: 1px 1px 10px #B5B5B5;
+    float: left;
+    margin-left: 20px;
+    margin-top: 15px;
+    padding: 8px 25px 25px;
+    width: 300px;
+    float:right;
+}
+
+a#read-more{
+    float:right;
+}
+
+#curator{
+    font-style: italic;
+}
+
+.carousel-item{
+    margin: 15px 0px 15px 23px;
+    widows: 135px;
+    cursor:pointer;
+}
+
+
+.collection-carousel-next,
+.collection-carousel-previous{
+    background-repeat: no-repeat;
+    height:100%;
+    padding:100px 12px;
+    position: relative;
+    display: inline;   
+}
+
+.collection-carousel-next{
+    background-image:url(../../images/thumb_nav_R.png);
+    background-position:left center;
+    float:right;
+    margin-right: -30px;
+    padding-right: 43px;
+
+}
+
+.collection-carousel-previous{
+    background-image:url(../../images/thumb_nav_L.png);
+    background-position:right center;
+    float:left;
+    margin-left: -30px;
+    padding-left: 43px;
+}
+
+
+#collection-carousel{
+    border-top: 1px solid gray; 
+    height: 200px;
+    overflow: hidden;
+    width: 810px;
+    margin: 10px 44px 25px;
+}
+
+.work-cover{
+    text-align: center;
+    text-transform: uppercase;
+    background-color: black;
+    color: aqua;
+    font-size: 14px;
+    opacity: 0;
+    text-transform: uppercase;
+    position: absolute;
+    height: 170px;
+    width: 135px;
+    display: table;
+}
+
+.work-info{
+	display: table-cell;
+	vertical-align: middle;
+    word-wrap: break-word;
+    overflow: hidden;
+    max-height: 170px;
+    max-width: 125px;
+    padding: 0px 5px;
+}
+
+/** collection focused work and fragments**/
+
+#focused-content{
+    margin-top: 25px;
+    height: 400px;
+    padding-bottom: 25px;
+}
+
+.focused{
+    display: none;
+    height: 400px;
+    padding: 15px 0px;
+}
+
+.current{
+    display: block;
+}
+
+#collection-fragment{
+    padding: 0;
+    margin: 0;
+    width: 900px;
+    overflow: hidden;
+    height: 100%;
+    font-weight: normal;
+    font-family: Georgia;
+}
+
+h2{
+    margin: 0;    
+}
+
+.focused-header{
+    max-width: 430px;
+}
+
+#collection-fragment a {
+    color: #6494B2;
+    text-decoration: none;
+}
+
+#collection-fragment a:hover {
+    text-decoration: underline;
+}
+
+.artwork-title{
+    letter-spacing: 0.5px;
+    line-height: 1;
+    text-align: left;
+    font-size: 30px;
+    font-family: Georgia;
+    font-weight: normal;
+}
+
+#focused-artist{
+    font-size: 20px;
+    color: gray;
+}
+
+.focused-image{
+    width: 470px;   
+    float: left; 
+    font-weight: normal;
+    margin-right: 25px;
+    margin-left: 10px;
+}
+
+.focused-image img{
+    border: 1px solid #ACB1B6;
+}
+
+#statement-back{
+    float: left;
+}
+
+#statement-forward{
+    float: right;
+}
+
+#focus-statement{
+    font-family: Georgia,serif;
+    font-size: 16px;        
+    line-height: 1.5;
+    width: 910px;
+    height: 390px;
+    overflow: hidden;
+/*     border: 1px solid blue; */
+    text-align: center;
+    margin-left: 20px;
+}
+
+#focus-statement-wrap{
+    height: 385px;
+    padding: 0px 20px;
+}
+
+.statement-page{
+    width: 910px;
+    height: 385px;
+/*     border: 1px solid red; */
+    text-align: left;
+    overflow: hidden;
+}
+
+.first-page{
+    margin: 0;
+}
+
+.statement-column{
+    width: 455px;
+/*     border: 1px solid black; */
+    float: left;
+    display: block;
+    height: 385px;
+    padding: 5px 0px;
+}
+
+.statement-column-content{
+    width: 410px;
+    text-align: justify;
+    word-spacing: 1px;
+    height: 385px;
+}
+
+.focused-description
+{
+    font-family: Georgia,serif;
+    font-size: 16px;     
+    line-height: 1.5;
+    overflow-y: hidden;
+    height: 257px;
+    max-height: 257px;
+    padding: 3px;
+    margin-right: 10px;
+    width: 400px;
+}
+
+.focused-body{
+    float:left;
+    width: 385px;
+}
+
+.focused-buttons{
+    text-align: center;
+    margin-top: 10px;
+    position:absolute;
+    top:596px;
+}
+
+a.focused-button{
+    background-color: #87A7BB;
+    -moz-border-radius: 12px 12px 12px 12px;
+    -webkit-border-radius: 12px 12px 12px 12px;
+    border-radius: 12px 12px 12px 12px;
+    border-style: none;
+    color: white !important;
+    float: left;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 7px;
+    text-transform: uppercase;
+    font-family: Helvetica;
+    float:left;
+    max-width: 125px; 
+}
+
+#left-button{
+    margin-right: 15px;
+}

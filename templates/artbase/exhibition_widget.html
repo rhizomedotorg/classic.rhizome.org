@@ -1,0 +1,23 @@
+<div class='tab'>
+    <span id='add-to-exhibition-prompt' class='h6 white'>Add to exhibition</span>
+</div>
+<div class='options'>
+    <div id='add-to'>
+        <label>Add to one of your existing exhibitions</label>
+        <div>
+            <select>
+                <option>Choose from your 0 exhibitions</option>
+            </select>
+        </div>
+    </div>
+    <label id='start-new'>Or start a new exhibition with this work</label>
+    <input id='exhibition_name' type='text'></input>
+    <div class='display-block'>
+        <button id='add-work-button' type='submit' class='add blue'>Add</button>
+        <button id='add-work-cancel-button' class='cancel blue'><a>cancel</a></button>
+    </div>
+    <form id='add-work' method='post' action='/artbase/exhibitions/add_work'>
+        {% csrf_token %}
+        <input id='artwork_id' type='hidden' name='artwork_id'></input>
+    </form>
+</div>

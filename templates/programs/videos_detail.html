@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load tagging_tags inlines_tags markup threadedcomments_tags bbcode%}
+
+{% block pageTitle %} {{ video.title  }} {% endblock %}
+
+{# Start block content #}
+{% block content %}
+
+<h1>{{ video.title }} {{ video.date }}</h1> 
+<p>{{ video.lead_video|markdown }}</p>
+<p>{{ video.other_videos|markdown }}</p>
+<p>{{ video.description|markdown }}</p>
+
+<h3>Comment on this Video</h3>
+{% render_comment_form for programs.video video.id %}      
+
+{% get_comment_list for programs.video video.id as comment_list %} 
+
+{% if comment_list %}
+    <h3>This Videos Comments</h3>
+    {# Start loop over comment_list #}
+        {% for comment in comment_list|fill_tree|annotate_tree %}
+        <ul>
+            <li id ="threaded_comment" {% if comment.last %} class="last"{% endif %}>
+                {{ comment.user_name }} said {% bbcode comment.comment %}
+                {% for close in comment.close %}
+            </li>
+        </ul>
+        {% endfor %}
+        {# End loop close in comment.close #}
+    {% endfor %}
+    {# End loop over comment_list #}
+{% endif %}    
+
+{% endblock %}
+{# End block content #}

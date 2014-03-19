@@ -1,0 +1,334 @@
+{% extends "blog/base_blog.html" %}
+{% load i18n comments threadedcomments_tags  bbcode blog tagging_tags inlines_tags markup hitcount_tags %}
+
+{% block customScripts %}
+    <script type="text/javascript" src="{{ STATIC_URL }}discuss/scripts/basic_bbcode_editor/editor.js"></script>   
+    <script type="text/javascript" src="{{ STATIC_URL }}discuss/scripts/add_comment_toggler.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/loadingOverlay.js"></script>
+{% endblock %}
+
+{% block body_class %}{{ block.super }} post_detail{% endblock %}
+{% block pageTitle %}Post a Comment{% endblock %}
+
+{% block content %}
+
+{% if form.is_valid %}
+    
+    <div class="column-wrapper span-24">
+        <div id="editorial-posts"  class= "left-column span-15">
+            <div class="single-post span-15">                    
+              <h2 class="post-title"><a href="{{ form.get_comment_object.content_object.get_absolute_url }}">{{ form.get_comment_object.content_object.title|safe }}</a></h2>
+                <div class="post-details">
+                    <span class="span-14">
+                        {% if object.get_authors %}
+                        {% for author in object.get_authors %}
+                            <span class="authors bold-upper blue"><a href="{{author.get_profile.get_absolute_url}}">{{ author.get_full_name }}</a> </span>
+                        {% endfor %}
+                            <span class="blue">|</span>
+                            <span class="bold">{{ form.get_comment_object.content_object.publish|date:"D, M jS, Y P" }}
+                        {% else %}
+                            <span class="authors bold-upper">{{ form.get_comment_object.content_object.byline }}</span>
+                            <span class="blue">|</span>
+                            <span class="blue bold">{{ form.get_comment_object.content_object.publish|date:"D, M jS, Y P" }}</span>
+                        {% endif %}
+                    </span>
+                    <span>
+                            {% get_comment_count for form.get_comment_object.content_object as comment_count %}
+                            <a class="comment_count" href = "#comments">{{comment_count}}</a>
+                    </span>
+    
+                </div>
+            
+                <hr class= "black-thin">
+                <div class="post-body">
+                    {{ form.get_comment_object.content_object.body|markdown|render_inlines }} 
+                </div>
+                
+                  <!--TAGS-->	
+                {% tags_for_object form.get_comment_object.content_object as tag_list %}
+                {% if tag_list %}
+                <div class="post-tags-and-share span-15">
+                    <span class="tags essay-tags">
+                        <label>Tags:</labels>
+                        {% for tag in tag_list %}
+                            <a class="tag blue" href="/tag/{{ tag }}/">{{ tag }}</a>
+                        {% endfor %}
+                    </span>
+                </div>
+                {% endif %}
+                <!--END TAGS-->	
+    
+                
+                {% if form.get_comment_object.content_object.get_authors %}
+                    {% for author in form.get_comment_object.content_object.get_authors %}
+                    <div class = "post-author-bio span-15">
+                        <div class="miniprofile span-2">
+                            {{ author.get_profile.get_large_miniprofile|markdown}}
+                        </div>
+                        <div class = "span-12 last">
+                        {% if author.bio %}
+                                {{ author.bio }}
+                        {% endif %}
+                            <div class = "bio-more span-10">
+                            More from <a href="{{ author.get_profile.get_absolute_url }}">{{ author.get_full_name }}</a>:
+                                <ul>
+                                {% for post in author.get_profile.get_blog_posts %}
+                                <li><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></li>
+                                {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                        
+                    {% endfor %}
+                {% endif %}
+                            
+                <hr class="black-thin span-15">            
+                <div class="post-nav last span-15">
+                {% if form.get_comment_object.content_object.get_previous_by_publish %}
+                        <a class="previous span-7" href="{{ form.get_comment_object.content_object.get_previous_post.get_absolute_url }}">Previous Post</a>
+                    {% endif %}
+                    {% if  form.get_comment_object.content_object.get_next_by_publish %}
+                        <a class="next span-7" href="{{ form.get_comment_object.content_object.get_next_post.get_absolute_url }}">Next Post</a>
+                    {% endif %}
+                </div>
+    
+            </div> 
+    
+            <!--COMMENTS LIST-->
+            {% get_comment_list for form.get_comment_object.content_object as comment_list %}
+    	    {% if comment_list %}
+    	    <a name = "comments"></a>
+            <div class="section-row-titles mini-nav">Comments ({% get_comment_count for form.get_comment_object.content_object as comment_count %}{{comment_count}})</div>
+            <hr class= "hr3-no-margin">
+            
+            <div class = "comments span-15">
+            {% for existing_comment in comment_list|fill_tree|annotate_tree %}
+                {% ifchanged existing_comment.parent_id %}
+                    {% else %}
+                        </li>
+                    {% endifchanged %}
+                    
+                    {% if not existing_comment.open and not existing_comment.close %}
+                        </li>
+                    {% endif %}
+                    
+                    {% if existing_comment.open %}
+                        <ul class = "object-comment-children">
+                    {% endif %}
+                    <a name = "{{ existing_comment.id }}"></a>
+                    <li class="object-comment-child {% if existing_comment.last %} last {% endif %}" rel="{{ existing_comment.id }}" >
+                        <div class="object-comment-child-details">
+                            {{ existing_comment.user.get_profile.get_medium_miniprofile|markdown }}                    
+                            <span class="authors bold-upper">
+                                <a href="{{existing_comment.user.get_profile.get_absolute_url}}">{{ existing_comment.user.username }}</a> 
+                                <span class="dark-gray">| {{ existing_comment.submit_date|date:"D, M jS, Y P" }}</span>
+                            </span>
+                        </div>
+                        <hr class="black-thin-no-margin">
+    
+                        <div class="comment-body">
+                            {% bbcode existing_comment.comment %}
+                        </div>
+                              
+                        <!--BEGIN CHILD COMMENT PREVIEW -->
+                        {% if existing_comment.id == form.get_comment_object.parent.id %}
+                        <li class="object-comment-children comment-preview">
+                            <form action="{% comment_form_target %}" method="post">
+                            {% csrf_token %}
+                                {% if next %}<input type="hidden" name="next" value="{{ next }}" />{% endif %}
+                                {% if form.errors %}
+                                <div class="thanks-header">{% blocktrans count form.errors|length as counter %}Please correct the error below{% plural %}Please correct the errors below{% endblocktrans %}</div>
+                                {% else %}
+                                
+                                <div class="object-comment-child-details">
+                                    {{ request.user.get_profile.get_medium_miniprofile|markdown }}                    
+                                    <span class="authors bold-upper">
+                                        <a href="{{request.user.get_profile.get_absolute_url}}">{{ request.user.username }}</a> 
+                                        <span class="dark-gray">| {{ form.get_comment_object.submit_date|date:"D, M jS, Y P" }}</span>
+                                    </span>
+                                </div>
+                            <hr class="black-thin-no-margin">
+                            
+                            
+                            <div class="comment-body">
+                                {% bbcode comment %}
+                            </div>
+                            
+                            
+                             <div class="preview-notice">
+                              This is a preview. Click here to <button class="round-blue" value="1"type="submit" name="submit">Publish</button> or make changes below. <a href = "{{ form.get_comment_object.content_object.get_absolute_url }}}}">Cancel</a> 
+                            </div>
+    
+                                 
+                                {% endif %}
+                                {% for field in form reversed %}
+                                  {% if field.is_hidden %}
+                                    {{ field }}
+                                  {% else %}
+                                    {% if field.errors %}{{ field.errors }}{% endif %}
+                                    <span
+                                    {% if field.errors %} class="error"{% endif %}
+                                    {% ifequal field.name "honeypot" %} style="display:none;"{% endifequal %}
+                                    {% ifequal field.name "name" %} style="display:none;"{% endifequal %}
+                                    {% ifequal field.name "email" %} style="display:none;"{% endifequal %}
+                                    {% ifequal field.name "url" %}  style="display:none;"{% endifequal %}
+                                    {% ifequal field.name "title" %}  style="display:none;"{% endifequal %}
+                                    ></span>
+                                     {% endif %}
+                                {% endfor %}
+                                    <div class = "post-form-content">
+                                    <a href="/discuss/bbcode" onclick="javascript:void window.open('/discuss/bbcode','1276814637707','width=700,height=500,toolbar=0,menubar=0,location=0,status=1,scrollbars=1,resizable=1,left=0,top=0');return false;">[BBCode Guide]</a>
+                                    <div class = "comment-textarea">
+                                        {% comment %}
+                {% if "iPad" not in request.META.HTTP_USER_AGENT and "iPhone" not in request.META.HTTP_USER_AGENT and "MSIE" not in request.META.HTTP_USER_AGENT %}
+
+                                            {% include "comments/basic_bbcode.html" %}
+                                        {% endif %}
+                                        {% endcomment %}
+                                        {{form.comment}}
+                                    </div>
+                                </div> 
+                                 
+                               <div class = "post-form-content">
+                                    <fieldset class = "comment-submit">
+                                        <div class="float-right-align-right">
+                                            <button class="round-gray" value="1" name="preview">Preview</button>
+                                            <button class="round-blue" value="1" name="publish">Publish</button>
+                                        </div>
+                                    </fieldset>
+                                </div>
+                              </form>
+                             </li>
+                            {% endif %}
+                            
+                          <!--END CHILD COMMENT PREVIEW -->
+                          
+                     </li>
+                     
+                        <!--BEGIN MAIN COMMENT PREVIEW -->
+                        
+                        {% if form.get_comment_object.parent == None  %}      
+                        <span class = "comment-preview">             
+                        <form action="{% comment_form_target %}" method="post">
+                            {% csrf_token %}
+                            {% if next %}<input type="hidden" name="next" value="{{ next }}" />{% endif %}
+                            {% if form.errors %}
+                            <div class="thanks-header">{% blocktrans count form.errors|length as counter %}Please correct the error below{% plural %}Please correct the errors below{% endblocktrans %}</div>
+                            {% else %}
+                            
+                            <div class="object-comment-child-details">
+                                {{ request.user.get_profile.get_medium_miniprofile|markdown }}                    
+                                <span class="authors bold-upper">
+                                    <a href="{{request.user.get_profile.get_absolute_url}}">{{ request.user.username }}</a> 
+                                    <span class="dark-gray">| {{ form.get_comment_object.submit_date|date:"D, M jS, Y P" }}</span>
+                                </span>
+                            </div>
+                        <hr class="black-thin-no-margin">
+                        
+                        
+                        <div class="comment-body">
+                            {% bbcode comment %}
+                        </div>
+                        
+                        
+                       <div class="preview-notice">
+                              This is a preview. Click here to <button class="round-blue" value="1"type="submit" name="submit">Publish</button> or make changes below. <a href = "{{ form.get_comment_object.content_object.get_absolute_url }}}}">Cancel</a> 
+                        </div>
+                             
+                            {% endif %}
+                            {% for field in form reversed %}
+                              {% if field.is_hidden %}
+                                {{ field }}
+                              {% else %}
+                                {% if field.errors %}{{ field.errors }}{% endif %}
+                                <span
+                                {% if field.errors %} class="error"{% endif %}
+                                {% ifequal field.name "honeypot" %} style="display:none;"{% endifequal %}
+                                {% ifequal field.name "name" %} style="display:none;"{% endifequal %}
+                                {% ifequal field.name "email" %} style="display:none;"{% endifequal %}
+                                {% ifequal field.name "url" %}  style="display:none;"{% endifequal %}
+                                {% ifequal field.name "title" %}  style="display:none;"{% endifequal %}
+                                ></span>
+                                 {% endif %}
+                            {% endfor %}
+                                <div class = "post-form-content">
+                                <a href="/discuss/bbcode" onclick="javascript:void window.open('/discuss/bbcode','1276814637707','width=700,height=500,toolbar=0,menubar=0,location=0,status=1,scrollbars=1,resizable=1,left=0,top=0');return false;">[BBCode Guide]</a>
+                                <div class = "comment-textarea">
+    {% if "iPad" not in request.META.HTTP_USER_AGENT and "iPhone" not in request.META.HTTP_USER_AGENT and "MSIE" not in request.META.HTTP_USER_AGENT %}
+                                        {% include "comments/basic_bbcode.html" %}
+                                    {% endif %}
+                                    {{form.comment}}
+                                </div>
+                            </div> 
+                             
+                           <div class = "post-form-content">
+                                <fieldset class = "comment-submit">
+                                    <div class="float-right-align-right">
+                                        <button class="round-blue" value="submit" name="submit">Publish</button>
+                                    </div>
+                                </fieldset>
+                            </div>
+                          </form>
+                        </span> 
+                        {% endif %}
+                        
+                          <!--END MAIN COMMENT PREVIEW -->
+                          
+                    {% for close in comment.close %}       
+                </ul>           
+                {% endfor %}
+            {% endfor %}
+            </div>
+            {% endif %}
+            <!--END COMMENTS LIST-->
+                
+        </div>
+       
+       <!--end left column-->
+        <div class= "right-column span-8">
+            {% include "fragments/nectar_ads_sidebar.html" %}        
+            {% include "fragments/featured_articles.html" %}
+        </div>
+    
+    </div>
+
+{% else %}
+<!--INVALID COMMENT FORM -->
+
+  <div class="section-row-titles post-mini-nav">
+        <span class = "nav-item last first selected"><a href="/discuss/submit/">Post a Comment</a></span>
+        <hr class="hr3-no-margin">
+    </div>    
+
+    <div class = "post-form span-24">
+        <form id="comment_form" action="{% comment_form_target %}" method="post"><!--quick publish form-->
+            {% csrf_token %}
+            {% for field in form %}
+                {% if field.is_hidden %}
+                  {{ field }}
+                {% endif %}
+                {% endfor %}
+            {% if next %}<input type="hidden" name="next" value="{{ next }}" />{% endif %}
+            <div class = "post-form-content span-24">
+                    
+                <div class="post-form-content span-23">
+                    {{ form.errors.comment }}
+                    {{form.comment}}
+                </div>    
+                
+                <div class = "post-form-content span-24">
+                    <fieldset>
+                        <div class="float-right-align-right span-12">
+                            <button class="round-blue" value="submit" name="submit">Publish</button>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+        </form>  
+    </div>
+{% endif %}
+
+{% endblock %}
+

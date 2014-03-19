@@ -1,0 +1,7 @@
+<div id="artbase-{{ list_type }}" class="highlight selected">
+    {% for artwork in list_works %}
+    <a href="{{ artwork.view_url }}" class="span-2 {% if forloop.last %}last{% endif %}">
+        <img width="70" height="90" src="{{MEDIA_URL}}{{ artwork.image_small }}" title="{{ artwork.title }} / {{ artwork.get_artist }}"></img>
+    </a>
+    {% endfor %}
+</div>

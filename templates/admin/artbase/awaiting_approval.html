@@ -1,0 +1,79 @@
+{% extends "admin/base_site.html" %}
+{% load admin_modify admin_list %}
+
+
+{% block breadcrumbs %} 
+<div class="breadcrumbs">
+<a href="../../../">Home</a> &rsaquo;
+<a href="../../">{{ app_label|capfirst|escape }}</a> &rsaquo;
+<a href="../">{{ opts }} </a>&rsaquo; Awaiting Final Approval 
+</div> 
+{% endblock %}
+
+{% block form_top %}
+  <h1>Artworks Awaiting Final Approval ({{awaiting_approval_count}})</h1>
+{% endblock %}
+
+{% block content %}
+    {% csrf_token %}
+    <div id="content" class ="flex">
+        <div id="content-main">
+            <div id="changelist" class="module">
+                <table id="result_list" cellspacing="0">
+                    <tbody>
+                        {% for artwork in awaiting_approval.object_list %}
+                        <tr>            
+                            <td style = "padding:10px">
+                                <div style = "padding:10px;font-weight:bold;">Submitted on {{artwork.submitted_date|date:"M jS, Y P" }}</div> 
+                                
+                                <div style="font-size:15px; padding:5px;width:700px;">
+                                   {{artwork.id}}: <a href="http://rhizome.org{{artwork.view_url}}">{{artwork.title}}</a> by 
+                                        <i><a href="http://rhizome.org{{artwork.user.get_profile.get_absolute_url}}">{{artwork.byline}}</i></a>
+                                </div>
+                                <div style = "padding:5px">
+                                    <img style="max-width:400px;" src="{{MEDIA_URL}}{{artwork.image_medium}}" />
+                                </div>
+                                <div style = "padding:5px;font-size:13px;line-height:1.5;width:700px;">
+                                    {% if artwork.summary %}
+                                        {{artwork.summary}}
+                                    {% else %}
+                                        {{artwork.description}}
+                                    {% endif %}
+                                </div>
+                            
+                            <a href="{{request.path}}?artwork={{ artwork.id }}&choice=approved&page={{ request.GET.page }}">
+                                <button style = "float:none; margin: 3px 5px;" class="button default">APPROVE FOR ARTBASE</button>
+                            </a>
+
+                            <a href="{{request.path}}?artwork={{ artwork.id }}&choice=rejected&page={{ request.GET.page }}">
+                                <button style = "float:none; margin: 3px 5px;" class="button default">DECLINE</button>
+                            </a>
+                            
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        
+            <div class="pagination" style="float:right;">
+                <span class="step-links">
+                    {% if awaiting_approval.has_previous %}
+                      <a href="?page={{ awaiting_approval.previous_page_number }}"> &larr; previous</a>
+                    {% endif %}
+            
+                    <span class="current">
+                        Page {{ awaiting_approval.number }} of {{ awaiting_approval.paginator.num_pages }}.
+                    </span>
+            
+                    {% if awaiting_approval.has_next %}
+                        <a href="?page={{ awaiting_approval.next_page_number }}">next &rarr;</a> 
+                    {% endif %}
+                </span>
+            </div>
+        </div>
+
+    </div>
+
+
+{% endblock %}

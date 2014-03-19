@@ -1,0 +1,65 @@
+{% extends "accounts/base.html" %}
+{% block pageTitle %}Welcome To Rhizome{% endblock %}
+{% load url from future %}
+
+
+{% block title %}Welcome To Rhizome{% endblock %}
+
+{% block content %}
+
+<div class="section span-24">
+    <div class="section-row-titles">
+        <span class = "nav-item">Welcome to Rhizome</span>
+        <hr class="hr3-no-margin span-24">
+    </div>    
+</div>
+
+{% if user_account %}
+
+<div class="gray-box span-24" id="welcome">
+    <div id="welcome-left" class="span-12 center"> 
+        <h2 id="welcome-h2">Welcome to <span id="rhizome-large-red">Rhizome</span></h2>
+        <h2 class="italic underline">Get Started Now!</h2>
+    </div>
+    <div class = "span-10">
+        <ul id = "welcome-list" class = "span-10">
+            <li>Update your <a href="{% url 'edit_profile' %}" class="red">Profile</a></li>
+            <li>Speak up on <a href="{% url 'discuss-index' %}" class="red">Discuss</a></li>
+            <li>Promote your ____ on <a href="{% url 'announce_index' %}" class="red">Announce</a></li>
+            <li>Add Artworks to you <a href="{% url 'submit_artwork' %}" class="red">Portfolio</a></li>
+            <li>Explore the <a href="{% url 'browse_artbase' %}" class="red">Artbase</a></li>
+            <li>Curate an <a href="{% url 'new_member_exhibition' %}" class="red">Exhibition</a></li>
+            <li>Subscribe to the <a target = "_blank" href="{% url 'subscribe_news' %}" class="red">Rhizome News</a></li>
+        </ul>
+    </div>
+</div>   
+
+ {% else %}
+
+<p class="form-errors upper center span-24">{{notice}}</p>
+<p>
+<form method="post" action="/login/">
+{% csrf_token %} 
+    <div id = "main-login">
+        <div class="username-password">
+            <label>Username or Email Address:</label>
+            <input id="id_username" type="text" name="username" value="EMAIL/USERNAME" />
+        </div>
+        
+        <div class="username-password">
+            <label>Password:</label>
+            <input id="id_password" type="password" name="password" value="PASSWORD" />
+
+        </div>
+        
+        <div id="login-text">
+            New to Rhizome? <a href="{% url 'accounts_register' %}">Click here to sign up</a><br/>
+            Forgot your username or password? <a href="/password_reset/">Click here</a>
+        </div>
+        
+        <button id ="login" class="round-blue float-right" type="submit" value="Login">LOGIN</button>
+    </div>
+</form>
+</p>
+{% endif %}
+{% endblock %}

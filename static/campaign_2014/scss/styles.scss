@@ -1,0 +1,257 @@
+@import 'fontface';
+@include fontFace('news_gothic_mtcondensedbold', '../fonts/newsgothicmt-condensedbold-webfont');
+
+@mixin font-smoothing {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@mixin linear-gradient($color-stop1, $color-stop2) {
+  background: -webkit-linear-gradient(45deg, $color-stop1, $color-stop2); /* For Safari */
+  background: -o-linear-gradient(45deg, $color-stop1, $color-stop2); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(45deg, $color-stop1, $color-stop2); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(45deg, $color-stop1, $color-stop2); /* Standard syntax */
+}
+
+body, html {
+    text-rendering: optimizeLegibility;
+    font-family: 'Titillium Web', sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    color: black;
+    line-height: 1;
+    font-size: 14px;
+    background: white url('../img/bg.png') repeat;
+    background-attachment: fixed;
+}
+
+strong {
+    font-weight: 700;
+}
+
+.italic {
+    font-style: italic;
+}
+
+a, a:hover, a:visited {
+    color: black;
+    text-decoration: none;
+}
+
+p {
+    line-height: 20px;
+    padding: 0;
+    margin: 0 0 14px 0;
+}
+
+%h {
+    @include font-smoothing;
+    font-family: 'news_gothic_mtcondensedbold', sans-serif;
+    margin: 0;
+    padding: 0;
+    font-weight: normal;
+}
+
+h1 {
+    @extend %h;
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 37px;
+}
+
+h3 {
+    @extend %h;
+    font-size: 20px;
+    margin-bottom: 10px;
+
+    .date {
+        font-size: 18px;
+        font-weight: bold;
+        text-transform: uppercase;
+        margin-bottom: 4px;
+        display: inline-block;
+    }
+
+    &.telethon {
+        margin-top: 55px;
+    }
+}
+
+.progress {
+    height: 40px;
+    border-radius: 8px;
+    background: #d8d8d8;
+}
+.progress-bar {
+    background: #2bd4d6;
+    border-radius: 8px;
+    box-shadow: 2px 2px 8px 2px #29ccce inset;
+}
+
+.column {
+    $left-col-width: 589px;
+    $left-col-padding: 50px;
+    $right-col-width: 351px;
+    $right-col-padding: 35px;
+
+    float: left;
+    padding-top: 54px;
+    &.left {
+        width: $left-col-width;
+        padding-left: $left-col-padding;
+        margin-top: 30px;
+    }
+    &.right {
+        width: $right-col-width;
+        padding-left: $right-col-padding;
+        padding-right: $right-col-padding;
+        height: 100%;
+        background: white;
+        position: fixed;
+        top: 30px;
+        right: 0;
+    }
+}
+
+#box {
+    position: relative;
+    $c-radius: 86px;
+    $c-border: 6px;
+    height: ($c-radius + $c-border) * 2;
+    margin-top: 18px;
+    margin-left: 12px;
+
+    #circle {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: $c-radius * 2;
+        height: $c-radius * 2;
+        background: #ccffd9;
+        border-radius: $c-radius + $c-border;
+        text-align: center;
+        border: $c-border solid white;
+        z-index: 100;
+    }
+
+    #net-art-stars {
+        p {
+            font-size: 13px;
+            text-transform: uppercase;
+            margin-top: 4px;
+            &:first-child {
+                font-size: 18px;
+                text-transform: none;
+                margin-top: 13px;
+                margin-bottom: 9px;
+            }
+        }
+        text-align: center;
+        $height: 128px;
+        position: absolute;
+        top: ($c-radius + $c-border) - ($height / 2);
+        left: $c-radius + $c-border;
+        color: white;
+        width: 366px;
+        padding-left: 76px;
+        height: $height;
+        background: url('../img/Ad combo.jpg');
+        background-position: 10px -30px;
+
+        #donate-today {
+            border-bottom: 2px solid #959595;
+            color: white;
+            padding: 2px 0;
+            display: inline-block;
+            text-transform: uppercase;
+            font-family: 'news_gothic_mtcondensedbold', sans-serif;
+        }
+    }
+}
+
+.donate-rect {
+    margin: 0 auto;
+    font-family: 'news_gothic_mtcondensedbold', sans-serif;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 15px;
+    padding-top: 17px;
+
+    width: 141px;
+    height: 50px;
+    background: #f0f0f0;
+    border: 1px solid #cbcbcb;
+    display: block;
+
+    &.primary {
+        margin-top: 25px;
+        border: none;
+        font-size: 20px;
+        color: black;
+        background: none;
+    }
+
+    .reward {
+        font-size: 12px;
+        color: #676680;
+    }
+
+    form {
+        width: 100%;
+        height: 100%;
+        input {
+            text-align: center;
+            width: 60%;
+            margin-top: -7px;
+            line-height: 1.5em;
+        }
+    }
+}
+
+.giftbox {
+    font-size: 17px;
+    padding: 10px;
+    width: 458px;
+    height: 190px;
+    margin-top: 18px;
+    margin-left: 12px;
+    background: white;
+    box-shadow: 0px 0px 20px 0px #ccc;
+
+    .swag {
+        font-size: 12px;
+        font-family: 'news_gothic_mtcondensedbold', sans-serif;
+        padding-bottom: 1px;
+        border-bottom: 1px solid black;
+    }
+
+    a, a:hover, a:visited {
+        color: rgb(28, 28, 194);
+    }
+
+    .amount {
+        font-size: 36px;
+    }
+
+    .tiny {
+        font-size: 10px;
+    }
+
+    p {
+        margin-top: 1.5em;
+        font-size: 14px;
+    }
+
+    &:last-child {
+        margin-bottom: 50px;
+    }
+
+    img {
+        float: right;
+        margin-left: 8px;
+    }
+}
+
+@import '_new_navbars';
+

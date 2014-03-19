@@ -1,0 +1,11 @@
+{% load markup %}
+
+{{ comment_body|markdown }}
+<br />
+--{{ comment.user.get_profile }}
+<br />
+<br />
+<a href="{{ comment_url }}">REPLY TO THIS MESSAGE</a>
+<br /><br />
+________________________________<br />
+<a href="http://rhizome.org/unsubscribe">unsubscribe</a>

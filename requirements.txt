@@ -1,0 +1,34 @@
+Django==1.5.2
+simplejson==3.1.2
+django-haystack==2.1.0
+netaddr==0.7.10
+cssutils==0.9.10
+markdown==2.3.1
+django-oembed==0.1.3
+easy-thumbnails
+SQLAlchemy==0.6.0
+defensio==0.9.1
+BeautifulSoup==3.2.0
+django-news-sitemaps==0.1.5
+twitter==1.9.2
+Pillow==2.0.0
+CouchDB
+django_extensions==1.1.1
+python-dateutil==2.1
+feedparser==5.1.3
+Fabric
+-e git://github.com/rhizomedotorg/PyChimp.git#egg=PyChimp
+MySQL-python
+tldextract
+python-memcached
+django-paintstore
+django-threadedcomments
+-e git+https://github.com/thornomad/django-hitcount.git#egg=django_hitcount-dev
+django-tastypie
+mimeparse
+pyelasticsearch
+django-celery
+nose
+-e git+https://github.com/protonpopsicle/django-cl2csv.git#egg=django_cl2csv-dev
+-e git+https://github.com/rhizomedotorg/django-eazy-email.git@master#egg=django_eazy_email-dev
+AuthorizeSauce==0.2.1

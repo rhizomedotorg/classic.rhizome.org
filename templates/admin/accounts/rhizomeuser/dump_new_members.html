@@ -1,0 +1,67 @@
+{% extends "admin/base_site.html" %}
+{% load  admin_modify   admin_list %}
+
+{% block breadcrumbs %} 
+<div class="breadcrumbs">
+<a href="../../../">Home</a> &rsaquo;
+<a href="../../">{{ app_label|capfirst|escape }}</a> &rsaquo;
+Dump CSV of New Members
+</div> 
+{% endblock %}
+
+{% block content %}
+    <h3>If adding to Mailchimp, be sure to clean these emails from the User's announcement list.</h3>
+    {% csrf_token %}
+    <form  method="post" action="{{request.path}}">
+    {% csrf_token %}
+    <div id="content" class ="flex">
+        <div id="content-main">
+            <div id="changelist" class="module">
+                <table id="result_list" cellspacing="0">
+                    <tbody>
+                        <tr>     
+                            <p style = "padding:10px;font-weight:bold;">
+                            Get a CSV file of all members
+                            <input class="default" style ="float:none;" type="submit" name="all_time" value="Create CSV"/>
+                            </p>   
+                        </tr>
+                        <hr />               
+                        <tr>     
+                            <p style = "padding:10px;font-weight:bold;">
+                            Get a CSV file of new members for the last year
+                            <input class="default" style ="float:none;" type="submit" name="one_year" value="Create CSV"/>
+                            </p>   
+                        </tr>
+                        <hr />
+                        <tr>     
+                            <p style = "padding:10px;font-weight:bold;">
+                            Get a CSV file of new members for the last 6 months
+                            <input class="default" style ="float:none;" type="submit" name="six_months" value="Create CSV"/>
+                            </p>   
+                        </tr>
+                        <hr />
+                        <tr>     
+                            <p style = "padding:10px;font-weight:bold;">
+                            Get a CSV file of new members for the last 3 months
+                            <input class="default" style ="float:none;" type="submit" name="three_months" value="Create CSV"/>
+                            </p>   
+                        </tr>
+                        <hr />
+                        <tr>     
+                            <p style = "padding:10px;font-weight:bold;">
+                            Get a CSV file of new members for the last month
+                            <input class="default" style ="float:none;" type="submit" name="one_month" value="Create CSV"/>
+                            </p>   
+                        </tr>
+                        
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</form>
+
+
+
+{% endblock %}

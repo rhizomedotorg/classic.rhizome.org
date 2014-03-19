@@ -1,0 +1,29 @@
+<div class = "edit-profile-form span-24">    
+     <div class = "fieldset span-10">
+        <div class = "h6 light-gray">You've invited the following users to your account:</div>
+        <fieldset class="span-10">
+        {% for prospective_user in prospective_users %}
+            <div class = "light-gray">{{prospective_user.email}} / status: {% if prospective_user.accepted == 1 %}accepted{% else %}awaiting confirmation{% endif %} | <a href="?remove={{ prospective_user.id }}" class="red">REMOVE</a></div>
+        {% endfor %}  
+        </fieldset>
+    </div> 
+    
+    <div class = "fieldset span-10">
+        <div class = "h6 light-gray">Add Another Member</div>
+        {% for field in manage_members_form %}
+            {% if not field.is_hidden %}
+             <fieldset class="span-10"> 
+                {% if field.errors %}<span class="form_errors">{{ field.errors }}</span>{% endif %}
+                <span class = "h6 light-gray">{{field.label}}:</span>
+                <span class = "edit-profile-form-input">{{ field }}</span>
+            </fieldset>
+            {% else %}
+                {{field}}
+            {% endif %}
+        {% endfor %}
+    
+        <fieldset id ="edit-button" class="float-right">
+            <button class="round-blue" value="1" name="Submit">Add Member</button>
+        </fieldset>
+    </div>
+</div>

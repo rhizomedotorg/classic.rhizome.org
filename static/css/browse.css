@@ -1,0 +1,68 @@
+    /* General browse table styles */
+
+#directory-search {
+    margin-left: 10px;
+}
+
+.browse-table {
+    width: 950px;
+}
+
+.browse-table td img {
+    border: 1px solid #ccc;
+}
+
+/* Users table customizations */
+
+#browse-users-table td {
+    padding-left: 8px;
+    width: 237px;
+    height: 30px;
+    padding: 6px 0px 6px 10px;
+    border-bottom: 1px solid #ccc;
+    vertical-align: top;
+}
+
+#browse-users-table tr.last td, #browse-titles-table tr.last td{
+    border-bottom: None;
+} 
+
+#browse-users-table td a {
+    margin-left: 6px;
+}
+
+/* Title table customizations */
+
+#browse-titles-table {
+}
+
+#browse-titles-table td {
+    height: 200px;
+    vertical-align: top;
+    width: 190px;
+    padding: 15px 0px 15px 10px;
+    border-bottom: 1px solid #ccc;
+    text-align: center;
+}
+
+#browse-titles-table a, #browse-titles-table .browse-byline  {
+    margin-top: 6px;
+    font-weight: normal;
+}
+
+#browse-titles-table a.listing-title {
+    font-style: italic;
+    font-weight: bold;
+}
+
+/* Tag table customizations */
+
+#browse-tags-table {
+}
+
+#browse-tags-table td {
+    width: 190px;
+    text-align: center;
+    border-bottom: 1px solid #ccc;
+    padding: 8px 0px;
+}

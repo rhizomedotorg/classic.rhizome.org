@@ -1,0 +1,21 @@
+{% extends "accounts/base.html" %}
+{% load markup hitcount_tags %}
+
+{% block pageTitle %}
+Profile Not Available
+{% endblock %}
+
+{% block content %}
+
+<div class="section-content span-24">    
+    <div class="section-row-titles">
+        <span class = "nav-item">Profile Not Available</span>
+    </div>
+    <hr class="hr3-no-margin">
+    
+    <div class="about-content">Either this user doesn't exist or they have chosen to remain anonymous.</div>
+
+    <div class="italic bold">Is this you? You can <a href="/profile/edit/">make your profile visible</a> via your privacy settings.</div>
+
+</div>
+{% endblock%}

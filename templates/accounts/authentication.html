@@ -1,0 +1,20 @@
+{% extends "accounts/base.html" %}
+
+{% block pageTitle %}
+Authentication
+{% endblock %}
+
+{% block content %}
+<div>Hello authenticated user {{ name }}</div>
+
+{% if isstaff %}
+<div>You are staff</div>
+{% endif %}
+
+{% if email %}
+<div>Your email is {{email}}</div>
+{% endif %}
+
+<div>Your last login was {{ last_login }}</div>
+<div>You joined on {{ joined }}</div>
+{% endblock %}

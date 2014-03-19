@@ -1,0 +1,35 @@
+{% extends "artbase/base.html" %}
+{% load markup block_tags %}
+
+{% block pageTitle %} 
+    ArtBase Policy 
+{% endblock %}
+
+{% block navbars %}
+    {% get_nav 'Artbase' 'About' %}
+{% endblock %}
+
+{% block content %}
+<div class="column-wrapper span-24">
+    <a name="collection_policy"></a>
+    <div class="section-row-titles">
+        <span class = "nav-item"><a class="anchor-name" name ="cm">COLLECTION MANAGEMENT POLICY</a></span>
+    </div>
+    <hr class="hr3-no-margin">
+
+    <textarea class = "policy" readonly>
+        {{cm_policy}}
+    </textarea>
+</div>
+<div class="column-wrapper span-24">
+    <a name="collection_policy"></a>
+    <div class="section-row-titles">
+        <span class = "nav-item"><a class="anchor-name" name ="aa">ARTIST AGREEMENT POLICY</a></span>
+    </div>
+    <hr class="hr3-no-margin">
+
+    <textarea class = "policy" readonly>
+        {{aa_policy}}
+    </textarea>
+</div>
+{% endblock %}

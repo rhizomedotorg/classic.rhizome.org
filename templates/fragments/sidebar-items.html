@@ -1,0 +1,14 @@
+{% load frontpage markup %}
+{% get_current_fp_sidebar_items as sidebar_items %}
+
+{% if sidebar_items %}
+<div id ="sidebar">    
+    {% for item in sidebar_items %}
+    <div class="sidebar-element">
+        <a href="{{item.link}}">
+            <img src="{{MEDIA_URL}}{{item.image}}" width="310"></img>
+        </a>
+    </div>
+    {% endfor %}
+</div>
+{% endif %}

@@ -1,0 +1,75 @@
+{% extends "artbase/base.html" %}
+{% load inlines_tags markup block_tags %}
+{% block pageTitle %}Member Exhibitions{% endblock %}
+
+{% block section_description %}{% get_text 'member exhibitions description' %}{% endblock  %}
+
+{% block body_class %}artbase{% endblock %}
+{% block section_action_class %}create-exhibition{% endblock %}
+{% block content_class %}artbase-member-exhibitions{% endblock %}
+
+{% if flash_msg == "exhibition_deleted" %}
+The exhibition was deleted
+{% endif %}
+
+{% block navbars %}
+    {% get_nav 'Artbase' 'Member Exhibitions' %}
+{% endblock %}
+
+{% block content %}
+<div id="artbase-member-exhibitions" class="clear">
+    <h6>Recent member exhibitions</h6>
+    <hr class="hr3"></hr>
+
+    {% for exhibition in exhibition_paginator.object_list %}
+    <div class="exhibition span-24 last">
+        <div class="pad span-24 last">
+            <div class="left-col span-7">
+                <h3>
+                    <a class="exhibition-title" href="{{ exhibition.url }}">{{ exhibition.title }}</a>
+                </h3>
+                <h4>{{ exhibition.subtitle }}</h4>
+                <hr class="thin"></hr>
+                <div class="bold-upper blue curated">
+                    Curated by 
+                    <a href="{{ exhibition.user.get_profile.get_absolute_url }}">
+                        {{ exhibition.user.get_profile }}
+                    </a>
+                </div>
+                <p class="exhibition-statment left">{{ exhibition.statement|render_inlines|truncatewords:40 }}</p>
+            </div>
+            
+            <div class="span-7">
+                <a href="{{ exhibition.url }}"><img width="285" height="200" class="middle-col span-8" src="{{MEDIA_URL}}{{ exhibition.image }}"></img></a>
+            </div>
+            
+            <div class="right-col span-7 prepend-1 last">
+                <div class="artists">
+                    <span class="bold upper">Artists include:</span>
+                    <span class="blue italic">
+                        {% for artist in exhibition.artists %}
+                        <a href="{{ artist.get_profile.get_absolute_url }}">{{ artist.get_profile }}</a>{% if not forloop.last %}, {% endif %}
+                        {% endfor %}
+                    </span>
+                        
+                    {% if exhibition.get_tags %}
+                      <div class="post-tags-and-share  tags">
+                        <span class="tags essay-tags">
+                             <div class="italic bold">Tags:</div>
+                            {% for tag in exhibition.get_tags %}
+                                <a class="tag blue" href="/artbase/exhibitions/tag/{{ tag.slug }}">{{ tag.name }}</a>
+                            {% endfor %}                    
+                        </span>
+                    </div>
+                    {% endif %}
+                </div>
+                <a class="basic enter" href="{{ exhibition.url }}">
+                </a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+
+    {{ exhibition_paginator.render }}
+</div>
+{% endblock %}

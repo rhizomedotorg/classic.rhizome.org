@@ -1,0 +1,32 @@
+{% load url from future %}
+
+<div class="item span-12" id="login-area">
+    
+
+{% if request.user.is_authenticated %}
+    {% if request.user.get_profile.has_icon %} 
+        <img id="topnav-icon" src="{{ MEDIA_URL }}{{ request.user.get_profile.icon }}" width="25" height="25" />    
+    {% else %}
+        <img id="topnav-icon" src="{{ STATIC_URL }}accounts/images/icons/rhizome_user_default.png" width="25" height="25" />    
+    {% endif %}
+    
+    <a href="/profiles/edit/">{% if not request.user.get_profile %}Your Account{% else %}{{ request.user.get_profile }}{% endif %}</a> 
+    {% if not request.user.get_profile.is_rhizomemember %}/ <a href="/support/donate/">Become a member?</a> {% endif %}
+    {% if request.user.soon_to_expire  %} <a href="/support/donate/">Renew Your Membership</a> {% endif %} 
+    /
+    <form id="topnav-logout" action="/logout/" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="next" value="{{ request.GET.parent }}" />
+        <button id="logout" class="link" type="submit" value="Logout">Log Out</button>
+    </form>
+    {% if request.user.get_profile.is_rhizomemember %} 
+        Thanks for being a member!
+    {% endif %}
+{% else %}
+
+Welcome, {% if request_orgsub.short_name and request_orgsub.active %}{{ request_orgsub.short_name }}{% else %}Guest{% endif %}
+    <a id="section-login" class="round-blue" href = "/login/?next={{ request.GET.parent }}">Log In</a>
+    <a id="section-login" href ="{% url 'accounts_register' %}" class="round-blue">Sign Up</a>
+    <a id="topnav-forgot-password" href="/forgot_password/">forgot password?</a>
+{% endif %}
+</div>

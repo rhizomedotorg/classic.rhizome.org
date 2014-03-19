@@ -1,0 +1,52 @@
+{% load markup %}
+<form action="{{ request.path }}" method="POST" enctype="multipart/form-data">
+{% csrf_token %}
+<input type = "hidden" name = "form" value = "account_info">
+<div class = "edit-profile-form span-24">
+        {% if account_info_form.icon.errors %}<span class="form_errors">{{ account_info_form.icon.errors }}</span>{% endif %}          
+        <div class = "fieldset span-10">
+            <div class = "h6 light-gray">{{account_info_form.icon.label}}</div>
+            <fieldset> 
+
+                <div class = "edit-profile-form-input">{{account_info_form.icon}}</div>
+            </fieldset>
+        </div>
+        
+       <!--
+ <div class = "fieldset span-10">
+            {% if account_info_form.icon.errors %}<span class="form-errors">{{ account_info_form.miniprofile_choices.errors }}</span>{% endif %} 
+            <div class = "h6 light-gray">{{account_info_form.miniprofile_choices.label}}</div>
+            {% if rhizomeuser.get_medium_miniprofile %}
+                <fieldset> 
+                    <div class = "edit-profile-form-input">{{account_info_form.miniprofile_choices}}</div>
+                    <div class = "light-gray">*choosing more than one will result in a random rotation amongst the option</div>
+                    <div class = "h6 light-gray">MINI PROFILE PREVIEW (hover over icon)</div>
+                        {{ rhizomeuser.get_medium_miniprofile|markdown }}                         
+                </fieldset>
+            {% else %}
+                 <fieldset> 
+                    <div class = "h6 light-gray">You need to upload an icon in order to get a miniprofile</div>
+                </fieldset>
+            {% endif %}
+        </div>
+        
+-->
+        <div class = "fieldset span-10">
+            <div class = "h6 light-gray">PRIVACY</div>
+            <fieldset>
+                {% if account_info_form.visible.errors %}<span class="form_errors">{{ account_info_form.visible.errors }}</span>{% endif %}          
+                <div class = "edit-profile-form-input">{{account_info_form.visible}}<label>{{account_info_form.visible.label}}</label></div>
+                
+                {% if account_info_form.show_email.errors %}<span class="form_errors">{{ account_info_form.show_email.errors }}</span>{% endif %}               
+                <div class = "edit-profile-form-input">{{account_info_form.show_email}}<label>{{account_info_form.show_email.label}}</label></div>
+            </fieldset>    
+        </div>
+            
+    <div class = "span-23 end">
+        <fieldset id ="edit-button" class="float-right">
+            <input class="round-blue" type="submit" value="update" name="update">
+        </fieldset>
+    </div>
+</div>
+</form>
+

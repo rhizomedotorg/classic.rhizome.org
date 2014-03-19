@@ -1,0 +1,27 @@
+{% extends "about/base.html" %}
+{% load markup block_tags %}
+
+{% block pageTitle %}Press{% endblock %}
+
+{% block navbars %}
+    {% get_nav 'About Us' 'Press' %}
+{% endblock %}
+
+{% block content %}
+<div class="column-wrapper span-24">
+    <div class="section-row-titles">
+        <span class = "nav-item">Rhizome Press</span>
+        <hr class="hr3-no-margin">
+    </div>    
+
+    {% for press in press_paginator.object_list %}
+    <div class="about-content span-24">
+        <h3 id="press-h3"><a target="_blank" href="{{press.article_url}}">{{press.article_title}}</a></h3>
+        <p><b>{{press.publication}}</b> | {{press.publication_date|date:"l, F jS Y" }}</p>
+        <p class="span-19">{{press.excerpt}}</p>
+    </div> 
+    <hr class="thin-blue">
+    {% endfor %}
+    {{press_paginator.render|safe}}
+</div>
+{% endblock %}

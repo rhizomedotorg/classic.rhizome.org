@@ -1,0 +1,399 @@
+{% extends "accounts/base.html" %}
+{% load markup hitcount_tags bbcode accounts %}
+
+{% block pageTitle %}
+
+{% if user.get_full_name %}
+{{user.get_full_name}}
+{% else %}
+{{user.username}}
+{% endif %}
+{% endblock %}
+
+{% block customScripts %}
+<script type="text/javascript">
+window.addEvent('domready', function() {
+
+	var duration = 300;
+    
+    {% if portfolio and portfolio|length > 4 %}
+        portfolio_links = $$('span#carousel-scroll-portfolio a');
+	    
+    	portfolio = new Carousel({
+    		container: 'portfolio',
+    		distance: 1,
+		    previous: portfolio_links.shift(),
+		    next: portfolio_links.pop(),
+    		mode: 'horizontal', 
+    		fx: {
+                duration: 750,
+                transition: Fx.Transitions.Quart.easeInOut
+            }
+        });
+    {% endif %}
+    
+    {% if exhibitions and exhibitions|length > 4 %}
+        alert({{exhibitions|length}});
+        exhibitions_links = $$('span#carousel-scroll-exhibitions a');
+    	exhibitions = new Carousel({
+    		container: 'exhibitions',
+    		distance: 1,
+    		previous: exhibitions_links.shift(),
+    		next: exhibitions_links.pop(),
+    		mode: 'horizontal', 
+    		fx: {
+                duration: 750,
+                transition: Fx.Transitions.Quart.easeInOut
+            }
+        });
+    {% endif %}
+
+    {% if saved_works and saved_works|length > 4 %}
+        savedworks_links = $$('span#carousel-scroll-savedworks a');
+    	saved = new Carousel({
+    		container: 'saved-works',
+    		distance: 1,
+    		previous: savedworks_links.shift(),
+    		next: savedworks_links.pop(),
+    		mode: 'horizontal', 
+    		fx: {
+                duration: 750,
+                transition: Fx.Transitions.Quart.easeInOut
+            }
+
+        });
+    {% endif %}
+
+    {% get_hit_count_javascript for user %}
+    });
+</script>
+{% endblock %}
+
+{% block section_object_header %}
+<div id="section-object-header-wrap">
+    <div id="section-object-header" class="container">
+        <div id = "profile-header" class = "span-24">
+             <div id = "profile-header-left" class = "span-19">         
+                
+                <div class="span-2">
+                    {% if user.get_profile.icon %}
+                    <div id = "profile-header-icon">
+                        <img src="{{MEDIA_URL}}{{ user.get_profile.icon }}" />
+                    </div>
+                    {% endif %}
+                    
+                    {% if user.get_profile.is_member %}
+                        <a href="/support/donate/" id="support-badge-link" target="_blank">
+                            <div id="supporter-badge" class="span-2">Supporter</div>
+                        </a>
+                    {% endif %}
+                </div>
+                
+                <div id = "profile-header-content" class="span-14">                
+                    <div class="user-name">{{ user.get_profile }}
+                        {% if request.user == user %}<a id="edit-profile-link" href="/profiles/edit/">EDIT</a>{% endif %}
+                    </div>
+                    
+                    {% if user.get_profile.is_old_school %}
+                        <div id="profile-header-old-school">Since {{  user.get_profile.is_old_school }}</div>
+                    {% endif %}
+
+                    {% if user.description %}
+                        <div id="profile-header-description">{{ user.get_profile.description }}</div>
+                    {% endif %}
+                    {% if user.get_profile.address.country or user.get_profile.address.city or user.get_profile.address.state %}
+                        <div id="profile-header-user-location">
+                            {% if user.get_profile.show_email %}
+                                {{user.email}} <br/>
+                            {% endif %}
+                            
+                            Works in 
+                            
+                            {% if user.get_profile.address.city and user.get_profile.address.state and user.get_profile.address.country %}
+                                {{user.get_profile.address.city}},
+                            {% else %}
+                                {% if user.get_profile.address.city %} {{user.get_profile.address.city}} {% endif %}
+                            {% endif %}
+                            
+                            {% if not user.get_profile.address.city and user.get_profile.address.state and user.get_profile.address.country %}                          
+                                {{user.get_profile.address.state}}, 
+                            {% else %}
+                                {% if user.get_profile.address.state %} {{user.get_profile.address.state}} {% endif %}
+                            {% endif %}
+                            
+                            {{ user.get_profile.address.country }}
+                        </div>
+                    {% endif %}
+
+                </div>
+            </div>
+            
+
+            
+            {% if user.get_profile.get_web_links %}
+            <div id = "profile-header-right" class = "span-4">
+                <ul id ="profile-web-links-list" class = "span-6">
+                {% filter nofollow %}
+                    {% for link in user.get_profile.get_web_links %}
+                        {% if link.website %}<li><a id ="profile-website" href="{{ link.website }}">{{ link.website }}</a></li>{% endif %}
+                        {% if link.facebook %}<li><a id ="profile-facebook" href="{{ link.facebook }}">{{ link.facebook }}</a></li>{% endif %}
+                        {% if link.twitter %}<li><a id ="profile-twitter" href="http://twitter.com/{{link.twitter}}">{{ link.twitter }}</a></li>{% endif %}
+                        {% if link.skype %}<li><a id ="profile-header-skype" href="{{ link.skype }}">{{ link.skype }}</a></li>{% endif %}
+                    {% endfor %}
+                {% endfilter %}
+                </ul>
+            </div> 
+            {% endif %} 
+        </div>
+    </div>
+    <div class="clear"></div>
+</div>
+<hr class="light">
+{% endblock %}
+
+{% block content %}
+
+{% if portfolio %}
+<div class="profile-section section span-24">
+    {% if portfolio|length > 4 %}
+        <div class="section-title span-24">
+            <span class="span-22">PORTFOLIO ({{portfolio|length}})</span>
+            <span class="carousel-scroll" id ="carousel-scroll-portfolio">
+                    <a href = "#" class = "portfolio-previous" id = "previous"></a>
+                    <a href = "#" class = "portfolio-next" id = "next"></a>
+            </span>
+            <hr class="hr3">
+        </div> 
+        
+        <div class = "section-content span-24">
+            <div id ="portfolio" class="span-22">
+            {% for work in portfolio %}
+                <div class = "portfolio-work">
+                    {% if work.image_small %}
+                        <a href= "{{work.view_url}}">
+                            <img src="{{MEDIA_URL}}{{ work.image_small }}" width = "135">
+                        </a>
+                    {% else %}
+                        <a href= "{{work.view_url}}">
+                            <img src="{{ STATIC_URL }}artbase/images/rhizome_art_default.png" width = "135">
+                        </a>                       
+                    {% endif %}
+                    <div class = "portfolio-work-title">
+                        <a href= "{{work.view_url}}">{{ work.title }}</a>
+                    </div>
+                </div>
+            {% endfor %}
+            </div>
+        </div>
+    {% else %}
+        <div class="section-title span-24">
+            <span class="span-22">PORTFOLIO ({{portfolio|length}})</span>
+            <hr class="hr3">
+        </div> 
+        
+        <div class = "section-content span-24">
+             <div id ="portfolio-no-scroll">
+                {% for work in portfolio %}
+                <div class = "portfolio-work">
+                    {% if work.image_small %}
+                        <a href= "{{work.view_url}}">
+                            <img src="{{MEDIA_URL}}{{ work.image_small }}" width = "135">
+                        </a>
+                    {% else %}
+                        <a href= "{{work.view_url}}">
+                            <img src="{{ STATIC_URL }}artbase/images/rhizome_art_default.png" width = "135">
+                        </a>                       
+                    {% endif %}
+                    <div class = "portfolio-work-title">
+                        <a href= "{{work.view_url}}">{{ work.title }}</a>
+                    </div>
+                </div>
+            {% endfor %}
+            </div>
+        </div>
+    {% endif %}  
+</div>
+{% endif %}            
+
+{% if user.get_profile.bio %}
+<div class="span-24"> 
+    <div class="profile-section section span-24">
+        <div class="section-title">
+            <span>BIO</span>
+            <hr class="hr3">
+        </div>
+        <div class="section-content ">
+            <div id = "profile-bio" class = "span-20 prepend-3">
+                {% filter nofollow %}
+                    {% bbcode user.get_profile.bio %}
+                {% endfilter %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+
+{% if blog_posts_pages %}
+    {% include "accounts/profile_blog_posts.html" %}
+{% endif %}
+
+{% if activities_paginator %}
+    {% include "accounts/profile_feed.html" %}
+{% endif %}
+
+{% if saved_works %}
+                    
+<div class="section span-24 last">
+    
+   {% if saved_works|length > 4 %}
+    <div class="section-title">
+        <span class="span-22">SAVED WORKS ({{saved_works|length}})</span>
+            <span class="carousel-scroll" id ="carousel-scroll-savedworks">
+            <a href = "#" class = "portfolio-previous" id = "previous"></a>
+            <a href = "#" class = "portfolio-next" id = "next"></a>
+        </span>
+        <hr class="hr3">
+    </div>
+        
+     <div class = "section-content span-24">
+        <div id = "saved-works">
+        {% for work in saved_works %}
+            <div class = "saved-work">
+                        {% if work.image_small %}
+                            <a href= "{{work.view_url}}">
+                                <img src="{{MEDIA_URL}}{{ work.image_small }}" width = "135">
+                            </a>
+                        {% else %}
+                            <a href= "{{work.view_url}}">
+                                <img src="{{ STATIC_URL }}artbase/images/rhizome_art_default.png" width = "135">
+                            </a>                     
+                        {% endif %}
+                    <div class = "exhibitions-work-title">
+                        <a href= "{{work.view_url}}">{{ work.title }}</a>
+                    </div>
+                    <div class="bold italic center">BY</div>
+                    <div class = "exhibitions-work-title">
+                        <a href= "{{work.user.get_profile.get_absolute_url}}">{{ work.get_artist  }}</a>
+                    </div>
+            </div>
+        {% endfor %}
+        </div>
+    </div>
+    
+    {% else %}
+    
+     <div class="section-title">
+            <span class="span-22">SAVED WORKS ({{saved_works|length}})</span>
+            <span class="carousel-scroll" id ="carousel-scroll-savedworks">
+        </span>
+        <hr class="hr3">
+    </div>
+        
+     <div class = "section-content span-24">
+        <div id = "saved-works-no-scroll">
+        {% for work in saved_works %}
+            <div class = "saved-work">
+                    {% if work.image_small %}
+                        <a href= "{{work.view_url}}">
+                            <img src="{{MEDIA_URL}}{{ work.image_small }}" width = "135">
+                        </a>
+                    {% else %}
+                        <a href= "{{work.view_url}}">
+                            <img src="{{ STATIC_URL }}artbase/images/rhizome_art_default.png" width = "135">
+                        </a>                     
+                    {% endif %}
+                    <div class = "exhibitions-work-title">
+                        <a href= "{{work.view_url}}">{{ work.title }}</a>
+                    </div>
+                    <div class="bold italic center">BY</div>
+                    <div class = "exhibitions-work-title">
+                        <a href= "{{work.user.get_profile.get_absolute_url}}">{{ work.get_artist }}</a>
+                    </div>
+            </div>
+        {% endfor %}
+        </div>
+    </div>    
+    {% endif %}
+    
+</div>
+{% endif %}
+
+{% if exhibitions %}
+<div class="section span-24 last">
+   {% if exhibitions|length > 4 %}
+    
+    <div class="section-title">
+        <span class="span-22">CURATED EXHIBITIONS ({{exhibitions|length}})</span>
+        <span class="carousel-scroll" id ="carousel-scroll-exhibitions">
+            <a href = "#" class = "portfolio-previous" id = "previous"></a>
+            <a href = "#" class = "portfolio-next" id = "next"></a>
+        </span>
+        <hr class="hr3">
+    </div>
+    
+     <div class = "section-content span-24">
+        <div id ="exhibitions">
+        {% for exhibition in exhibitions %}
+            <div class = "exhibitions-work">
+                {% if exhibition.image %}
+                <a href= "/artbase/exhibitions/view/{{exhibition.id}}/">
+                    <img src="{{MEDIA_URL}}{{ exhibition.image }}">
+                </a>
+                {% else %}
+                <a href= "/artbase/exhibitions/view/{{exhibition.id}}/">
+                    <img src="{{ STATIC_URL }}artbase/exhibition_images/rhizome_exhibition_default.png">
+                </a>
+                {% endif %}
+                <div class = "exhibitions-work-title">
+                    <a href= "/artbase/exhibitions/view/{{exhibition.id}}/">
+                    {{ exhibition.title }}
+                    </a>
+                </div>
+               
+            </div>
+        {% endfor %}
+        </div>
+    </div>
+
+
+    {% else %}
+
+    <div class="section-title">
+        <span class="span-22">CURATED EXHIBITIONS ({{exhibitions|length}})</span>
+        <hr class="hr3">
+    </div>
+    
+     <div class = "section-content span-24">
+        <div id ="exhibitions-no-scroll">
+        {% for exhibition in exhibitions %}
+            <div class = "exhibitions-work">
+                {% if exhibition.image %}
+                    <a href= "/artbase/exhibitions/view/{{exhibition.id}}/">
+                        <img src="{{MEDIA_URL}}{{ exhibition.image }}">
+                    </a>
+                {% else %}
+                    <a href= "/artbase/exhibitions/view/{{exhibition.id}}/">
+                        <img src="{{ STATIC_URL }}artbase/exhibition_images/rhizome_exhibition_default.png">
+                    </a>
+                {% endif %}
+                <div class = "exhibitions-work-title">
+                    <a href= "/artbase/exhibitions/view/{{exhibition.id}}/">
+                    {{ exhibition.title }}
+                    </a>
+                </div>               
+            </div>
+        {% endfor %}
+        </div>
+    </div>
+        <!--
+ <div id = "exhibition-select">
+         {% for work in exhibition %} <button class="select-featured {% if forloop.first %}selected{% endif %} {% if forloop.last %}last{% endif %}"></button>{% endfor %}
+         </div>
+-->
+
+    {% endif %}
+</div>
+{% endif %}
+
+{% endblock %}

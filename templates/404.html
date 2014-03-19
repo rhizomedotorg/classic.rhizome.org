@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block pageTitle %} 404 Not Found {%endblock%}
+
+{% block content %}
+
+
+<div class="section span-24">
+        <div class="section-row-titles">
+            <span class = "nav-item">404: Page Not Found</span>
+            <hr class="hr3-no-margin">
+        </div>    
+</div>
+
+<div class="section-content span-24">
+    <div class = "section-content">
+        <div class="about-content span-20">
+            <p>Uh-oh. We can't find the page you've requested...</p>
+            
+            <p>
+            <span>You can try searching the site:
+                 <form action="/search/" method="get" id = "four-o-four-search">
+                    <input class="search" id ="search" type="text" name="q" value="SEARCH" />
+                    <button id ="section-search-button"  class="round-blue-fat" type="submit">SEARCH</button>
+                </form>
+            </span>
+            </p>
+            
+            <p>
+            Thanks!<br/>
+            The Rhizome Team
+            </p>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

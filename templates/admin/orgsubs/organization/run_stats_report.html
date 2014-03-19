@@ -1,0 +1,56 @@
+{% extends "admin/base_site.html" %}
+{% load  admin_modify %}
+
+{% block extrahead %}
+<script src="{{ STATIC_URL }}js/admin/RelatedObjectLookups.js"></script>
+{% endblock %}
+
+{% block breadcrumbs %} 
+<div class="breadcrumbs">
+<a href="../../../">Home</a> &rsaquo;
+<a href="../../">{{ app_label|capfirst|escape }}</a> &rsaquo;
+<a href="../">{{ opts }} </a>&rsaquo; Orgsub Stats
+</div> 
+{% endblock %}
+
+{% block form_top %}
+  <p>Orgsub Stats</p>
+{% endblock %}
+
+{% block content %}
+<form id="orgsub_stats_form" method="post" action="{{request.path}}">
+    {% csrf_token %}
+    <div id="content" class ="flex">
+        <div id="content-main">
+            <div id="changelist" class="module">
+            <table id="result_list" cellspacing="0">
+                <tbody>
+                    <tr>     
+                        <p style = "padding:10px;font-weight:bold;">
+                            Creates a stats report for a given org sub
+                        </p>   
+                    </tr>
+                    
+                    <tr>            
+                        <td style = "padding:10px">
+                            <label for="id_old_user" class="required">Run report for this organization:</label>
+                            <input class="vForeignKeyRawIdAdminField" type="text" name="orgsub" id="id_orgsub" />
+                            <a href="../../../orgsubs/organization/?t=id" class="related-lookup" id="lookup_id_orgsub" onclick="return showRelatedObjectLookupPopup(this);"> <img src="/media/amedia/img/admin/selector-search.gif" width="16" height="16" alt="Lookup" />
+                            </a>            
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                           <input class="default" type="submit" name="create_report" value="Create Report"/>
+                       </td>
+                    </tr>
+                </tbody>
+            </table>
+            </div>
+        </div>
+    </div>
+</form>
+
+
+{% endblock %}
+

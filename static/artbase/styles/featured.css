@@ -1,0 +1,646 @@
+/* Featured Work Styles */
+
+.section-header-wrap{
+    padding-bottom: 28px;
+}
+
+#artbase-info h3
+{
+    padding-left: 6px;
+}
+
+#artbase-info div
+{
+    float: left;
+    width: 620px;
+}
+
+#artbase-info p
+{
+    margin: 6px;
+}
+
+#artbase-info form
+{
+    float: right;
+    width: 310px;
+}
+
+#artbase-top
+{
+    background-color: #ccc;
+    width: 100%;
+    position: relative;
+}
+
+#featured-nav .last {
+    margin-right: 0;
+}
+
+#featured-details-bottom-left #featured-nav
+{
+    margin-bottom: 0 !important;
+    float:left;
+    margin-left: 15px;
+    line-height: 0.5em;
+}
+
+
+#red-title-nav{
+}
+
+.red-title
+{
+    font-size: 12px;
+    text-transform: uppercase;
+    color: red;
+
+}
+
+#featured-details-bottom-left .red-title
+{
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: red;
+    font-family: Helvetica;
+    float:left;
+    line-height: 1em;
+}
+
+#featured-details-bottom-left #featured-title .created-date {
+    color: #999999;
+    font-size: 15px;
+    float: left;
+}
+
+#title-artist{
+    clear:both;
+    margin: 10px 0px 1px;
+}
+
+
+#featured-link,
+.artwork-link
+{
+    border: none;
+    background-color: transparent;
+    width: 14px;
+    height: 14px;
+    background-image: url(../../images/icons_sprite.png);
+    background-position: 0px -1001px;
+    background-repeat: no-repeat;
+    margin-left: 0.5em;
+    float: left;
+    position: absolute;
+}
+
+.artwork-link{
+    padding-right: 10px;
+    margin-top: 1em;
+}
+
+.artwork-edit,
+.exhibition-edit {
+    padding:1px 4px;
+    font-size: 11px;
+    border: none;
+    font-family: Helvetica;
+    background-color: #F30202;
+    text-transform: uppercase;
+    color: white;
+    border-radius: 8px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+}
+
+.artwork-edit:hover,.exhibition-edit:hover {
+    color: white;
+    text-decoration: none;
+}
+
+#featured-work
+{
+    overflow: hidden;
+    width: 950px;
+    height: 375px;
+}
+
+#featured-details
+{
+    font-family: helvetic, sans-serif;
+    position: absolute;
+    top: 0px;
+    height: 263px;
+    left: 440px;
+    right: 40px;
+}
+
+#featured-details-triangle-flap{
+    position:absolute;
+    top: 275px;
+    left:-8px;
+}
+
+#featured-details-bottom-left
+{
+    font-family: helvetic, sans-serif;
+    height: 120px;
+    left: -8px;
+    position: absolute;
+    right: 40px;
+    top: 283px;
+    width: 410px;
+    font-weight: normal;
+    background-image: url("../../images/overlay_slanted_right_side_long.png");
+    background-position: 410px 0px;
+    background-repeat: no-repeat;
+    padding-right: 20px;
+}
+
+
+#featured-title a 
+{
+    color: white;
+    float: none;
+    margin-right: 5px;
+    letter-spacing: 1px;
+    font-weight: normal;
+}
+
+
+#featured-details-bottom-left #featured-title a 
+{
+    color: white;
+    margin-right: 5px;
+    letter-spacing: 1px;
+    font-weight: normal;
+    float: left;
+}
+
+#featured-title
+{
+    font-family: georgia, serif;
+    font-size: 24px;
+    color: white;
+    display: inline-block;
+    line-height: .9em;
+}
+
+#featured-details-bottom-left #featured-title{
+    margin-bottom: 5px;
+}
+
+#featured-details-bottom-left #featured_artwork_tags{
+    line-height: 1;
+}
+
+
+#featured-details-bottom-left .featured-mask,
+#featured-details .featured-mask
+{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: black;
+/*     opacity: 0.75; */
+    z-index: 0;
+}
+
+
+
+#featured-details-bottom-left .featured-mask{
+    width: 410px;
+}
+
+
+#featured-details-bottom-left #featured-artist{
+    text-transform: uppercase;
+    font-size: 13px;
+    line-height: 1.5em;
+    margin: 2px 0px;
+
+}
+
+#featured-details-bottom-left .content
+{
+    position: relative;
+    z-index: 1;
+    padding: 10px 15px 0px;
+}
+
+
+#featured-details .content
+{
+    position: relative;
+    z-index: 1;
+    padding: 40px;
+}
+
+
+#featured-work-content .tag
+{
+    color: #6494B2;
+    background-color: #0F1010;
+}
+
+#featured-details-bottom-left .tag{
+    background-color: transparent;
+    color: #6494B2;
+}
+
+
+#featured-details #featured-title
+{
+    width: 100%;
+}
+
+#featured-artist
+{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-size: 13px;
+    text-transform: uppercase;
+    color: #6494B2;
+}
+
+button.select-work,
+button.next-work 
+{
+    padding: 0;
+    margin: 0;
+    border: none;
+    background-image: url(../../images/icons_sprite.png);
+    background-color: transparent;
+    cursor: pointer;
+}
+
+button.select-work
+{
+    height: 12px;
+    width: 12px;
+    margin-right: 4px;
+    background-position: 0px 961px;
+}
+
+button.next-work
+{
+    width: 12px;
+    height: 12px;
+    background-image: url(../../images/arrows_sprite.png);
+    background-position: 0px -12px;
+    background-repeat: no-repeat;
+}
+
+button.select-work.selected
+{
+    border: none;
+    background-image: url(../../images/icons_sprite.png);
+    background-position: 0px 1001px;
+    background-color: transparent;
+}
+
+/* Highlighted works styles */
+
+#artbase-highlights
+{
+    height: 10em;
+    margin-top: 2em;
+    margin-bottom: 2em;
+}
+
+#artbase-highlights a
+{
+    border: none;
+    text-decoration: none;
+}
+
+#artbase-highlights .highlight
+{
+    display: none;
+}
+
+#artbase-highlights .highlight.selected
+{
+    display: inline;
+}
+
+#artbase-highlights-content.loading
+{
+    display: none;
+}
+
+.divider {
+    padding: 0px 4px;
+}
+
+#artbase-highlights-content img {
+    border: 1px solid #ccc;
+}
+
+/* artbase frontpage redesign styles */
+
+#artbase-description-wrap{
+    margin-bottom: 10px;
+}
+
+#artbase-featured-wrap{
+    margin-top: -20px;
+}
+
+#artbase-fp-browse-search{
+    margin-top: 10px;
+    width: 430px;
+    float: left;
+}
+
+#artbase-fp-browse-search #search-form{
+    width:430px;
+}
+
+#artbase-search-input{
+    width: 370px;
+    padding: 10px;
+    margin: 10px 0px 20px;
+    text-transform: uppercase;
+    color: #A8ADB2;
+    font-size: 13px;
+    font-weight: bold;
+    float:left;
+    border-right:none;
+    border-color: #A8ADB3;
+}
+
+#artbase-search-input:focus{
+    border-color: #A8ADB3;
+}
+
+#artbase-fp-browse-search #search-button{
+    float: left;
+    width: 30px;
+    height: 30px;
+    background-image: url("../../images/looking_glass.png"  );
+    background-repeat: no-repeat;
+    background-color: white;
+    background-position: 8px 8px;
+    border: 1px solid #a8adb3;
+    border-left:none;
+    padding:18px;
+    margin: 10px 0px;
+    border-radius: 0;
+}
+
+#artbase-fp-browse-search #search-button:hover{
+    cursor: pointer;
+}
+
+#artbase-browse{
+    clear:both;
+}
+
+#artbase-browse-browse{
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-right: 20px;
+}
+
+.artbase-browse-type{
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #A8ADB2;
+    padding: 3px 20px;
+    border-left: 1px solid #A8ADB2;
+}
+
+.artbase-browse-type a{
+    color:#a8adb3;
+    text-decoration: none;
+}
+
+.artbase-browse-type a:hover{
+    color:#89867d;
+    text-decoration: none;
+}
+
+
+#collection-left-nav,
+#collection-right-nav{
+    background-repeat: no-repeat;
+    background-color: transparent;
+    background-position: 0 50%;
+    padding: 0 20px;
+    border-radius: 0;
+    position: absolute;
+    font-size: 25px;
+    height: 75px;
+    line-height: 2.7;
+    z-index: 100;
+    color:#CFCFCF;
+    position: absolute;
+    top: 970px;
+}
+
+#collection-left-nav {
+    background-image: url("../../images/collections_left_nav.png");
+    margin: 0 0 0 -25px;
+}
+
+#collection-right-nav{
+    background-image: url("../../images/collections_right_nav.png");
+    margin: 0px 0 0px 912px;
+    }
+    
+#artbase-collections .collection {
+    background-color: #F7F7F7;
+    margin-bottom: 2em;
+    text-align: center;
+    width: 300px;
+    height: 275px;
+    float:left;
+    -moz-box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.22);
+    -webkit-box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.22);
+    box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.22);
+}
+
+#artbase-collections .collection h3 {
+    color: black;
+    font-family: georgia,serif;
+    font-size: 24px;
+    font-style: italic;
+    margin-bottom: 19px;
+    margin-top: 22px;
+}
+
+.collection-link{
+    color:black;
+}
+
+.collection-link:hover{
+    text-decoration: none;
+    color:black;
+}
+
+#artbase-collections .collection h4{
+    font-size: 15px;
+    margin: 0;
+    padding: 0;
+}
+
+#artbase-collections .collection-artworks {
+    padding: 0px 10px;
+    margin-bottom: 10px;
+    height: 80px;
+}
+
+#artbase-collections .collection-artworks img{
+    width: 68px;
+    height: 85px;
+    float: left;
+    z-index: 0;
+    position: relative;
+    -moz-box-shadow: 0px 1px 9px rgba(0, 0, 0, 0.09);
+    -webkit-box-shadow: 0px 1px 9px rgba(0, 0, 0, 0.09);
+    box-shadow: 0px 1px 9px rgba(0, 0, 0, 0.09);
+}
+
+#artbase-collections .collection:hover {
+	-moz-box-shadow:0 1px 4px rgba(0,0,0,0.33);
+	-webkit-box-shadow:0 1px 4px rgba(0,0,0,0.33);
+	box-shadow:0 1px 4px rgba(0,0,0,0.33);
+  background-color: #ECECEC;
+}
+
+#artbase-collections .collection-artworks img.overlap{
+    margin-left:-33px
+}
+
+#artbase-collections .collection-artworks img.first{
+    margin-left:19px
+}
+
+#artbase-collections .collection .collection-summary{
+    font-family: georgia,serif;
+    font-size: 12px;
+    font-style: italic;
+    clear: both;
+    padding: 15px 25px;
+}
+
+#artbase-collections .middle{
+    margin: 0px 21px;
+}
+
+#favorite-triangle-flap,
+#archived-triangle-flap{
+    position:absolute;
+    margin-top: -97px;
+    margin-left: -8px;
+}
+
+#artbase-fp-archived-favorite{
+    margin-bottom: 20px
+}
+
+#artbase-fp-archived,
+#artbase-fp-favorite {
+    width: 460px;
+    float:left;
+}
+
+#artbase-fp-favorite{
+    margin-right: 30px;
+}
+
+#artbase-fp-archived .overlay,
+#artbase-fp-favorite .overlay{
+    height: 120px;
+    margin-top: -89px;
+    width: 448px;
+    position:absolute;
+    z-index: 0;
+    margin-left: -8px;
+    background-image: url("../../images/overlay_slanted_right_side.png");
+    background-repeat: no-repeat;
+    background-position: 446px 0px;
+    padding-right: 20px;
+}
+
+#artbase-fp-archived .overlay-title,
+#artbase-fp-favorite .overlay-title{
+    color: white;
+    font-family: Georgia;
+    font-size: 22px;
+    margin-bottom: 3px;
+    line-height: 1;
+    z-index: 5;
+    position: relative;
+}
+
+.overlay-mask{
+    position: absolute;
+    width: 408px;
+    height: 52px;
+    background-color: black;
+    padding: 20px 19px;
+    z-index: 0;
+}
+
+.overlay-details{
+    padding: 20px 10px;
+}
+
+#artbase-fp-archived .overlay-title a:hover,
+#artbase-fp-archived .overlay-title a,
+#artbase-fp-favorite .overlay-title a:hover,
+#artbase-fp-favorite .overlay-title a {
+    color:white;
+}
+
+#artbase-fp-archived .overlay-byline,
+#artbase-fp-favorite .overlay-byline{
+    font-family: Helvetica;
+    font-size: 14px;
+    color:white;
+    position: relative;
+}
+
+#artbase-fp-member-exhibitions .exhibition{
+    width: 300px;
+    float:left;
+    padding-top: 10px;
+    height: 375px;
+    background-color: #F7F7F7;
+    border: 1px solid #CFCFCF;
+    margin-bottom: 2em;
+    text-align: center;
+}
+
+#artbase-fp-member-exhibitions .exhibition h4{
+    padding-bottom: 5px;
+    font-size: 15px;
+    margin: 0;
+}
+
+#artbase-fp-member-exhibitions div h3 {
+    color: black;
+    font-family: georgia,serif;
+    font-size: 20px;
+    font-style: italic;
+    margin-top: 10px;
+    margin-bottom: 0.25em;
+}
+#artbase-fp-member-exhibitions .middle{
+    margin: 0px 21px;
+}
+
+#artbase-fp-member-exhibitions .more {
+    background: none repeat scroll 0 0 transparent;
+    border: medium none;
+    float: right;
+    background-image: url("../../images/arrows_sprite.png");
+    background-position: right -54px;
+    background-repeat: no-repeat;
+    display: inline-block;
+    height: 14px;
+    padding: 0px 12px 0px 0px;
+}

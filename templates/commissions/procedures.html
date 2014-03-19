@@ -1,0 +1,11 @@
+{% extends "commissions/base.html" %}
+
+{% block pageTitle %} 
+	{{ cycle.title }} Procedures 
+{% endblock %}
+
+{% block content %}
+	<div class="column-wrapper procedures span-24">
+		{{ cycle.procedures|safe }}
+	</div>
+{% endblock %}

@@ -1,0 +1,178 @@
+{% extends 'programs/base.html' %}
+{% load markup inlines_tags block_tags %}
+
+{% block pageTitle %}Programs{% endblock %}
+
+{% block wide_section_description %}{% get_text 'programs description' %}{% endblock %}
+
+{% block navbars %}
+    {% get_nav 'Programs' None %}
+{% endblock %}
+
+{% block content %}
+<div class="section span-24">
+    <div class="span-11">
+        <img src ="{{ STATIC_URL }}programs/images/editorial_thumb.jpg" />
+        
+        <div class="programs-image-credit">
+        Image: Graffiti Analysis, DustTag v. 1.0, by Evan Roth, from Art in Your Pocket 2 written by Jonah Brucker-Cohen for Rhizome News
+        </div>
+    </div>
+    
+    <div class="prepend-1 span-11 programs-program">
+      
+        <div class="program-title">
+            EDITORIAL
+        </div>
+      
+        <div class="program-description">
+            {% get_text 'editorial program' %}
+            
+            <div class="enter">
+               <a href="/editorial">Explore Editorial</a>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<hr>
+
+<div class="section span-24">
+    <div class="span-11">
+        <img src ="http://media.rhizome.org/programs/exhibition/21/oppenheim.jpg" width='430' height='250' />
+        
+        <div class="programs-image-credit">
+        Image:Lisa Oppenheim, "The Sun is Always Setting Somewhere Else" (2006), from <a href="http://www.newmuseum.org/free/">Free</a> curated by Lauren Cornell</div>
+    </div>
+    
+    <div class="prepend-1 span-11 programs-program">
+      
+        <div class="program-title">
+            EXHIBITIONS
+        </div>
+   
+        <div class="program-description">
+           {% get_text 'exhibitions program' %}
+            <div class="enter">
+               <a href="/exhibitions">Explore Exhibitions</a>
+            </div>
+            
+        </div>
+
+    </div>
+</div>
+
+<hr>
+
+<div class="section span-24">
+    <div class="span-11">
+        <img src ="{{ STATIC_URL }}programs/images/events_thumb.jpg" />
+        
+        <div class="programs-image-credit">
+      Image: Wait, by Wojciech Kosma, Performance documentation from "VVORK: Variety Evening at the New Museum". Part of Rhizome's  New Silent Series
+        </div>
+    </div>
+    
+    <div class="prepend-1 span-11 programs-program">
+      
+        <div class="program-title">
+            EVENTS
+        </div>
+      
+        <div class="program-description">
+            {% get_text 'events program' %}
+            <div class="enter">
+               <a href="/events">Explore Events</a>
+            </div>
+            
+        </div>
+
+    </div>
+</div>
+
+<hr>
+
+<div class="section span-24">
+    <div class="span-11">
+        <img src ="{{ STATIC_URL }}programs/images/commissions_thumb.jpg" />
+        
+        <div class="programs-image-credit">
+        Image: CASE, (2009) by Brody Condon, Documentation from performance at the New Museum. Part of the 2009 Rhizome Commissions cycle. Photo Credit: Kristianna Smith
+        </div>
+    </div>
+    
+    <div class="prepend-1 span-11 programs-program">
+      
+        <div class="program-title">
+            COMMISSIONS
+        </div>
+      
+        <div class="program-description">
+            {% get_text 'commissions program' %} 
+
+            <div class="enter">
+               <a href="/commissions">Explore Commissions</a>
+            </div>
+            
+        </div>
+
+    </div>
+</div>
+
+<hr>
+
+<div class="section span-24">
+    <div class="span-11">
+        <img src ="{{ STATIC_URL }}programs/images/seven_on_seven_thumb.jpg" />
+        
+        <div class="programs-image-credit">
+Image: David Karp & Ryan Trecartin presenting their project created for Rhizome's 2010 Seven on Seven conference. Photo Credit: Michael Nagle for The New York Times
+        </div>
+    </div>
+    
+    <div class="prepend-1 span-11 programs-program">
+      
+        <div class="program-title">
+            SEVEN ON SEVEN
+        </div>
+      
+        <div class="program-description">
+            {% get_text 'seven on seven program' %} 
+            
+            <div class="enter">
+               <a href="/sevenonseven">Explore Seven on Seven</a>
+            </div>    
+        
+        </div>
+
+    </div>
+</div>
+
+<hr>
+
+<div class="section span-24">
+    <div class="span-11">
+        <img class="the-download" src ="{{ STATIC_URL }}programs/the_download/images/logos/full_forLightBG_cropped.png" />
+    </div>
+    
+    <div class="prepend-1 span-11 programs-program">
+      
+        <div class="program-title">
+            THE DOWNLOAD
+        </div>
+      
+        <div class="program-description">
+            {% get_text 'the download program' %}
+            
+            <div class="enter">
+               <a href="{% url 'downloadofthemonth' %}">Explore The Download</a>
+            </div>    
+        
+        </div>
+
+    </div>
+</div>
+
+
+{% endblock %}

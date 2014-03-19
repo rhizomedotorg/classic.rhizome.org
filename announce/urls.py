@@ -1,0 +1,23 @@
+from django.conf.urls.defaults import *
+
+urlpatterns = patterns('announce.views',
+    url(r'^$', 'index', name="announce_index"),
+    url(r'^events/$', 'events'),
+    url(r'^deadlines/$', 'deadlines'),
+    url(r'^opportunities/$', 'opportunities'),
+    url(r'^jobs/$', 'jobs'),
+    url(r'^submit/$', 'submit'),
+    url(r'^listing/(?P<ref_type>fp|widget)/(?P<year>\d{4})/(?P<month>\d{1,2})/(?P<day>\d{1,2})/$', 'calendar_listing'),
+    url(r'^(?P<id>\d+)/$', 'legacy_view_forward'),
+    url(r'^(?P<id>\d+)/view/$', 'legacy_view_forward'),
+    url(r'^view/(?P<id>\d+)/$', 'legacy_view_forward'),
+    url(r'^(?P<type>opportunities|events|jobs)/submit/$', 'submit'),
+    url(r'^jobs/payment/$', 'job_payment'),
+    url(r'^jobs/(?P<job_id>\d+)/payment/thanks/$', 'job_payment_thanks'),
+    url(r'^(?P<type>opportunities|events|jobs)/(?P<id>\d+)/view/$', 'post_detail'),
+    url(r'^(?P<type>opportunities|events|jobs)/(?P<id>\d+)/preview/$', 'preview', name='preview'),
+    url(r'^(?P<type>opportunities|events|jobs)/(?P<id>\d+)/edit/$', 'edit', name='edit'),
+    url(r'^(?P<type>opportunities|events|jobs)/(?P<id>\d+)/email/$', 'email', name='email'),
+    url(r'^(?P<type>opportunities|events|jobs)/(?P<id>\d+)/thanks/$', 'thanks', name='thanks'),
+    url(r'^(?P<type>opportunities|events|jobs)/(?P<id>\d+)/$', 'post_detail', name='post_detail'),
+)   

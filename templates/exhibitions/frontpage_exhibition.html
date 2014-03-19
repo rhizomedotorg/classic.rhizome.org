@@ -1,0 +1,39 @@
+{% extends 'new_base.html' %}
+{% load block_tags %}
+
+{% block title %}{{ exhibition.title }}{% endblock %}
+{% block description %}{{ exhibition.description }}{% endblock %}
+{% block og_title %}{{ exhibition.title }}{% endblock %}
+{% block og_description %}{{ exhibition.description }}{% endblock %}
+{% block og_image %}{% if exhibition.image %}{{ exhibition.image.url }}{% endif %}{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}gif-zoomer/css/gif-zoomer.css">
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/frontpage_exhibition.css">
+{% endblock %}
+
+{% block body_class %}{% endblock %}
+{% block top-banner %}{% endblock %}
+
+{% block navbars %}
+    {% get_nav None None exhibition.credits %}
+{% endblock %}
+
+{% block content_class %}frontpage-exhibition{% endblock %}
+{% block content %}
+    {% if exhibition.video_embed_code %}
+        <div class="make-cover" data-bottom-bleed="35" data-aspect-ratio="{{ exhibition.video_aspect_ratio }}">
+            {{ exhibition.video_embed_code|safe }}
+        </div>
+    {% elif exhibition.iframe_src %}
+        <iframe src="{{ exhibition.iframe_src }}"></iframe>
+    {% else %}
+        <div class="zoomer-loading">loading <span class="spinner"></span></div>
+        <div class="zoomer-img" data-src="{{ MEDIA_URL }}{{ exhibition.image }}"></div>
+    {% endif %}
+{% endblock %}
+
+{% block extra_js %}
+    <script src="{{ STATIC_URL }}gif-zoomer/js/gif-zoomer.js"></script>
+    <script src="{{ STATIC_URL }}cover-emulator/js/cover-emulator.js"></script>
+{% endblock %}

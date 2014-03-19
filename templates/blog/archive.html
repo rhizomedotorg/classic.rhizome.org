@@ -1,0 +1,44 @@
+{% extends "blog/base_blog.html" %}
+{% load blog_tags comments tagging_tags inlines_tags markup block_tags %}
+
+{% block pageTitle  %}Blog Archives{% endblock %}
+{% block body_class %}{{ block.super }} post_list{% endblock %}
+
+{% block navbars %}
+    {% get_nav 'Journal' None %}
+{% endblock %}
+
+{% block content %}
+
+<div class="column-wrapper span-24">
+     <div id="editorial-posts" class= "left-column span-15">
+        <div class="section-row-titles">
+            <span class = "nav-item">Posts for
+                {% if month %}
+                    {{ date|date:"F" }} 
+                    {% if day %} 
+                        {{day}}, 
+                    {% endif %} 
+                {% endif %} 
+                {{ year }}
+            </span>
+            <hr class="hr3">
+        </div>   
+        {% with parent_ref='archive' %}
+            {% for post in post_paginator.object_list %}
+                {% include "blog/listings_post.html" %}
+            {% endfor %}   
+        {% endwith %}
+    </div>
+    
+    <div class= "right-column span-8">
+      {% include "fragments/nectar_ads_sidebar.html" %}        
+      {% include "fragments/featured_articles.html" %}
+      {% include "fragments/community_sidebar.html" %}
+      {% include "fragments/editorial_archive_sidebar.html" %}
+    </div>
+
+<hr class="hr2"></hr>
+{{ post_paginator.render }}
+</div>
+{% endblock %}

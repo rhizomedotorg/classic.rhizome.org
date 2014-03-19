@@ -1,0 +1,152 @@
+{% extends "discuss/base.html" %}
+{% load url from future %}
+{% load threadedcomments_tags bbcode tagging_tags inlines_tags markup hitcount_tags %}
+
+{% block bottom_js %}
+    <script type="text/javascript" src="{{ STATIC_URL }}js/bbcode/editor.js"></script>   
+    <script type="text/javascript" src="{{ STATIC_URL }}js/bbcode/color_palette.js"></script>   
+    <script type="text/javascript" src="{{ STATIC_URL }}discuss/scripts/add_comment_toggler.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/loadingOverlay.js"></script>
+    <script type="text/javascript">
+        window.addEvent('domready', function() {
+            {% get_hit_count_javascript for thread %}
+        });
+    </script>
+{% endblock %}
+
+
+{% block pageTitle %}{{ thread.content_object.title }}{% endblock %}
+{% block body_class %}{{ block.super }} post_detail{% endblock %}
+{% block body_id %}post_{{ thread.id }}{% endblock %}
+
+{% block content %}
+<div class="discussion-wrapper span-24">
+    
+    {% if not thread.is_public %}<!-- preview status check-->
+        <div class="thanks-header span-24">
+            <div class="span-4">This is a preview of your post.</div>
+            <div class="view-edit">
+                <a class="span-8" href="{% url 'discuss-edit' thread.id %}">Click here to make edits.</a>
+            </div>
+        </div>
+    {% elif editable %}
+        <div class="thanks-header span-24">
+            <div class="view-edit">
+                <a class="span-8" href="{% url 'discuss-edit' thread.id %}">Click here to make edits.</a>
+            </div>
+        </div>
+    {% endif %}
+
+    <div class="discussion-thread span-24">                   
+        <!--COMMENTS LIST-->
+        {% get_comment_list for thread as comment_list %}
+    
+        {% for comment in comment_list|fill_tree|annotate_tree %}
+            {% if forloop.counter0 == 0 %}
+                <a name = "{{ comment.id }}"></a>
+                <div class="thread-parent" rel="{{ comment.id }}" >
+                    <h2 class= "thread-title span-24">{{ comment.title }}</h2>                                      
+                    <div class="thread-details span-24">
+                        {{ comment.user.get_profile.get_medium_miniprofile|markdown }}
+    
+                        <div class="authors bold-upper span-15">
+                            <span class="dark-gray">Posted by</span> 
+                            <a href="{{ comment.user.get_profile.get_absolute_url }}">{{ comment.user.get_profile }}</a> | 
+                            <span class="dark-gray">{{ comment.submit_date|date:"D M jS Y P" }}</span>
+                        </div>
+                        <div id="social-controls" > 
+                            <iframe src="http://www.facebook.com/plugins/like.php?href={{request.build_absolute_uri}}&amp;layout=button_count&amp;show_faces=false&amp;width=75&amp;action=like&amp;colorscheme=light&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:95px; height:21px;" allowTransparency="true"></iframe>
+                            <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-url="{{request.build_absolute_uri}}">Tweet</a>
+                        <g:plusone size="medium" href="{{request.build_absolute_uri}}"></g:plusone>
+
+                        </div>
+    
+                    </div>
+    
+                    <hr class="hr3"> 
+                    
+                    <div class="comment-body">
+                        {% if "RHIZOME DIGEST:" in comment.title %}
+                            {{ comment.comment|safe}}
+                        {% else %}
+                            {% bbcode comment.comment %}
+                        {% endif %}
+                    </div>
+                    
+                    <div class="reply-button">
+                        <a class="comment-reply" href="#{{ thread.id }}" rel="{{ thread.id }}">reply</a>
+                    </div>
+                </div>
+            {% else %}
+            
+                {% ifchanged comment.parent_id %}
+                {% else %}
+                    </li>
+                {% endifchanged %}
+                
+                {% if not comment.open and not comment.close %}
+                    </li>
+                {% endif %}
+                
+                {% if comment.open %}
+                <ul class = "thread-children">
+                {% endif %}
+                    <li class="{% cycle 'child-alternate' 'child' %} {% if comment.last %} last {% endif %}" rel="{{ comment.id }}" >
+                        <div class="child-details">
+                            <a name = "{{ comment.id }}"></a>
+                                {{ comment.user.get_profile.get_medium_miniprofile|markdown }}                    
+                            <span class="authors bold-upper">
+                                <a href="{{comment.user.get_profile.get_absolute_url}}">{{ comment.user_name }}</a> 
+                                <span class="dark-gray">| {{ comment.submit_date|date:"D M jS Y P" }}</span>
+                            </span>
+                        </div>
+                    
+                        <div class="comment-body">
+                            {% bbcode comment.comment %}
+                        </div>
+                        
+                        <div class = "reply">
+                            <div class="reply-button">
+                                <a  class="comment-reply" rel="{{ comment.id }}">reply</a>
+                            </div>
+                            <div class = "add-comment">
+                            {% if request.user.is_authenticated %}
+                                {% render_comment_form for thread with comment.id %}
+                            {% else %}
+                            <div class= "login">
+                                You must be logged in to post a comment.
+                                <a id="section-login" class="round-blue" href = "/login/?next={{ request.path }}">Log In</a>
+                            </div>
+        
+                            {% endif %}
+                            </div>
+                        </div>
+                    </li>
+                {% for close in comment.close %}
+                 </ul>
+                {% endfor %}
+         
+            {% endif %}
+        {% endfor %}
+        
+
+        <!--ADD COMMENT -->
+        <a name="{{thread.id}}"></a>
+        <div class="section-row-titles mini-nav">Your Reply</div>
+        <hr class="hr3"> 
+         {% if request.user.is_authenticated %}
+            <div class="post-form">
+                {% render_comment_form for thread with thread.content_object.id %}
+            </div>
+        {% else %}
+            <div class= "login">
+                You must be logged in to post a comment.
+                <a id="section-login" class="round-blue" href = "/login/?next={{ request.path }}">Log In</a>                        
+            </div>
+        {% endif %}
+
+        <!--END ADD COMMENT -->
+    
+        </div>
+</div>
+{% endblock %}

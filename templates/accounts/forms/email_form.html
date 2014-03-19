@@ -1,0 +1,27 @@
+<div class = "edit-profile-form span-23">
+    <div class = "h6 light-gray">Community Emails (these come from community submitted posts to Rhizome)</div>
+    <fieldset>
+        <form action="{{ request.path }}" method="POST">
+            {% csrf_token %}
+            <input type = "hidden" name = "form" value = "manage_email_form">
+                {% for field in manage_email_form %}
+                    {% if field.errors %}<span class="form_errors">{{ field.errors }}</span>{% endif %}
+                    <div class="h6">{{field}}</div>
+                {% endfor %}
+            
+            <input class="round-blue float-right" type="submit" value="update" name="update">
+        </form>
+    </fieldset>
+
+    <div class = "h6 light-gray">Rhizome Emails</div>
+        <!--make this an ssi in case mailchimp down -->
+        {% if request.GET.errors and request.GET.errors != "None" %}
+        <div class="errors">{{ request.GET.errors }}</div>
+        {% endif %}
+        <fieldset> 
+            <!--#include virtual="/profiles/manage-mailchimp/?parent={{request.get_full_path}}" -->
+        </fieldset>
+    </div>
+
+</div>
+

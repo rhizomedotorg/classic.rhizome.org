@@ -1,0 +1,46 @@
+{% extends "artbase/base.html" %}
+{% load markup hitcount_tags block_tags %}
+
+{% block pageTitle %}{{ artwork.title }}{% endblock %}
+
+{% block bottom_js %}
+
+{% if request.user.get_profile.is_member %}
+    <script id="exhibition-widget" type="text">
+        {% include "artbase/exhibition_widget.html" %}
+    </script>
+    <script type="text/javascript" src="{{ STATIC_URL }}artbase/scripts/artwork.js"></script>
+{% endif %}
+
+<script type="text/javascript">
+    window.addEvent('domready', function() {
+        {% get_hit_count_javascript for artwork %}
+    });
+</script>
+
+{% endblock %}
+
+
+{% block artbaseStyleSheets %}
+<link rel="stylesheet" href="{{ STATIC_URL }}artbase/styles/artwork.css" type="text/css" media="screen" charset="utf-8"></link>
+{% endblock %}
+
+
+{% block flash_message %}
+{% if flash_msg == "preview_artwork" %}
+This is a preview of your artwork. <a href="{% url 'artbase.views.edit_artwork_base' artwork.id %}">Click here to continue editing</a>
+{% endif %}
+{% endblock %}
+
+
+{% block custom_section_header %}
+{% include "artbase/artwork_header.html" %}
+{% endblock %}
+
+{% block navbars %}
+	{% get_nav 'Artbase' 'Browse' %}
+{% endblock %}
+
+{% block content %}
+{% include "artbase/artwork_detail.html" %}
+{% endblock %}

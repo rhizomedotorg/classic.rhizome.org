@@ -1,0 +1,158 @@
+{% extends 'programs/base.html' %}
+{% load inlines_tags markup block_tags %}
+
+{% block pageTitle %}Rhizome Exhibitions{% endblock %}
+
+{% block navbars %}
+    {% get_nav 'Programs' 'Exhibitions' %}
+{% endblock %}
+
+{% block content %}
+
+<div class="section span-24">
+
+    <div class= "left-column span-15">
+        
+        {% if upcoming_exhibitions and not request.GET.page >= '2' %}
+                    
+            <div class="section-row-titles span-15">
+                <span class = "nav-item">Upcoming Rhizome exhibitions</span>
+                <hr class="hr3">
+            </div> 
+        
+            {% for exhibition in upcoming_exhibitions %}
+                <div class = "program-listing span-15">
+                    
+                    {% if exhibition.medium_image or exhibition.image %}
+                        <div class="program-listing-image span-6"> 
+                            {% if exhibition.medium_image %}
+                                <img width="250" height="250" src="{{MEDIA_URL}}{{exhibition.medium_image}}"/>
+                            {% else %}
+                                <img width="250" height="250" src="{{MEDIA_URL}}{{exhibition.image}}"/>
+                            {% endif %}
+                        </div>
+                        <div class="span-8">
+                    {% else %}
+                        <div class="span-15">
+                    {% endif %}
+
+                        <div class="date">
+                            {% if exhibition.is_online %} Launched {% endif %}
+                            {{ exhibition.start_date|date:"l, F jS Y" }} {% if exhibition.location_title %} at {{ exhibition.location_title }} {% endif %}
+                        </div>
+                    
+                        <div class = "programs-title ">
+                            {% if exhibition.url %}
+                                <a href= "{{exhibition.url}}">{{ exhibition.title }}</a>
+                            {% else %}
+                                <a href= "{{exhibition.get_absolute_url}}">{{ exhibition.title }}</a>                        
+                            {% endif %}
+                        </div>
+                        
+                        {% if exhibition.is_new_silent %}
+                            <div class = "new-silent">
+                                <span class="red">New Silent Series:</span> <span class="blue">Curated by Lauren Cornell</span>
+                            </div>
+                        {% else %}
+                            {% if exhibition.get_curators or exhibition.curator_other %}
+                             <div class="curators">
+                                    Curated by
+                                {% if exhibition.get_curators %}1
+                                   {% for curator in exhibition.get_curators %}
+                                    <a href="{{ curator.get_profile.get_absolute_url }}">{{ curator.get_profile }}</a>{% if not forloop.last %},{% endif %}
+                                    {% endfor %}
+                                {% endif %}
+                                {% if exhibition.curator_other and exhibition.get_curators %},{% endif %}
+                                {% if exhibition.curator_other %}
+                                    {{exhibition.curator_other}}
+                                {% endif %}
+                            </div>
+                            {% endif %}
+                        {% endif %}
+            
+                        <div class = "summary">
+                            {{ exhibition.description|markdown|truncatewords_html:50 }}
+                        </div>
+                        
+                        <div class="programs-more">
+                            <a href = "{{exhibition.get_absolute_url}}">More details &raquo;</a>
+                        </div>
+                    </div>
+                </div>
+                {% if not forloop.last %}
+                    <hr class="span-15" />
+                {% endif %}
+            {% endfor %}
+        {% endif %}    
+        <div class="section-row-titles span-15">
+            <span class = "nav-item">Past Rhizome exhibitions</span>
+            <hr class="hr3">
+        </div> 
+    
+        {% for exhibition in past_exhibitions_paginator.object_list %}
+        <div class = "program-listing span-15">
+            {% if exhibition.medium_image or exhibition.image %}
+                <div class="program-listing-image span-6">    
+                    {% if exhibition.medium_image %}
+                        <img width="250" height="250" src="{{MEDIA_URL}}{{exhibition.medium_image}}"/>
+                    {% else %}
+                        <img width="250" height="250" src="{{MEDIA_URL}}{{exhibition.image}}"/>
+                    {% endif %}
+                </div>
+                <div class="span-8">
+            {% else %}
+                <div class="span-15">
+            {% endif %}
+
+                <div class="date">
+                    {% if exhibition.is_online %} Launched {% endif %}
+                    {{ exhibition.start_date|date:"l, F jS Y" }} {% if exhibition.location_title %} at {{ exhibition.location_title }} {% endif %}
+                </div>
+            
+                <div class = "programs-title ">
+                    {% if exhibition.url %}
+                        <a href= "{{exhibition.url}}">{{ exhibition.title }}</a>
+                    {% else %}
+                        <a href= "{{exhibition.get_absolute_url}}">{{ exhibition.title }}</a>                        
+                    {% endif %}
+                </div>
+                
+                {% if exhibition.get_curators or exhibition.curator_other %}
+                 <div class="curators">
+                        Curated by
+                    {% if exhibition.get_curators %}
+                       {% for curator in exhibition.get_curators %}
+                            <a href="{{ curator.get_profile.get_absolute_url }}">{{ curator.get_profile }}</a>{% if not forloop.last %} +{% endif %}
+                        {% endfor %}
+                    {% endif %}
+                    {% if exhibition.curator_other and exhibition.get_curators %}+{% endif %}
+                    {% if exhibition.curator_other %}
+                        {{exhibition.curator_other}}
+                    {% endif %}
+                </div>
+                {% endif %}
+    
+                <div class = "summary">
+                    {{ exhibition.description|markdown|truncatewords_html:50 }}
+                </div>
+                <div class="programs-more">
+                    <a href = "{{exhibition.get_absolute_url}}">More details &raquo;</a>
+                </div> 
+            </div>
+        </div>
+        <hr class="span-15" />
+        {% endfor %}
+        
+        <div class="span-15">
+            {{past_exhibitions_paginator.render}}
+        </div>
+    </div>
+        
+    <div class= "right-column span-8">
+      {% include "fragments/subscribe_sidebar.html" %}
+      {% include "fragments/featured_articles.html" %}
+    </div>        
+
+</div>
+
+{% endblock %}

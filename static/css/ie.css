@@ -1,0 +1,19 @@
+/* IE HACKS */
+
+/*fix the topnav*/
+#topnav-wrap {
+    padding-bottom: 5px;
+}
+
+#topnav button.round-blue {
+    padding-top: 0px 8px;
+    margin: 7px 0px;
+    height: 24px;
+    line-height: 1.5em;
+}
+
+#topnav #submit-search {
+    padding-top:.30em;
+    padding-right: 2px;
+    padding-left: 5px;
+}

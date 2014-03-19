@@ -1,0 +1,55 @@
+{% extends "announce/base.html" %}
+
+{% block pageTitle %} 
+Post to Rhizome
+{% endblock %}
+
+{% block page_assets_css %}
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}announce/styles/announce.css"></link>
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}js/datetimepicker/datepicker.css"></link>
+{% endblock %}
+
+{% block page_assets_js %}
+    <script type="text/javascript" src="{{ STATIC_URL }}js/datetimepicker/Locale.en-US.DatePicker.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/datetimepicker/Picker.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/datetimepicker/Picker.Attach.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/datetimepicker/Picker.Date.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/loadingOverlay.js"></script>
+{% endblock %}
+
+{% block bottom_js %}
+    <script type="text/javascript" src="{{ STATIC_URL }}js/bbcode/editor.js"></script>   
+    <script type="text/javascript" src="{{ STATIC_URL }}js/bbcode/color_palette.js"></script>   
+    <script type="text/javascript" src="{{ STATIC_URL }}js/loadingOverlay.js"></script>
+{% endblock %}
+
+{% block content %}
+<div class="section span-24">
+        <div class="section-row-titles post-mini-nav">
+            <span class = "nav-item first {% if type == "discuss" %} selected {% endif %}"><a href="/discuss/submit/">Post a Discussion Thread</a></span>
+            <span class = "nav-item {% if type == "opportunities" %} selected {% endif %}"><a href="/announce/opportunities/submit">Post an Opportunity</a></span>
+            <span class = "nav-item {% if type == "events" %} selected {% endif %}"><a href="/announce/events/submit">Post an Event</a></span>
+            <span class = "nav-item last {% if type == "jobs" %} selected {% endif %}"><a href="/announce/jobs/submit">Post a Job</a></span>
+            <hr class="hr3-no-margin">
+        </div>    
+
+    <div class = "post-form span-24">
+        <form action="{{ request.path }}" name="announce_form" id="announce_form" enctype="multipart/form-data" method="POST">
+            {% csrf_token %}
+            {% if type == "opportunities" %}
+                {% include "announce/forms/opportunity_form.html" %}
+            {% endif %}
+            
+            {% if type == "events" %}
+                {% include "announce/forms/event_form.html" %}
+            {% endif %}
+            
+            {% if type == "jobs" %}
+                {% include "announce/forms/job_form.html" %}
+            {% endif %}
+        </form>
+    </div>
+    
+</div>
+
+{% endblock %}

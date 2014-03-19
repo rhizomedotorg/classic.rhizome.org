@@ -1,0 +1,18 @@
+{% load tagging_tags %}
+<div id ="sidebar">
+    <div class="sidebar-element">
+        <div class="section-title">Editorial Tags</div>
+        <div class="content-wrap">
+            <div class="content" id = "sidebar-tags">
+            {% tag_cloud_for_model blog.Post as editorial_tags   %}
+            <div class="content-body">
+                <div class="tags tag-cloud post-tags-and-share">
+                {% for tag in editorial_tags %}
+                   <a class="tag" href="/editorial/tags/{{ tag.slug }}">{{ tag.name }}</a>
+                {% endfor %}
+                </div>
+            </div>
+            </div>   
+        </div> 
+    </div>
+</div>

@@ -1,0 +1,165 @@
+{% extends 'programs/base.html' %}
+{% load inlines_tags markup block_tags %}
+
+{% block pageTitle %}Events{% endblock %}
+
+{% block navbars %}
+    {% get_nav 'Programs' 'Events' %}
+{% endblock %}
+
+{% block content %}
+
+<div class="section span-24">
+
+    <div class= "left-column span-15">
+        
+        {% if upcoming_events and not request.GET.page >= '2' %}
+                    
+            <div class="section-row-titles span-15">
+                <span class = "nav-item">Upcoming Rhizome Events</span>
+                <hr class="hr3">
+            </div> 
+        
+            {% for event in upcoming_events %}
+                <div class = "program-listing span-15">
+
+                    {% if event.medium_image or event.image %}
+                        <div class="program-listing-image span-6">    
+                            {% if event.medium_image %}
+                                <img width="250" height="250" src="{{MEDIA_URL}}{{event.medium_image}}"/>
+                            {% else %}
+                                <img width="250" height="250" src="{{MEDIA_URL}}{{event.image}}"/>
+                            {% endif %}
+                        </div>
+                        <div class="span-8">
+                    {% else %}
+                        <div class="span-15">
+                    {% endif %}
+    
+                        <div class="date">
+                            {% if event.is_online %} Launched {% endif %}
+                            {{ event.start_date|date:"l, F jS, Y P" }}<br />
+                             {% if event.location_title %} at {{ event.location_title }} {% endif %}
+                        </div>
+                    
+                        <div class = "programs-title ">
+                            <a href= "{{event.get_absolute_url}}">{{ event.title }}</a>                        
+                        </div>
+                        
+                        {% if event.is_new_silent %}
+                            <div class = "new-silent">
+                                <span class="red bold">New Silent Series</span>
+                            </div>
+                        {% endif %}
+
+                        {% if event.get_curators or event.curator_other %}
+                         <div class="curators">
+                                Curated by
+                            {% if event.get_curators %}
+                               {% for curator in event.get_curators %}
+                                <a href="{{ curator.get_profile.get_absolute_url }}">
+                                        {{ curator.get_profile }}
+                                </a>{% if not forloop.last %}, {% endif %}
+                                {% endfor %}
+                            {% endif %}
+                            {% if event.curator_other %}
+                                {{event.curator_other}}
+                            {% endif %}
+                        </div>
+                        {% endif %}
+            
+                        <div class = "summary">
+                            {{ event.description|markdown|truncatewords_html:50 }}
+                        </div>
+                            
+                        <div class="programs-more">
+                             <a href = "{{event.get_absolute_url}}">More details &raquo;</a>
+                        </div>                       
+                    </div>
+                </div>
+                {% if not forloop.last %}
+                    <hr class="span-15" />
+                {% endif %}
+            {% endfor %}
+        {% endif %}    
+        <div class="section-row-titles span-15">
+            <span class = "nav-item">Past Rhizome Events</span>
+            <hr class="hr3">
+        </div> 
+    
+        {% for event in past_events_paginator.object_list %}
+        <div class = "program-listing span-15">
+            {% if event.medium_image or event.image %}
+                <div class="program-listing-image span-6">    
+                    {% if event.medium_image %}
+                        <img width="250" height="250" src="{{MEDIA_URL}}{{event.medium_image}}"/>
+                    {% else %}
+                        <img width="250" height="250" src="{{MEDIA_URL}}{{event.image}}"/>
+                    {% endif %}
+                </div>
+                <div class="span-8">
+            {% else %}
+                <div class="span-15">
+            {% endif %}
+
+                <div class="date">
+                    {% if event.is_online %} Launched {% endif %}
+                    {{ event.start_date|date:"l, F jS, Y P" }}<br />
+                     {% if event.location_title %} at {{ event.location_title }} {% endif %}
+                </div>
+            
+                <div class = "programs-title ">
+                    {% if event.url %}
+                        <a href= "{{event.url}}">{{ event.title }}</a>
+                    {% else %}
+                        <a href= "{{event.get_absolute_url}}">{{ event.title }}</a>                        
+                    {% endif %}
+                </div>
+                
+                    {% if event.is_new_silent %}
+                        <div class = "new-silent">
+                            <span class="red bold">New Silent Series</span>
+                        </div>
+                    {% endif %}
+
+                    {% if event.get_curators or event.curator_other %}
+                     <div class="curators">
+                            Curated by
+                        {% if event.get_curators %}
+                           {% for curator in event.get_curators %}
+                            <a href="{{ curator.get_profile.get_absolute_url }}">
+                                    {{ curator.get_profile }}
+                            </a>{% if not forloop.last %}, {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                        {% if event.curator_other %}
+                            {{event.curator_other}}
+                        {% endif %}
+                    </div>
+                    {% endif %}
+    
+                <div class = "summary">
+                    {{ event.description|markdown|truncatewords_html:50 }}
+                </div>
+                
+                <div class="programs-more">
+                    <a href = "{{event.get_absolute_url}}">More details &raquo;</a>      
+                </div>
+            </div>
+        </div>
+        <hr class="span-15" />
+        {% endfor %}
+        
+        <div class="span-15">
+            {{past_events_paginator.render}}
+        </div>
+    </div>
+        
+    <div class= "right-column span-8">
+      {% include "fragments/subscribe_sidebar.html" %}
+      {% include "fragments/featured_articles.html" %}
+    </div>        
+
+</div>
+
+{% endblock %}

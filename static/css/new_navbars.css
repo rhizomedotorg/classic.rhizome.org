@@ -1,0 +1,107 @@
+@font-face {
+  font-family: "news_gothic_mtcondensedbold";
+  src: url("../fonts/newsgothicmt-condensedbold-webfont.eot");
+  src: url("../fonts/newsgothicmt-condensedbold-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/newsgothicmt-condensedbold-webfont.woff") format("woff"), url("../fonts/newsgothicmt-condensedbold-webfont.ttf") format("truetype"), url("../fonts/newsgothicmt-condensedbold-webfont.svg#news_gothic_mtcondensedbold") format("svg");
+  font-style: normal;
+  font-weight: normal; }
+
+#new_header, #new_footer {
+  min-width: 800px;
+  background: black;
+  position: fixed;
+  height: 30px;
+  width: 100%;
+  z-index: 1000;
+  font-family: "news_gothic_mtcondensedbold", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; }
+  #new_header ul, #new_footer ul {
+    list-style: none;
+    margin: 0;
+    padding: 0 35px;
+    line-height: 1; }
+    #new_header ul li, #new_footer ul li {
+      color: gainsboro;
+      display: block;
+      float: left;
+      margin-right: 23px;
+      margin-top: 8px; }
+    #new_header ul li.reversed, #new_footer ul li.reversed {
+      margin-left: 23px;
+      float: right;
+      margin-right: 0; }
+    #new_header ul li:last-child, #new_footer ul li:last-child {
+      margin-right: 0; }
+  #new_header a, #new_footer a {
+    color: gainsboro; }
+  #new_header a:hover, #new_footer a:hover {
+    color: white;
+    text-decoration: none; }
+  #new_header a.active, #new_footer a.active {
+    color: white;
+    text-decoration: underline; }
+
+#new_header {
+  font-size: 18px;
+  top: 0;
+  -moz-box-shadow: 0 0 13px 0 #231f20;
+  -webkit-box-shadow: 0 0 13px 0 #231f20;
+  box-shadow: 0 0 13px 0 #231f20; }
+  #new_header li:first-child a {
+    text-transform: uppercase;
+    color: white; }
+  #new_header li#account {
+    float: right;
+    font-size: 12px; }
+    #new_header li#account i {
+      font-size: 16px; }
+  #new_header li#search {
+    margin-left: 23px;
+    font-size: 12px; }
+    #new_header li#search form {
+      margin: 0;
+      padding: 0;
+      display: inline; }
+      #new_header li#search form input {
+        -webkit-appearance: none;
+        border-radius: 0;
+        width: 112px;
+        margin: 0;
+        padding: 3px 4px 3px 3px;
+        display: inline-block;
+        height: 10px;
+        background: gainsboro;
+        border: none;
+        vertical-align: middle;
+        color: black; }
+        #new_header li#search form input:focus {
+          background: white;
+          color: black; }
+      #new_header li#search form a#search-addon {
+        margin: 0;
+        padding: 3px;
+        height: 10px;
+        background: gainsboro;
+        display: inline-block;
+        cursor: pointer;
+        vertical-align: middle;
+        color: white;
+        line-height: 10px; }
+        #new_header li#search form a#search-addon i {
+          line-height: 10px; }
+      #new_header li#search form input:focus + a#search-addon {
+        background: white;
+        color: gainsboro; }
+
+body.with-top-banner #new_header {
+  top: 30px; }
+
+#new_footer {
+  font-size: 13px;
+  bottom: 0; }
+  #new_footer ul li {
+    margin-top: 10px; }
+    #new_footer ul li:first-child a.active:not(.underline) {
+      text-decoration: none; }
+  #new_footer.flash li, #new_footer.flash a, #new_footer.flash a:first-child, #new_footer.flash a.active {
+    color: white; }

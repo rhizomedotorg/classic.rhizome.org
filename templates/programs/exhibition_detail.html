@@ -1,0 +1,72 @@
+{% extends 'programs/base.html' %}
+{% load inlines_tags markup block_tags %}
+
+{% block pageTitle %}{{ exhibition.title }}{% endblock %}
+
+{% block navbars %}
+    {% get_nav 'Programs' 'Exhibitions' %}
+{% endblock %}
+
+{% block content %}
+
+<div class="section span-24">
+    <div class= "left-column span-15">
+
+        <div class = "program-detail span-15">
+        
+            <div class = "program-detail-image span-15">    
+                <a href="{{exhibition.url}}">
+                    <img class="span-15" src="{{MEDIA_URL}}{{exhibition.image}}"/>
+                </a>
+            </div>
+            
+            <div class="date">
+                {% if exhibition.is_online %} Launched {% endif %}
+                {{ exhibition.start_date|date:"l, F jS Y" }} 
+                {% if exhibition.location_title %} at {{ exhibition.location_title }}{% endif %}
+            </div>
+        
+            <div class="span-15">
+                <div class = "program-detail-title">
+                    <a href="{{exhibition.url}}">
+                        {{ exhibition.title }}
+                    </a>
+                </div>
+                    {% with request.build_absolute_uri as share_url %}
+                        {% include 'fragments/new_share.html' %}
+                    {% endwith %}  
+                        
+
+                {% if exhibition.get_curators or exhibition.curator_other %}
+                 <div class="curators">
+                    Curated by
+                    {% if exhibition.get_curators %}
+                       {% for curator in exhibition.get_curators %}
+                        <a href="{{ curator.get_profile.get_absolute_url }}">
+                                {{ curator.get_profile }}
+                        </a>{% if not forloop.last %}, {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                    
+                    {% if exhibition.curator_other %}
+                        {{exhibition.curator_other}}
+                    {% endif %}
+                </div>
+                {% endif %}
+                    
+                <div class = "summary">
+                    {{ exhibition.description|markdown }}
+                </div>
+                
+                <hr class="black-thin span-15">  
+
+            </div>
+        </div>
+    </div>
+    <div class= "right-column span-8">
+        {% include "fragments/nectar_ads_sidebar.html" %}
+    </div>  
+
+</div>
+
+{% endblock %}

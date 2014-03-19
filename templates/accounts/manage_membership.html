@@ -1,0 +1,256 @@
+{% extends "accounts/base.html" %}
+
+{% load support markup %}
+
+{% block customScripts %}
+<script type="text/javascript" src="{{ STATIC_URL }}accounts/scripts/edit.js"></script>
+{% endblock %}
+
+{% block pageTitle %} 
+Membership Benefits
+{% endblock %}
+
+
+{% block content %}
+
+{% with 'Manage Member Benefits' as selected %}
+    {% include 'fragments/account_mini_nav.html' %}
+{% endwith %}
+
+<div id = "edit-profile">
+
+    {% if request.GET.exhibition %}
+        <div id ="updated" class = "span-24">
+            <h3>YOUR EXHIBITION HAS BEEN DELETED.</h3>
+        </div>
+    {% endif %}
+
+    {% if not request.user.get_profile.is_member %}
+    
+        <div class = "span-24" style="border-bottom:2px solid black;">
+            <div class = "indent about-content">
+                You are currently not a member. Why not <a class="bold red" href="/support/donate/">become one? </a>  
+            </div>
+            <div class = "indent about-content" style="font-size: 18px;font-weight:bold;font-style: italic;">
+                Benefits of Membership
+            </div>
+    
+            <div class = "indent about-content span-18">
+                {% get_member_benefits as member_benefits %}
+                {% for benefit in member_benefits %}
+                    {% if benefit.link %}
+                        <div class="indent" style="margin-bottom: 5px">
+                            - <a class="bold" href="{{benefit.link}}">{{ benefit.title }}</a>
+                                <div class="indent">{{benefit.summary}}</div>
+                        </div>                                        
+                    {% else %}
+                        <div class="indent" style="color:#6494B2;margin-bottom: 5px">
+                            - <span class="bold">{{ benefit.title }}</span>  
+                            <div class="indent" style="color:black">{{benefit.summary}}</div>          
+                        </div>           
+                    {% endif %}
+                {% endfor %}
+            </div>   
+    
+        </div>
+    
+    {% else %}            
+
+        <div id ="accordion">
+             
+             <div id = "account-info" class = "container span-24 last">
+                
+                <div class="section-object-header">
+                    <div class = "edit-section-header">
+                        <span class = "edit-section-header-arrow"></span>
+                        <h2 class="edit-section-header-h2">View Membership Information</h2></h2>
+                        <span>Check your expiration date, donation history, and renew your membership</span>
+                    </div>
+                </div>
+                
+                <div class = "edit-section">
+                    <div class = "edit-profile-form span-24">
+                        <div class = "fieldset span-23">
+                            <fieldset> 
+                                <div class = "about-content">
+                                    Your membership will expire on <b>{{membership.member_tools_exp_date|date:"M d, Y"}}</b>. 
+                                    <a href="/support/donate" class="bold red">Renew now! | <a href="/join/individual/" class="bold">Review benefits</a></a>
+                                </div>                                    
+                                
+                                {% if membership.org_sub %}
+                                <div class = "about-content">
+                                You belong to the <b>{{ membership.org_sub }}</b> organization subscription, which will expire on {{ membership.org_sub.expiration_date|date:"M d, Y" }}.
+                                </div>                            
+                                {% endif %}
+
+                                {% if request.user.get_profile.get_all_donations %}
+                                    <div class="about-content upper bold">Donation History:</div>
+                                    {% for donation in request.user.get_profile.get_all_donations %}
+                                    <div class = "indent center contribution  bg-light span-5" style="margin:5px;" >
+                                        ${{donation.amount}} on {{donation.created|date:"M d, Y"}}
+                                    </div>                                    
+                                    {% endfor %}
+                                {% endif %}
+                                    
+                            </fieldset>
+                        </div>                                                             
+                    </div>
+                </div>
+                
+            </div>
+
+            <hr class = "thin-no-margin">
+    
+            <div id = "portfolio-edit" class = "container span-24 last">
+                
+                <div class="section-object-header">
+                    <div class = "edit-section-header">
+                         <span class = "edit-section-header-arrow"></span>
+                        <h2 class="edit-section-header-h2">Curate Member Exhibitions</h2>
+                        <span>Add or edit collections of artworks from the ArtBase</span>                    
+                    </div>
+                </div>
+                
+                <div class = "edit-section">
+                    <div class = "edit-profile-form span-24">
+                        <div class = "fieldset span-23">
+                            <div class = "h6 light-gray">Your Exhibitions | <a href="/artbase/exhibitions/new/">Curate a New Exhibition</a></div>
+                            <fieldset> 
+                                {% if user.get_profile.get_all_member_exhibitions %}
+                                    {% for exhibition in user.get_profile.get_all_member_exhibitions %}
+                                        <div class="edit-portfolio center span-7">
+                                            <a href="{{ exhibition.get_absolute_url }}/">
+                                                <img src="{{MEDIA_URL}}{{exhibition.image}}" width="135" height="170">
+                                            </a>
+                                            <br />
+                                            <div class="portfolio-work-details">
+                                                {{exhibition.title|title}}<br /> 
+                                                <a class="listing-title" href="{{ exhibition.get_absolute_url }}/">View</a> | 
+                                                <a href="{{exhibition.edit_url}}">Edit</a>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                {% else %}
+                                    <div class = "about-content">
+                                        You don't have any member exhibitions. <a class="bold" href="/artbase/exhibitions/new/">Why don't you create one?</a>
+                                    </div>
+                                {% endif %}                                
+                            </fieldset>
+                        </div>
+                    </div>
+                </div>                
+            </div>
+      
+                   
+            <hr class = "thin-no-margin">
+    
+            <div id = "portfolio-edit" class = "container span-24 last">
+                <div class="section-object-header">
+                    <div class = "edit-section-header">
+                         <span class = "edit-section-header-arrow"></span>
+                        <h2 class="edit-section-header-h2">View Saved Artworks</h2>
+                        <span>Your collection of saved artworks</span>                    
+                    </div>
+                </div>
+                
+                <div class = "edit-section">
+                    <div class = "edit-profile-form span-24">
+                        <div class = "fieldset span-23">
+                            <div class = "h6 light-gray">Saved Artworks | <a href="/artbase/browse//">Add more</a></div>
+                            <fieldset>
+                             {% if user.get_profile.get_saved_artworks %}
+                                {% for work in user.get_profile.get_saved_artworks %}
+                                   <div class="edit-portfolio center span-7">
+                                        <a href="{{ work.view_url }}">
+                                            <img src="{{MEDIA_URL}}{{work.image_small}}" width="135">
+                                        </a>
+                                        <div class="portfolio-work-details">
+                                            <a href="{{ work.view_url }}" class="listing-title">{{work.title|title}}</a> 
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            {% else %}
+                                <div class="about-content">
+                                    You don't have any saved artworks. <a class="bold" href="/artbase/browse/title/">Go add some!</a> 
+                                </div>
+                            {% endif %}
+                            </fieldset>             
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <hr class = "thin-no-margin">
+        
+            <div id = "portfolio-edit" class = "container span-24 last">
+                
+                <div class="section-object-header">
+                    <div class = "edit-section-header">
+                         <span class = "edit-section-header-arrow"></span>
+                        <h2 class="edit-section-header-h2">Get The Download</h2>
+                        <span>Part curatorial platform, part incentive to budding digital art collectors, the Download highlights great new art works and shares them with our membership for free download</span>                    
+                    </div>
+                </div>
+                
+                <div class = "edit-section">
+                    <div class = "edit-profile-form span-24">
+                        <div class = "fieldset span-23">
+                            <fieldset> 
+                                <div class = "about-content">
+                                    <div class="span-3">
+                                        <a href="/the-download/">
+                                            <img src = "{{ STATIC_URL }}programs/the_download/images/logos/logo.png" />
+                                        </a>
+                                    </div>
+    
+                                    <div class = "span-15">
+                                        This month's download is: 
+                                        <br /><br />
+                                        <b><i>{{download.artist_name}}</i> by {{download.artist_name}}</b>
+                                        <br /><br />
+                                        You can read more about the work, download it, and get previous Downloads on<br />
+                                        <a class="bold" href="/the-download/">The Download</a> page.
+                                    </div> 
+                                </div>                                
+                            </fieldset>
+                        </div>
+                    </div>
+                
+                </div>                
+            </div>
+
+            <hr class = "thin-no-margin">
+        
+            <div id = "portfolio-edit" class = "container span-24 last">
+                
+                <div class="section-object-header">
+                    <div class = "edit-section-header">
+                         <span class = "edit-section-header-arrow"></span>
+                        <h2 class="edit-section-header-h2">Post to the Jobs Board</h2>
+                        <span>Members can post to the Rhizome Jobs Board for free</span>                    
+                    </div>
+                </div>
+                
+                <div class = "edit-section">
+                    <div class = "edit-profile-form span-24">
+                        <div class = "fieldset span-23">
+                            <fieldset> 
+                                <div class = "about-content span-18">
+                                    The Rhizome Jobs board encompasses a wide variety of industries and fields, including technology, academia, the arts, and non-profits. Job postings are $25 for non-members, but Rhizome Members can post unlimited jobs to the board for free. Postings will run on the site until the specified deadline.
+                                    <br /><br />
+                                   <a href="/announce/jobs/submit/" class="bold">Post a Job</a>
+                                    <br /><br />
+                                   <a href="/announce/jobs/" class="bold">View current jobs</a>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+                
+                </div>                
+            </div>
+
+                                        
+    </div><!--end accordion-->
+    {% endif %}
+</div><!--end edit profile-->
+{% endblock %}
