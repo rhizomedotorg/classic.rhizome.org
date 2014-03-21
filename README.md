@@ -1,6 +1,7 @@
 # Rhizome.org
 
-Online since 1996, open source since 2014.
+Contemporary art and technology, online since 1996.
+Now open source!
 
 **rationale**
 
