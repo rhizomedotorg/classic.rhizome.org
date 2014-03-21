@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# install dependencies
-pip install -r requirements.txt
-
 # destroy db
 python manage.py sqlflush | sed 's/TRUNCATE/DROP TABLE/g'| python manage.py dbshell
 
