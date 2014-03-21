@@ -21,7 +21,7 @@ $ cp rhizome/local_settings_example.py rhizome/local_settings.py
 
 open `local_settings.py` and set `SECRET_KEY` to some string, ([docs](https://docs.djangoproject.com/en/dev/ref/settings/#std:setting-SECRET_KEY)), may also want to change `DATABASES` configuration.
 
-##setup env
+### setup env
 
 Install virtualenv ([docs](http://www.virtualenv.org/en/latest/virtualenv.html#installation))
 
@@ -32,20 +32,20 @@ source venv/bin/activate
 
 **install dependencies**
 
-hold your breath
+hold your breath!
 
 ```
 pip install -r requirements.txt
 ```
 
-for PIL to install correctly on Mavericks, might have to do this first:
+for PIL to install correctly on Mavericks, might have do this first:
 
 ```
 export CFLAGS=-Qunused-arguments
 export CPPFLAGS=-Qunused-arguments
 ```
 
-**load fixtures**
+### load fixtures
 
 ```
 sh sysop_roll_db.sh
@@ -53,7 +53,8 @@ sh sysop_roll_db.sh
 
 ignore these errors:
 
-`Could not access or create artbase CouchDB database`, `Failed to install index for...`
+`Could not access or create artbase CouchDB database`    
+`Failed to install index for...`
 
 ## Usage
 
@@ -69,6 +70,12 @@ navigate to [http://localhost:8000](localhost:8000)
 
 **admin**
 
-url: [http://localhost:8000/rza/](localhost:8000/rza/)
-u: staffuser
-p: 123
+[http://localhost:8000/rza/](localhost:8000/rza/)    
+username: staffuser    
+password: 123
+
+## Documentation
+
+(coming soon)
+
+got a question? open an issue.
