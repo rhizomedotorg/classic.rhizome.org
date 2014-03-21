@@ -1,13 +1,13 @@
 # Rhizome.org
 
-Contemporary art and technology, online since 1996.
-Now open source!
+Online since 1996.    
+Open source since 2014.
 
 **rationale**
 
 This document provides instructions for installing and running rhizome.org locally for development. Caveats: ArtBase, search and payment processing don't work. Powered by [Django](https://www.djangoproject.com/).
 
-## Installation
+## Install
 
 ```
 $ git clone git@github.com:rhizomedotorg/rhizome.org.git
@@ -59,8 +59,6 @@ ignore these errors:
 
 ## Usage
 
-**run**
-
 ```
 $ cd /path/to/rhizome.org
 $ source venv/bin/activate
@@ -69,7 +67,7 @@ $ python manage.py runserver
 
 navigate to [http://localhost:8000](localhost:8000)
 
-**admin**
+**admin panel**
 
 [http://localhost:8000/rza/](localhost:8000/rza/)    
 username: staffuser    
