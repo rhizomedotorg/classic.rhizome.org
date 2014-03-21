@@ -1,38 +1,81 @@
+# Rhizome.org
 
+Online since 1996, open source since 2014.
 
-/rza
+**rationale**
 
-staffuser
-123
+This document provides instructions for installing and running rhizome.org locally for development. Caveats: ArtBase, search and payment processing don't work. Powered by [Django](https://www.djangoproject.com/).
 
+## Installation
+
+```
+$ git clone git@github.com:rhizomedotorg/rhizome.org.git
+```
+
+**configure**
+
+```
+$ cd path/to/rhizome.org/
+$ cp rhizome/local_settings_example.py rhizome/local_settings.py
+```
+
+open `local_settings.py` and set `SECRET_KEY` to some string, ([docs](https://docs.djangoproject.com/en/dev/ref/settings/#std:setting-SECRET_KEY)), may also want to change `DATABASES` configuration.
+
+### setup env
+
+Install virtualenv ([docs](http://www.virtualenv.org/en/latest/virtualenv.html#installation))
+
+```
+virtualenv venv
+source venv/bin/activate
+```
+
+**install dependencies**
+
+hold your breath!
+
+```
+pip install -r requirements.txt
+```
+
+for PIL to install correctly on Mavericks, might have do this first:
+
+```
 export CFLAGS=-Qunused-arguments
 export CPPFLAGS=-Qunused-arguments
-
-Installation
-============
-
-clone repo
-
-```bash
-virtualenv venv
 ```
 
-note: 2.6.5 or newer
-if multiple versions on system, specify w/ -p flag:
+### load fixtures
 
-```bash
-virtualenv -p /usr/local/bin/python venv
+```
+sh sysop_roll_db.sh
 ```
 
-```bash
-sh sysop_setup_local.sh
+ignore these errors:
+
+`Could not access or create artbase CouchDB database`    
+`Failed to install index for...`
+
+## Usage
+
+**run**
+
+```
+$ cd /path/to/rhizome.org
+$ source venv/bin/activate
+$ python manage.py runserver
 ```
 
-```bash
-Could not access or create artbase CouchDB database
-```
+navigate to [http://localhost:8000](localhost:8000)
 
-```bash
-Failed to install index for...
-```
+**admin**
 
+[http://localhost:8000/rza/](localhost:8000/rza/)    
+username: staffuser    
+password: 123
+
+## Documentation
+
+(coming soon)
+
+got a question? open an issue.
