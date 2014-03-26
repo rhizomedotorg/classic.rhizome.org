@@ -77,4 +77,5 @@ password: 123
 
 (coming soon)
 
-got a question? open an issue.
+got a question? open an issue.    
+for support contact info@rhizome.org.
