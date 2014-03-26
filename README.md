@@ -5,7 +5,7 @@ Open source since 2014.
 
 **rationale**
 
-This document provides instructions for installing and running rhizome.org locally for development. Caveats: ArtBase, search and payment processing don't work. Powered by [Django](https://www.djangoproject.com/).
+This document provides instructions for installing and running rhizome.org locally for development. Caveats: ArtBase, search and payment processing don't work locally. Powered by [Django](https://www.djangoproject.com/).
 
 ## Install
 
