@@ -9,7 +9,7 @@
         "is_active": true, 
         "is_superuser": true, 
         "is_staff": true, 
-        "last_login": "2014-03-12T11:35:17", 
+        "last_login": "2014-03-26T11:21:39.809", 
         "groups": [], 
         "user_permissions": [], 
         "password": "pbkdf2_sha256$10000$2W5dZXW7ni6E$HNU08KlAYHvAnsPbRJGRjdGrnwX2pZT/2vfFzA6rPCY=", 
@@ -123,36 +123,10 @@
     }
 },
 {
-    "pk": 4, 
-    "model": "tagging.taggeditem", 
-    "fields": {
-        "tag": 1, 
-        "object_id": 2, 
-        "content_type": [
-            "blog", 
-            "post"
-        ], 
-        "approved": false
-    }
-},
-{
     "pk": 5, 
     "model": "tagging.taggeditem", 
     "fields": {
         "tag": 2, 
-        "object_id": 2, 
-        "content_type": [
-            "blog", 
-            "post"
-        ], 
-        "approved": false
-    }
-},
-{
-    "pk": 6, 
-    "model": "tagging.taggeditem", 
-    "fields": {
-        "tag": 3, 
         "object_id": 2, 
         "content_type": [
             "blog", 
@@ -240,50 +214,11 @@
     }
 },
 {
-    "pk": 13, 
-    "model": "tagging.taggeditem", 
-    "fields": {
-        "tag": 1, 
-        "object_id": 5, 
-        "content_type": [
-            "blog", 
-            "post"
-        ], 
-        "approved": false
-    }
-},
-{
     "pk": 14, 
     "model": "tagging.taggeditem", 
     "fields": {
         "tag": 2, 
         "object_id": 5, 
-        "content_type": [
-            "blog", 
-            "post"
-        ], 
-        "approved": false
-    }
-},
-{
-    "pk": 15, 
-    "model": "tagging.taggeditem", 
-    "fields": {
-        "tag": 3, 
-        "object_id": 5, 
-        "content_type": [
-            "blog", 
-            "post"
-        ], 
-        "approved": false
-    }
-},
-{
-    "pk": 16, 
-    "model": "tagging.taggeditem", 
-    "fields": {
-        "tag": 1, 
-        "object_id": 6, 
         "content_type": [
             "blog", 
             "post"
@@ -305,63 +240,11 @@
     }
 },
 {
-    "pk": 18, 
-    "model": "tagging.taggeditem", 
-    "fields": {
-        "tag": 3, 
-        "object_id": 6, 
-        "content_type": [
-            "blog", 
-            "post"
-        ], 
-        "approved": false
-    }
-},
-{
-    "pk": 19, 
-    "model": "tagging.taggeditem", 
-    "fields": {
-        "tag": 1, 
-        "object_id": 7, 
-        "content_type": [
-            "blog", 
-            "post"
-        ], 
-        "approved": false
-    }
-},
-{
     "pk": 20, 
     "model": "tagging.taggeditem", 
     "fields": {
         "tag": 2, 
         "object_id": 7, 
-        "content_type": [
-            "blog", 
-            "post"
-        ], 
-        "approved": false
-    }
-},
-{
-    "pk": 21, 
-    "model": "tagging.taggeditem", 
-    "fields": {
-        "tag": 3, 
-        "object_id": 7, 
-        "content_type": [
-            "blog", 
-            "post"
-        ], 
-        "approved": false
-    }
-},
-{
-    "pk": 22, 
-    "model": "tagging.taggeditem", 
-    "fields": {
-        "tag": 1, 
-        "object_id": 8, 
         "content_type": [
             "blog", 
             "post"
@@ -383,63 +266,11 @@
     }
 },
 {
-    "pk": 24, 
-    "model": "tagging.taggeditem", 
-    "fields": {
-        "tag": 3, 
-        "object_id": 8, 
-        "content_type": [
-            "blog", 
-            "post"
-        ], 
-        "approved": false
-    }
-},
-{
-    "pk": 25, 
-    "model": "tagging.taggeditem", 
-    "fields": {
-        "tag": 1, 
-        "object_id": 9, 
-        "content_type": [
-            "blog", 
-            "post"
-        ], 
-        "approved": false
-    }
-},
-{
     "pk": 26, 
     "model": "tagging.taggeditem", 
     "fields": {
         "tag": 2, 
         "object_id": 9, 
-        "content_type": [
-            "blog", 
-            "post"
-        ], 
-        "approved": false
-    }
-},
-{
-    "pk": 27, 
-    "model": "tagging.taggeditem", 
-    "fields": {
-        "tag": 3, 
-        "object_id": 9, 
-        "content_type": [
-            "blog", 
-            "post"
-        ], 
-        "approved": false
-    }
-},
-{
-    "pk": 28, 
-    "model": "tagging.taggeditem", 
-    "fields": {
-        "tag": 1, 
-        "object_id": 10, 
         "content_type": [
             "blog", 
             "post"
@@ -461,63 +292,11 @@
     }
 },
 {
-    "pk": 30, 
-    "model": "tagging.taggeditem", 
-    "fields": {
-        "tag": 3, 
-        "object_id": 10, 
-        "content_type": [
-            "blog", 
-            "post"
-        ], 
-        "approved": false
-    }
-},
-{
-    "pk": 31, 
-    "model": "tagging.taggeditem", 
-    "fields": {
-        "tag": 1, 
-        "object_id": 11, 
-        "content_type": [
-            "blog", 
-            "post"
-        ], 
-        "approved": false
-    }
-},
-{
     "pk": 32, 
     "model": "tagging.taggeditem", 
     "fields": {
         "tag": 2, 
         "object_id": 11, 
-        "content_type": [
-            "blog", 
-            "post"
-        ], 
-        "approved": false
-    }
-},
-{
-    "pk": 33, 
-    "model": "tagging.taggeditem", 
-    "fields": {
-        "tag": 3, 
-        "object_id": 11, 
-        "content_type": [
-            "blog", 
-            "post"
-        ], 
-        "approved": false
-    }
-},
-{
-    "pk": 34, 
-    "model": "tagging.taggeditem", 
-    "fields": {
-        "tag": 1, 
-        "object_id": 12, 
         "content_type": [
             "blog", 
             "post"
@@ -539,24 +318,11 @@
     }
 },
 {
-    "pk": 36, 
-    "model": "tagging.taggeditem", 
-    "fields": {
-        "tag": 3, 
-        "object_id": 12, 
-        "content_type": [
-            "blog", 
-            "post"
-        ], 
-        "approved": false
-    }
-},
-{
     "pk": 1, 
     "model": "hitcount.hitcount", 
     "fields": {
-        "hits": 1, 
-        "modified": "2014-03-12T15:18:54", 
+        "hits": 2, 
+        "modified": "2014-03-26T15:46:51.243", 
         "content_type": [
             "auth", 
             "user"
@@ -581,8 +347,8 @@
     "pk": 3, 
     "model": "hitcount.hitcount", 
     "fields": {
-        "hits": 1, 
-        "modified": "2014-03-12T16:58:37", 
+        "hits": 3, 
+        "modified": "2014-03-26T15:56:44.197", 
         "content_type": [
             "blog", 
             "post"
@@ -594,8 +360,8 @@
     "pk": 4, 
     "model": "hitcount.hitcount", 
     "fields": {
-        "hits": 2, 
-        "modified": "2014-03-14T18:59:36", 
+        "hits": 3, 
+        "modified": "2014-03-26T15:41:34.013", 
         "content_type": [
             "blog", 
             "post"
@@ -614,6 +380,45 @@
             "opportunity"
         ], 
         "object_pk": "2"
+    }
+},
+{
+    "pk": 6, 
+    "model": "hitcount.hitcount", 
+    "fields": {
+        "hits": 1, 
+        "modified": "2014-03-26T15:37:24.340", 
+        "content_type": [
+            "blog", 
+            "post"
+        ], 
+        "object_pk": "2"
+    }
+},
+{
+    "pk": 7, 
+    "model": "hitcount.hitcount", 
+    "fields": {
+        "hits": 1, 
+        "modified": "2014-03-26T15:47:13.544", 
+        "content_type": [
+            "blog", 
+            "post"
+        ], 
+        "object_pk": "10"
+    }
+},
+{
+    "pk": 8, 
+    "model": "hitcount.hitcount", 
+    "fields": {
+        "hits": 1, 
+        "modified": "2014-03-26T15:48:09.251", 
+        "content_type": [
+            "announce", 
+            "opportunity"
+        ], 
+        "object_pk": "1"
     }
 },
 {
@@ -714,6 +519,123 @@
         "user": null, 
         "orgsub_ip": false, 
         "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_8) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.149 Safari/537.36"
+    }
+},
+{
+    "pk": 7, 
+    "model": "hitcount.hit", 
+    "fields": {
+        "orgsub_member": false, 
+        "orgsub": null, 
+        "created": "2014-03-26T15:32:29.941", 
+        "ip": "127.0.0.1", 
+        "session": "9wqmkm2bnfcmdmn4z4nm6inxhyd3tg6g", 
+        "hitcount": 3, 
+        "user": [
+            "staffuser"
+        ], 
+        "orgsub_ip": false, 
+        "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_8) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.152 Safari/537.36"
+    }
+},
+{
+    "pk": 8, 
+    "model": "hitcount.hit", 
+    "fields": {
+        "orgsub_member": false, 
+        "orgsub": null, 
+        "created": "2014-03-26T15:37:24.344", 
+        "ip": "127.0.0.1", 
+        "session": "9wqmkm2bnfcmdmn4z4nm6inxhyd3tg6g", 
+        "hitcount": 6, 
+        "user": [
+            "staffuser"
+        ], 
+        "orgsub_ip": false, 
+        "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_8) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.152 Safari/537.36"
+    }
+},
+{
+    "pk": 9, 
+    "model": "hitcount.hit", 
+    "fields": {
+        "orgsub_member": false, 
+        "orgsub": null, 
+        "created": "2014-03-26T15:41:34.017", 
+        "ip": "127.0.0.1", 
+        "session": "9wqmkm2bnfcmdmn4z4nm6inxhyd3tg6g", 
+        "hitcount": 4, 
+        "user": [
+            "staffuser"
+        ], 
+        "orgsub_ip": false, 
+        "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_8) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.152 Safari/537.36"
+    }
+},
+{
+    "pk": 10, 
+    "model": "hitcount.hit", 
+    "fields": {
+        "orgsub_member": false, 
+        "orgsub": null, 
+        "created": "2014-03-26T15:46:51.248", 
+        "ip": "127.0.0.1", 
+        "session": "9wqmkm2bnfcmdmn4z4nm6inxhyd3tg6g", 
+        "hitcount": 1, 
+        "user": [
+            "staffuser"
+        ], 
+        "orgsub_ip": false, 
+        "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_8) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.152 Safari/537.36"
+    }
+},
+{
+    "pk": 11, 
+    "model": "hitcount.hit", 
+    "fields": {
+        "orgsub_member": false, 
+        "orgsub": null, 
+        "created": "2014-03-26T15:47:13.548", 
+        "ip": "127.0.0.1", 
+        "session": "9wqmkm2bnfcmdmn4z4nm6inxhyd3tg6g", 
+        "hitcount": 7, 
+        "user": [
+            "staffuser"
+        ], 
+        "orgsub_ip": false, 
+        "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_8) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.152 Safari/537.36"
+    }
+},
+{
+    "pk": 12, 
+    "model": "hitcount.hit", 
+    "fields": {
+        "orgsub_member": false, 
+        "orgsub": null, 
+        "created": "2014-03-26T15:48:09.255", 
+        "ip": "127.0.0.1", 
+        "session": "9wqmkm2bnfcmdmn4z4nm6inxhyd3tg6g", 
+        "hitcount": 8, 
+        "user": [
+            "staffuser"
+        ], 
+        "orgsub_ip": false, 
+        "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_8) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.152 Safari/537.36"
+    }
+},
+{
+    "pk": 13, 
+    "model": "hitcount.hit", 
+    "fields": {
+        "orgsub_member": false, 
+        "orgsub": null, 
+        "created": "2014-03-26T15:56:44.201", 
+        "ip": "127.0.0.1", 
+        "session": "pnufsric7pe500dwrvzfkum81k6pet3m", 
+        "hitcount": 3, 
+        "user": null, 
+        "orgsub_ip": false, 
+        "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_8) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.152 Safari/537.36"
     }
 },
 {
@@ -4689,7 +4611,7 @@
     "pk": 2, 
     "model": "accounts.userrating", 
     "fields": {
-        "rating": 105, 
+        "rating": 150, 
         "user": [
             "staffuser"
         ]
@@ -4709,6 +4631,150 @@
             "post"
         ], 
         "created": "2014-03-12T12:59:57"
+    }
+},
+{
+    "pk": 2, 
+    "model": "accounts.userobjectpoints", 
+    "fields": {
+        "object_pk": 2, 
+        "points": 5, 
+        "user": [
+            "staffuser"
+        ], 
+        "content_type": [
+            "blog", 
+            "post"
+        ], 
+        "created": "2014-03-26T11:34:33.617"
+    }
+},
+{
+    "pk": 3, 
+    "model": "accounts.userobjectpoints", 
+    "fields": {
+        "object_pk": 12, 
+        "points": 5, 
+        "user": [
+            "staffuser"
+        ], 
+        "content_type": [
+            "blog", 
+            "post"
+        ], 
+        "created": "2014-03-26T11:41:24.557"
+    }
+},
+{
+    "pk": 4, 
+    "model": "accounts.userobjectpoints", 
+    "fields": {
+        "object_pk": 11, 
+        "points": 5, 
+        "user": [
+            "staffuser"
+        ], 
+        "content_type": [
+            "blog", 
+            "post"
+        ], 
+        "created": "2014-03-26T11:42:33.573"
+    }
+},
+{
+    "pk": 5, 
+    "model": "accounts.userobjectpoints", 
+    "fields": {
+        "object_pk": 10, 
+        "points": 5, 
+        "user": [
+            "staffuser"
+        ], 
+        "content_type": [
+            "blog", 
+            "post"
+        ], 
+        "created": "2014-03-26T11:43:06.902"
+    }
+},
+{
+    "pk": 6, 
+    "model": "accounts.userobjectpoints", 
+    "fields": {
+        "object_pk": 9, 
+        "points": 5, 
+        "user": [
+            "staffuser"
+        ], 
+        "content_type": [
+            "blog", 
+            "post"
+        ], 
+        "created": "2014-03-26T11:43:39.379"
+    }
+},
+{
+    "pk": 7, 
+    "model": "accounts.userobjectpoints", 
+    "fields": {
+        "object_pk": 8, 
+        "points": 5, 
+        "user": [
+            "staffuser"
+        ], 
+        "content_type": [
+            "blog", 
+            "post"
+        ], 
+        "created": "2014-03-26T11:44:14.647"
+    }
+},
+{
+    "pk": 8, 
+    "model": "accounts.userobjectpoints", 
+    "fields": {
+        "object_pk": 7, 
+        "points": 5, 
+        "user": [
+            "staffuser"
+        ], 
+        "content_type": [
+            "blog", 
+            "post"
+        ], 
+        "created": "2014-03-26T11:44:50.140"
+    }
+},
+{
+    "pk": 9, 
+    "model": "accounts.userobjectpoints", 
+    "fields": {
+        "object_pk": 6, 
+        "points": 5, 
+        "user": [
+            "staffuser"
+        ], 
+        "content_type": [
+            "blog", 
+            "post"
+        ], 
+        "created": "2014-03-26T11:45:27.070"
+    }
+},
+{
+    "pk": 10, 
+    "model": "accounts.userobjectpoints", 
+    "fields": {
+        "object_pk": 5, 
+        "points": 5, 
+        "user": [
+            "staffuser"
+        ], 
+        "content_type": [
+            "blog", 
+            "post"
+        ], 
+        "created": "2014-03-26T11:46:13.438"
     }
 },
 {
@@ -4919,13 +4985,13 @@
         "fp_and_staff_blog": false, 
         "subtitle": "", 
         "featured_article": true, 
-        "fp_news_excerpt": "<p><img style=\"display: block; margin-left: auto; margin-right: auto;\" src=\"http://127.0.0.1:8000/media/blog/1/placeholder.gif\" alt=\"\" width=\"590\" height=\"590\" /></p>\r\n<p style=\"text-align: center;\"><span style=\"font-size: xx-small;\">Lorem Ipsum Dolar (Tupac Shakur),\u00a0Photograph taken by\u00a0<em>Lorem Ipsum\u00a0</em>(1996) dolar sit amet.</span></p>\r\n<blockquote>\r\n<p>Did you hear about the rose that grew<br /> from a crack in the concrete?<br /> Proving nature's law is wrong it<br /> learned to walk with out having feet.<br /> Funny it seems, but by keeping it's dreams,<br /> it learned to breathe fresh air.<br /> Long live the rose that grew from concrete<br /> when no one else ever cared.</p>\r\n<p>\u2014 from <em>Lorem Ipsum Dolar</em>\u00a0by Tupac Shakur</p>\r\n</blockquote>\r\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>", 
+        "fp_news_excerpt": "<p><img style=\"display: block; margin-left: auto; margin-right: auto;\" src=\"http://127.0.0.1:8000/media/blog/1/placeholder_4.jpg\" alt=\"\" width=\"375\" height=\"297\" /></p>\r\n<p style=\"text-align: center;\"><span style=\"font-size: xx-small;\">Lorem Ipsum Dolar (Tupac Shakur),\u00a0Photograph taken by\u00a0<em>Lorem Ipsum\u00a0</em>(1996) dolar sit amet.</span></p>\r\n<blockquote>\r\n<p>Did you hear about the rose that grew<br /> from a crack in the concrete?<br /> Proving nature's law is wrong it<br /> learned to walk with out having feet.<br /> Funny it seems, but by keeping it's dreams,<br /> it learned to breathe fresh air.<br /> Long live the rose that grew from concrete<br /> when no one else ever cared.</p>\r\n<p>\u2014 from <em>Lorem Ipsum Dolar</em>\u00a0by Tupac Shakur</p>\r\n</blockquote>\r\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>", 
         "post_item_link": null, 
         "byline": "Robert Combs", 
         "title": "Luck in the Prophecy", 
-        "publish": "2014-01-28T10:30:00", 
+        "publish": "2014-03-26T11:24:38", 
         "staff_blog": false, 
-        "body": "<p><img style=\"display: block; margin-left: auto; margin-right: auto;\" src=\"http://127.0.0.1:8000/media/blog/1/placeholder.gif\" alt=\"\" width=\"590\" height=\"590\" /></p>\n<p style=\"text-align: center;\"><span style=\"font-size: xx-small;\">Lorem Ipsum Dolar (Tupac Shakur),\u00a0Photograph taken by\u00a0<em>Lorem Ipsum\u00a0</em>(1996) dolar sit amet.</span></p>\n<blockquote>\n<p>Did you hear about the rose that grew<br /> from a crack in the concrete?<br /> Proving nature's law is wrong it<br /> learned to walk with out having feet.<br /> Funny it seems, but by keeping it's dreams,<br /> it learned to breathe fresh air.<br /> Long live the rose that grew from concrete<br /> when no one else ever cared.</p>\n<p>\u2014 from <em>Lorem Ipsum Dolar</em>\u00a0by Tupac Shakur</p>\n</blockquote>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\n<p style=\"text-align: center;\">\u00a0<img src=\"http://127.0.0.1:8000/media/blog/1/placeholder.gif\" alt=\"\" width=\"590\" height=\"590\" /></p>\n<p style=\"text-align: center;\"><span style=\"font-size: xx-small;\">Lorem Ipsum Dolar (Tupac Shakur),\u00a0Photograph taken by\u00a0<em>Lorem Ipsum\u00a0</em>(1996) dolar sit amet.</span></p>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute <a href=\"http://www.google.com/\">irure dolor in reprehenderit</a> in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\n<p style=\"text-align: center;\"><img src=\"http://127.0.0.1:8000/media/blog/1/placeholder.gif\" alt=\"\" width=\"590\" height=\"590\" /></p>\n<p style=\"text-align: center;\"><span style=\"font-size: xx-small;\">Lorem Ipsum Dolar (Tupac Shakur),\u00a0Photograph taken by\u00a0<em>Lorem Ipsum\u00a0</em>(1996) dolar sit amet.</span></p>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\n<p>\u00a0<img style=\"display: block; margin-left: auto; margin-right: auto;\" src=\"http://127.0.0.1:8000/media/blog/1/placeholder.gif\" alt=\"\" width=\"590\" height=\"590\" /></p>\n<p style=\"text-align: center;\"><span style=\"font-size: xx-small;\">Lorem Ipsum Dolar (Tupac Shakur),\u00a0Photograph taken by\u00a0<em>Lorem Ipsum\u00a0</em>(1996) dolar sit amet.</span></p>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>", 
+        "body": "<p><img style=\"display: block; margin-left: auto; margin-right: auto;\" src=\"http://127.0.0.1:8000/media/blog/1/placeholder_4.jpg\" alt=\"\" width=\"375\" height=\"297\" /></p>\n<p style=\"text-align: center;\"><span style=\"font-size: xx-small;\">Lorem Ipsum Dolar (Tupac Shakur),\u00a0Photograph taken by\u00a0<em>Lorem Ipsum\u00a0</em>(1996) dolar sit amet.</span></p>\n<blockquote>\n<p>Did you hear about the rose that grew<br /> from a crack in the concrete?<br /> Proving nature's law is wrong it<br /> learned to walk with out having feet.<br /> Funny it seems, but by keeping it's dreams,<br /> it learned to breathe fresh air.<br /> Long live the rose that grew from concrete<br /> when no one else ever cared.</p>\n<p>\u2014 from <em>Lorem Ipsum Dolar</em>\u00a0by Tupac Shakur</p>\n</blockquote>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\n<p style=\"text-align: center;\">\u00a0<img src=\"http://127.0.0.1:8000/media/blog/1/placeholder_4.jpg\" alt=\"\" width=\"375\" height=\"297\" /></p>\n<p style=\"text-align: center;\"><span style=\"font-size: xx-small;\">Lorem Ipsum Dolar (Tupac Shakur),\u00a0Photograph taken by\u00a0<em>Lorem Ipsum\u00a0</em>(1996) dolar sit amet.</span></p>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute <a href=\"http://www.google.com/\">irure dolor in reprehenderit</a> in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\n<p style=\"text-align: center;\"><img src=\"http://127.0.0.1:8000/media/blog/1/placeholder_4.jpg\" alt=\"\" width=\"375\" height=\"297\" /></p>\n<p style=\"text-align: center;\"><span style=\"font-size: xx-small;\">Lorem Ipsum Dolar (Tupac Shakur),\u00a0Photograph taken by\u00a0<em>Lorem Ipsum\u00a0</em>(1996) dolar sit amet.</span></p>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\n<p style=\"text-align: center;\">\u00a0<img src=\"http://127.0.0.1:8000/media/blog/1/placeholder_4.jpg\" alt=\"\" width=\"375\" height=\"297\" /></p>\n<p style=\"text-align: center;\"><span style=\"font-size: xx-small;\">Lorem Ipsum Dolar (Tupac Shakur),\u00a0Photograph taken by\u00a0<em>Lorem Ipsum\u00a0</em>(1996) dolar sit amet.</span></p>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>", 
         "tags": "test, tupac, rhizome", 
         "artbase_essay": false, 
         "is_micro": false, 
@@ -4939,7 +5005,7 @@
         "allow_comments": true, 
         "tease": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.", 
         "created": "2014-01-27T17:05:08", 
-        "modified": "2014-03-12T12:59:57", 
+        "modified": "2014-03-26T11:32:15.683", 
         "is_live": false, 
         "artist_profile": false
     }
@@ -4951,94 +5017,24 @@
         "status": 2, 
         "fp_and_staff_blog": false, 
         "subtitle": "", 
-        "featured_article": true, 
-        "fp_news_excerpt": "<p><img style=\"display: block; margin-left: auto; margin-right: auto;\" src=\"http://127.0.0.1:8000/media/blog/1/placeholder.gif\" alt=\"\" width=\"590\" height=\"590\" /></p>\r\n<p style=\"text-align: center;\"><span style=\"font-size: xx-small;\">Lorem Ipsum Dolar (Tupac Shakur),\u00a0Photograph taken by\u00a0<em>Lorem Ipsum\u00a0</em>(1996) dolar sit amet.</span></p>\r\n<blockquote>\r\n<p>Did you hear about the rose that grew<br /> from a crack in the concrete?<br /> Proving nature's law is wrong it<br /> learned to walk with out having feet.<br /> Funny it seems, but by keeping it's dreams,<br /> it learned to breathe fresh air.<br /> Long live the rose that grew from concrete<br /> when no one else ever cared.</p>\r\n<p>\u2014 from <em>Lorem Ipsum Dolar</em>\u00a0by Tupac Shakur</p>\r\n</blockquote>\r\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>", 
+        "featured_article": false, 
+        "fp_news_excerpt": "", 
         "post_item_link": null, 
-        "byline": "Robert Combs", 
-        "title": "Luck in the Prophecy", 
-        "publish": "2014-01-28T10:30:00", 
+        "byline": "John B. Smith", 
+        "title": "Lorem Ipsum", 
+        "publish": "2014-03-25T11:35:07", 
         "staff_blog": false, 
-        "body": "<p><img style=\"display: block; margin-left: auto; margin-right: auto;\" src=\"http://127.0.0.1:8000/media/blog/1/placeholder.gif\" alt=\"\" width=\"590\" height=\"590\" /></p>\n<p style=\"text-align: center;\"><span style=\"font-size: xx-small;\">Lorem Ipsum Dolar (Tupac Shakur),\u00a0Photograph taken by\u00a0<em>Lorem Ipsum\u00a0</em>(1996) dolar sit amet.</span></p>\n<blockquote>\n<p>Did you hear about the rose that grew<br /> from a crack in the concrete?<br /> Proving nature's law is wrong it<br /> learned to walk with out having feet.<br /> Funny it seems, but by keeping it's dreams,<br /> it learned to breathe fresh air.<br /> Long live the rose that grew from concrete<br /> when no one else ever cared.</p>\n<p>\u2014 from <em>Lorem Ipsum Dolar</em>\u00a0by Tupac Shakur</p>\n</blockquote>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\n<p style=\"text-align: center;\">\u00a0<img src=\"http://127.0.0.1:8000/media/blog/1/placeholder.gif\" alt=\"\" width=\"590\" height=\"590\" /></p>\n<p style=\"text-align: center;\"><span style=\"font-size: xx-small;\">Lorem Ipsum Dolar (Tupac Shakur),\u00a0Photograph taken by\u00a0<em>Lorem Ipsum\u00a0</em>(1996) dolar sit amet.</span></p>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute <a href=\"http://www.google.com/\">irure dolor in reprehenderit</a> in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\n<p style=\"text-align: center;\"><img src=\"http://127.0.0.1:8000/media/blog/1/placeholder.gif\" alt=\"\" width=\"590\" height=\"590\" /></p>\n<p style=\"text-align: center;\"><span style=\"font-size: xx-small;\">Lorem Ipsum Dolar (Tupac Shakur),\u00a0Photograph taken by\u00a0<em>Lorem Ipsum\u00a0</em>(1996) dolar sit amet.</span></p>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\n<p>\u00a0<img style=\"display: block; margin-left: auto; margin-right: auto;\" src=\"http://127.0.0.1:8000/media/blog/1/placeholder.gif\" alt=\"\" width=\"590\" height=\"590\" /></p>\n<p style=\"text-align: center;\"><span style=\"font-size: xx-small;\">Lorem Ipsum Dolar (Tupac Shakur),\u00a0Photograph taken by\u00a0<em>Lorem Ipsum\u00a0</em>(1996) dolar sit amet.</span></p>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>", 
-        "tags": "test, tupac, rhizome", 
+        "body": "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>", 
+        "tags": "test", 
         "artbase_essay": false, 
         "is_micro": false, 
         "sponsored": false, 
-        "authors": [
-            [
-                "staffuser"
-            ]
-        ], 
-        "slug": "luck-in-the-prophecy", 
+        "authors": [], 
+        "slug": "lorem-ipsum", 
         "allow_comments": true, 
         "tease": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.", 
         "created": "2014-01-27T17:05:08", 
-        "modified": "2014-03-12T12:59:57", 
-        "is_live": false, 
-        "artist_profile": false
-    }
-},
-{
-    "pk": 3, 
-    "model": "blog.post", 
-    "fields": {
-        "status": 2, 
-        "fp_and_staff_blog": false, 
-        "subtitle": "", 
-        "featured_article": true, 
-        "fp_news_excerpt": "<p><img style=\"display: block; margin-left: auto; margin-right: auto;\" src=\"http://127.0.0.1:8000/media/blog/1/placeholder.gif\" alt=\"\" width=\"590\" height=\"590\" /></p>\r\n<p style=\"text-align: center;\"><span style=\"font-size: xx-small;\">Lorem Ipsum Dolar (Tupac Shakur),\u00a0Photograph taken by\u00a0<em>Lorem Ipsum\u00a0</em>(1996) dolar sit amet.</span></p>\r\n<blockquote>\r\n<p>Did you hear about the rose that grew<br /> from a crack in the concrete?<br /> Proving nature's law is wrong it<br /> learned to walk with out having feet.<br /> Funny it seems, but by keeping it's dreams,<br /> it learned to breathe fresh air.<br /> Long live the rose that grew from concrete<br /> when no one else ever cared.</p>\r\n<p>\u2014 from <em>Lorem Ipsum Dolar</em>\u00a0by Tupac Shakur</p>\r\n</blockquote>\r\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>", 
-        "post_item_link": null, 
-        "byline": "Robert Combs", 
-        "title": "Luck in the Prophecy", 
-        "publish": "2014-01-28T10:30:00", 
-        "staff_blog": false, 
-        "body": "<p><img style=\"display: block; margin-left: auto; margin-right: auto;\" src=\"http://127.0.0.1:8000/media/blog/1/placeholder.gif\" alt=\"\" width=\"590\" height=\"590\" /></p>\n<p style=\"text-align: center;\"><span style=\"font-size: xx-small;\">Lorem Ipsum Dolar (Tupac Shakur),\u00a0Photograph taken by\u00a0<em>Lorem Ipsum\u00a0</em>(1996) dolar sit amet.</span></p>\n<blockquote>\n<p>Did you hear about the rose that grew<br /> from a crack in the concrete?<br /> Proving nature's law is wrong it<br /> learned to walk with out having feet.<br /> Funny it seems, but by keeping it's dreams,<br /> it learned to breathe fresh air.<br /> Long live the rose that grew from concrete<br /> when no one else ever cared.</p>\n<p>\u2014 from <em>Lorem Ipsum Dolar</em>\u00a0by Tupac Shakur</p>\n</blockquote>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\n<p style=\"text-align: center;\">\u00a0<img src=\"http://127.0.0.1:8000/media/blog/1/placeholder.gif\" alt=\"\" width=\"590\" height=\"590\" /></p>\n<p style=\"text-align: center;\"><span style=\"font-size: xx-small;\">Lorem Ipsum Dolar (Tupac Shakur),\u00a0Photograph taken by\u00a0<em>Lorem Ipsum\u00a0</em>(1996) dolar sit amet.</span></p>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute <a href=\"http://www.google.com/\">irure dolor in reprehenderit</a> in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\n<p style=\"text-align: center;\"><img src=\"http://127.0.0.1:8000/media/blog/1/placeholder.gif\" alt=\"\" width=\"590\" height=\"590\" /></p>\n<p style=\"text-align: center;\"><span style=\"font-size: xx-small;\">Lorem Ipsum Dolar (Tupac Shakur),\u00a0Photograph taken by\u00a0<em>Lorem Ipsum\u00a0</em>(1996) dolar sit amet.</span></p>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\n<p>\u00a0<img style=\"display: block; margin-left: auto; margin-right: auto;\" src=\"http://127.0.0.1:8000/media/blog/1/placeholder.gif\" alt=\"\" width=\"590\" height=\"590\" /></p>\n<p style=\"text-align: center;\"><span style=\"font-size: xx-small;\">Lorem Ipsum Dolar (Tupac Shakur),\u00a0Photograph taken by\u00a0<em>Lorem Ipsum\u00a0</em>(1996) dolar sit amet.</span></p>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>", 
-        "tags": "test, tupac, rhizome", 
-        "artbase_essay": false, 
-        "is_micro": false, 
-        "sponsored": false, 
-        "authors": [
-            [
-                "staffuser"
-            ]
-        ], 
-        "slug": "luck-in-the-prophecy", 
-        "allow_comments": true, 
-        "tease": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.", 
-        "created": "2014-01-27T17:05:08", 
-        "modified": "2014-03-12T12:59:57", 
-        "is_live": false, 
-        "artist_profile": false
-    }
-},
-{
-    "pk": 4, 
-    "model": "blog.post", 
-    "fields": {
-        "status": 2, 
-        "fp_and_staff_blog": false, 
-        "subtitle": "", 
-        "featured_article": true, 
-        "fp_news_excerpt": "<p><img style=\"display: block; margin-left: auto; margin-right: auto;\" src=\"http://127.0.0.1:8000/media/blog/1/placeholder.gif\" alt=\"\" width=\"590\" height=\"590\" /></p>\r\n<p style=\"text-align: center;\"><span style=\"font-size: xx-small;\">Lorem Ipsum Dolar (Tupac Shakur),\u00a0Photograph taken by\u00a0<em>Lorem Ipsum\u00a0</em>(1996) dolar sit amet.</span></p>\r\n<blockquote>\r\n<p>Did you hear about the rose that grew<br /> from a crack in the concrete?<br /> Proving nature's law is wrong it<br /> learned to walk with out having feet.<br /> Funny it seems, but by keeping it's dreams,<br /> it learned to breathe fresh air.<br /> Long live the rose that grew from concrete<br /> when no one else ever cared.</p>\r\n<p>\u2014 from <em>Lorem Ipsum Dolar</em>\u00a0by Tupac Shakur</p>\r\n</blockquote>\r\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>", 
-        "post_item_link": null, 
-        "byline": "Robert Combs", 
-        "title": "Luck in the Prophecy", 
-        "publish": "2014-01-28T10:30:00", 
-        "staff_blog": false, 
-        "body": "<p><img style=\"display: block; margin-left: auto; margin-right: auto;\" src=\"http://127.0.0.1:8000/media/blog/1/placeholder.gif\" alt=\"\" width=\"590\" height=\"590\" /></p>\n<p style=\"text-align: center;\"><span style=\"font-size: xx-small;\">Lorem Ipsum Dolar (Tupac Shakur),\u00a0Photograph taken by\u00a0<em>Lorem Ipsum\u00a0</em>(1996) dolar sit amet.</span></p>\n<blockquote>\n<p>Did you hear about the rose that grew<br /> from a crack in the concrete?<br /> Proving nature's law is wrong it<br /> learned to walk with out having feet.<br /> Funny it seems, but by keeping it's dreams,<br /> it learned to breathe fresh air.<br /> Long live the rose that grew from concrete<br /> when no one else ever cared.</p>\n<p>\u2014 from <em>Lorem Ipsum Dolar</em>\u00a0by Tupac Shakur</p>\n</blockquote>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\n<p style=\"text-align: center;\">\u00a0<img src=\"http://127.0.0.1:8000/media/blog/1/placeholder.gif\" alt=\"\" width=\"590\" height=\"590\" /></p>\n<p style=\"text-align: center;\"><span style=\"font-size: xx-small;\">Lorem Ipsum Dolar (Tupac Shakur),\u00a0Photograph taken by\u00a0<em>Lorem Ipsum\u00a0</em>(1996) dolar sit amet.</span></p>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute <a href=\"http://www.google.com/\">irure dolor in reprehenderit</a> in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\n<p style=\"text-align: center;\"><img src=\"http://127.0.0.1:8000/media/blog/1/placeholder.gif\" alt=\"\" width=\"590\" height=\"590\" /></p>\n<p style=\"text-align: center;\"><span style=\"font-size: xx-small;\">Lorem Ipsum Dolar (Tupac Shakur),\u00a0Photograph taken by\u00a0<em>Lorem Ipsum\u00a0</em>(1996) dolar sit amet.</span></p>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\n<p>\u00a0<img style=\"display: block; margin-left: auto; margin-right: auto;\" src=\"http://127.0.0.1:8000/media/blog/1/placeholder.gif\" alt=\"\" width=\"590\" height=\"590\" /></p>\n<p style=\"text-align: center;\"><span style=\"font-size: xx-small;\">Lorem Ipsum Dolar (Tupac Shakur),\u00a0Photograph taken by\u00a0<em>Lorem Ipsum\u00a0</em>(1996) dolar sit amet.</span></p>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>", 
-        "tags": "test, tupac, rhizome", 
-        "artbase_essay": false, 
-        "is_micro": false, 
-        "sponsored": false, 
-        "authors": [
-            [
-                "staffuser"
-            ]
-        ], 
-        "slug": "luck-in-the-prophecy", 
-        "allow_comments": true, 
-        "tease": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.", 
-        "created": "2014-01-27T17:05:08", 
-        "modified": "2014-03-12T12:59:57", 
+        "modified": "2014-03-26T11:40:34.882", 
         "is_live": false, 
         "artist_profile": false
     }
@@ -5050,28 +5046,24 @@
         "status": 2, 
         "fp_and_staff_blog": false, 
         "subtitle": "", 
-        "featured_article": true, 
-        "fp_news_excerpt": "<p><img style=\"display: block; margin-left: auto; margin-right: auto;\" src=\"http://127.0.0.1:8000/media/blog/1/placeholder.gif\" alt=\"\" width=\"590\" height=\"590\" /></p>\r\n<p style=\"text-align: center;\"><span style=\"font-size: xx-small;\">Lorem Ipsum Dolar (Tupac Shakur),\u00a0Photograph taken by\u00a0<em>Lorem Ipsum\u00a0</em>(1996) dolar sit amet.</span></p>\r\n<blockquote>\r\n<p>Did you hear about the rose that grew<br /> from a crack in the concrete?<br /> Proving nature's law is wrong it<br /> learned to walk with out having feet.<br /> Funny it seems, but by keeping it's dreams,<br /> it learned to breathe fresh air.<br /> Long live the rose that grew from concrete<br /> when no one else ever cared.</p>\r\n<p>\u2014 from <em>Lorem Ipsum Dolar</em>\u00a0by Tupac Shakur</p>\r\n</blockquote>\r\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>", 
+        "featured_article": false, 
+        "fp_news_excerpt": "", 
         "post_item_link": null, 
-        "byline": "Robert Combs", 
-        "title": "Luck in the Prophecy", 
-        "publish": "2014-01-28T10:30:00", 
+        "byline": "John B. Smith", 
+        "title": "Lorem Ipsum", 
+        "publish": "2014-03-17T11:45:48", 
         "staff_blog": false, 
-        "body": "<p><img style=\"display: block; margin-left: auto; margin-right: auto;\" src=\"http://127.0.0.1:8000/media/blog/1/placeholder.gif\" alt=\"\" width=\"590\" height=\"590\" /></p>\n<p style=\"text-align: center;\"><span style=\"font-size: xx-small;\">Lorem Ipsum Dolar (Tupac Shakur),\u00a0Photograph taken by\u00a0<em>Lorem Ipsum\u00a0</em>(1996) dolar sit amet.</span></p>\n<blockquote>\n<p>Did you hear about the rose that grew<br /> from a crack in the concrete?<br /> Proving nature's law is wrong it<br /> learned to walk with out having feet.<br /> Funny it seems, but by keeping it's dreams,<br /> it learned to breathe fresh air.<br /> Long live the rose that grew from concrete<br /> when no one else ever cared.</p>\n<p>\u2014 from <em>Lorem Ipsum Dolar</em>\u00a0by Tupac Shakur</p>\n</blockquote>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\n<p style=\"text-align: center;\">\u00a0<img src=\"http://127.0.0.1:8000/media/blog/1/placeholder.gif\" alt=\"\" width=\"590\" height=\"590\" /></p>\n<p style=\"text-align: center;\"><span style=\"font-size: xx-small;\">Lorem Ipsum Dolar (Tupac Shakur),\u00a0Photograph taken by\u00a0<em>Lorem Ipsum\u00a0</em>(1996) dolar sit amet.</span></p>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute <a href=\"http://www.google.com/\">irure dolor in reprehenderit</a> in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\n<p style=\"text-align: center;\"><img src=\"http://127.0.0.1:8000/media/blog/1/placeholder.gif\" alt=\"\" width=\"590\" height=\"590\" /></p>\n<p style=\"text-align: center;\"><span style=\"font-size: xx-small;\">Lorem Ipsum Dolar (Tupac Shakur),\u00a0Photograph taken by\u00a0<em>Lorem Ipsum\u00a0</em>(1996) dolar sit amet.</span></p>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\n<p>\u00a0<img style=\"display: block; margin-left: auto; margin-right: auto;\" src=\"http://127.0.0.1:8000/media/blog/1/placeholder.gif\" alt=\"\" width=\"590\" height=\"590\" /></p>\n<p style=\"text-align: center;\"><span style=\"font-size: xx-small;\">Lorem Ipsum Dolar (Tupac Shakur),\u00a0Photograph taken by\u00a0<em>Lorem Ipsum\u00a0</em>(1996) dolar sit amet.</span></p>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>", 
-        "tags": "test, tupac, rhizome", 
+        "body": "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>", 
+        "tags": "test", 
         "artbase_essay": false, 
         "is_micro": false, 
         "sponsored": false, 
-        "authors": [
-            [
-                "staffuser"
-            ]
-        ], 
-        "slug": "luck-in-the-prophecy", 
+        "authors": [], 
+        "slug": "lorem-ipsum", 
         "allow_comments": true, 
         "tease": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.", 
         "created": "2014-01-27T17:05:08", 
-        "modified": "2014-03-12T12:59:57", 
+        "modified": "2014-03-26T11:46:13.425", 
         "is_live": false, 
         "artist_profile": false
     }
@@ -5083,28 +5075,24 @@
         "status": 2, 
         "fp_and_staff_blog": false, 
         "subtitle": "", 
-        "featured_article": true, 
-        "fp_news_excerpt": "<p><img style=\"display: block; margin-left: auto; margin-right: auto;\" src=\"http://127.0.0.1:8000/media/blog/1/placeholder.gif\" alt=\"\" width=\"590\" height=\"590\" /></p>\r\n<p style=\"text-align: center;\"><span style=\"font-size: xx-small;\">Lorem Ipsum Dolar (Tupac Shakur),\u00a0Photograph taken by\u00a0<em>Lorem Ipsum\u00a0</em>(1996) dolar sit amet.</span></p>\r\n<blockquote>\r\n<p>Did you hear about the rose that grew<br /> from a crack in the concrete?<br /> Proving nature's law is wrong it<br /> learned to walk with out having feet.<br /> Funny it seems, but by keeping it's dreams,<br /> it learned to breathe fresh air.<br /> Long live the rose that grew from concrete<br /> when no one else ever cared.</p>\r\n<p>\u2014 from <em>Lorem Ipsum Dolar</em>\u00a0by Tupac Shakur</p>\r\n</blockquote>\r\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>", 
+        "featured_article": false, 
+        "fp_news_excerpt": "", 
         "post_item_link": null, 
-        "byline": "Robert Combs", 
-        "title": "Luck in the Prophecy", 
-        "publish": "2014-01-28T10:30:00", 
+        "byline": "John B. Smith", 
+        "title": "Lorem Ipsum", 
+        "publish": "2014-03-18T11:45:10", 
         "staff_blog": false, 
-        "body": "<p><img style=\"display: block; margin-left: auto; margin-right: auto;\" src=\"http://127.0.0.1:8000/media/blog/1/placeholder.gif\" alt=\"\" width=\"590\" height=\"590\" /></p>\n<p style=\"text-align: center;\"><span style=\"font-size: xx-small;\">Lorem Ipsum Dolar (Tupac Shakur),\u00a0Photograph taken by\u00a0<em>Lorem Ipsum\u00a0</em>(1996) dolar sit amet.</span></p>\n<blockquote>\n<p>Did you hear about the rose that grew<br /> from a crack in the concrete?<br /> Proving nature's law is wrong it<br /> learned to walk with out having feet.<br /> Funny it seems, but by keeping it's dreams,<br /> it learned to breathe fresh air.<br /> Long live the rose that grew from concrete<br /> when no one else ever cared.</p>\n<p>\u2014 from <em>Lorem Ipsum Dolar</em>\u00a0by Tupac Shakur</p>\n</blockquote>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\n<p style=\"text-align: center;\">\u00a0<img src=\"http://127.0.0.1:8000/media/blog/1/placeholder.gif\" alt=\"\" width=\"590\" height=\"590\" /></p>\n<p style=\"text-align: center;\"><span style=\"font-size: xx-small;\">Lorem Ipsum Dolar (Tupac Shakur),\u00a0Photograph taken by\u00a0<em>Lorem Ipsum\u00a0</em>(1996) dolar sit amet.</span></p>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute <a href=\"http://www.google.com/\">irure dolor in reprehenderit</a> in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\n<p style=\"text-align: center;\"><img src=\"http://127.0.0.1:8000/media/blog/1/placeholder.gif\" alt=\"\" width=\"590\" height=\"590\" /></p>\n<p style=\"text-align: center;\"><span style=\"font-size: xx-small;\">Lorem Ipsum Dolar (Tupac Shakur),\u00a0Photograph taken by\u00a0<em>Lorem Ipsum\u00a0</em>(1996) dolar sit amet.</span></p>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\n<p>\u00a0<img style=\"display: block; margin-left: auto; margin-right: auto;\" src=\"http://127.0.0.1:8000/media/blog/1/placeholder.gif\" alt=\"\" width=\"590\" height=\"590\" /></p>\n<p style=\"text-align: center;\"><span style=\"font-size: xx-small;\">Lorem Ipsum Dolar (Tupac Shakur),\u00a0Photograph taken by\u00a0<em>Lorem Ipsum\u00a0</em>(1996) dolar sit amet.</span></p>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>", 
-        "tags": "test, tupac, rhizome", 
+        "body": "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>", 
+        "tags": "test", 
         "artbase_essay": false, 
         "is_micro": false, 
         "sponsored": false, 
-        "authors": [
-            [
-                "staffuser"
-            ]
-        ], 
-        "slug": "luck-in-the-prophecy", 
+        "authors": [], 
+        "slug": "lorem-ipsum", 
         "allow_comments": true, 
         "tease": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.", 
         "created": "2014-01-27T17:05:08", 
-        "modified": "2014-03-12T12:59:57", 
+        "modified": "2014-03-26T11:45:33.810", 
         "is_live": false, 
         "artist_profile": false
     }
@@ -5116,28 +5104,24 @@
         "status": 2, 
         "fp_and_staff_blog": false, 
         "subtitle": "", 
-        "featured_article": true, 
-        "fp_news_excerpt": "<p><img style=\"display: block; margin-left: auto; margin-right: auto;\" src=\"http://127.0.0.1:8000/media/blog/1/placeholder.gif\" alt=\"\" width=\"590\" height=\"590\" /></p>\r\n<p style=\"text-align: center;\"><span style=\"font-size: xx-small;\">Lorem Ipsum Dolar (Tupac Shakur),\u00a0Photograph taken by\u00a0<em>Lorem Ipsum\u00a0</em>(1996) dolar sit amet.</span></p>\r\n<blockquote>\r\n<p>Did you hear about the rose that grew<br /> from a crack in the concrete?<br /> Proving nature's law is wrong it<br /> learned to walk with out having feet.<br /> Funny it seems, but by keeping it's dreams,<br /> it learned to breathe fresh air.<br /> Long live the rose that grew from concrete<br /> when no one else ever cared.</p>\r\n<p>\u2014 from <em>Lorem Ipsum Dolar</em>\u00a0by Tupac Shakur</p>\r\n</blockquote>\r\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>", 
+        "featured_article": false, 
+        "fp_news_excerpt": "", 
         "post_item_link": null, 
-        "byline": "Robert Combs", 
-        "title": "Luck in the Prophecy", 
-        "publish": "2014-01-28T10:30:00", 
+        "byline": "John B. Smith", 
+        "title": "Lorem Ipsum", 
+        "publish": "2014-03-19T11:44:41", 
         "staff_blog": false, 
-        "body": "<p><img style=\"display: block; margin-left: auto; margin-right: auto;\" src=\"http://127.0.0.1:8000/media/blog/1/placeholder.gif\" alt=\"\" width=\"590\" height=\"590\" /></p>\n<p style=\"text-align: center;\"><span style=\"font-size: xx-small;\">Lorem Ipsum Dolar (Tupac Shakur),\u00a0Photograph taken by\u00a0<em>Lorem Ipsum\u00a0</em>(1996) dolar sit amet.</span></p>\n<blockquote>\n<p>Did you hear about the rose that grew<br /> from a crack in the concrete?<br /> Proving nature's law is wrong it<br /> learned to walk with out having feet.<br /> Funny it seems, but by keeping it's dreams,<br /> it learned to breathe fresh air.<br /> Long live the rose that grew from concrete<br /> when no one else ever cared.</p>\n<p>\u2014 from <em>Lorem Ipsum Dolar</em>\u00a0by Tupac Shakur</p>\n</blockquote>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\n<p style=\"text-align: center;\">\u00a0<img src=\"http://127.0.0.1:8000/media/blog/1/placeholder.gif\" alt=\"\" width=\"590\" height=\"590\" /></p>\n<p style=\"text-align: center;\"><span style=\"font-size: xx-small;\">Lorem Ipsum Dolar (Tupac Shakur),\u00a0Photograph taken by\u00a0<em>Lorem Ipsum\u00a0</em>(1996) dolar sit amet.</span></p>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute <a href=\"http://www.google.com/\">irure dolor in reprehenderit</a> in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\n<p style=\"text-align: center;\"><img src=\"http://127.0.0.1:8000/media/blog/1/placeholder.gif\" alt=\"\" width=\"590\" height=\"590\" /></p>\n<p style=\"text-align: center;\"><span style=\"font-size: xx-small;\">Lorem Ipsum Dolar (Tupac Shakur),\u00a0Photograph taken by\u00a0<em>Lorem Ipsum\u00a0</em>(1996) dolar sit amet.</span></p>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\n<p>\u00a0<img style=\"display: block; margin-left: auto; margin-right: auto;\" src=\"http://127.0.0.1:8000/media/blog/1/placeholder.gif\" alt=\"\" width=\"590\" height=\"590\" /></p>\n<p style=\"text-align: center;\"><span style=\"font-size: xx-small;\">Lorem Ipsum Dolar (Tupac Shakur),\u00a0Photograph taken by\u00a0<em>Lorem Ipsum\u00a0</em>(1996) dolar sit amet.</span></p>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>", 
-        "tags": "test, tupac, rhizome", 
+        "body": "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>", 
+        "tags": "test", 
         "artbase_essay": false, 
         "is_micro": false, 
         "sponsored": false, 
-        "authors": [
-            [
-                "staffuser"
-            ]
-        ], 
-        "slug": "luck-in-the-prophecy", 
+        "authors": [], 
+        "slug": "lorem-ipsum", 
         "allow_comments": true, 
         "tease": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.", 
         "created": "2014-01-27T17:05:08", 
-        "modified": "2014-03-12T12:59:57", 
+        "modified": "2014-03-26T11:44:50.127", 
         "is_live": false, 
         "artist_profile": false
     }
@@ -5149,28 +5133,24 @@
         "status": 2, 
         "fp_and_staff_blog": false, 
         "subtitle": "", 
-        "featured_article": true, 
-        "fp_news_excerpt": "<p><img style=\"display: block; margin-left: auto; margin-right: auto;\" src=\"http://127.0.0.1:8000/media/blog/1/placeholder.gif\" alt=\"\" width=\"590\" height=\"590\" /></p>\r\n<p style=\"text-align: center;\"><span style=\"font-size: xx-small;\">Lorem Ipsum Dolar (Tupac Shakur),\u00a0Photograph taken by\u00a0<em>Lorem Ipsum\u00a0</em>(1996) dolar sit amet.</span></p>\r\n<blockquote>\r\n<p>Did you hear about the rose that grew<br /> from a crack in the concrete?<br /> Proving nature's law is wrong it<br /> learned to walk with out having feet.<br /> Funny it seems, but by keeping it's dreams,<br /> it learned to breathe fresh air.<br /> Long live the rose that grew from concrete<br /> when no one else ever cared.</p>\r\n<p>\u2014 from <em>Lorem Ipsum Dolar</em>\u00a0by Tupac Shakur</p>\r\n</blockquote>\r\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>", 
+        "featured_article": false, 
+        "fp_news_excerpt": "", 
         "post_item_link": null, 
-        "byline": "Robert Combs", 
-        "title": "Luck in the Prophecy", 
-        "publish": "2014-01-28T10:30:00", 
+        "byline": "John B. Smith", 
+        "title": "Lorem Ipsum", 
+        "publish": "2014-03-20T11:44:05", 
         "staff_blog": false, 
-        "body": "<p><img style=\"display: block; margin-left: auto; margin-right: auto;\" src=\"http://127.0.0.1:8000/media/blog/1/placeholder.gif\" alt=\"\" width=\"590\" height=\"590\" /></p>\n<p style=\"text-align: center;\"><span style=\"font-size: xx-small;\">Lorem Ipsum Dolar (Tupac Shakur),\u00a0Photograph taken by\u00a0<em>Lorem Ipsum\u00a0</em>(1996) dolar sit amet.</span></p>\n<blockquote>\n<p>Did you hear about the rose that grew<br /> from a crack in the concrete?<br /> Proving nature's law is wrong it<br /> learned to walk with out having feet.<br /> Funny it seems, but by keeping it's dreams,<br /> it learned to breathe fresh air.<br /> Long live the rose that grew from concrete<br /> when no one else ever cared.</p>\n<p>\u2014 from <em>Lorem Ipsum Dolar</em>\u00a0by Tupac Shakur</p>\n</blockquote>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\n<p style=\"text-align: center;\">\u00a0<img src=\"http://127.0.0.1:8000/media/blog/1/placeholder.gif\" alt=\"\" width=\"590\" height=\"590\" /></p>\n<p style=\"text-align: center;\"><span style=\"font-size: xx-small;\">Lorem Ipsum Dolar (Tupac Shakur),\u00a0Photograph taken by\u00a0<em>Lorem Ipsum\u00a0</em>(1996) dolar sit amet.</span></p>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute <a href=\"http://www.google.com/\">irure dolor in reprehenderit</a> in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\n<p style=\"text-align: center;\"><img src=\"http://127.0.0.1:8000/media/blog/1/placeholder.gif\" alt=\"\" width=\"590\" height=\"590\" /></p>\n<p style=\"text-align: center;\"><span style=\"font-size: xx-small;\">Lorem Ipsum Dolar (Tupac Shakur),\u00a0Photograph taken by\u00a0<em>Lorem Ipsum\u00a0</em>(1996) dolar sit amet.</span></p>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\n<p>\u00a0<img style=\"display: block; margin-left: auto; margin-right: auto;\" src=\"http://127.0.0.1:8000/media/blog/1/placeholder.gif\" alt=\"\" width=\"590\" height=\"590\" /></p>\n<p style=\"text-align: center;\"><span style=\"font-size: xx-small;\">Lorem Ipsum Dolar (Tupac Shakur),\u00a0Photograph taken by\u00a0<em>Lorem Ipsum\u00a0</em>(1996) dolar sit amet.</span></p>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>", 
-        "tags": "test, tupac, rhizome", 
+        "body": "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>", 
+        "tags": "test", 
         "artbase_essay": false, 
         "is_micro": false, 
         "sponsored": false, 
-        "authors": [
-            [
-                "staffuser"
-            ]
-        ], 
-        "slug": "luck-in-the-prophecy", 
+        "authors": [], 
+        "slug": "lorem-ipsum", 
         "allow_comments": true, 
         "tease": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.", 
         "created": "2014-01-27T17:05:08", 
-        "modified": "2014-03-12T12:59:57", 
+        "modified": "2014-03-26T11:44:14.635", 
         "is_live": false, 
         "artist_profile": false
     }
@@ -5182,28 +5162,24 @@
         "status": 2, 
         "fp_and_staff_blog": false, 
         "subtitle": "", 
-        "featured_article": true, 
-        "fp_news_excerpt": "<p><img style=\"display: block; margin-left: auto; margin-right: auto;\" src=\"http://127.0.0.1:8000/media/blog/1/placeholder.gif\" alt=\"\" width=\"590\" height=\"590\" /></p>\r\n<p style=\"text-align: center;\"><span style=\"font-size: xx-small;\">Lorem Ipsum Dolar (Tupac Shakur),\u00a0Photograph taken by\u00a0<em>Lorem Ipsum\u00a0</em>(1996) dolar sit amet.</span></p>\r\n<blockquote>\r\n<p>Did you hear about the rose that grew<br /> from a crack in the concrete?<br /> Proving nature's law is wrong it<br /> learned to walk with out having feet.<br /> Funny it seems, but by keeping it's dreams,<br /> it learned to breathe fresh air.<br /> Long live the rose that grew from concrete<br /> when no one else ever cared.</p>\r\n<p>\u2014 from <em>Lorem Ipsum Dolar</em>\u00a0by Tupac Shakur</p>\r\n</blockquote>\r\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>", 
+        "featured_article": false, 
+        "fp_news_excerpt": "", 
         "post_item_link": null, 
-        "byline": "Robert Combs", 
-        "title": "Luck in the Prophecy", 
-        "publish": "2014-01-28T10:30:00", 
+        "byline": "John B. Smith", 
+        "title": "Lorem Ipsum", 
+        "publish": "2014-03-21T11:43:25", 
         "staff_blog": false, 
-        "body": "<p><img style=\"display: block; margin-left: auto; margin-right: auto;\" src=\"http://127.0.0.1:8000/media/blog/1/placeholder.gif\" alt=\"\" width=\"590\" height=\"590\" /></p>\n<p style=\"text-align: center;\"><span style=\"font-size: xx-small;\">Lorem Ipsum Dolar (Tupac Shakur),\u00a0Photograph taken by\u00a0<em>Lorem Ipsum\u00a0</em>(1996) dolar sit amet.</span></p>\n<blockquote>\n<p>Did you hear about the rose that grew<br /> from a crack in the concrete?<br /> Proving nature's law is wrong it<br /> learned to walk with out having feet.<br /> Funny it seems, but by keeping it's dreams,<br /> it learned to breathe fresh air.<br /> Long live the rose that grew from concrete<br /> when no one else ever cared.</p>\n<p>\u2014 from <em>Lorem Ipsum Dolar</em>\u00a0by Tupac Shakur</p>\n</blockquote>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\n<p style=\"text-align: center;\">\u00a0<img src=\"http://127.0.0.1:8000/media/blog/1/placeholder.gif\" alt=\"\" width=\"590\" height=\"590\" /></p>\n<p style=\"text-align: center;\"><span style=\"font-size: xx-small;\">Lorem Ipsum Dolar (Tupac Shakur),\u00a0Photograph taken by\u00a0<em>Lorem Ipsum\u00a0</em>(1996) dolar sit amet.</span></p>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute <a href=\"http://www.google.com/\">irure dolor in reprehenderit</a> in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\n<p style=\"text-align: center;\"><img src=\"http://127.0.0.1:8000/media/blog/1/placeholder.gif\" alt=\"\" width=\"590\" height=\"590\" /></p>\n<p style=\"text-align: center;\"><span style=\"font-size: xx-small;\">Lorem Ipsum Dolar (Tupac Shakur),\u00a0Photograph taken by\u00a0<em>Lorem Ipsum\u00a0</em>(1996) dolar sit amet.</span></p>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\n<p>\u00a0<img style=\"display: block; margin-left: auto; margin-right: auto;\" src=\"http://127.0.0.1:8000/media/blog/1/placeholder.gif\" alt=\"\" width=\"590\" height=\"590\" /></p>\n<p style=\"text-align: center;\"><span style=\"font-size: xx-small;\">Lorem Ipsum Dolar (Tupac Shakur),\u00a0Photograph taken by\u00a0<em>Lorem Ipsum\u00a0</em>(1996) dolar sit amet.</span></p>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>", 
-        "tags": "test, tupac, rhizome", 
+        "body": "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>", 
+        "tags": "test", 
         "artbase_essay": false, 
         "is_micro": false, 
         "sponsored": false, 
-        "authors": [
-            [
-                "staffuser"
-            ]
-        ], 
-        "slug": "luck-in-the-prophecy", 
+        "authors": [], 
+        "slug": "lorem-ipsum", 
         "allow_comments": true, 
         "tease": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.", 
         "created": "2014-01-27T17:05:08", 
-        "modified": "2014-03-12T12:59:57", 
+        "modified": "2014-03-26T11:43:39.364", 
         "is_live": false, 
         "artist_profile": false
     }
@@ -5215,28 +5191,24 @@
         "status": 2, 
         "fp_and_staff_blog": false, 
         "subtitle": "", 
-        "featured_article": true, 
-        "fp_news_excerpt": "<p><img style=\"display: block; margin-left: auto; margin-right: auto;\" src=\"http://127.0.0.1:8000/media/blog/1/placeholder.gif\" alt=\"\" width=\"590\" height=\"590\" /></p>\r\n<p style=\"text-align: center;\"><span style=\"font-size: xx-small;\">Lorem Ipsum Dolar (Tupac Shakur),\u00a0Photograph taken by\u00a0<em>Lorem Ipsum\u00a0</em>(1996) dolar sit amet.</span></p>\r\n<blockquote>\r\n<p>Did you hear about the rose that grew<br /> from a crack in the concrete?<br /> Proving nature's law is wrong it<br /> learned to walk with out having feet.<br /> Funny it seems, but by keeping it's dreams,<br /> it learned to breathe fresh air.<br /> Long live the rose that grew from concrete<br /> when no one else ever cared.</p>\r\n<p>\u2014 from <em>Lorem Ipsum Dolar</em>\u00a0by Tupac Shakur</p>\r\n</blockquote>\r\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>", 
+        "featured_article": false, 
+        "fp_news_excerpt": "", 
         "post_item_link": null, 
-        "byline": "Robert Combs", 
-        "title": "Luck in the Prophecy", 
-        "publish": "2014-01-28T10:30:00", 
+        "byline": "John B. Smith", 
+        "title": "Lorem Ipsum", 
+        "publish": "2014-03-22T11:42:58", 
         "staff_blog": false, 
-        "body": "<p><img style=\"display: block; margin-left: auto; margin-right: auto;\" src=\"http://127.0.0.1:8000/media/blog/1/placeholder.gif\" alt=\"\" width=\"590\" height=\"590\" /></p>\n<p style=\"text-align: center;\"><span style=\"font-size: xx-small;\">Lorem Ipsum Dolar (Tupac Shakur),\u00a0Photograph taken by\u00a0<em>Lorem Ipsum\u00a0</em>(1996) dolar sit amet.</span></p>\n<blockquote>\n<p>Did you hear about the rose that grew<br /> from a crack in the concrete?<br /> Proving nature's law is wrong it<br /> learned to walk with out having feet.<br /> Funny it seems, but by keeping it's dreams,<br /> it learned to breathe fresh air.<br /> Long live the rose that grew from concrete<br /> when no one else ever cared.</p>\n<p>\u2014 from <em>Lorem Ipsum Dolar</em>\u00a0by Tupac Shakur</p>\n</blockquote>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\n<p style=\"text-align: center;\">\u00a0<img src=\"http://127.0.0.1:8000/media/blog/1/placeholder.gif\" alt=\"\" width=\"590\" height=\"590\" /></p>\n<p style=\"text-align: center;\"><span style=\"font-size: xx-small;\">Lorem Ipsum Dolar (Tupac Shakur),\u00a0Photograph taken by\u00a0<em>Lorem Ipsum\u00a0</em>(1996) dolar sit amet.</span></p>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute <a href=\"http://www.google.com/\">irure dolor in reprehenderit</a> in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\n<p style=\"text-align: center;\"><img src=\"http://127.0.0.1:8000/media/blog/1/placeholder.gif\" alt=\"\" width=\"590\" height=\"590\" /></p>\n<p style=\"text-align: center;\"><span style=\"font-size: xx-small;\">Lorem Ipsum Dolar (Tupac Shakur),\u00a0Photograph taken by\u00a0<em>Lorem Ipsum\u00a0</em>(1996) dolar sit amet.</span></p>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\n<p>\u00a0<img style=\"display: block; margin-left: auto; margin-right: auto;\" src=\"http://127.0.0.1:8000/media/blog/1/placeholder.gif\" alt=\"\" width=\"590\" height=\"590\" /></p>\n<p style=\"text-align: center;\"><span style=\"font-size: xx-small;\">Lorem Ipsum Dolar (Tupac Shakur),\u00a0Photograph taken by\u00a0<em>Lorem Ipsum\u00a0</em>(1996) dolar sit amet.</span></p>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>", 
-        "tags": "test, tupac, rhizome", 
+        "body": "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>", 
+        "tags": "test", 
         "artbase_essay": false, 
         "is_micro": false, 
         "sponsored": false, 
-        "authors": [
-            [
-                "staffuser"
-            ]
-        ], 
-        "slug": "luck-in-the-prophecy", 
+        "authors": [], 
+        "slug": "lorem-ipsum", 
         "allow_comments": true, 
         "tease": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.", 
         "created": "2014-01-27T17:05:08", 
-        "modified": "2014-03-12T12:59:57", 
+        "modified": "2014-03-26T11:47:48.260", 
         "is_live": false, 
         "artist_profile": false
     }
@@ -5248,28 +5220,24 @@
         "status": 2, 
         "fp_and_staff_blog": false, 
         "subtitle": "", 
-        "featured_article": true, 
-        "fp_news_excerpt": "<p><img style=\"display: block; margin-left: auto; margin-right: auto;\" src=\"http://127.0.0.1:8000/media/blog/1/placeholder.gif\" alt=\"\" width=\"590\" height=\"590\" /></p>\r\n<p style=\"text-align: center;\"><span style=\"font-size: xx-small;\">Lorem Ipsum Dolar (Tupac Shakur),\u00a0Photograph taken by\u00a0<em>Lorem Ipsum\u00a0</em>(1996) dolar sit amet.</span></p>\r\n<blockquote>\r\n<p>Did you hear about the rose that grew<br /> from a crack in the concrete?<br /> Proving nature's law is wrong it<br /> learned to walk with out having feet.<br /> Funny it seems, but by keeping it's dreams,<br /> it learned to breathe fresh air.<br /> Long live the rose that grew from concrete<br /> when no one else ever cared.</p>\r\n<p>\u2014 from <em>Lorem Ipsum Dolar</em>\u00a0by Tupac Shakur</p>\r\n</blockquote>\r\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>", 
+        "featured_article": false, 
+        "fp_news_excerpt": "", 
         "post_item_link": null, 
-        "byline": "Robert Combs", 
-        "title": "Luck in the Prophecy", 
-        "publish": "2014-01-28T10:30:00", 
+        "byline": "John B. Smith", 
+        "title": "Lorem Ipsum", 
+        "publish": "2014-03-23T11:42:18", 
         "staff_blog": false, 
-        "body": "<p><img style=\"display: block; margin-left: auto; margin-right: auto;\" src=\"http://127.0.0.1:8000/media/blog/1/placeholder.gif\" alt=\"\" width=\"590\" height=\"590\" /></p>\n<p style=\"text-align: center;\"><span style=\"font-size: xx-small;\">Lorem Ipsum Dolar (Tupac Shakur),\u00a0Photograph taken by\u00a0<em>Lorem Ipsum\u00a0</em>(1996) dolar sit amet.</span></p>\n<blockquote>\n<p>Did you hear about the rose that grew<br /> from a crack in the concrete?<br /> Proving nature's law is wrong it<br /> learned to walk with out having feet.<br /> Funny it seems, but by keeping it's dreams,<br /> it learned to breathe fresh air.<br /> Long live the rose that grew from concrete<br /> when no one else ever cared.</p>\n<p>\u2014 from <em>Lorem Ipsum Dolar</em>\u00a0by Tupac Shakur</p>\n</blockquote>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\n<p style=\"text-align: center;\">\u00a0<img src=\"http://127.0.0.1:8000/media/blog/1/placeholder.gif\" alt=\"\" width=\"590\" height=\"590\" /></p>\n<p style=\"text-align: center;\"><span style=\"font-size: xx-small;\">Lorem Ipsum Dolar (Tupac Shakur),\u00a0Photograph taken by\u00a0<em>Lorem Ipsum\u00a0</em>(1996) dolar sit amet.</span></p>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute <a href=\"http://www.google.com/\">irure dolor in reprehenderit</a> in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\n<p style=\"text-align: center;\"><img src=\"http://127.0.0.1:8000/media/blog/1/placeholder.gif\" alt=\"\" width=\"590\" height=\"590\" /></p>\n<p style=\"text-align: center;\"><span style=\"font-size: xx-small;\">Lorem Ipsum Dolar (Tupac Shakur),\u00a0Photograph taken by\u00a0<em>Lorem Ipsum\u00a0</em>(1996) dolar sit amet.</span></p>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\n<p>\u00a0<img style=\"display: block; margin-left: auto; margin-right: auto;\" src=\"http://127.0.0.1:8000/media/blog/1/placeholder.gif\" alt=\"\" width=\"590\" height=\"590\" /></p>\n<p style=\"text-align: center;\"><span style=\"font-size: xx-small;\">Lorem Ipsum Dolar (Tupac Shakur),\u00a0Photograph taken by\u00a0<em>Lorem Ipsum\u00a0</em>(1996) dolar sit amet.</span></p>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>", 
-        "tags": "test, tupac, rhizome", 
+        "body": "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>", 
+        "tags": "test", 
         "artbase_essay": false, 
         "is_micro": false, 
         "sponsored": false, 
-        "authors": [
-            [
-                "staffuser"
-            ]
-        ], 
-        "slug": "luck-in-the-prophecy", 
+        "authors": [], 
+        "slug": "lorem-ipsum", 
         "allow_comments": true, 
         "tease": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.", 
         "created": "2014-01-27T17:05:08", 
-        "modified": "2014-03-12T12:59:57", 
+        "modified": "2014-03-26T11:42:33.561", 
         "is_live": false, 
         "artist_profile": false
     }
@@ -5281,28 +5249,24 @@
         "status": 2, 
         "fp_and_staff_blog": false, 
         "subtitle": "", 
-        "featured_article": true, 
-        "fp_news_excerpt": "<p><img style=\"display: block; margin-left: auto; margin-right: auto;\" src=\"http://127.0.0.1:8000/media/blog/1/placeholder.gif\" alt=\"\" width=\"590\" height=\"590\" /></p>\r\n<p style=\"text-align: center;\"><span style=\"font-size: xx-small;\">Lorem Ipsum Dolar (Tupac Shakur),\u00a0Photograph taken by\u00a0<em>Lorem Ipsum\u00a0</em>(1996) dolar sit amet.</span></p>\r\n<blockquote>\r\n<p>Did you hear about the rose that grew<br /> from a crack in the concrete?<br /> Proving nature's law is wrong it<br /> learned to walk with out having feet.<br /> Funny it seems, but by keeping it's dreams,<br /> it learned to breathe fresh air.<br /> Long live the rose that grew from concrete<br /> when no one else ever cared.</p>\r\n<p>\u2014 from <em>Lorem Ipsum Dolar</em>\u00a0by Tupac Shakur</p>\r\n</blockquote>\r\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>", 
+        "featured_article": false, 
+        "fp_news_excerpt": "", 
         "post_item_link": null, 
-        "byline": "Robert Combs", 
-        "title": "Luck in the Prophecy", 
-        "publish": "2014-01-28T10:30:00", 
+        "byline": "John B. Smith", 
+        "title": "Lorem Ipsum", 
+        "publish": "2014-03-24T11:41:13", 
         "staff_blog": false, 
-        "body": "<p><img style=\"display: block; margin-left: auto; margin-right: auto;\" src=\"http://127.0.0.1:8000/media/blog/1/placeholder.gif\" alt=\"\" width=\"590\" height=\"590\" /></p>\n<p style=\"text-align: center;\"><span style=\"font-size: xx-small;\">Lorem Ipsum Dolar (Tupac Shakur),\u00a0Photograph taken by\u00a0<em>Lorem Ipsum\u00a0</em>(1996) dolar sit amet.</span></p>\n<blockquote>\n<p>Did you hear about the rose that grew<br /> from a crack in the concrete?<br /> Proving nature's law is wrong it<br /> learned to walk with out having feet.<br /> Funny it seems, but by keeping it's dreams,<br /> it learned to breathe fresh air.<br /> Long live the rose that grew from concrete<br /> when no one else ever cared.</p>\n<p>\u2014 from <em>Lorem Ipsum Dolar</em>\u00a0by Tupac Shakur</p>\n</blockquote>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\n<p style=\"text-align: center;\">\u00a0<img src=\"http://127.0.0.1:8000/media/blog/1/placeholder.gif\" alt=\"\" width=\"590\" height=\"590\" /></p>\n<p style=\"text-align: center;\"><span style=\"font-size: xx-small;\">Lorem Ipsum Dolar (Tupac Shakur),\u00a0Photograph taken by\u00a0<em>Lorem Ipsum\u00a0</em>(1996) dolar sit amet.</span></p>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute <a href=\"http://www.google.com/\">irure dolor in reprehenderit</a> in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\n<p style=\"text-align: center;\"><img src=\"http://127.0.0.1:8000/media/blog/1/placeholder.gif\" alt=\"\" width=\"590\" height=\"590\" /></p>\n<p style=\"text-align: center;\"><span style=\"font-size: xx-small;\">Lorem Ipsum Dolar (Tupac Shakur),\u00a0Photograph taken by\u00a0<em>Lorem Ipsum\u00a0</em>(1996) dolar sit amet.</span></p>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\n<p>\u00a0<img style=\"display: block; margin-left: auto; margin-right: auto;\" src=\"http://127.0.0.1:8000/media/blog/1/placeholder.gif\" alt=\"\" width=\"590\" height=\"590\" /></p>\n<p style=\"text-align: center;\"><span style=\"font-size: xx-small;\">Lorem Ipsum Dolar (Tupac Shakur),\u00a0Photograph taken by\u00a0<em>Lorem Ipsum\u00a0</em>(1996) dolar sit amet.</span></p>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>", 
-        "tags": "test, tupac, rhizome", 
+        "body": "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>", 
+        "tags": "test", 
         "artbase_essay": false, 
         "is_micro": false, 
         "sponsored": false, 
-        "authors": [
-            [
-                "staffuser"
-            ]
-        ], 
-        "slug": "luck-in-the-prophecy", 
+        "authors": [], 
+        "slug": "lorem-ipsum", 
         "allow_comments": true, 
         "tease": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.", 
         "created": "2014-01-27T17:05:08", 
-        "modified": "2014-03-12T12:59:57", 
+        "modified": "2014-03-26T11:41:24.545", 
         "is_live": false, 
         "artist_profile": false
     }
@@ -5315,10 +5279,10 @@
         "description": "", 
         "license": null, 
         "title": "placeholder", 
-        "_height": 590, 
-        "image": "blog/1/placeholder.gif", 
-        "_width": 590, 
-        "modified": "2014-03-12T12:34:45", 
+        "_height": 297, 
+        "image": "blog/1/placeholder_4.jpg", 
+        "_width": 375, 
+        "modified": "2014-03-26T11:23:41.778", 
         "post": 1, 
         "thumbnail": "blog/1/placeholder_thumbnail.jpg", 
         "taken_by": ""
@@ -5543,10 +5507,10 @@
         "description": "", 
         "title": "", 
         "url": "", 
-        "image": "frontpage/images/000000.gif", 
+        "image": "frontpage/images/jpeg_1.jpg", 
         "object_id": 1, 
         "text_color": "#FFFFFF", 
-        "byline_color": "#0000FF", 
+        "byline_color": "#ff0000", 
         "content_type": [
             "blog", 
             "post"
@@ -5563,16 +5527,16 @@
         "description": "", 
         "title": "", 
         "url": "", 
-        "image": "frontpage/images/placeholder_1400x420.gif", 
+        "image": "frontpage/images/Genzken2_2.jpg", 
         "object_id": 2, 
-        "text_color": "#000000", 
-        "byline_color": "#0000FF", 
+        "text_color": "#fffb00", 
+        "byline_color": "#fffb00", 
         "content_type": [
             "blog", 
             "post"
         ], 
         "featured_set": 1, 
-        "title_color": "#000000"
+        "title_color": "#fffb00"
     }
 },
 {
@@ -5913,7 +5877,7 @@
         "summary": "This level gives you full access to all the features and perks of Rhizome membership for only $30 a year.", 
         "link": "http://rhizome.org/support/individual/#member", 
         "badge": "support/membership_levels/individual-membership/Member_Badge.png", 
-        "donation_level": "30.00"
+        "donation_level": "30"
     }
 },
 {
@@ -5936,7 +5900,7 @@
         "summary": "Organizational Subscriptions are group memberships structured and priced for institutional communities such as universities, art schools, art centers, museums and libraries. Subscribing institutions receive full access to our peerless archive of digital art, and powerful tools and resources designed for both newcomers and experts to deepen their understanding of the field.", 
         "link": "http://rhizome.org/join/organizations/", 
         "badge": "", 
-        "donation_level": "0.00"
+        "donation_level": "0"
     }
 },
 {
@@ -5958,7 +5922,7 @@
         "summary": "In addition to all other member benefits, Council-level membership provides an in-depth view of digital art through a special events program, which includes studio visits with artists, conversations with tech start-ups and private tours of current exhibitions with curators.", 
         "link": "http://rhizome.org/support/individual/#council", 
         "badge": "support/membership_levels/rhizome-council/Council_Badge.png", 
-        "donation_level": "1000.00"
+        "donation_level": "1000"
     }
 },
 {
@@ -5982,7 +5946,7 @@
         "summary": "All of Rhizome's basic features.", 
         "link": "", 
         "badge": "", 
-        "donation_level": "0.00"
+        "donation_level": "0"
     }
 },
 {

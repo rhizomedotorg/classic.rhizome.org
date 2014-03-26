@@ -6,9 +6,7 @@
 site_media/
 search_index/
 sitemaps/
-logs/
 venv/
 .sass-cache/
 rhizome/local_settings.py
 local_settings.py
-fabfile.py
