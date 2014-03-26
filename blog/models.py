@@ -526,23 +526,23 @@ class PostImage(models.Model):
     admin_thumbnail.short_description = 'thumbnail'
     admin_thumbnail.allow_tags = True
 
-def on_photo_save(sender, **kwargs):
-    from PIL import Image
-    instance = kwargs['instance']
-    if not instance._width or not instance._height:
-        theImage = Image.open(kwargs['instance'].image)
-        size = theImage.size
-        instance._width = size[0]
-        instance._height = size[1]
-        instance.save()
-    if instance.image and not instance.thumbnail:
-        if os.path.exists(instance.image.path):
-            from easy_thumbnails.files import get_thumbnailer
-            thumbnail_options = dict(size=(100, 75), crop=True)
-            thumbnail = get_thumbnailer(instance.image).get_thumbnail(thumbnail_options)        
-            instance.thumbnail = thumbnail
-            instance.save()
-post_save.connect(on_photo_save, sender=PostImage)
+# def on_photo_save(sender, **kwargs):
+#     from PIL import Image
+#     instance = kwargs['instance']
+#     if not instance._width or not instance._height:
+#         theImage = Image.open(kwargs['instance'].image)
+#         size = theImage.size
+#         instance._width = size[0]
+#         instance._height = size[1]
+#         instance.save()
+#     if instance.image and not instance.thumbnail:
+#         if os.path.exists(instance.image.path):
+#             from easy_thumbnails.files import get_thumbnailer
+#             thumbnail_options = dict(size=(100, 75), crop=True)
+#             thumbnail = get_thumbnailer(instance.image).get_thumbnail(thumbnail_options)        
+#             instance.thumbnail = thumbnail
+#             instance.save()
+# post_save.connect(on_photo_save, sender=PostImage)
 
 '''
 Blog Video (ripped off basic.models)

@@ -1,5 +1,8 @@
 *.pyc
 *.DS_Store
+*.sqlite
+*.sqlite3
+*.db3
 site_media/
 search_index/
 sitemaps/
