@@ -76,10 +76,6 @@ h3 {
     clear: both;
 }
 
-h1 span.small-caps {
-    font-variant: small-caps;
-}
-
 .header {
     width: 100%;
     top: 56px;
@@ -197,6 +193,11 @@ h1 span.small-caps {
     text-align: center;
 }
 
+.footer {
+    width: 1000px;
+    margin-bottom: 400px;
+}
+
 .team-wrap {
     background: white;
 }
@@ -225,6 +226,36 @@ h1 span.small-caps {
     border-top: 1px solid rgba(140,140,140,0.1);
 }
 
+.info-block {
+    padding-bottom: 10px;
+    border-top: none;
+}
+
+.partner-block {
+    border-top: none;
+}
+
+.partner-block h2 {
+    border-bottom: 1px solid rgba(140,140,140,0.1);
+}
+
+.partner-block img {
+    position: relative;
+    margin: 4px
+}
+
+.partner-block .member {
+    width: 50%;
+}
+
+.info-block h2 {
+    text-align: left;
+}
+
+.info-block p {
+    padding-left: 0;
+}
+
 .member {
     float:left;
     width:320px;
@@ -234,12 +265,12 @@ h1 span.small-caps {
     width:640px;
 }
 
-.member img {
-    width:300;
+.keynote .member img {
+    width: 620px;
 }
 
-#partners {
-    margin-bottom: 50px;
+.partner-block .member img {
+    width: auto; 
 }
 
 .fixed-top {
@@ -247,7 +278,3 @@ h1 span.small-caps {
     top: 0;
     z-index: 10000;
 }
-
-
-
-
