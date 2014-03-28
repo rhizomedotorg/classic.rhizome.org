@@ -211,11 +211,33 @@ h3 {
     cursor: default;
 }
 
+.team-wrap .label {
+    height: 40px;
+    opacity: 0;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    font-family: sans-serif;
+    text-transform: uppercase;
+}
+
+.label.black {
+    color: black;
+}
+
+
 .team-wrap img {
     width: 100%;
+    margin-bottom: -40px;
+    z-index: 10;
 }
 
 .team-wrap a.pair:hover {
+    opacity:1;
+    transition: opacity 0.5s ease;
+}
+
+.team-wrap a.pair:hover .label {
     opacity:1;
     transition: opacity 0.5s ease;
 }
