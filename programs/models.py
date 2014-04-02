@@ -129,8 +129,7 @@ def on_rhizevent_save(sender, **kwargs):
         if os.path.exists(instance.image.path):
             from easy_thumbnails.files import get_thumbnailer
             thumbnail_options = dict(size=(100, 0))
-            thumbnail = get_thumbnailer(instance.image).get_thumbnail(thumbnail_options)        
-            instance.thumbnail = thumbnail
+            instance.thumbnail = get_thumbnailer(instance.image).get_thumbnail(thumbnail_options).file
             instance.save()
 post_save.connect(on_rhizevent_save, sender=RhizEvent)
         
@@ -225,8 +224,7 @@ def on_exhibition_save(sender, **kwargs):
         if os.path.exists(instance.image.path):
             from easy_thumbnails.files import get_thumbnailer
             thumbnail_options = dict(size=(100, 0))
-            thumbnail = get_thumbnailer(instance.image).get_thumbnail(thumbnail_options)        
-            instance.thumbnail = thumbnail
+            instance.thumbnail = get_thumbnailer(instance.image).get_thumbnail(thumbnail_options).file
             instance.save()
 post_save.connect(on_exhibition_save, sender=Exhibition)
         
