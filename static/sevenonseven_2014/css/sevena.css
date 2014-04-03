@@ -219,6 +219,7 @@ h3 {
     font-weight: bold;
     font-family: sans-serif;
     text-transform: uppercase;
+    line-height: 20px;
 }
 
 .label.black {
@@ -265,7 +266,7 @@ h3 {
 
 .partner-block img {
     position: relative;
-    margin: 4px
+    margin: 6px 20px;
 }
 
 .partner-block .member {
