@@ -71,4 +71,4 @@ password: 123
 (coming soon)
 
 got a question? open an issue.    
-for support contact admin@rhizome.org.
+for support contact scott.meisburger@rhizome.org.
