@@ -166,9 +166,9 @@ class NewDonation(models.Model):
     payment_method = models.CharField(max_length=30, blank=True, choices=PAYMENT_METHOD_CHOICES, default=CREDIT_CARD)
     created = models.DateTimeField(auto_now_add=True)
     user = models.ForeignKey(User, null=True, blank=True, on_delete=models.SET_NULL)
-    first_name = models.CharField(max_length=100)
-    last_name = models.CharField(max_length=100)
-    contact_email = models.EmailField()
+    first_name = models.CharField(max_length=100, blank=True)
+    last_name = models.CharField(max_length=100, blank=True)
+    contact_email = models.EmailField(blank=True)
     authorize_transaction_id = models.CharField(max_length=255, blank=True)
     authorize_transaction_raw_response = models.TextField(blank=True)
     gift = models.CharField(max_length=255, blank=True)
@@ -177,15 +177,18 @@ class NewDonation(models.Model):
     paypal_transaction_raw_response = models.TextField(blank=True)
 
     def __unicode__(self):
-        return '%s %s' % (self.first_name, self.last_name)
+        if self.first_name or self.last_name:
+            return '%s %s' % (self.first_name, self.last_name)
+        return '%s' % self.id 
 
     def save(self, *args, **kwargs):
         from accounts.models import RhizomeUser
         if not self.pk:
-            try:
-                self.user = RhizomeUser.objects.get(email=self.contact_email)
-            except (RhizomeUser.DoesNotExist, MultipleObjectsReturned):
-                pass
+            if self.contact_email:
+                try:
+                    self.user = RhizomeUser.objects.get(email=self.contact_email)
+                except (RhizomeUser.DoesNotExist, MultipleObjectsReturned):
+                    pass
         return super(NewDonation, self).save(*args, **kwargs)
 
 #signals
@@ -200,7 +203,7 @@ def update_donor_membership(sender, instance, created, **kwargs):
                     membership.update_membership(instance)
                 else:
                     instance.user.get_profile().make_member(instance)
-            else:
+            elif instance.contact_email:
                 email = EazyEmail.objects.get(title='Claim Membership Instructions')
                 email.send(settings.MEMBERSHIP_GROUP_EMAIL, [instance.contact_email], bcc=[settings.MEMBERSHIP_GROUP_EMAIL], extra_context={
                     'first_name': instance.first_name,
