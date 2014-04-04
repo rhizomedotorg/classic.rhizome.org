@@ -164,11 +164,11 @@ class NewDonation(models.Model):
 
     amount = models.DecimalField(help_text='USD', max_digits=10, decimal_places=2)
     payment_method = models.CharField(max_length=30, blank=True, choices=PAYMENT_METHOD_CHOICES, default=CREDIT_CARD)
-    created = models.DateTimeField(blank=True)
+    created = models.DateTimeField(help_text='used to determine if part of a campaign', blank=True)
     user = models.ForeignKey(User, null=True, blank=True, on_delete=models.SET_NULL)
     first_name = models.CharField(max_length=100, blank=True)
     last_name = models.CharField(max_length=100, blank=True)
-    contact_email = models.EmailField(blank=True)
+    contact_email = models.EmailField(help_text='if creating, mail will be sent to this address', blank=True)
     authorize_transaction_id = models.CharField(max_length=255, blank=True)
     authorize_transaction_raw_response = models.TextField(blank=True)
     gift = models.CharField(max_length=255, blank=True)
