@@ -182,7 +182,7 @@ class NewDonation(models.Model):
         return '%s' % self.id 
 
     def save(self, *args, **kwargs):
-        if not self.id:
+        if not self.id and not self.created:
             self.created = datetime.datetime.now()
 
         from accounts.models import RhizomeUser
