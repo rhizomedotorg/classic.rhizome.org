@@ -216,7 +216,7 @@ def update_donor_membership(sender, instance, created, **kwargs):
 
 @receiver(post_save, sender=NewDonation, dispatch_uid='support.send_donation_receipt')
 def send_donation_receipt(sender, instance, created, **kwargs):
-    if created:
+    if created and instance.contact_email:
         if Decimal(instance.amount) >= Decimal(settings.MIN_DONATION_TO_BECOME_COUNCIL):
             title = 'Council Level Donation'
         elif Decimal(instance.amount) >= Decimal(settings.HIGH_LEVEL_DONATION_CUTOFF):
