@@ -162,9 +162,9 @@ class NewDonation(models.Model):
         (BITCOIN, 'Bitcoin'),
     )
 
-    amount = models.DecimalField(max_digits=10, decimal_places=2)
+    amount = models.DecimalField(help_text='USD', max_digits=10, decimal_places=2)
     payment_method = models.CharField(max_length=30, blank=True, choices=PAYMENT_METHOD_CHOICES, default=CREDIT_CARD)
-    created = models.DateTimeField(auto_now_add=True)
+    created = models.DateTimeField(blank=True)
     user = models.ForeignKey(User, null=True, blank=True, on_delete=models.SET_NULL)
     first_name = models.CharField(max_length=100, blank=True)
     last_name = models.CharField(max_length=100, blank=True)
@@ -182,6 +182,9 @@ class NewDonation(models.Model):
         return '%s' % self.id 
 
     def save(self, *args, **kwargs):
+        if not self.id:
+            self.created = datetime.datetime.now()
+
         from accounts.models import RhizomeUser
         if not self.pk:
             if self.contact_email:
