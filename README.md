@@ -39,13 +39,6 @@ hold your breath!
 pip install -r requirements.txt
 ```
 
-for PIL to install correctly on Mavericks, might have do this first:
-
-```
-export CFLAGS=-Qunused-arguments
-export CPPFLAGS=-Qunused-arguments
-```
-
 ### load fixtures
 
 ```
@@ -78,4 +71,4 @@ password: 123
 (coming soon)
 
 got a question? open an issue.    
-for support contact info@rhizome.org.
+for support contact admin@rhizome.org.
