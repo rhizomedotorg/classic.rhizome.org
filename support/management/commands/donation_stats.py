@@ -19,7 +19,7 @@ class Command(BaseCommand):
             raise CommandError('missing argument: destination dir')
 
         campaign = CommunityCampaign.objects.all()[0]
-        donations = campaign.donations.all()
+        donations = campaign.donations.order_by('-created')
 
         with open(args[0] + 'data.csv', 'w+') as fp:
             a = csv.writer(fp)
