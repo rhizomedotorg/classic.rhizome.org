@@ -15,7 +15,7 @@ SUB_NAV = {
     'Journal': (
         ('Artist Profiles', reverse('artist_profiles')),
         ('Surf Reports', reverse('blog_tag_detail', args=['surf-report'])),
-        ('Post-Net Aesthetics', reverse('blog_tag_detail', args=['post-net-aesthetics'])),
+        ('E-Cig in Context', reverse('blog_tag_detail', args=['e-cig-in-context'])),
     ),
     'Artbase': (
         ('Browse', reverse('browse')),
