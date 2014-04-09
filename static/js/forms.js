@@ -58,7 +58,7 @@ jQuery.noConflict();
         return myjson;
     };
     RZForm.validate = function(form) {
-        var fields = $(form).find('input, textarea, select');
+        var fields = $(form).find('input:not(:hidden), textarea, select');
         var errFields = [];
 
         $(fields).each(function() {

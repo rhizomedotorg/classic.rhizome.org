@@ -79,7 +79,7 @@ def confirm_donation(request):
     if not incoming_amount:
         return redirect('support_donate')
 
-    incoming_gift = request.GET.get('gift')
+    incoming_gift = request.GET.get('gift', '')
     current_site = get_current_site(request)
 
     return render(request, 'support/donation_step2.html', {
