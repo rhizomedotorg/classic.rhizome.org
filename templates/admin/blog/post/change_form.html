@@ -91,7 +91,7 @@
             content += '<hr />' 
             content += '<div>'      
             {% for image in adminform.form.instance.get_images %}
-                content += '<img onclick="addImg(\'{{image.get_absolute_url}}\', {{image.width}},{{image.height}});return false;" class = "post-add-image" width = "150" src="{{MEDIA_URL}}{{image.image}}" />'
+                content += '<img onclick="addImg(\'{{image.get_absolute_url}}\');return false;" class = "post-add-image" width = "150" src="{{MEDIA_URL}}{{image.image}}" />'
             {% endfor %}
             content += '</div>'      
         {% endif %}
@@ -133,8 +133,8 @@
         body_div.insertBefore(div, document.getElementById('id_body').nextSibling); 
     }
     
-    function addImg(src,width,height) {
-        html = '<img src="'+insert_media_url+src+'" width="'+width+'" height="'+height+'" />';
+    function addImg(src) {
+        html = '<img src="'+insert_media_url+src+'" />';
         body = document.getElementById('tinymce');
         tinyMCE.execInstanceCommand("id_body","mceInsertContent",false,html);
     }

@@ -147,22 +147,10 @@ class Post(models.Model):
         return PostImage.objects.filter(post=self)
 
     def get_first_image(self):
-        """
-        returns thumbnail of first image for post
-        """
         first_image = None
         images = PostImage.objects.filter(post=self)[:1]
         if images:
-            for img in images:
-                if img.thumbnail:
-                    if os.path.exists(img.thumbnail.path):
-                        first_image = img.thumbnail
-                    else:
-                        if os.path.exists(img.image.path):
-                            first_image = img.image
-                else:
-                    if os.path.exists(img.image.path):
-                        first_image = img.image
+            return images[0].image
         return first_image
         
     def get_first_image_full_size(self):
@@ -474,13 +462,7 @@ def blog_media_upload(instance, filename):
     extension = filename.split('.')[-1]
     return 'blog/%s/%s.%s' % (instance.post.id, instance.title.replace(" ", "-"), extension)
 
-def thumbnail_image_upload(instance, filename):
-    extension = filename.split('.')[-1]
-    return 'blog/%s/%s_thumbnail.%s' % (instance.post.id, instance.title.replace(" ", "-"), extension)
-
 class PostImage(models.Model):
-    _width = models.PositiveIntegerField(null=True, blank=True)
-    _height = models.PositiveIntegerField(null=True, blank=True)
     post = models.ForeignKey(Post)
     title = models.CharField(max_length=255)
     image = models.FileField(upload_to=blog_media_upload,db_index=True)
@@ -489,12 +471,6 @@ class PostImage(models.Model):
     description = models.TextField(blank=True)
     uploaded = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
-    thumbnail =  models.FileField(upload_to = thumbnail_image_upload,
-                                        help_text = "Thumbnail: 100w x 75h (CREATED AUTOMATICALLY)",
-                                        null=True,
-                                        blank=True,
-                                        editable=False,
-                                        )
 
     class Meta:
         db_table = 'blog_postimage'
@@ -503,12 +479,6 @@ class PostImage(models.Model):
 
     def __unicode__(self):
         return '%s / %s' % (self.title, self.post.title)
-
-    def width(self):
-        return self._width
-
-    def height(self):
-        return self._height
 
     @property
     def url(self):
@@ -519,10 +489,7 @@ class PostImage(models.Model):
 
     # for displaying thumbnail in change list
     def admin_thumbnail(self):
-        if self.thumbnail:
-            return '<img src="' + self.thumbnail.url + '" />'
-        else:
-            return '<img src="" />'
+        return '<img src="' + self.image.url + '" width="100" />'
     admin_thumbnail.short_description = 'thumbnail'
     admin_thumbnail.allow_tags = True
 

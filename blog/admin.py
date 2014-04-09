@@ -126,7 +126,7 @@ class PostImageAdmin(admin.ModelAdmin):
     form = PostImageForm
     fieldsets = (
         (None, {
-            'fields': ('title', 'taken_by', '_width', '_height', 'image', 'description', 'post')
+            'fields': ('title', 'taken_by', 'image', 'description', 'post')
         }),
     )
 
