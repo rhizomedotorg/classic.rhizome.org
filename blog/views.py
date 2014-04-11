@@ -250,14 +250,10 @@ def artist_profiles(request):
     breadcrumb = (("Editorial","/editorial"),("Artist Profiles",None))
     posts = Post.objects.published().filter(artist_profile=True)
     
+    image = None
     post_for_image = Post.objects.published().filter(artist_profile=True)[:1]
     for p in post_for_image:
-        image = p.get_first_image_full_size()
-    
-    if image: 
-        if image.height() > 300:
-            image.half_width = image.width() / 2 
-            image.half_height = image.height() / 2 
+        image = p.get_first_image()
     
     #give posts attributes for sorting
     for p in posts:

@@ -152,18 +152,6 @@ class Post(models.Model):
         if images:
             return images[0].image
         return first_image
-        
-    def get_first_image_full_size(self):
-        """
-        returns url of first image in post
-        """
-        first_image = None
-        images = PostImage.objects.filter(post=self)[:1]
-        if images:
-            for img in images:
-                if os.path.exists("%s" % img.image.path):
-                    first_image = img
-        return first_image
 
     def get_first_image_from_body(self):
         """
