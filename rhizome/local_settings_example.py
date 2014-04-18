@@ -7,10 +7,7 @@ DATABASES = {
 
 HAYSTACK_CONNECTIONS = {
     'default': {
-        'engine': 'haystack.backends.elasticsearch_backend.elasticsearchsearchengine',
-        'url': 'http://127.0.0.1:9200/',
-        'index_name': 'haystack',
-        'timeout': 60,
+        'engine': 'haystack.backends.simple_backend.SimpleEngine',
     },
 }
 
