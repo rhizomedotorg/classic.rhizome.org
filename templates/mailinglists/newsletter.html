@@ -17,7 +17,7 @@
 <table width="700" align="center" cellspacing="0" cellpadding="0" border="0" style="border-collapse:seperate;">
     <tr>
         <td width="700" height="19" align="center" style="font:11px Arial, Helvetica, sans-serif; color:#666;">
-        	If you have trouble reading this email, <a style="color:#026784; text-decoration:none;" href="{{SITE_URL}}/editorial/news/">click here</a>.
+        	If you have trouble reading this email, <a style="color:#026784; text-decoration:none;" href="{{SITE_URL}}/editorial/news/?ref=nwslettr">click here</a>.
         </td>
     </tr>
 
@@ -25,7 +25,7 @@
         <td width="700" height="78" bgcolor="#000000">
         	<table width="700" align="center" cellpadding="0" border="0" style="border-collapse:seperate;">
             	<tr>
-                	<td width="400" height="75" style="line-height:0;"><a href="{{SITE_URL}}/editorial/news/"><img src="{{ STATIC_URL }}editorial/newsletter/banner_images/newsletter_banner.jpg" alt="" /></a></td>
+                	<td width="400" height="75" style="line-height:0;"><a href="{{SITE_URL}}/editorial/news/?ref=nwslettr"><img src="{{ STATIC_URL }}editorial/newsletter/banner_images/newsletter_banner.jpg" alt="" /></a></td>
                 	<td width="400" height="75" align="right" valign="bottom" style="font:italic bold 14px Georgia, 'Times New Roman', Times, serif; color:#ccc;">
                 		<p style="padding:0 10px 6px 0; margin:0;">{{ article.publish|date:"n.j.Y" }}</p>
                 	</td>
@@ -76,14 +76,14 @@
 										</tr>
 										<tr><td width="441" height="10"><img src="{{ STATIC_URL }}editorial/newsletter/template_images/hr.gif" alt="" /></td></tr>
 										<tr>
-											<td width="441" height="40" style="font:bold 18px Georgia, 'Times New Roman', Times, serif; color:#000;"><a style ="color:black;text-decoration:none;" href="http://rhizome.org/{{article.get_absolute_url}}">{{article.title}}</a></td>
+											<td width="441" height="40" style="font:bold 18px Georgia, 'Times New Roman', Times, serif; color:#000;"><a style ="color:black;text-decoration:none;" href="http://rhizome.org/{{article.get_absolute_url}}?ref=nwslettr">{{article.title}}</a></td>
 										</tr>
 										<tr>
 											<td width="441" height="15" style="font:12px Georgia, 'Times New Roman', Times, serif; color:#000;">
 											  <span class="nowrap">
 											  {% if authors %}
 											     By {% for a in authors %}
-												    <b><a style="font: 12px Georgia, 'Times New Roman', Times, serif; color:#026784; padding:0; margin:0;text-decoration:none;" href="http://rhizome.org{{a.get_profile.get_absolute_url}}/">{{a.get_profile}}</a></b>
+												    <b><a style="font: 12px Georgia, 'Times New Roman', Times, serif; color:#026784; padding:0; margin:0;text-decoration:none;" href="http://rhizome.org{{a.get_profile.get_absolute_url}}?ref=nwslettr">{{a.get_profile}}</a></b>
 								                 {% endfor %}
 								              {% else %}
 								                <b>{{ article.byline }}</b>
@@ -102,7 +102,7 @@
 											  <table align="right">
 													<tr>
 														<td bgcolor="#ffcaff" height="16">
-															<a href="http://rhizome.org{{article.get_absolute_url}}" style="font:bold 10px Arial, Helvetica, sans-serif; color:#000; padding:0 5px; margin:0; text-transform:uppercase; text-decoration:none;">MORE &raquo;</a>
+															<a href="http://rhizome.org{{article.get_absolute_url}}?ref=nwslettr" style="font:bold 10px Arial, Helvetica, sans-serif; color:#000; padding:0 5px; margin:0; text-transform:uppercase; text-decoration:none;">MORE &raquo;</a>
 														</td>
 													</tr>
 												</table>
@@ -144,7 +144,7 @@
 													<tr>
 														<td width="215">
 															<p style="font:10px Arial, Helvetica, sans-serif; color:#666; padding:0; margin:0;">{{ article.publish|date:"j F Y" }}</p>
-															<a href="http://rhizome.org{{ article.get_absolute_url }}" style="font:italic 14px Georgia, 'Times New Roman', Times, serif; color:#026784; padding:0; margin:0;text-decoration:none;">{{ article.title }}</a>
+															<a href="http://rhizome.org{{ article.get_absolute_url }}?ref=nwslettr" style="font:italic 14px Georgia, 'Times New Roman', Times, serif; color:#026784; padding:0; margin:0;text-decoration:none;">{{ article.title }}</a>
 														</td>
 													</tr>
 													<tr><td width="215" height="15" style="line-height:0;">&nbsp;</td></tr>
@@ -156,7 +156,7 @@
 															<table>
 																<tr>
 																	<td bgcolor="#ffcaff" height="16">
-																		<a href="http://rhizome.org/editorial/" style="font:bold 10px Arial, Helvetica, sans-serif; color:#000; padding:0 5px; margin:0; text-transform:uppercase; text-decoration:none;">SEE ALL NEWS</a>
+																		<a href="http://rhizome.org/editorial/?ref=nwslettr" style="font:bold 10px Arial, Helvetica, sans-serif; color:#000; padding:0 5px; margin:0; text-transform:uppercase; text-decoration:none;">SEE ALL NEWS</a>
 																	</td>
 																</tr>
 															</table>
@@ -184,7 +184,7 @@
 													<tr>
 														<td width="215">
 															<p style="font:10px Arial, Helvetica, sans-serif; color:#666; padding:0; margin:0;">{{ post.publish|date:"j F Y" }}</p>
-															<a href="http://rhizome.org{{ post.get_absolute_url }}" style="font:italic 14px Georgia, 'Times New Roman', Times, serif; color:#026784; padding:0; margin:0;text-decoration:none;">{{ post.title }}</a>
+															<a href="http://rhizome.org{{ post.get_absolute_url }}?ref=nwslettr" style="font:italic 14px Georgia, 'Times New Roman', Times, serif; color:#026784; padding:0; margin:0;text-decoration:none;">{{ post.title }}</a>
 														</td>
 													</tr>
 													<tr><td width="215" height="15" style="line-height:0;">&nbsp;</td></tr>
@@ -194,7 +194,7 @@
 															<table>
 																<tr>
 																	<td bgcolor="#ffcaff" height="16">
-																		<a href="http://rhizome.org/editorial/" style="font:bold 10px Arial, Helvetica, sans-serif; color:#000; padding:0 5px; margin:0; text-transform:uppercase; text-decoration:none;">SEE THE BLOG</a>
+																		<a href="http://rhizome.org/editorial/?ref=nwslettr" style="font:bold 10px Arial, Helvetica, sans-serif; color:#000; padding:0 5px; margin:0; text-transform:uppercase; text-decoration:none;">SEE THE BLOG</a>
 																	</td>  
 																</tr>
 															</table>
@@ -233,7 +233,7 @@
 													<tr>
 														<td width="215">												  
 															{% for opp in opps %}		
-															<p style="font:13px Georgia, 'Times New Roman', Times, serif; color:#000; padding:0 0 5px; margin:0;"><img src="{{ STATIC_URL }}editorial/newsletter/template_images/arrow.gif" alt="" /> <a style="color:#026784; text-decoration:none;" href="http://rhizome.org{{ opp.get_absolute_url }}">{{ opp.title }}</a></p>
+															<p style="font:13px Georgia, 'Times New Roman', Times, serif; color:#000; padding:0 0 5px; margin:0;"><img src="{{ STATIC_URL }}editorial/newsletter/template_images/arrow.gif" alt="" /> <a style="color:#026784; text-decoration:none;" href="http://rhizome.org{{ opp.get_absolute_url }}?ref=nwslettr">{{ opp.title }}</a></p>
 													       {% endfor %}
 														</td>
 													</tr>
@@ -243,7 +243,7 @@
 															<table>
 																<tr>
 																	<td bgcolor="#ffcaff" height="16">
-																		<a href="http://rhizome.org/announce/opportunities/" style="font:bold 10px Arial, Helvetica, sans-serif; color:#000; padding:0 5px; margin:0; text-transform:uppercase; text-decoration:none;">SEE ALL</a>
+																		<a href="http://rhizome.org/announce/opportunities/?ref=nwslettr" style="font:bold 10px Arial, Helvetica, sans-serif; color:#000; padding:0 5px; margin:0; text-transform:uppercase; text-decoration:none;">SEE ALL</a>
 																	</td>
 																</tr>
 															</table>
@@ -268,7 +268,7 @@
 													<tr>
 														<td width="215">
 														  {% for event in events %}
-												        <p style="font:13px Georgia, 'Times New Roman', Times, serif; color:#000; padding:0 0 5px; margin:0;"><img src="{{ STATIC_URL }}editorial/newsletter/template_images/arrow.gif" alt="" /> <a style="color:#026784; text-decoration:none;" href="http://rhizome.org{{event.get_absolute_url}}">{{ event.title }}</a></p>
+												        <p style="font:13px Georgia, 'Times New Roman', Times, serif; color:#000; padding:0 0 5px; margin:0;"><img src="{{ STATIC_URL }}editorial/newsletter/template_images/arrow.gif" alt="" /> <a style="color:#026784; text-decoration:none;" href="http://rhizome.org{{event.get_absolute_url}}?ref=nwslettr">{{ event.title }}</a></p>
 												          {% endfor %}
 														</td>
 													</tr>
@@ -278,7 +278,7 @@
 															<table>
 																<tr>
 																	<td bgcolor="#ffcaff" height="16">
-																		<a href="http://rhizome.org/announce/events" style="font:bold 10px Arial, Helvetica, sans-serif; color:#000; padding:0 5px; margin:0; text-transform:uppercase; text-decoration:none;">SEE ALL</a>
+																		<a href="http://rhizome.org/announce/events/?ref=nwslettr" style="font:bold 10px Arial, Helvetica, sans-serif; color:#000; padding:0 5px; margin:0; text-transform:uppercase; text-decoration:none;">SEE ALL</a>
 																	</td>
 																</tr>
 															</table>
@@ -321,14 +321,14 @@
                                                             {% if thread.content_type_id == 112 %}
                                                                 {% get_comment_count for thread as thread_count %}
                                 				                <p style="font:13px Georgia, 'Times New Roman', Times, serif; color:#000; padding:0 0 5px; margin:0;"><img src="{{ STATIC_URL }}editorial/newsletter/template_images/arrow.gif" alt="" /> 
-        														      <a style="color:#026784; text-decoration:none;" href="http://rhizome.org/discuss/view/{{thread.id}}/">{{ thread.content_object.title }} ({{ thread_count }} posts)
+        														      <a style="color:#026784; text-decoration:none;" href="http://rhizome.org/discuss/view/{{thread.id}}/?ref=nwslettr">{{ thread.content_object.title }} ({{ thread_count }} posts)
         														      </a>
         														  </p>
     												        {% else %}
     														  
     														   {% get_comment_count for thread.content_object as thread_count %}
     														  <p style="font:13px Georgia, 'Times New Roman', Times, serif; color:#000; padding:0 0 5px; margin:0;"><img src="{{ STATIC_URL }}editorial/newsletter/template_images/arrow.gif" alt="" /> 
-    														      <a style="color:#026784; text-decoration:none;" href="http://rhizome.org/discuss/view/{{thread.id}}/">{{ thread.content_object.title }} ({{ thread_count }} posts)
+    														      <a style="color:#026784; text-decoration:none;" href="http://rhizome.org/discuss/view/{{thread.id}}/?ref=nwslettr">{{ thread.content_object.title }} ({{ thread_count }} posts)
     														      </a>
     														  </p>
     														  {% endif %}														  
@@ -343,7 +343,7 @@
 															<table>
 																<tr>
 																	<td bgcolor="#ffcaff" height="16">
-																		<a href="{{SITE_URL}}/discuss/" style="font:bold 10px Arial, Helvetica, sans-serif; color:#000; padding:0 5px; margin:0; text-transform:uppercase; text-decoration:none;">SEE ALL</a>
+																		<a href="{{SITE_URL}}/discuss/?ref=nwslettr" style="font:bold 10px Arial, Helvetica, sans-serif; color:#000; padding:0 5px; margin:0; text-transform:uppercase; text-decoration:none;">SEE ALL</a>
 																	</td>
 																</tr>
 															</table>
@@ -408,10 +408,10 @@
 										<tr><td width="174" height="10" style="line-height:0;">&nbsp;</td></tr>
 								        <tr>
 								            <td width="174" style="line-height:0; text-align:center;">
-								                <p style="font:bold 11px Arial, Helvetica, sans-serif; color:#000; padding:0 5px; margin:0; text-transform:uppercase;"><a style="font:bold 12px Arial, Helvetica, sans-serif; color:#026784; text-decoration:none;" href="https://rhizome.org/support/donate">  <img style = "border:none;" width = "175" src = "{{ STATIC_URL }}support/images/individual/member_price.png" /></a>
+								                <p style="font:bold 11px Arial, Helvetica, sans-serif; color:#000; padding:0 5px; margin:0; text-transform:uppercase;"><a style="font:bold 12px Arial, Helvetica, sans-serif; color:#026784; text-decoration:none;" href="https://rhizome.org/support/donate?ref=nwslettr">  <img style = "border:none;" width = "175" src = "{{ STATIC_URL }}support/images/individual/member_price.png" /></a>
                                                 </p>
                             
-                                                <p style="font:11px Arial, Helvetica, sans-serif; padding:0; margin-bottom:5px;"><a href="https://rhizome.org/support/donate" style="font:bold 12px Arial, Helvetica, sans-serif; color:#026784; text-decoration:none;margin:0px 3px;">Become a Rhizome Member!</a></p>   											
+                                                <p style="font:11px Arial, Helvetica, sans-serif; padding:0; margin-bottom:5px;"><a href="https://rhizome.org/support/donate/?ref=nwslettr" style="font:bold 12px Arial, Helvetica, sans-serif; color:#026784; text-decoration:none;margin:0px 3px;">Become a Rhizome Member!</a></p>   											
 								            </td>
 										</tr>                                    
                                     </table>
