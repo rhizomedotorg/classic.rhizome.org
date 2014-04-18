@@ -1,7 +1,7 @@
 # Rhizome.org
 
 Online since 1996.    
-Open source since 2014.
+Free and open-source software (FOSS) since 2014.
 
 **rationale**
 
