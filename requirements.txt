@@ -29,3 +29,4 @@ django-celery
 nose
 -e git+https://github.com/protonpopsicle/django-cl2csv.git#egg=django_cl2csv-dev
 -e git+https://github.com/rhizomedotorg/django-eazy-email.git@master#egg=django_eazy_email-dev
+-e git+https://github.com/rhizomedotorg/django-advanced-moderation.git@master#egg=django_advanced-moderation

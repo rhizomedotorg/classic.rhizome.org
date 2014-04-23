@@ -27,8 +27,8 @@ from countries.models import Country, UsState
 from mailinglists.models import MLMessage
 from utils.helpers import strip_bbcode
 
-from moderation.utils import ModelModerator, moderator
-from moderation.anti_spam import check_post_for_spam_via_defensio
+from advancedmod.utils import ModelModerator, moderator
+from utils.anti_spam import check_post_for_spam_via_defensio
 
 from mailinglists.signals import send_to_announce_mailing_list
 

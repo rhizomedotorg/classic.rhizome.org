@@ -151,6 +151,7 @@ INSTALLED_APPS = (
     'djcelery',
     'cl2csv',
     'eazyemail',
+    'advancedmod',
 
     # rhizome apps
     'rhizome',
@@ -170,7 +171,6 @@ INSTALLED_APPS = (
     'proxy_server',
     'utils',
     'feeds',
-    'moderation',
     'sevenonseven',
     'deploy_button',
     'exhibitions',

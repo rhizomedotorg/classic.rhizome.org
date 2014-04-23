@@ -10,8 +10,8 @@ from django.core.urlresolvers import reverse
 from django.db import models
 from django.db.models.signals import post_save
 
-from moderation.anti_spam import check_post_for_spam_via_defensio
-from moderation.utils import ModelModerator, moderator
+from utils.anti_spam import check_post_for_spam_via_defensio
+from advancedmod.utils import ModelModerator, moderator
 from threadedcomments.models import ThreadedComment
 
 from mailinglists.signals import send_to_discuss_mailing_list

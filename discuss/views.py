@@ -10,7 +10,7 @@ from discuss.models import DiscussionThread, update_discuss_activity_stream
 from discuss.forms import EditDiscussForm
 from threadedcomments.models import ThreadedComment 
 
-from moderation.utils import moderator
+from advancedmod.utils import moderator
 from mailinglists.signals import send_to_discuss_mailing_list
 
 from utils.template import RhizomePaginator
