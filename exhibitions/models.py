@@ -1,4 +1,5 @@
 from datetime import datetime
+from django.core.exceptions import ValidationError
 from django.core.urlresolvers import reverse
 from django.db import models
 
@@ -16,9 +17,9 @@ class FrontpageExhibition(models.Model):
 	description = models.TextField(blank=True, help_text='Metadata only')
 	credits = models.TextField('Credits HTML', blank=True)
 	image = models.FileField(upload_to='frontpage_exhibitions', blank=True, help_text='If no iframe or video is specified, this is the artwork, otherwise it\'s metadata only.')
-	iframe_src = models.URLField(blank=True)
+	iframe_src = models.URLField(blank=True, help_text='WARNING: Don\'t use this for embedding video')
 	video_embed_code = models.TextField(blank=True)
-	video_aspect_ratio = models.FloatField(null=True, blank=True, help_text='Use decimal format')
+	video_aspect_ratio = models.FloatField(null=True, blank=True, help_text='Use decimal format, required for above field')
 	start_time = models.DateTimeField(blank=True, null=True)
 	end_time = models.DateTimeField(blank=True, null=True)
 	objects = FrontpageExhibitionManager()
@@ -28,3 +29,8 @@ class FrontpageExhibition(models.Model):
 
 	def get_absolute_url(self):
 		return reverse('frontpage_preview', kwargs={'slug':self.slug})
+
+        def clean(self, *args, **kwargs):
+            if self.video_embed_code and not self.video_aspect_ratio:
+                raise ValidationError('You must add a video aspect ratio!')
+                super(FrontpageExhibition, self).clean(*args, **kwargs)
