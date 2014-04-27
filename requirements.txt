@@ -16,7 +16,7 @@ django_extensions==1.1.1
 python-dateutil==2.1
 feedparser==5.1.3
 -e git+https://github.com/rhizomedotorg/PyChimp.git#egg=PyChimp
-MySQL-python
+#MySQL-python
 tldextract
 python-memcached
 django-paintstore
