@@ -10,7 +10,7 @@ This document provides instructions for installing and running rhizome.org local
 ## Install
 
 ```
-$ git clone git@github.com:rhizomedotorg/rhizome.org.git
+$ git clone https://github.com/rhizomedotorg/rhizome.org.git
 ```
 
 **configure**
