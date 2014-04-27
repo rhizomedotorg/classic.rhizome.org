@@ -39,7 +39,7 @@ hold your breath!
 pip install -r requirements.txt
 ```
 
-*for PIL to compile correctly on OS X, might have to do this before first:*
+*for PIL to compile correctly on OS X, might have to do this first:*
 
 ```
 export CFLAGS=-Qunused-arguments
