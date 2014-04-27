@@ -52,11 +52,6 @@ export CPPFLAGS=-Qunused-arguments
 sh sysop_roll_db.sh
 ```
 
-ignore these errors:
-
-`Could not access or create artbase CouchDB database`    
-`Failed to install index for...`
-
 ## Usage
 
 ```
@@ -66,6 +61,11 @@ $ python manage.py runserver
 ```
 
 navigate to [http://localhost:8000](localhost:8000)
+
+ignore these errors (at any point you see them):
+
+`Could not access or create artbase CouchDB database`
+`Failed to install index for...`
 
 **admin panel**
 
