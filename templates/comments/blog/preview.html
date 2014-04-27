@@ -18,7 +18,7 @@
         <div id="editorial-posts"  class= "left-column span-15">
             <div class="single-post span-15">                    
               <h2 class="post-title"><a href="{{ form.get_comment_object.content_object.get_absolute_url }}">{{ form.get_comment_object.content_object.title|safe }}</a></h2>
-                <div class="post-details">
+                <div class="post-details clearfix">
                     <span class="span-14">
                         {% if object.get_authors %}
                         {% for author in object.get_authors %}
