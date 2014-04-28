@@ -1,0 +1,99 @@
+/* Overrides to moibilize editorial views
+ * Primarly overriding the styles in blueprint
+ * and blueprint/screen
+ */
+@media (max-width: 600px) {
+    .carousel#fp .carousel-inner .carousel-caption {
+        left: 50px;
+        top: 16px;
+    }
+        .carousel#fp .carousel-inner h2 {
+            line-height: 1.1;
+            padding-bottom: 10px;
+        }
+        .carousel#fp .carousel-inner p {
+            max-width: 75%;
+        }
+        .carousel#fp img.image {
+            width: auto;
+            max-height: 260px;
+            min-height: inherit;
+        }
+        .carousel#fp .item {
+            height: 260px;
+        }
+    #content {
+        margin-top: -5px;
+    }
+    .container {
+        width: 100%;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        padding: 15px;
+    }
+        .container .span-15,
+        .container .right-column,
+        .container .span-24 {
+            width: 100%;
+            margin: 0;
+        }
+        .container .right-column {
+            margin-top: 15px;
+        }
+        .container .prepend-1 {
+            padding-left: 0;
+        }
+        .container .more,
+        .container .post-tags-and-share {
+            width: 100%;
+        }
+    #sidebar .content-wrap {
+        max-width: 100%;
+    }
+    #sidebar .content-body {
+        width: inherit;
+        padding: 10px;
+    }
+    #featured-ad div {
+        margin: 0 auto;
+    }
+    .post-body img {
+        max-width: 100%;
+        height: auto;
+    }
+    .post-meta {
+        float: none;
+    }
+    .new-share {
+        float: left;
+        width: 40%;
+    }
+    .new-share .share-btn {
+        font-size: 18px;
+        padding-right: 10px;
+        width: auto;
+    }
+    .post-nav {
+        padding: 15px 0;
+    }
+        .post-nav a {
+            width: 50%;
+            margin: 0;
+        }
+        .post-nav a.next {
+            float: right;
+        }
+        .post-nav a.previous {
+            float: left;
+        }
+}
+
+@media (max-width: 420px) {
+        .carousel#fp .carousel-inner h2 {
+            font-size: 24px;
+        }
+        .carousel#fp .carousel-inner p {
+            font-size: 12px;
+        }
+}

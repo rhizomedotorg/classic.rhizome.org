@@ -28,7 +28,7 @@
                 <h2 class="post-title"><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h2>
             {% endif %} 
 
-            <div class="post-details">
+            <div class="post-details clearfix">
                 <div class="post-meta">
                     {% if post.get_authors %}
                         {% for author in post.get_authors %}

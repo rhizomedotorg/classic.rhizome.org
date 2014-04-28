@@ -2,7 +2,7 @@
 
 <div data-live-url="{% url 'post_tease' post.id %}" class="post {% if post.is_live %}live-post{% endif %}{% if post.is_micro %} micro{% endif %}">
     <h2 class="post-title"><a href="{{ post.get_absolute_url }}?ref={{ parent_ref }}_post_title">{{ post.title|safe }}</a></h2>
-    <div class="post-details">
+    <div class="post-details clearfix">
 
         <div class="post-meta">
             {% if post.get_authors %}

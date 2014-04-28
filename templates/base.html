@@ -12,7 +12,8 @@
         <meta name="ROBOTS" content="ALL" />
         <meta name="description" content="Rhizome is dedicated to the creation, presentation, preservation, and critique of emerging artistic practices that engage technology." />
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-
+        <!-- Set viewport so we can have mobile styles -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         {% block extrahead %}{% endblock %}
 
         <link rel="shortcut icon" href="{{ STATIC_URL }}images/favicons/leyva.gif" />
@@ -33,6 +34,7 @@
             <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/blueprint/print.css" media="print"/></link>
             <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/new_navbars.css"/></link>
             <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/top_banner.css"/></link>
+            <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/mobile.css"/></link>
             <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}font-awesome-4.0.0/css/font-awesome.min.css"/></link>
             <!--[if lt IE 8]>
                 <link rel="stylesheet" href="{{ STATIC_URL }}css/blueprint/ie.css" type="text/css" media="screen, projection"></link>
