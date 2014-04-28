@@ -88,3 +88,12 @@
             float: left;
         }
 }
+
+@media (max-width: 420px) {
+        .carousel#fp .carousel-inner h2 {
+            font-size: 24px;
+        }
+        .carousel#fp .carousel-inner p {
+            font-size: 12px;
+        }
+}
