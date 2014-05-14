@@ -39,6 +39,8 @@ ALLOWED_HOSTS = [
     '.rhizome.com.', # Also allow FQDN and subdomains
 ]
 
+COMMENT_MAX_LENGTH = 15000
+
 FILE_UPLOAD_MAX_MEMORY_SIZE = 5000000
 
 TIME_ZONE = 'America/New_York'
