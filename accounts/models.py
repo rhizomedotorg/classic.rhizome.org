@@ -822,7 +822,7 @@ class RhizomeUserModerator(ModelModerator):
         send_mail('Content Approved', self.approved_message_text(user), settings.DEFAULT_FROM_EMAIL, [user.email])
 
     def approved_message_text(self, user):
-        return '%s, your profile has been approved by our moderators.\n\nhttp://%s%s' % (
+        return u'%s, your profile has been approved by our moderators.\n\nhttp://%s%s' % (
             user.get_profile(),
             Site.objects.get_current().domain,
             user.get_profile().get_absolute_url()

@@ -1,46 +1,74 @@
 import datetime
 
-from django.contrib.auth.models import User
 from django.core.management.base import BaseCommand, CommandError
-from django.db import DEFAULT_DB_ALIAS
-from django.db.models import Count
+from django.db.models import Q
+
+from accounts.models import RhizomeUser
+
 from django.db.models.deletion import Collector
+from django.contrib.admin.util import NestedObjects
 
-from accounts.models import RhizomeUser, UserRating
 
+WORTHY_RATING_CUTOFF = 20
+LOGIN_CUTOFF_DAYS = 180
+WORTHY_ARTWORK_STATUSES = ['approved', 'awaiting', 'to_consider', 'rejected']
+
+def related_objs(q):
+    collector = NestedObjects(using='default')
+    collector.collect(q)
+    return collector.data
 
 class Command(BaseCommand):
     '''
-    this should be run once
+    this should be run once,
+    deletes innactive users who contribute nothing + spammers
+
+      194845
+    - 179224
+    --------
+       15621
     '''
     
     def handle(*args, **options):
-        # innactive (or haven't logged in recently) users with no important associated content?
         
-        delta = datetime.timedelta(days=365)
-        
-        # these properties can't be filtered in query since names aren't valid
-        q = RhizomeUser.objects.annotate(num_artworks=Count('artist/user'),
-                                         num_exhibitions=Count('user/curator'),
-                                         num_proposals=Count('user who created the proposal'),
-                                         num_orgsubs=Count('the org sub admin')
-        ).filter(num_artworks=0, num_exhibitions=0, num_proposals=0, num_orgsubs=0)
-        
-        q = q.filter(comment_comments__isnull=True, event__isnull=True,\
-                     opportunity__isnull=True, post__isnull=True,\
-                     approvalvote__isnull=True,\
-                     newdonation__isnull=True, reblogpost__isnull=True,\
-                     staffmember__isnull=True, downloadofthemonth__isnull=True,\
-                     job__isnull=True, collectioncurator__isnull=True, rankvote__isnull=True)
+        delta = datetime.timedelta(days=LOGIN_CUTOFF_DAYS)
 
-        innactive_users = q.filter(is_active=False)
-        dead_users = q.filter(last_login__lte=datetime.datetime.today() - delta, is_active=True)
+        q = RhizomeUser.objects.filter(
+            Q(artworks__isnull=True) | ~Q(artworks__status__in=WORTHY_ARTWORK_STATUSES),    # no worthy artworks
+            Q(comment_comments__isnull=True) | ~Q(comment_comments__is_removed=False),      # no visible comments
+            Q(user_rating__isnull=True) | Q(user_rating__rating__lte=WORTHY_RATING_CUTOFF), # has an unworthy low rating
+            Q(post__isnull=True),                                                           # no blog posts
+            Q(reblogpost__isnull=True),
+            Q(rhiz_author__isnull=True),
+            Q(newdonation__isnull=True),                                                    # no donations
+            Q(downloadofthemonth__isnull=True),                                             # never authored a "download of the month"
+            Q(prospective_user_admins__isnull=True),                                        # not an orgsub admin
+            Q(user_membership__isnull=True) | \
+            Q(user_membership__member_tools_exp_date__lte=datetime.datetime.now()),         # not currently a member
+            Q(is_active=False) | \
+            (Q(last_login__lte=datetime.datetime.today() - delta) & Q(is_active=True)),     # is innactive or hasn't logged in lately
+            Q(proposals__isnull=True),                                                      # has never participated in commissions
+            Q(rankvote__isnull=True),
+            Q(approvalvote__isnull=True),
+            Q(event__isnull=True) | ~Q(event__status__in=[1]) | ~Q(event__is_spam__in=[False]), # no visible announcements
+            Q(opportunity__isnull=True) | ~Q(opportunity__status__in=[1]) | ~Q(opportunity__is_spam__in=[False]),
+            Q(job__isnull=True) | ~Q(job__status__in=[1]) | ~Q(job__is_spam__in=[False]),
+            Q(collectioncurator__isnull=True),                                              # never curated a collection
+            Q(exhibitions__isnull=True) | ~Q(exhibitions__live=[True])                      # no visible exhibitions       
+        )
 
-        print 'deleting %s users...' % (innactive_users.count() + dead_users.count())
+        print 'deleting %s users...' % q.count()
 
-        innactive_users.delete()
-        dead_users.delete()
+        text_file = open('/tmp/output.txt', 'w')
+        text_file.write('%s' % related_objs(q))
+        # for o in q:
+        #     try:
+        #         text_file.write('%s' % related_objs(o))
+        #     except:
+        #         pass
+            
+        text_file.close()
+
+        q.delete()
 
         print 'done.'
-
-        

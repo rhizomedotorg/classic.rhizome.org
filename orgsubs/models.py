@@ -145,10 +145,10 @@ class Invoice(models.Model):
 class ProspectiveUser(models.Model):
     email = models.CharField(max_length=256, null=False)
     org_sub = models.ForeignKey(Organization, null=True)
-    user =  models.ForeignKey(User, null=True,blank=True, related_name="the potential user")
+    user =  models.ForeignKey(User, null=True,blank=True, related_name="prospective_users")
     created = models.DateTimeField(null=True)
     last_invitation = models.DateTimeField(null=True)
-    invite_admin = models.ForeignKey(User, null=True, related_name="the org sub admin")
+    invite_admin = models.ForeignKey(User, null=True, related_name="prospective_user_admins")
     accepted = models.BooleanField()
     registration_code = models.CharField(max_length=25,null=False,blank=True)
     removed = models.BooleanField()

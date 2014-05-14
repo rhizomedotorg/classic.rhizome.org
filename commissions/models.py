@@ -101,7 +101,7 @@ class Proposal(models.Model):
     title = models.CharField(max_length=225)
     artists = models.ManyToManyField(User,null=True,blank=True,related_name="artists involved in proposal with user accts")
     other_artists = models.TextField(max_length=150,null=True, blank=True)
-    author = models.ForeignKey(User,related_name="user who created the proposal")
+    author = models.ForeignKey(User,related_name="proposals")
     external_url = models.URLField(blank=True,null=True)
     tumblr_url = models.URLField(blank=True, null=True)
     rhizome_hosted = models.BooleanField(default=1, blank=True,db_index=True) 

@@ -285,7 +285,7 @@ class ArtworkStub(ArtBaseModel):
     The artwork MySQL stub. This model should be considered read only.
     """
     from django.contrib.auth.models import User
-    user = models.ForeignKey(User, related_name="artist/user")
+    user = models.ForeignKey(User, related_name="artworks")
 
     title = models.CharField(max_length=1024, blank=True, null=True)
     byline = models.CharField(max_length=200, blank=True, null=True)
@@ -1021,7 +1021,7 @@ class MemberExhibition(ArtBaseModel):
     """
     from django.contrib.auth.models import User
     live = models.BooleanField(default=False, db_index=True)
-    user = models.ForeignKey(User, related_name = "user/curator")
+    user = models.ForeignKey(User, related_name = "exhibitions")
     title = models.CharField(max_length=255)
     subtitle = models.CharField(max_length=255, blank=True)
     statement = models.TextField(blank=True)
