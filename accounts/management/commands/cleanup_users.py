@@ -21,12 +21,7 @@ def related_objs(q):
 class Command(BaseCommand):
     '''
     this should be run once,
-    deletes innactive users who contribute nothing + spammers
-
-      194845
-    - 179224
-    --------
-       15621
+    deletes innactive users with no associated content + spammers
     '''
     
     def handle(*args, **options):
@@ -55,11 +50,11 @@ class Command(BaseCommand):
             Q(job__isnull=True) | ~Q(job__status__in=[1]) | ~Q(job__is_spam__in=[False]),
             Q(collectioncurator__isnull=True),                                              # never curated a collection
             Q(exhibitions__isnull=True) | ~Q(exhibitions__live=[True])                      # no visible exhibitions       
-        )
+        )[:10000]
 
         print 'deleting %s users...' % q.count()
 
-        text_file = open('/tmp/output.txt', 'w')
+        text_file = open('/Users/rhiz/Desktop/output.txt', 'w')
         text_file.write('%s' % related_objs(q))
         # for o in q:
         #     try:
