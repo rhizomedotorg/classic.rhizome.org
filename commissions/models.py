@@ -307,3 +307,52 @@ class RankVote(models.Model):
         
     def __unicode__(self):
         return '%s for  %s' % (self.id, self.proposal)
+
+######## NEW COMMISSIONS
+
+class GrantManager(models.Manager):
+    def current(self):
+        return self.filter(is_active=True).order_by('-submission_start_date')
+
+    def past(self):
+        return self.filter(is_active=False, submission_end_date__lte=datetime.datetime.now()).order_by('-submission_start_date')
+
+class Grant(models.Model):
+    name = models.CharField(max_length=255)
+    slug = models.SlugField()
+    submission_start_date = models.DateTimeField(null=True, blank=True, db_index=True)
+    submission_end_date = models.DateTimeField(null=True, blank=True, db_index=True)
+    vote_start = models.DateTimeField(null=True, blank=True)
+    vote_end = models.DateTimeField(null=True, blank=True)
+    voting_enabled = models.BooleanField(default=True)
+    objects = GrantManager()
+
+class GrantProposalField(models.Model):
+    INPUT, TEXT_BOX, IMAGE = ('input', 'textarea', 'img')
+    DTYPE_CHOICES = (
+        (INPUT, 'input'),
+        (TEXT_BOX, 'text box'),
+        (IMAGE, 'image'),
+    )
+
+    proposal = models.ForeignKey(GrantProposal, related='fields')
+    name = models.CharField(max_length=100)
+    required = models.BooleanField(default=True)
+    dtype = models.CharField(max_length=25, choices=DTYPE_CHOICES, default=INPUT)
+    val_input = models.CharField(max_length=250, blank=True)
+    val_text_box = models.TextField(blank=True)
+    val_image = models.ImageField(upload_to='/grant_proposal/image/')
+
+    @property
+    def value(self):
+        if self.dtype == self.INPUT:
+            return self.val_input
+
+        if self.dtype == self.TEXT_BOX:
+            return self.val_text_box
+
+        if self.dtype == self.IMAGE:
+            return self.val_image
+
+class GrantProposal(models.Model):
+    user = models.ForeignKey(User, related='micro_grant_proposals')
