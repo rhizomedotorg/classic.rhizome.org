@@ -312,19 +312,21 @@ class RankVote(models.Model):
 
 class GrantManager(models.Manager):
     def current(self):
-        return self.filter(is_active=True).order_by('-submission_start_date')
+        return self.filter(
+            submission_start_date__lte=datetime.datetime.now(), 
+            voting_end_date__gte=datetime.datetime.now()
+        ).order_by('-submission_start_date')[:1]
 
     def past(self):
-        return self.filter(is_active=False, submission_end_date__lte=datetime.datetime.now()).order_by('-submission_start_date')
+        return self.filter(voting_end_date__lt=datetime.datetime.now()).order_by('-submission_start_date')
 
 class Grant(models.Model):
     name = models.CharField(max_length=255)
     slug = models.SlugField()
+    voting_enabled = models.BooleanField(default=True)
     submission_start_date = models.DateTimeField(null=True, blank=True, db_index=True)
     submission_end_date = models.DateTimeField(null=True, blank=True, db_index=True)
-    vote_start = models.DateTimeField(null=True, blank=True)
-    vote_end = models.DateTimeField(null=True, blank=True)
-    voting_enabled = models.BooleanField(default=True)
+    vote_end_date = models.DateTimeField(null=True, blank=True)
     objects = GrantManager()
 
 class GrantProposalField(models.Model):
@@ -338,8 +340,9 @@ class GrantProposalField(models.Model):
     proposal = models.ForeignKey(GrantProposal, related='fields')
     name = models.CharField(max_length=100)
     required = models.BooleanField(default=True)
+    voting_display = models.BooleanField(default=True)
     dtype = models.CharField(max_length=25, choices=DTYPE_CHOICES, default=INPUT)
-    val_input = models.CharField(max_length=250, blank=True)
+    val_input = models.CharField(max_length=255, blank=True)
     val_text_box = models.TextField(blank=True)
     val_image = models.ImageField(upload_to='/grant_proposal/image/')
 
@@ -355,4 +358,4 @@ class GrantProposalField(models.Model):
             return self.val_image
 
 class GrantProposal(models.Model):
-    user = models.ForeignKey(User, related='micro_grant_proposals')
+    user = models.ForeignKey(User, related='grant_proposals')
