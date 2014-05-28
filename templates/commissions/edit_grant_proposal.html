@@ -1,0 +1,23 @@
+{% extends 'new_base.html' %}
+{% load block_tags %}
+
+{% block pageTitle %}Edit Your Proposal{% endblock %}
+
+{% block navbars %}
+    {% get_nav 'Programs' 'Commissions' %}
+{% endblock %}
+
+{% block content %}
+    <div class="header">
+        <div class="section">
+            <h2>{{ proposal.grant.name }}</h2>
+        </div>
+    </div>
+    <div class="section">
+        <div class="left-col">       
+            <form method="post" class="rz-form">{% csrf_token %}
+	      {{ form }}
+	    </form>
+	</div>
+    </div>
+{% endblock %}

@@ -213,16 +213,23 @@ admin.site.register(ApprovalVote,ApprovalVoteAdmin)
 
 ### new stuff
 
-class ProposalFieldInline(admin.TabularInline):
-    model = ProposalField
+class GrantProposalFieldInline(admin.TabularInline):
+    model = GrantProposalField-
+    extra = 0
+
+class GrantProposalDatumInline(admin.TabularInline):
+    model = GrantProposalDatum
+    extra = 0
 
 class GrantAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('name',)}
-    inlines = (ProposalFieldInline,)
+    inlines = (GrantProposalFieldInline,)
     list_display = ('__unicode__', 'submission_start_date', 'submission_end_date', 'vote_end_date', 'number_of_proposals')
+
+class GrantProposalAdmin(admin.ModelAdmin):
+    inlines = (GrantProposalDatumInline,)
+    raw_id_fields = ('user',)
     
 
 admin.site.register(Grant, GrantAdmin)
-admin.site.register(GrantProposal)
-admin.site.register(ProposalField)
-admin.site.register(ProposalFieldValue)
+admin.site.register(GrantProposal, GrantProposalAdmin)

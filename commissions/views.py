@@ -499,3 +499,29 @@ def ranking_vote(request, object_id):
         )
     else:
         return redirect('commissions_index')
+
+### new stuff 
+
+from commissions.forms import GrantProposalForm
+from commissions.models import (
+    Grant, GrantProposal, GrantProposalDatum, GrantProposalField
+)
+from django.shortcuts import render
+
+@login_required
+def edit_grant_proposal(request, grant_slug):
+    grant = get_object_or_404(Grant, slug=grant_slug)
+    proposal, created = GrantProposal.objects.get_or_create(grant_id=grant.id, user_id=request.user.id)
+
+    if request.method == 'POST':
+        form = GrantProposalForm(request.POST, request.FILES, grant=grant)
+        if form.is_valid():
+            proposal.save_form_data(form.cleaned_data)
+    else:
+        form = GrantProposalForm(initial=proposal.form_data, grant=grant)
+
+    return render(request, 'commissions/edit_grant_proposal.html', {
+        'proposal': proposal,
+        'form': form
+    })
+

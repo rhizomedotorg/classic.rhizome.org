@@ -308,7 +308,12 @@ class RankVote(models.Model):
     def __unicode__(self):
         return '%s for  %s' % (self.id, self.proposal)
 
-######## NEW COMMISSIONS
+# ######## NEW COMMISSIONS
+
+from django import forms
+from django.core import validators
+from django.core.validators import MaxLengthValidator
+
 
 class GrantManager(models.Manager):
     def current(self):
@@ -340,34 +345,64 @@ class GrantProposal(models.Model):
     grant = models.ForeignKey(Grant, related_name='proposals')
     user = models.ForeignKey(User, related_name='grant_proposals')
 
-class ProposalField(models.Model):
+    def __unicode__(self):
+        return '%s: %s' % (self.grant, self.user)
+
+    # maybe this should go on form?
+    def save_form_data(self, data):
+        for f in self.grant.fields.all():
+            val = data.get(f.name)
+            datum, created = GrantProposalDatum.objects.get_or_create(proposal_id=self.id, field_id=f.id)
+
+            if datum.value_text != val:
+                datum.value_text = val
+                datum.save()
+    
+    @property
+    def form_data(self):
+        return dict((d.field.name, d.value) for d in self.field_data.all())
+
+class GrantProposalField(models.Model):
     INPUT, TEXT_BOX, IMAGE = ('input', 'textarea', 'img')
-    DTYPE_CHOICES = (
+    TYPE_CHOICES = (
         (INPUT, 'input'),
         (TEXT_BOX, 'text box'),
         (IMAGE, 'image'),
     )
 
     grant = models.ForeignKey(Grant, related_name='fields')
-    name = models.CharField(max_length=100)
-    field_type = models.CharField(max_length=25, choices=DTYPE_CHOICES, default=INPUT)
-    character_limit = models.IntegerField(default=150)
-    show_during_voting = models.BooleanField(default=True)
+    label = models.CharField(max_length=100)
+    _type = models.CharField(max_length=25, choices=TYPE_CHOICES, default=INPUT)
+    char_limit = models.IntegerField(blank=True, null=True)
+    public = models.BooleanField('Voters can see', default=True)
 
-class ProposalFieldValue(models.Model):
-    proposal = models.ForeignKey(GrantProposal, related_name='fields')
-    field = models.ForeignKey(ProposalField, related_name='values')
-    val_input = models.CharField(max_length=255, blank=True)
-    val_text_box = models.TextField(blank=True)
-    val_image = models.ImageField(upload_to='/grant_proposal/image/')
+    def form_field(self, **kwargs):
+        if self._type == self.__class__.IMAGE:
+            return forms.ImageField(label=self.label, **kwargs)
+
+        field = forms.CharField(label=self.label, **kwargs)
+
+        if self._type == self.__class__.TEXT_BOX:
+            field.widget = forms.Textarea
+
+        if self.char_limit:
+            field.validators = [MaxLengthValidator(self.char_limit)]
+        
+        return field
+
+    @property
+    def name(self):
+        return 'grant_proposal_field_%s' % self.id
+
+class GrantProposalDatum(models.Model):
+    proposal = models.ForeignKey(GrantProposal, related_name='field_data')
+    field = models.ForeignKey(GrantProposalField, related_name='data')
+    value_text = models.TextField(blank=True)
+    value_image = models.ImageField(upload_to='/grant_proposal/img/', null=True, blank=True)
 
     @property
     def value(self):
-        if self.field.dtype == ProposalField.INPUT:
-            return self.val_input
+        if self.value_image:
+            return self.value_image
 
-        if self.field.dtype == ProposalField.TEXT_BOX:
-            return self.val_text_box
-
-        if self.field.dytpe == ProposalField.IMAGE:
-            return self.val_image
+        return self.value_text
