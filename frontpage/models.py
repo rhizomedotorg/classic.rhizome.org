@@ -74,10 +74,14 @@ class FeaturedObject(models.Model):
     def get_title(self):
         if self.title:
             return self.title
+
         if hasattr(self.content_object, 'subtitle'):
             if self.content_object.subtitle:
                 return self.content_object.subtitle
-        return self.content_object.title
+
+        if self.content_object:
+            return self.content_object.title
+        return ''
 
     def get_byline(self):
         if self.byline:
