@@ -329,7 +329,18 @@ class Grant(models.Model):
     vote_end_date = models.DateTimeField(null=True, blank=True)
     objects = GrantManager()
 
-class GrantProposalField(models.Model):
+    def __unicode__(self):
+        return self.name
+
+    @property
+    def number_of_proposals(self):
+        return self.proposals.count()
+
+class GrantProposal(models.Model):
+    grant = models.ForeignKey(Grant, related_name='proposals')
+    user = models.ForeignKey(User, related_name='grant_proposals')
+
+class ProposalField(models.Model):
     INPUT, TEXT_BOX, IMAGE = ('input', 'textarea', 'img')
     DTYPE_CHOICES = (
         (INPUT, 'input'),
@@ -337,25 +348,26 @@ class GrantProposalField(models.Model):
         (IMAGE, 'image'),
     )
 
-    proposal = models.ForeignKey(GrantProposal, related='fields')
+    grant = models.ForeignKey(Grant, related_name='fields')
     name = models.CharField(max_length=100)
-    required = models.BooleanField(default=True)
-    voting_display = models.BooleanField(default=True)
-    dtype = models.CharField(max_length=25, choices=DTYPE_CHOICES, default=INPUT)
+    field_type = models.CharField(max_length=25, choices=DTYPE_CHOICES, default=INPUT)
+    character_limit = models.IntegerField(default=150)
+    show_during_voting = models.BooleanField(default=True)
+
+class ProposalFieldValue(models.Model):
+    proposal = models.ForeignKey(GrantProposal, related_name='fields')
+    field = models.ForeignKey(ProposalField, related_name='values')
     val_input = models.CharField(max_length=255, blank=True)
     val_text_box = models.TextField(blank=True)
     val_image = models.ImageField(upload_to='/grant_proposal/image/')
 
     @property
     def value(self):
-        if self.dtype == self.INPUT:
+        if self.field.dtype == ProposalField.INPUT:
             return self.val_input
 
-        if self.dtype == self.TEXT_BOX:
+        if self.field.dtype == ProposalField.TEXT_BOX:
             return self.val_text_box
 
-        if self.dtype == self.IMAGE:
+        if self.field.dytpe == ProposalField.IMAGE:
             return self.val_image
-
-class GrantProposal(models.Model):
-    user = models.ForeignKey(User, related='grant_proposals')

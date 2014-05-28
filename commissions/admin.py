@@ -1,5 +1,5 @@
 from django.contrib import admin
-from models import *
+
 from django.contrib import admin
 from django.template import RequestContext
 from django.shortcuts import render_to_response
@@ -8,6 +8,8 @@ from django.core.paginator import Paginator, InvalidPage, EmptyPage
 
 from utils.helpers import strip_bbcode,split_by
 from utils.unicode_csv_writer import UnicodeWriter
+
+from models import *
 
 
 class CycleAdmin(admin.ModelAdmin):
@@ -208,3 +210,19 @@ class ApprovalVoteAdmin(admin.ModelAdmin):
     date_hierarchy = ('created')
 
 admin.site.register(ApprovalVote,ApprovalVoteAdmin)
+
+### new stuff
+
+class ProposalFieldInline(admin.TabularInline):
+    model = ProposalField
+
+class GrantAdmin(admin.ModelAdmin):
+    prepopulated_fields = {'slug': ('name',)}
+    inlines = (ProposalFieldInline,)
+    list_display = ('__unicode__', 'submission_start_date', 'submission_end_date', 'vote_end_date', 'number_of_proposals')
+    
+
+admin.site.register(Grant, GrantAdmin)
+admin.site.register(GrantProposal)
+admin.site.register(ProposalField)
+admin.site.register(ProposalFieldValue)
