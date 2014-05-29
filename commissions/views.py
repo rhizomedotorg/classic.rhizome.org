@@ -502,29 +502,33 @@ def ranking_vote(request, object_id):
 
 ### new stuff 
 
-from commissions.forms import GrantProposalForm
 from commissions.models import (
-    Grant, GrantProposal, GrantProposalDatum, GrantProposalField
+    Grant, GrantProposal
 )
+from django.contrib import messages
 from django.shortcuts import render
+import json
 
 @login_required
-def edit_grant_proposal(request, grant_slug):
+def submit_grant_proposal(request, grant_slug):
     grant = get_object_or_404(Grant, slug=grant_slug)
-    proposal, created = GrantProposal.objects.get_or_create(grant_id=grant.id, user_id=request.user.id)
+    proposal = GrantProposal.objects.filter(grant_id=grant.id, user_id=request.user.id)
+    if proposal:
+        messages.info(request, 'You have already submitted.')
+        return redirect('commissions_index')
 
     if request.method == 'POST':
-        import pdb; pdb.set_trace()
+        data = {}
+        for k, v in request.POST.items():
+            if k == 'csrfmiddlewaretoken':
+                continue
+            if type(v) is list and len(v) == 1:
+                v = v[0]            
+            data[k] = v
         
-        form = GrantProposalForm(request.POST, request.FILES, grant=grant)
-        if form.is_valid():
-            form.save_data(proposal)
-            form = GrantProposalForm(initial=proposal.form_data, grant=grant)
-    else:
-        form = GrantProposalForm(initial=proposal.form_data, grant=grant)
+        proposal = GrantProposal(grant_id=grant.id, user_id=request.user.id, data=json.dumps(data))
+        proposal.save()
+        messages.success(request, 'We have recieved your submission. Thanks!')
+        return redirect('commissions_index')
 
-    return render(request, 'commissions/edit_grant_proposal.html', {
-        'proposal': proposal,
-        'form': form
-    })
-
+    return render(request, grant.template, {'grant': grant})

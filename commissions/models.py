@@ -15,6 +15,7 @@ from django.core.mail import EmailMessage
 from django.core.urlresolvers import reverse
 from django.contrib.sites.models import Site
 from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 from django.utils.text import slugify
 
@@ -327,6 +328,9 @@ class GrantManager(models.Manager):
     def past(self):
         return self.filter(voting_end_date__lt=datetime.datetime.now()).order_by('-submission_start_date')
 
+import json
+from eazyemail.models import EazyEmail
+
 class Grant(models.Model):
     name = models.CharField(max_length=255)
     slug = models.SlugField()
@@ -334,6 +338,8 @@ class Grant(models.Model):
     submission_start_date = models.DateTimeField(null=True, blank=True, db_index=True)
     submission_end_date = models.DateTimeField(null=True, blank=True, db_index=True)
     vote_end_date = models.DateTimeField(null=True, blank=True)
+    template = models.CharField(max_length=255, default='commissions/micro_grant_proposal.html')
+    confirmation_email = models.ForeignKey(EazyEmail)
     objects = GrantManager()
 
     def __unicode__(self):
@@ -344,77 +350,29 @@ class Grant(models.Model):
         return self.proposals.count()
 
 class GrantProposal(models.Model):
-    IMG_UPLOAD_TO = 'grant_proposal/img/'
-
+    created = models.DateTimeField(auto_now_add=True)
     grant = models.ForeignKey(Grant, related_name='proposals')
     user = models.ForeignKey(User, related_name='grant_proposals')
+    data = models.TextField(blank=True)
 
     def __unicode__(self):
         return '%s: %s' % (self.grant, self.user)
 
-    # maybe this should go on form?
-    def save_form_data(self, data):
-        for f in self.grant.fields.all():
-            val = data.get(f.name)
-            datum, created = GrantProposalDatum.objects.get_or_create(proposal_id=self.id, field_id=f.id)
-
-            if datum.value != val:
-                if isinstance(val, File):
-                    datum.value_image = val
-                else:
-                    datum.value_text = val
-                datum.save()
-    
     @property
-    def form_data(self):
-        return dict((d.field.name, d.value) for d in self.field_data.all())
+    def data_dict(self):
+        try:
+            return json.loads(self.data)
+        except ValueError:
+            return None
 
-    @property
-    def img_path(self):
-        return '%s%s' % (settings.MEDIA_URL, self.__class__.IMG_UPLOAD_TO)
-
-class GrantProposalField(models.Model):
-    INPUT, TEXT_BOX, IMAGE = ('input', 'textarea', 'img')
-    TYPE_CHOICES = (
-        (INPUT, 'input'),
-        (TEXT_BOX, 'text box'),
-        (IMAGE, 'image'),
-    )
-
-    grant = models.ForeignKey(Grant, related_name='fields')
-    label = models.CharField(max_length=100)
-    _type = models.CharField(max_length=25, choices=TYPE_CHOICES, default=INPUT)
-    char_limit = models.IntegerField(blank=True, null=True)
-    public = models.BooleanField('Voters can see', default=True)
-
-    def form_field(self, **kwargs):
-        if self._type == self.__class__.IMAGE:
-            return forms.ImageField(label=self.label, **kwargs)
-
-        field = forms.CharField(label=self.label, **kwargs)
-
-        if self._type == self.__class__.TEXT_BOX:
-            field.widget = forms.Textarea
-
-        if self.char_limit:
-            field.validators = [MaxLengthValidator(self.char_limit)]
+    def data_admin(self):
+        if self.data_dict:
+            return '<br>'.join(['<strong>%s</strong>: %s' % (k, v) for k, v in self.data_dict.items()])
+    data_admin.allow_tags = True
+    data_admin.short_description = 'data'
         
-        return field
-
-    @property
-    def name(self):
-        return 'grant_proposal_field_%s' % self.id
-
-
-class GrantProposalDatum(models.Model):
-    proposal = models.ForeignKey(GrantProposal, related_name='field_data')
-    field = models.ForeignKey(GrantProposalField, related_name='data')
-    value_text = models.TextField(blank=True)
-    value_image = models.ImageField(upload_to=GrantProposal.IMG_UPLOAD_TO, null=True, blank=True)
-
-    @property
-    def value(self):
-        if self.value_image:
-            return self.value_image
-
-        return self.value_text
+@receiver(post_save, sender=GrantProposal, dispatch_uid='commissions.send_confirmation')
+def send_confirmation(sender, instance, created, **kwargs):
+    if created:
+        instance.grant.confirmation_email.send(settings.DEFAULT_FROM_EMAIL, [instance.user.email], extra_context={
+        })

@@ -97,16 +97,3 @@ class RankVoteForm(forms.Form):
 
     def __init__(self, *args, **kwargs):
         super(RankVoteForm, self).__init__(*args, **kwargs)
-
-
-
-class GrantProposalForm(forms.Form):
-    def __init__(self, *args, **kwargs):
-        grant = kwargs.pop('grant')
-        super(GrantProposalForm, self).__init__(*args, **kwargs)
-
-        for f in grant.fields.all():
-            self.fields[f.name] = f.form_field()
-
-    def save_data(self, proposal):
-        propodal.save_form_data(self.cleaned_data)

@@ -29,8 +29,3 @@ def verbatim(parser, token):
         elif token.token_type == template.TOKEN_BLOCK:
             text.append('%}')
     return VerbatimNode(''.join(text))
-
-
-@register.filter('klass')
-def klass(ob):
-    return ob.__class__.__name__

@@ -1,0 +1,31 @@
+{% extends 'new_base.html' %}
+
+{% block pageTitle %}Submit a Proposal{% endblock %}
+
+{% block navbars %}
+    {% get_nav 'Programs' 'Commissions' %}
+{% endblock %}
+
+{% block content %}
+    <div class="header">
+        <div class="section">
+            <h2>{{ proposal.grant.name }}</h2>
+        </div>
+    </div>
+    <div class="section">
+      <form method="post" class="rz-form">{% csrf_token %}
+
+	<div class="field">
+	  <label for="fname">First Name</label>
+	  <input id="fname" name="fname" type="text">
+	</div>
+	<div class="field">
+	  <input type="submit" value="Submit" />
+	</div>
+      </form>
+    </div>
+{% endblock %}
+
+{% block extra_js %}
+    <script type="text/javascript" src="{{ STATIC_URL }}js/grant_forms.js"></script>
+{% endblock %}
