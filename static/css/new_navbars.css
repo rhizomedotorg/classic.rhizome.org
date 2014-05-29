@@ -14,7 +14,7 @@
   font-family: "news_gothic_mtcondensedbold", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale; }
-#new_header ul, #new_footer ul {
+#new_header ul {
     display: inline;
     list-style: none;
     margin-left: 120px;
@@ -30,7 +30,7 @@
   margin-right: 27px;
   margin-top: 12px; }
 @media only screen and (max-width: 690px) {
-    #new_header ul, #new_footer ul {
+    #new_header ul {
       display: block;
       margin-top: 25px;
       margin-bottom: 0px;
@@ -40,8 +40,8 @@
       text-align: center;
     }
     #new_header ul li, #new_footer ul li {
-      margin-left: 4%;
-      margin-right: 4%;
+      margin-left: 3.5%;
+      margin-right: 3.5%;
     }
   }
     #new_header ul li.reversed, #new_footer ul li.reversed {
@@ -127,9 +127,25 @@ body.with-top-banner #new_header {
 #new_footer {
   font-size: 13px;
   bottom: 0; }
-  #new_footer ul li {
-    margin-top: 10px; }
-    #new_footer ul li:first-child a.active:not(.underline) {
-      text-decoration: none; }
-  #new_footer.flash li, #new_footer.flash a, #new_footer.flash a:first-child, #new_footer.flash a.active {
-    color: white; }
+#new_footer ul {
+    display: fixed;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-right: 20px;
+    margin-left: 20px;
+    padding-bottom: 0px;
+    padding-left: 0px;
+    text-align: left;
+}
+#new_footer ul li {
+  margin-top: 10px;
+  margin-left: 0px;
+}
+#new_footer ul li:first-child {
+  display: fixed;
+}
+#new_footer ul li:first-child a.active:not(.underline) {
+  text-decoration: none;
+}
+#new_footer.flash li, #new_footer.flash a, #new_footer.flash a:first-child, #new_footer.flash a.active {
+  color: white; }
