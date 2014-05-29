@@ -1,5 +1,5 @@
 {% extends 'new_base.html' %}
-{% load block_tags %}
+{% load block_tags utils thumbnail %}
 
 {% block pageTitle %}Edit Your Proposal{% endblock %}
 
@@ -14,10 +14,31 @@
         </div>
     </div>
     <div class="section">
-        <div class="left-col">       
-            <form method="post" class="rz-form">{% csrf_token %}
-	      {{ form }}
-	    </form>
+      <form method="post" class="rz-form" 
+		  {% if form.is_multipart %}enctype="multipart/form-data"{% endif %}>
+	{% csrf_token %}
+	{{ form.non_field_errors }}
+
+	{% for field in form %}
+	<div class="field">
+	  {{ field.errors }}
+	  {{ field.label_tag }}<br>
+	  {% if field.field|klass == 'ImageField' %}
+
+	      {% thumbnail field.value 200x200 as thumb %}
+              <a target="_blank" href="{{ MEDIA_URL }}{{ field.value }}">
+	        <img src="{{ thumb.url }}" width="{{ thumb.width }}" height="{{ thumb.height }}">
+	      </a><br>
+	      Change:<br>
+	      <input name="{{ field.name }}" type="file">
+	  {% else %}
+	      {{ field }}
+	  {% endif %}
 	</div>
+	{% endfor %}
+	<div class="field">
+	  <input type="submit" value="Submit" />
+	</div>
+      </form>
     </div>
 {% endblock %}

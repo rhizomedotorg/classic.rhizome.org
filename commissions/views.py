@@ -514,9 +514,12 @@ def edit_grant_proposal(request, grant_slug):
     proposal, created = GrantProposal.objects.get_or_create(grant_id=grant.id, user_id=request.user.id)
 
     if request.method == 'POST':
+        import pdb; pdb.set_trace()
+        
         form = GrantProposalForm(request.POST, request.FILES, grant=grant)
         if form.is_valid():
-            proposal.save_form_data(form.cleaned_data)
+            form.save_data(proposal)
+            form = GrantProposalForm(initial=proposal.form_data, grant=grant)
     else:
         form = GrantProposalForm(initial=proposal.form_data, grant=grant)
 

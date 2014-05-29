@@ -9,6 +9,8 @@ from django.contrib.auth.models import User
 from django.forms.util import ErrorList
 
 
+### new stuff
+
 class CommissionsImageWidget(forms.FileInput):
     """
     A file upload widget that shows the current announcement's image
@@ -96,7 +98,7 @@ class RankVoteForm(forms.Form):
     def __init__(self, *args, **kwargs):
         super(RankVoteForm, self).__init__(*args, **kwargs)
 
-### new stuff
+
 
 class GrantProposalForm(forms.Form):
     def __init__(self, *args, **kwargs):
@@ -105,3 +107,6 @@ class GrantProposalForm(forms.Form):
 
         for f in grant.fields.all():
             self.fields[f.name] = f.form_field()
+
+    def save_data(self, proposal):
+        propodal.save_form_data(self.cleaned_data)

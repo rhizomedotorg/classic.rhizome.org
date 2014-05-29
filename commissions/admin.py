@@ -214,7 +214,7 @@ admin.site.register(ApprovalVote,ApprovalVoteAdmin)
 ### new stuff
 
 class GrantProposalFieldInline(admin.TabularInline):
-    model = GrantProposalField-
+    model = GrantProposalField
     extra = 0
 
 class GrantProposalDatumInline(admin.TabularInline):

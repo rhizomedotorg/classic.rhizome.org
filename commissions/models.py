@@ -10,11 +10,13 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 from django.utils.html import strip_tags
 from django.contrib.contenttypes.models import ContentType
+from django.core.files.base import File
 from django.core.mail import EmailMessage
 from django.core.urlresolvers import reverse
 from django.contrib.sites.models import Site
 from django.db.models.signals import post_save
-from django.template.defaultfilters import slugify
+
+from django.utils.text import slugify
 
 from countries.models import Country, UsState
 from artbase.models import ArtworkStub
@@ -342,6 +344,8 @@ class Grant(models.Model):
         return self.proposals.count()
 
 class GrantProposal(models.Model):
+    IMG_UPLOAD_TO = 'grant_proposal/img/'
+
     grant = models.ForeignKey(Grant, related_name='proposals')
     user = models.ForeignKey(User, related_name='grant_proposals')
 
@@ -354,13 +358,20 @@ class GrantProposal(models.Model):
             val = data.get(f.name)
             datum, created = GrantProposalDatum.objects.get_or_create(proposal_id=self.id, field_id=f.id)
 
-            if datum.value_text != val:
-                datum.value_text = val
+            if datum.value != val:
+                if isinstance(val, File):
+                    datum.value_image = val
+                else:
+                    datum.value_text = val
                 datum.save()
     
     @property
     def form_data(self):
         return dict((d.field.name, d.value) for d in self.field_data.all())
+
+    @property
+    def img_path(self):
+        return '%s%s' % (settings.MEDIA_URL, self.__class__.IMG_UPLOAD_TO)
 
 class GrantProposalField(models.Model):
     INPUT, TEXT_BOX, IMAGE = ('input', 'textarea', 'img')
@@ -394,11 +405,12 @@ class GrantProposalField(models.Model):
     def name(self):
         return 'grant_proposal_field_%s' % self.id
 
+
 class GrantProposalDatum(models.Model):
     proposal = models.ForeignKey(GrantProposal, related_name='field_data')
     field = models.ForeignKey(GrantProposalField, related_name='data')
     value_text = models.TextField(blank=True)
-    value_image = models.ImageField(upload_to='/grant_proposal/img/', null=True, blank=True)
+    value_image = models.ImageField(upload_to=GrantProposal.IMG_UPLOAD_TO, null=True, blank=True)
 
     @property
     def value(self):
