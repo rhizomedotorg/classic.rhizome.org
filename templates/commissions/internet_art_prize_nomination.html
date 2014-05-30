@@ -40,11 +40,62 @@ The nomination should include: </p>
       <div class="slide-hidden">
       <form method="post" class="rz-form">{% csrf_token %}
 
-	<div class="field">
-	  <label for="fname">First Name</label>
-	  <input id="fname" name="fname" type="text">
+	<h2>Nominator Information</h2>
+	<em>*Please note: individuals cannot nominate themselves</em><br>
+
+	<div class="field col-2">
+	  <label for="fname">Name</label><br>
+	  <input id="name" name="name" type="text">
 	</div>
-	<div class="field">
+	<div class="field col-2">
+	  <label for="address">Address</label><br>
+	  <textarea id="address" name="address"></textarea>
+	</div>
+	<div class="field col-2">
+	  <label for="phone">Phone number</label><br>
+	  <input id="phone" name="phone" type="text">
+	</div>
+	<div class="field col-2">
+	  <label for="email">Email address</label><br>
+	  <input id="email" name="email" type="text">
+	</div>
+	<div class="field col-2">
+	  <label for="bio">Bio</label><br>
+	  <textarea id="bio" name="bio" placeholder="Up to 300 words"></textarea>
+	</div>
+
+	<h2>Nominated Artist Information</h2>
+	<div class="field col-2">
+	  <label for="artist-name">Name</label><br>
+	  <input id="artist-name" name="artist-name" type="text">
+	</div>
+	<div class="field col-2">
+	  <label for="artist-country">Country of Residence</label><br>
+	  <input id="artist-country" name="artist-country" type="text">
+	</div>
+	<div class="field col-2">
+	  <label for="artist-website">Website URL</label><br>
+	  <em>*General website - individual project websites can be linked below</em><br>
+	  <input id="artist-website" name="artist-website" type="text" placeholder="">
+	</div>
+	<div class="field col-2">
+	  <label for="artist-bio">Bio</label><br>
+	  <textarea id="artist-bio" name="artist-bio" placeholder="Up to 300 words"></textarea>
+	</div>
+	<div class="field col-2">
+	  <label for="artist-samples">URLs for up to 10 artwork samples</label><br>
+	  <textarea id="artist-samples" name="artist-samples"></textarea>
+	</div>
+	<div class="field col-2">
+	  <label for="artist-press">URLs for up to 5 press reviews or pieces of critical writing</label><br>
+	  <textarea id="artist-press" name="artist-press"></textarea>
+	</div>
+	<div class="field col-2">
+	  <label for="artist-samples">Notes on technical requirements or other viewing instructions</label><br>
+	  <textarea id="artist-notes" name="artist-notes"></textarea>
+	</div>
+
+	<div class="field col-2">
 	  <input type="submit" value="Submit" />
 	</div>
       </form>

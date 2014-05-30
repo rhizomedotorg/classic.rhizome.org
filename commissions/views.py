@@ -13,7 +13,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.cache import cache_page
 
 from accounts.decorators import membership_required
-from commissions.models import Cycle, Proposal, RankVote, ApprovalVote
+from commissions.models import Cycle, Proposal, RankVote, ApprovalVote, Grant
 from commissions.forms import ProposalForm, ApprovalVoteForm, RankVoteForm
 from utils.imaging import create_thumbnail
 
@@ -25,25 +25,18 @@ def handle_uploaded_file(f):
     destination.close()
 
 def index(request):
-    cycles = Cycle.objects.current()
+    # cycles = Cycle.objects.current()
     archive = Cycle.objects.past()
     today = datetime.datetime.now()
-
-    breadcrumb = (('Programs', '/programs/'), ('Commissions', None))
-
-    flash_msg = False
-    if request.GET.get('deleted'):
-        flash_msg = True
+    grants = Grant.objects.current()
 
     return render_to_response(
         'commissions/index.html', {
             'section_title': 'Rhizome Commissions',
             'include_section_header': True,
-            'cycles': cycles,
             'archive': archive,
             'today': today,
-            'flash_msg': flash_msg,
-            'breadcrumb': breadcrumb,
+            'grants': grants,
         },
         RequestContext(request) 
     )
@@ -503,7 +496,7 @@ def ranking_vote(request, object_id):
 ### new stuff 
 
 from commissions.models import (
-    Grant, GrantProposal
+    GrantProposal
 )
 from django.contrib import messages
 from django.shortcuts import render

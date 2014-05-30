@@ -145,6 +145,14 @@
             {% assign_text 'tagline' as tagline %}
             {% get_nav None None tagline %}
         {% endblock %}
+
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}><div class="container">{{ message }}</div></li>
+                {% endfor %}
+            </ul>
+        {% endif %}
                  
         {% block featured %}{% endblock %}  
         {% block highlights %}{% endblock %}
@@ -197,14 +205,6 @@
          
          {% block fixedSideContent %}{% endblock %}   
                         
-        {% if messages %}
-            <ul class="messages">
-                {% for message in messages %}
-                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}><div class="container">{{ message }}</div></li>
-                {% endfor %}
-            </ul>
-        {% endif %}
-
         <div id="content" class="container {% block content_class %}{% endblock %}">
             {% block content %}{% endblock %}
         </div>

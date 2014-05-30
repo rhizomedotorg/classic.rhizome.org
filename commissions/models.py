@@ -322,11 +322,11 @@ class GrantManager(models.Manager):
     def current(self):
         return self.filter(
             submission_start_date__lte=datetime.datetime.now(), 
-            voting_end_date__gte=datetime.datetime.now()
-        ).order_by('-submission_start_date')[:1]
+            vote_end_date__gte=datetime.datetime.now()
+        ).order_by('-submission_start_date')
 
     def past(self):
-        return self.filter(voting_end_date__lt=datetime.datetime.now()).order_by('-submission_start_date')
+        return self.filter(vote_end_date__lt=datetime.datetime.now()).order_by('-submission_start_date')
 
 import json
 from eazyemail.models import EazyEmail

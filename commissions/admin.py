@@ -18,7 +18,7 @@ class CycleAdmin(admin.ModelAdmin):
     class Meta:
         model = Cycle
         
-admin.site.register(Cycle,CycleAdmin)
+#admin.site.register(Cycle,CycleAdmin)
 
 class ProposalAdmin(admin.ModelAdmin):
     search_fields = ['artists__email','artists__username','artists__last_name','artists__id','author__email','author__username','author__last_name','author__id',
@@ -193,7 +193,7 @@ class ProposalAdmin(admin.ModelAdmin):
              
         return render_to_response('admin/commissions/proposals/dump_finalists.html', d, context_instance)    
                  
-admin.site.register(Proposal,ProposalAdmin)
+#admin.site.register(Proposal,ProposalAdmin)
 
 class RankVoteAdmin(admin.ModelAdmin):
     search_fields = ['user__email','user__username','user__last_name','user__id','user__email',]
@@ -201,7 +201,7 @@ class RankVoteAdmin(admin.ModelAdmin):
     list_display  = ['proposal','user','rank','created','id']
     date_hierarchy = ('created')
 
-admin.site.register(RankVote,RankVoteAdmin)
+#admin.site.register(RankVote,RankVoteAdmin)
 
 class ApprovalVoteAdmin(admin.ModelAdmin):
     search_fields = ['user__email','user__username','user__last_name','user__id','user__email',]
@@ -209,7 +209,7 @@ class ApprovalVoteAdmin(admin.ModelAdmin):
     list_display  = ['proposal','user','approved','created','id']
     date_hierarchy = ('created')
 
-admin.site.register(ApprovalVote,ApprovalVoteAdmin)
+#admin.site.register(ApprovalVote,ApprovalVoteAdmin)
 
 ### new stuff
 

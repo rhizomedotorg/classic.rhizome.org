@@ -8,6 +8,10 @@ h1#title {
     width: 800px;
 }
 
+.section:last-child {
+    margin-bottom: 30px;
+}
+
 ol li {
     list-style-type: decimal;
 }
