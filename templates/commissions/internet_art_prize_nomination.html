@@ -12,29 +12,10 @@
 {% endblock %}
 
 {% block content %}
-        <div class="section">
-            <h1 id="title">I A P</h1>
-
-	    <p>Rhizome, TAMSL, and Artbox are pleased to announce a new $10,000 prize for internet art. The prize, which will be awarded four times in total in 2014 and 2015, will recognize the past work and future promise of an artist making outstanding work on the internet.</p>
-	    
-	    <p>The prize celebrates this current moment of internet art and its future, and was created to acknowledge the shifting relationship between art and the web. Increasingly, the internet is the frame through which all contemporary art and culture is seen and understood. As many artists tackle technology as subject matter through different forms – sculpture, installation and painting – this prize seeks to address the relative scarcity of support for artwork that takes place primarily or exclusively online. The prize emphasizes the unique and crucial importance of such work in order to encourage those who continue to make art on the internet.</p>
-	    <p>Each prize is an investment in one artist's excellence, potential, and significant future promise in internet-based art, as evidenced by the nominee's past achievement. The award is made on a "no strings attached" basis.</p>
-	    <p>Nominations will be reviewed by a jury of four international judges: Michael Connor (USA), Samantha Culp (CN/USA), Zhang Ga (CN/USA), and Sabine Himmelsbach (DE/CH).</p>
-
-	    <h2>Nomination Overview</h2>
-	    <p>The deadline for entries is June 15, 2014. Nominations will be reviewed by a jury of four international judges: Michael Connor (USA), Samantha Culp (CN/USA), Zhang Ga (CN/USA) and Sabine Himmelsbach (DE/CH). </p>
-
-	    <h2>Nomination Guidelines:</h2>
-	    <p>Nominations can be made by curators, critics, arts professionals of any kind, or artists. Individuals may not nominate themselves, though they may request someone to act as their nominator and help to prepare the nomination materials. Nominators may make only one nomination per award round. 
-The nomination should include: </p>
-<ol>
-  <li>A 500-word nomination statement about the candidate's suitability for the award</li>
-  <li>Links to up to five existing internet-based artworks</li>
-  <li>Links to up to five pieces of press or critical writing on the artist's work</li>
-  <li>A 300 word bio of both the nominator, and the nominated artist</li>
-</ol>
-<p>The jury reserves the right to solicit materials from artists not nominated through this process, for its consideration.</p>
-        </div>
+    <div class="section">
+        <h1 id="title">I A P</h1>
+	{% get_text 'Internet Art Prize Top Text' %}
+    </div>
     <div class="section">
       <a href="#" class="slide-toggle"><h1>+ Form</h1></a>
       <div class="slide-hidden">
@@ -44,24 +25,44 @@ The nomination should include: </p>
 	<em>*Please note: individuals cannot nominate themselves</em><br>
 
 	<div class="field col-2">
-	  <label for="fname">Name</label><br>
-	  <input id="name" name="name" type="text">
+	  <label for="nominator-name">Name</label><br>
+	  <input id="nominator-name" name="nominator-name" type="text">
+	</div>
+	<div class="field">
+	  <label for="nominator-address1">Address Line 1</label><br>
+	  <input id="nominator-address1" name="nominator-address1" type="text">
+	</div>
+	<div class="field">
+	  <label for="nominator-address2">Address Line 2</label><br>
+	  <input id="nominator-address2" class="optional" name="nominator-address2" type="text">
+	</div>
+	<div class="field">
+	  <label for="nominator-city">City</label><br>
+	  <input id="nominator-city" name="nominator-city" type="text">
+	</div>
+	<div class="field">
+	  <label for="nominator-state">State/Province/Region</label><br>
+	  <input id="nominator-state" name="nominator-state" type="text">
+	</div>
+	<div class="field">
+	  <label for="nominator-zip">Zip/Postal code</label><br>
+	  <input id="nominator-zip" name="nominator-zip" type="text">
+	</div>
+	<div class="field">
+	  <label for="nominator-country">Country</label><br>
+	  <input id="nominator-country" name="nominator-country" type="text">
 	</div>
 	<div class="field col-2">
-	  <label for="address">Address</label><br>
-	  <textarea id="address" name="address"></textarea>
+	  <label for="nominator-phone">Phone number</label><br>
+	  <input id="nominator-phone" name="nominator-phone" type="text">
 	</div>
 	<div class="field col-2">
-	  <label for="phone">Phone number</label><br>
-	  <input id="phone" name="phone" type="text">
+	  <label for="nominator-email">Email address</label><br>
+	  <input id="nominator-email" name="nominator-email" type="text">
 	</div>
 	<div class="field col-2">
-	  <label for="email">Email address</label><br>
-	  <input id="email" name="email" type="text">
-	</div>
-	<div class="field col-2">
-	  <label for="bio">Bio</label><br>
-	  <textarea id="bio" name="bio" placeholder="Up to 300 words"></textarea>
+	  <label for="nominator-bio">Bio</label><br>
+	  <textarea id="nominator-bio" name="nominator-bio" placeholder="Up to 300 words" data-word-limit="300"></textarea>
 	</div>
 
 	<h2>Nominated Artist Information</h2>
@@ -80,57 +81,40 @@ The nomination should include: </p>
 	</div>
 	<div class="field col-2">
 	  <label for="artist-bio">Bio</label><br>
-	  <textarea id="artist-bio" name="artist-bio" placeholder="Up to 300 words"></textarea>
+	  <textarea id="artist-bio" name="artist-bio" placeholder="Up to 300 words" data-word-limit="300"></textarea>
 	</div>
 	<div class="field col-2">
-	  <label for="artist-samples">URLs for up to 10 artwork samples</label><br>
+	  <label for="artist-samples">Artwork samples</label><br>
+	  <em>*Up to 10 URLs</em><br>
 	  <textarea id="artist-samples" name="artist-samples"></textarea>
 	</div>
 	<div class="field col-2">
-	  <label for="artist-press">URLs for up to 5 press reviews or pieces of critical writing</label><br>
+	  <label for="artist-press">Press Reviews / Critical Writing</label><br>
+	  <em>*Up to 5 URLs</em><br>
 	  <textarea id="artist-press" name="artist-press"></textarea>
 	</div>
 	<div class="field col-2">
-	  <label for="artist-samples">Notes on technical requirements or other viewing instructions</label><br>
+	  <label for="artist-notes">Notes on technical requirements or other viewing instructions</label><br>
 	  <textarea id="artist-notes" name="artist-notes"></textarea>
+	</div>
+
+	<div class="field col-2">
+	  <label for="nomination-statement">Nomination Statment</label><br>
+	  <em>*Please write up to 500 words, articulating how the nominated artist meets the award criteria: artistic excellence, commitment to the field of internet art, and significant future promise as demonstrated through their achievement to date</em><br>
+	  <textarea id="nomination-statement" name="nomination-statement" placeholder="Up to 500 words" data-word-limit="500"></textarea>
 	</div>
 
 	<div class="field col-2">
 	  <input type="submit" value="Submit" />
 	</div>
+
       </form>
       </div>
     </div>
     <div class="section">
       <a href="#" class="slide-toggle"><h1>+ FAQ</h1></a>
-      <div class="slide-hidden">
-      <h2>What criteria and materials will be used to award the prize?</h2>
-
-      <p>The jury will assess the award on artistic excellence, commitment to the field of internet art, and significant future promise as demonstrated through their achievement to date. 
-The jury will review all or part of the list of URLs provided, the nomination statement, the bios of nominator and nominee, press materials, and other publicly available materials the jurors wish to review outside of the nomination itself.</p>
-
-      <h2>What is your definition of "internet art"?</h2>
-      <p>While nominees may have worked in a range of contexts, the judging process will focus primarily, if not exclusively, on their internet-based works. Internet-based works are defined as projects that are primarily experienced via an internet-connected device without  limit to a particular location such as a gallery. A particular emphasis is placed on works that are primarily accessed through a web browser. If in doubt about the formal criteria, please submit the nomination for consideration, as our jury has a sophisticated understanding of internet art practice from which to assess the works and their suitability.</p>
-
-      <h2>Will the awarded artist be required to produce any new artworks?</h2>
-      <p>No. The prize is a "no strings attached" award. The awarded artist will only agree to be profiled on the award website alongside links to their works, and to participate in the public acknowledgement and visibility of the prize where appropriate and mutually agreed – events, exhibition, use of materials, etc. The prize recognizes the limited support that artists working on the internet have, and therefore is intended as an acknowledgement of this artist's ongoing commitment to working online – rather than a commission or any other kind of funding.  Funds will be received on the announcement of the award.</p>
-      <h2>On what technical platform will the jurors review the sample artworks?</h2>
-      <p>Jurors will review the links on a variety of commonly available browsers, though may be able to accommodate requests for particular browsers or plugins.</p>
-
-      <h2>What role will the nomination statement play in the assessment of the prize?</h2>
-      <p>The entry will be assessed, in part, by the strength of the nominator and their recognized or articulated knowledge of contemporary art, technology, or internet art.</p>
-
-      <h2>Can I submit more than 1 nomination?</h2>
-      <p>No. The jury will only consider one nomination per individual nominator. In the case of more than one nomination by an individual nominator, the jury will only review the entry made closest to the deadline. </p>
-
-      <h2>I am an artist. Can I nominate myself?</h2>
-      <p>No. Individuals may not nominate themselves, though they may request someone to act as their nominator and help to prepare the nomination materials.</p>
-
-      <h2>Are students or emerging artists eligible?</h2>
-      <p>Technically, yes, but in practice the award will be made based on past achievement in order to evidence significant future promise. It is not anticipated that students or very emerging artists will be awarded. However, the nomination of any artist with a substantial body of work is encouraged, regardless of age.</p>
-
-     </div>
-      </div>
+      <div class="slide-hidden">{% get_text 'Internet Art Prize fAQ' %}</div>
+    </div>
 {% endblock %}
 
 {% block extra_js %}
@@ -140,7 +124,6 @@ The jury will review all or part of the list of URLs provided, the nomination st
       (function($) {
           $('.slide-toggle').click(function(event) {
               event.preventDefault();
-      console.log('hey');
               $(this).next().slideToggle('fast', function() {
               });
           });

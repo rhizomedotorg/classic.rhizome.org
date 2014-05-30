@@ -313,34 +313,49 @@ class RankVote(models.Model):
 
 # ######## NEW COMMISSIONS
 
+import json
+
 from django import forms
+from django.contrib.sites.models import Site
 from django.core import validators
 from django.core.validators import MaxLengthValidator
 
+from eazyemail.models import EazyEmail
+
 
 class GrantManager(models.Manager):
-    def current(self):
+    def accepting_submissions(self):
         return self.filter(
             submission_start_date__lte=datetime.datetime.now(), 
-            vote_end_date__gte=datetime.datetime.now()
-        ).order_by('-submission_start_date')
+            submission_end_date__gte=datetime.datetime.now()
+        )
 
-    def past(self):
-        return self.filter(vote_end_date__lt=datetime.datetime.now()).order_by('-submission_start_date')
+    def voting(self):
+        return self.filter(
+            voting_start_date__lte=datetime.datetime.now(),
+            voting_end_date__gte=datetime.datetime.now()
+        )
 
-import json
-from eazyemail.models import EazyEmail
+    def voting_ended(self):
+        return self.filter(voting_end_date__lt=datetime.datetime.now())
+
 
 class Grant(models.Model):
     name = models.CharField(max_length=255)
     slug = models.SlugField()
+    description = models.TextField(blank=True)
     voting_enabled = models.BooleanField(default=True)
     submission_start_date = models.DateTimeField(null=True, blank=True, db_index=True)
     submission_end_date = models.DateTimeField(null=True, blank=True, db_index=True)
-    vote_end_date = models.DateTimeField(null=True, blank=True)
+    voting_start_date = models.DateTimeField(null=True, blank=True)
+    voting_end_date = models.DateTimeField(null=True, blank=True)
     template = models.CharField(max_length=255, default='commissions/micro_grant_proposal.html')
     confirmation_email = models.ForeignKey(EazyEmail)
+
     objects = GrantManager()
+
+    class Meta():
+        ordering = ('-submission_start_date',)
 
     def __unicode__(self):
         return self.name
@@ -349,27 +364,36 @@ class Grant(models.Model):
     def number_of_proposals(self):
         return self.proposals.count()
 
+    @property
+    def proposal_data_headers(self):
+        headers = []
+        for datum in self.proposal_data:
+            for k, v in datum.items():
+                headers.append(k)
+        return list(set(headers))
+
+    @property
+    def proposal_data(self):
+        return [p.data_dict for p in self.proposals.all()]
+
 class GrantProposal(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     grant = models.ForeignKey(Grant, related_name='proposals')
     user = models.ForeignKey(User, related_name='grant_proposals')
     data = models.TextField(blank=True)
+    image = models.ImageField(upload_to='grant_proposal/img/', blank=True)
 
     def __unicode__(self):
         return '%s: %s' % (self.grant, self.user)
 
     @property
     def data_dict(self):
-        try:
-            return json.loads(self.data)
-        except ValueError:
-            return None
-
-    def data_admin(self):
-        if self.data_dict:
-            return '<br>'.join(['<strong>%s</strong>: %s' % (k, v) for k, v in self.data_dict.items()])
-    data_admin.allow_tags = True
-    data_admin.short_description = 'data'
+        d = {}
+        if self.data:
+            d.update(json.loads(self.data))
+        if self.image:
+            d.update({'image': '%s%s' % (Site.objects.get_current().domain, self.image.url)})
+        return d
         
 @receiver(post_save, sender=GrantProposal, dispatch_uid='commissions.send_confirmation')
 def send_confirmation(sender, instance, created, **kwargs):

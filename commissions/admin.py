@@ -213,16 +213,48 @@ class ApprovalVoteAdmin(admin.ModelAdmin):
 
 ### new stuff
 
+import csv
+
+from django.conf.urls import url
+from django.http import HttpResponse
+
 
 class GrantAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('name',)}
-    list_display = ('__unicode__', 'submission_start_date', 'submission_end_date', 'vote_end_date', 'number_of_proposals')
+    list_display = ('__unicode__', 'voting_enabled', 'number_of_proposals', 'download_proposals')
     raw_id_fields = ('confirmation_email',)
+
+    def get_urls(self):
+        urls = super(GrantAdmin, self).get_urls()
+        my_urls = [
+            url(r'^download-proposals/(?P<grant_slug>[-\w]+)/$', self.proposals_csv),
+        ]
+        return my_urls + urls
+
+    def download_proposals(self, obj):
+        return '<a href="download-proposals/%s">Download</a>' % obj.slug
+    download_proposals.allow_tags = True
+    download_proposals.short_description = 'proposal spreadsheet'
+
+    def proposals_csv(self, request, grant_slug):
+        grant = Grant.objects.get(slug=grant_slug)
+
+        response = HttpResponse(content_type='text/csv')
+        response['Content-Disposition'] = 'attachment; filename="%s.csv"' % grant.slug
+
+        writer = csv.writer(response)
+
+        headers = grant.proposal_data_headers
+        data = grant.proposal_data
+        writer.writerow(headers)
+        [writer.writerow([d.get(h) for h in headers]) for d in data]
+
+        return response
 
 class GrantProposalAdmin(admin.ModelAdmin):
     raw_id_fields = ('user', 'grant')
-    list_display = ('__unicode__', 'data_admin', 'created')
-    
+    list_display = ('__unicode__', 'created')
+    list_filter = ('grant', 'created')
 
 admin.site.register(Grant, GrantAdmin)
 admin.site.register(GrantProposal, GrantProposalAdmin)

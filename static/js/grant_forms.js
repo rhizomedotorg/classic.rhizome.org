@@ -1,7 +1,7 @@
 jQuery.noConflict();
 (function($) {
     var GrantForm = {
-        errFieldHTML: '<ul class="errorlist"><li>This field is required.</li></ul>',
+        errFieldHTML: '<ul class="errorlist"></ul>',
         errListSelector: 'ul.errorlist',
     }
 
@@ -20,9 +20,17 @@ jQuery.noConflict();
         var errFields = [];
 
         $(fields).each(function() {
-            if ($(this).val() == '') {
-                errFields.push(this);
+            if ($(this).val() == '' && $(this).hasClass('optional') === false) {
+                errFields.push([this, '<li>This field is required.</li>']);
             }
+
+	    var wordLimit = $(this).data('word-limit');
+	    
+	    if (wordLimit) {
+		if ($(this).val().split(' ').length > wordLimit) {
+		    errFields.push([this, '<li>May not exceed ' + wordLimit  + ' words.</li>']);
+		}
+	    }
         });
         return errFields;
     };
@@ -31,7 +39,7 @@ jQuery.noConflict();
         $(GrantForm.errListSelector).remove(); // clear first
 
         $(errFields).each(function() {
-            $(GrantForm.errFieldHTML).insertAfter($(this));
+            $(GrantForm.errFieldHTML).html($(this)[1]).insertAfter($(this)[0]);
         });
 
         if (topMsg) {

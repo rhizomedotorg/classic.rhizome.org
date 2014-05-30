@@ -28,7 +28,7 @@ def index(request):
     # cycles = Cycle.objects.current()
     archive = Cycle.objects.past()
     today = datetime.datetime.now()
-    grants = Grant.objects.current()
+    grants = Grant.objects.accepting_submissions()
 
     return render_to_response(
         'commissions/index.html', {
@@ -520,6 +520,11 @@ def submit_grant_proposal(request, grant_slug):
             data[k] = v
         
         proposal = GrantProposal(grant_id=grant.id, user_id=request.user.id, data=json.dumps(data))
+
+        # assume any file is image
+        if request.FILES:
+            proposal.image = request.FILES[request.FILES.keys()[0]]
+
         proposal.save()
         messages.success(request, 'We have recieved your submission. Thanks!')
         return redirect('commissions_index')
