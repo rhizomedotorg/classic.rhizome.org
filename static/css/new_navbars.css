@@ -40,8 +40,8 @@
       text-align: center;
     }
     #new_header ul li, #new_footer ul li {
-      margin-left: 3.5%;
-      margin-right: 3.5%;
+      margin-left: 0.9%;
+      margin-right: 0.9%;
     }
   }
     #new_header ul li.reversed, #new_footer ul li.reversed {
@@ -138,11 +138,16 @@ body.with-top-banner #new_header {
     text-align: left;
 }
 #new_footer ul li {
-  margin-top: 10px;
+  margin-top: 7px;
   margin-left: 0px;
 }
 #new_footer ul li:first-child {
   display: fixed;
+}
+@media only screen and (max-width: 690px) {
+  #new_footer ul li:first-child {
+    display: none;
+  }
 }
 #new_footer ul li:first-child a.active:not(.underline) {
   text-decoration: none;
