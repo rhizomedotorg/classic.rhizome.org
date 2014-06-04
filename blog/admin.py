@@ -7,12 +7,6 @@ from blog.models import (
     Post, ReblogPost, PostMeta, PostImage, PostVideo, PostAudio, PostFile
 ) 
 
-
-# def handle_uploaded_file(f):
-#     with open('some/file/name.txt', 'wb+') as destination:
-#         for chunk in f.chunks():
-#             destination.write(chunk)
-
 import zipfile
 from django.conf import settings
 from django.contrib.sites.models import Site
