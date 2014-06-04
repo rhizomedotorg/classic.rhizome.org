@@ -55,6 +55,7 @@ class Post(models.Model):
     modified = models.DateTimeField('modified', auto_now=True)
     objects = PublicManager()
     tags = TagField(max_length=1024, null=True, blank=True)
+    iframe_src = models.URLField(blank=True)
 
     class Meta:
         db_table  = 'blog_posts'

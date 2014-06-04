@@ -8,6 +8,16 @@ from blog.models import (
 ) 
 
 
+# def handle_uploaded_file(f):
+#     with open('some/file/name.txt', 'wb+') as destination:
+#         for chunk in f.chunks():
+#             destination.write(chunk)
+
+import zipfile
+from django.conf import settings
+from django.contrib.sites.models import Site
+
+
 class PostForm(forms.ModelForm):
     class Meta:
         model = Post 
@@ -20,6 +30,23 @@ class PostForm(forms.ModelForm):
            'slug' : forms.TextInput(attrs={'size':'60'})
         }
 
+    zip_file = forms.Field(widget=forms.FileInput(), required=False)
+
+    def save(self, commit):
+        instance = super(PostForm, self).save(commit=False)
+
+        # handle upload
+        zfile = self.cleaned_data.get('zip_file')
+        if zfile:
+            dirname = zfile.name.split('.')[0]
+            with zipfile.ZipFile(zfile, 'r') as z:
+                z.extractall('%s/%s/' % (settings.MEDIA_ROOT, dirname))
+            instance.iframe_src = 'http://%s%s%s/index.html' % (Site.objects.get_current().domain, settings.MEDIA_URL, dirname)
+
+        if commit:
+            instance.save()
+        return instance
+
 class PostAdmin(admin.ModelAdmin):
     model = Post
     form = PostForm
@@ -29,8 +56,12 @@ class PostAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('title',)}
     date_hierarchy = 'publish'
     raw_id_fields = ('authors',)
+    readonly_fields = ('iframe_src',)
     save_on_top = True
     fieldsets = (
+        (None, {
+            'fields': ('iframe_src', 'zip_file'),
+        }),
         (None, {
             'fields': (('title', 'byline'), ('subtitle', 'status'), 'body', ('authors', 'publish'), 'slug', 'tags')
         }),
