@@ -32,7 +32,7 @@ class PostForm(forms.ModelForm):
         # handle upload
         zfile = self.cleaned_data.get('zip_file')
         if zfile:
-            dirname = zfile.name.split('.')[0]
+            dirname = instance.slug
             with zipfile.ZipFile(zfile, 'r') as z:
                 z.extractall('%s/%s/' % (settings.MEDIA_ROOT, dirname))
             instance.iframe_src = '%s%s/index.html' % (settings.MEDIA_URL, dirname)
