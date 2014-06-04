@@ -35,7 +35,7 @@ class PostForm(forms.ModelForm):
             dirname = zfile.name.split('.')[0]
             with zipfile.ZipFile(zfile, 'r') as z:
                 z.extractall('%s/%s/' % (settings.MEDIA_ROOT, dirname))
-            instance.iframe_src = 'http://%s%s%s/index.html' % (Site.objects.get_current().domain, settings.MEDIA_URL, dirname)
+            instance.iframe_src = 'http://%s%s/index.html' % (settings.MEDIA_URL, dirname)
 
         if commit:
             instance.save()
