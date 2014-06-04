@@ -130,7 +130,6 @@ h2{
     		bottom: 0px;
     		z-index: 9999;
             min-width: 1215px;
-            width: 100%;
 		}
 
 body{
@@ -356,6 +355,10 @@ h5,
 
 .sponsor-img {
     padding: 0 5px;
+}
+
+#sponsors-logos {
+    text-align: center;
 }
 
 #sponsors-logos a:hover{
