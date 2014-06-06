@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # destroy db
-python manage.py sqlflush | sed 's/TRUNCATE/DROP TABLE/g'| python manage.py dbshell
+python manage.py flush
 
 # resync
 python manage.py syncdb
