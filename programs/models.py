@@ -18,12 +18,12 @@ from blog.models import Post
 def get_event_image_upload_to(self, filename):
     image_title = filename.split('.')[0]
     extension = filename.split('.')[-1]
-    return 'programs/rhizevent/%s/%s.%s' % (self.title.replace(" ", "-"),image_title.replace(" ", "-"),extension)
+    return 'programs/rhizevent/%s/%s.%s' % (self.slug.replace(" ", "-"),image_title.replace(" ", "-"),extension)
 
 def get_exhibition_image_upload_to(self, filename):
     image_title = filename.split('.')[0]
     extension = filename.split('.')[-1]
-    return 'programs/exhibition/%s/%s.%s' % (self.title.replace(" ", "-"),image_title.replace(" ", "-"),extension)
+    return 'programs/exhibition/%s/%s.%s' % (self.slug.replace(" ", "-"),image_title.replace(" ", "-"),extension)
 
 def thumbnail_upload(instance, filename):
     image_title = filename.split('.')[0]
@@ -33,12 +33,12 @@ def thumbnail_upload(instance, filename):
 def get_exhibition_medium_upload(instance, filename):
     image_title = filename.split('.')[0]
     extension = filename.split('.')[-1]
-    return 'programs/exhibition/%s/%s_250x250.%s' % (instance.title.replace(" ", "-"), image_title.replace(" ", "-"), extension)
+    return 'programs/exhibition/%s/%s_250x250.%s' % (instance.slug.replace(" ", "-"), image_title.replace(" ", "-"), extension)
 
 def get_event_medium_upload(instance, filename):
     image_title = filename.split('.')[0]
     extension = filename.split('.')[-1]
-    return 'programs/rhizevent/%s/%s_250x250.%s' % (instance.title.replace(" ", "-"), image_title.replace(" ", "-"), extension)
+    return 'programs/rhizevent/%s/%s_250x250.%s' % (instance.slug.replace(" ", "-"), image_title.replace(" ", "-"), extension)
 
 
 
