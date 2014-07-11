@@ -3,6 +3,8 @@ from django.conf import settings
 from django.contrib.auth.views import *
 from proxy_server.views import *
 from django.views.generic import TemplateView
+from django.views.generic.base import RedirectView
+from django.core.urlresolvers import reverse_lazy
 from mailinglists.views import *
 from hitcount.views import update_hit_count_ajax
 
@@ -274,6 +276,7 @@ pxs = [
     url(r'^frontpage-preview/(?P<slug>[\w-]+)/$', 'exhibitions.views.frontpage_exhibition_preview', name='frontpage_preview'),
 
     url(r'^email/', include('eazyemail.urls')),
+    url(r'^prix-net-art/', 'commissions.views.submit_grant_proposal', {'grant_slug': 'prix-net-art'}),
 ]
 
 if settings.DEBUG:
