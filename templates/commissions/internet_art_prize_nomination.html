@@ -16,9 +16,8 @@
         <br><img id="logo" src="{{ STATIC_URL }}images/internet_art_prize_logo.png"><br><br>
 	{% get_text 'Internet Art Prize Top Text' %}
     </div>
-    <div class="section">
-      <a href="#" class="slide-toggle"><h1>+ Form</h1></a>
-      <div class="slide-hidden">
+    <div class="section form">
+      <h1>Form</h1>
       <form method="post" class="rz-form">{% csrf_token %}
 
 	<h2>Nominated Artist Information</h2>
@@ -86,24 +85,9 @@
 	</div>
 
       </form>
-      </div>
     </div>
-    <!-- <div class="section"> -->
-    <!--   <a href="#" class="slide-toggle"><h1>+ FAQ</h1></a> -->
-    <!--   <div class="slide-hidden">{% get_text 'Internet Art Prize fAQ' %}</div> -->
-    <!-- </div> -->
 {% endblock %}
 
 {% block extra_js %}
     <script type="text/javascript" src="{{ STATIC_URL }}js/grant_forms.js"></script>
-    <script>
-      jQuery.noConflict();
-      (function($) {
-          $('.slide-toggle').click(function(event) {
-              event.preventDefault();
-              $(this).next().slideToggle('fast', function() {
-              });
-          });
-      })(jQuery);
-    </script>
 {% endblock %}

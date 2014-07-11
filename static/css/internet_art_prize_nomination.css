@@ -8,8 +8,8 @@ h1#title {
     width: 800px;
 }
 
-.section:last-child {
-    margin-bottom: 60px;
+.section.form {
+    margin-bottom: 260px;
 }
 
 ol li {
