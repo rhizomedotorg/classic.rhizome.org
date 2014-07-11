@@ -3,13 +3,17 @@
 
 {% block pageTitle %}Submit a Proposal{% endblock %}
 
+{% block extra_css %}
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/micro_grant_proposal.css">
+{% endblock %}
+
 {% block navbars %}
     {% get_nav 'Programs' 'Commissions' %}
 {% endblock %}
 
 {% block content %}
     <div class="section">
-        <br><img src="{{ MEDIA_URL }}{{ grant.image.url }}"><br><br>
+        <br><img src="{{ grant.image.url }}"><br><br>
        {{ grant.description|safe }}
     </div>
     <div class="section form">
