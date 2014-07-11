@@ -13,7 +13,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.cache import cache_page
 
 from accounts.decorators import membership_required
-from commissions.models import Cycle, Proposal, RankVote, ApprovalVote
+from commissions.models import Cycle, Proposal, RankVote, ApprovalVote, Grant
 from commissions.forms import ProposalForm, ApprovalVoteForm, RankVoteForm
 from utils.imaging import create_thumbnail
 
@@ -25,25 +25,18 @@ def handle_uploaded_file(f):
     destination.close()
 
 def index(request):
-    cycles = Cycle.objects.current()
+    # cycles = Cycle.objects.current()
     archive = Cycle.objects.past()
     today = datetime.datetime.now()
-
-    breadcrumb = (('Programs', '/programs/'), ('Commissions', None))
-
-    flash_msg = False
-    if request.GET.get('deleted'):
-        flash_msg = True
+    grants = Grant.objects.accepting_submissions()
 
     return render_to_response(
         'commissions/index.html', {
             'section_title': 'Rhizome Commissions',
             'include_section_header': True,
-            'cycles': cycles,
             'archive': archive,
             'today': today,
-            'flash_msg': flash_msg,
-            'breadcrumb': breadcrumb,
+            'grants': grants,
         },
         RequestContext(request) 
     )
@@ -499,3 +492,41 @@ def ranking_vote(request, object_id):
         )
     else:
         return redirect('commissions_index')
+
+### new stuff 
+
+from commissions.models import (
+    GrantProposal
+)
+from django.contrib import messages
+from django.shortcuts import render
+import json
+
+@login_required
+def submit_grant_proposal(request, grant_slug):
+    grant = get_object_or_404(Grant, slug=grant_slug)
+    proposal = GrantProposal.objects.filter(grant_id=grant.id, user_id=request.user.id)
+    if proposal:
+        messages.info(request, 'You have already submitted.')
+        return redirect('commissions_index')
+
+    if request.method == 'POST':
+        data = {}
+        for k, v in request.POST.items():
+            if k == 'csrfmiddlewaretoken':
+                continue
+            if type(v) is list and len(v) == 1:
+                v = v[0]            
+            data[k] = v
+        
+        proposal = GrantProposal(grant_id=grant.id, user_id=request.user.id, data=json.dumps(data))
+
+        # assume any file is image
+        if request.FILES:
+            proposal.image = request.FILES[request.FILES.keys()[0]]
+
+        proposal.save()
+        messages.success(request, 'We have recieved your submission. Thanks!')
+        return redirect('commissions_index')
+
+    return render(request, grant.template, {'grant': grant})

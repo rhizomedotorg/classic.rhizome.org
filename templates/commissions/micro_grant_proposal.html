@@ -1,0 +1,48 @@
+{% extends 'new_base.html' %}
+{% load block_tags %}
+
+{% block pageTitle %}Submit a Proposal{% endblock %}
+
+{% block navbars %}
+    {% get_nav 'Programs' 'Commissions' %}
+{% endblock %}
+
+{% block content %}
+    <div class="header">
+        <div class="section">
+            <h1>{{ grant.name }}</h1>
+        </div>
+    </div>
+    <div class="section">
+       <p>{{ grant.description }}</p>
+
+       <h1>Proposal</h1>
+       <form method="post" class="rz-form" enctype="multipart/form-data">{% csrf_token %}
+
+	<div class="field col-2">
+	  <label for="name">Name</label><br>
+	  <input id="name" name="name" type="text">
+	</div>
+	<div class="field col-2">
+ 	  <label for="site">Site URL</label><br>
+	  <input id="site" name="site" type="text">
+	</div>
+	<div class="field col-2">
+	  <label for="image">Image</label><br>
+	  <input id="image" name="image" type="file">
+	</div>
+	<div class="field col-2">
+	  <label for="idea">Idea</label><br>
+	  <textarea id="idea" name="idea" placeholder="Up to 150 words" data-word-limit="150"></textarea>
+	</div>
+
+	<div class="field col-2">
+	  <input type="submit" value="Submit" />
+	</div>
+      </form>
+    </div>
+{% endblock %}
+
+{% block extra_js %}
+    <script type="text/javascript" src="{{ STATIC_URL }}js/grant_forms.js"></script>
+{% endblock %}

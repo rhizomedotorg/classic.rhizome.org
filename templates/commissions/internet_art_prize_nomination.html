@@ -1,0 +1,109 @@
+{% extends 'new_base.html' %}
+{% load block_tags %}
+
+{% block pageTitle %}Internet Art Prize Nomination{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/internet_art_prize_nomination.css">
+{% endblock %}
+
+{% block navbars %}
+    {% get_nav 'Programs' 'Commissions' %}
+{% endblock %}
+
+{% block content %}
+    <div class="section">
+        <br><img id="logo" src="{{ STATIC_URL }}images/internet_art_prize_logo.png"><br><br>
+	{% get_text 'Internet Art Prize Top Text' %}
+    </div>
+    <div class="section">
+      <a href="#" class="slide-toggle"><h1>+ Form</h1></a>
+      <div class="slide-hidden">
+      <form method="post" class="rz-form">{% csrf_token %}
+
+	<h2>Nominated Artist Information</h2>
+	<div class="field col-2">
+	  <label for="artist-name">Name</label><br>
+	  <input id="artist-name" name="artist-name" type="text">
+	</div>
+	<div class="field col-2">
+	  <label for="artist-country">Country of Residence</label><br>
+	  <input id="artist-country" name="artist-country" type="text">
+	</div>
+	<div class="field col-2">
+	  <label for="artist-website">Website URL</label><br>
+	  <em>*General website - individual project websites can be linked below</em><br>
+	  <input id="artist-website" name="artist-website" type="text" placeholder="">
+	</div>
+	<div class="field col-2">
+	  <label for="artist-bio">Bio</label><br>
+	  <textarea id="artist-bio" name="artist-bio" placeholder="Up to 300 words" data-word-limit="300"></textarea>
+	</div>
+	<div class="field col-2">
+	  <label for="artist-samples">URLs for up to 10 artwork samples</label><br>
+	  <textarea id="artist-samples" name="artist-samples"></textarea>
+	</div>
+	<div class="field col-2">
+	  <label for="artist-press">URLs for up to 5 press reviews or pieces of critical writing</label><br>
+	  <textarea id="artist-press" name="artist-press"></textarea>
+	</div>
+	<div class="field col-2">
+	  <label for="artist-notes">Notes on technical requirements or other viewing instructions</label><br>
+	  <textarea id="artist-notes" name="artist-notes"></textarea>
+	</div>
+
+	<h2>Nominator Information</h2>
+
+	<div class="field col-2">
+	  <label for="nominator-name">Name</label><br>
+	  <input id="nominator-name" name="nominator-name" type="text">
+	</div>
+	<div class="field col-2">
+	  <label for="nominator-address">Address</label><br>
+	  <textarea id="nominator-address" name="nominator-address"></textarea>
+	</div>
+	<div class="field col-2">
+	  <label for="nominator-phone">Phone number</label><br>
+	  <input id="nominator-phone" name="nominator-phone" type="text">
+	</div>
+	<div class="field col-2">
+	  <label for="nominator-email">Email address</label><br>
+	  <input id="nominator-email" name="nominator-email" type="text">
+	</div>
+	<div class="field col-2">
+	  <label for="nominator-bio">Bio (if different than above)</label><br>
+	  <textarea class="optional" id="nominator-bio" name="nominator-bio" placeholder="Up to 300 words" data-word-limit="300"></textarea>
+	</div>
+
+	<div class="field col-2">
+	  <label for="nomination-statement">Nomination Statment</label><br>
+	  <em>*Please write up to 500 words, articulating how the nominated artist meets the award criteria: <strong>artistic excellence, commitment to the field of internet art</strong>, and <strong>significant future promise</strong> as demonstrated through their achievement to date</em><br>
+	  <textarea id="nomination-statement" name="nomination-statement" placeholder="Up to 500 words" data-word-limit="500"></textarea>
+	</div>
+
+	<div class="field col-2">
+	  <input type="submit" value="Submit" />
+	</div>
+
+      </form>
+      </div>
+    </div>
+    <!-- <div class="section"> -->
+    <!--   <a href="#" class="slide-toggle"><h1>+ FAQ</h1></a> -->
+    <!--   <div class="slide-hidden">{% get_text 'Internet Art Prize fAQ' %}</div> -->
+    <!-- </div> -->
+{% endblock %}
+
+{% block extra_js %}
+    <script type="text/javascript" src="{{ STATIC_URL }}js/grant_forms.js"></script>
+    <script>
+      jQuery.noConflict();
+      (function($) {
+          $('.slide-toggle').click(function(event) {
+              event.preventDefault();
+              $(this).next().slideToggle('fast', function() {
+              });
+          });
+      })(jQuery);
+    </script>
+{% endblock %}

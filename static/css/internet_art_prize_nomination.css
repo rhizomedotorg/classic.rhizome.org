@@ -1,0 +1,21 @@
+h1#title {
+    font-size: 72px;
+    color: darkblue;
+    text-align: center;
+}
+
+.section {
+    width: 800px;
+}
+
+.section:last-child {
+    margin-bottom: 60px;
+}
+
+ol li {
+    list-style-type: decimal;
+}
+
+.slide-hidden {
+    display: none;
+}

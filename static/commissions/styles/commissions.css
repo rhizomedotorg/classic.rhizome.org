@@ -304,22 +304,33 @@ form#approval-voting-form ul li{
     background-color: red;
 }
 
-#upcoming-cycle{
-    text-align: center;
-    padding: 30px;
-    border: 1px solid red;
-    font-size: 18px;
-    font-weight: bold;
-    color: red;
-    margin-left: 70px;
-    margin-bottom: 20px;
-    background-color: #F7F7F7;
-    background-image: url("../images/bg_diagonal_stripes.gif");
-}
 
 #content img.tumblr {
     position: relative;
     bottom: 25px;
     display: block;
     margin: 0 auto;
+}
+
+.upcoming-grant {
+    margin-bottom: 20px;
+    max-width: 800px;
+    min-height: 100px;
+}
+
+.upcoming-grant img {
+    float: left;
+    margin-right: 20px;
+}
+
+.upcoming-grant a {
+    display: block;
+}
+
+.upcoming-grant h3 {
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 13px;
+    font-family: sans-serif;
+    color: #6494B2;
 }

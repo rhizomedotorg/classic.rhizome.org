@@ -1,5 +1,5 @@
 from django.contrib import admin
-from models import *
+
 from django.contrib import admin
 from django.template import RequestContext
 from django.shortcuts import render_to_response
@@ -9,6 +9,8 @@ from django.core.paginator import Paginator, InvalidPage, EmptyPage
 from utils.helpers import strip_bbcode,split_by
 from utils.unicode_csv_writer import UnicodeWriter
 
+from models import *
+
 
 class CycleAdmin(admin.ModelAdmin):
     raw_id_fields = ('jury_award_winners_proposal','user_vote_winners_proposal','winner_proposal_deprecated','winner_artwork')
@@ -16,7 +18,7 @@ class CycleAdmin(admin.ModelAdmin):
     class Meta:
         model = Cycle
         
-admin.site.register(Cycle,CycleAdmin)
+#admin.site.register(Cycle,CycleAdmin)
 
 class ProposalAdmin(admin.ModelAdmin):
     search_fields = ['artists__email','artists__username','artists__last_name','artists__id','author__email','author__username','author__last_name','author__id',
@@ -191,7 +193,7 @@ class ProposalAdmin(admin.ModelAdmin):
              
         return render_to_response('admin/commissions/proposals/dump_finalists.html', d, context_instance)    
                  
-admin.site.register(Proposal,ProposalAdmin)
+#admin.site.register(Proposal,ProposalAdmin)
 
 class RankVoteAdmin(admin.ModelAdmin):
     search_fields = ['user__email','user__username','user__last_name','user__id','user__email',]
@@ -199,7 +201,7 @@ class RankVoteAdmin(admin.ModelAdmin):
     list_display  = ['proposal','user','rank','created','id']
     date_hierarchy = ('created')
 
-admin.site.register(RankVote,RankVoteAdmin)
+#admin.site.register(RankVote,RankVoteAdmin)
 
 class ApprovalVoteAdmin(admin.ModelAdmin):
     search_fields = ['user__email','user__username','user__last_name','user__id','user__email',]
@@ -207,4 +209,52 @@ class ApprovalVoteAdmin(admin.ModelAdmin):
     list_display  = ['proposal','user','approved','created','id']
     date_hierarchy = ('created')
 
-admin.site.register(ApprovalVote,ApprovalVoteAdmin)
+#admin.site.register(ApprovalVote,ApprovalVoteAdmin)
+
+### new stuff
+
+import csv
+
+from django.conf.urls import url
+from django.http import HttpResponse
+
+
+class GrantAdmin(admin.ModelAdmin):
+    prepopulated_fields = {'slug': ('name',)}
+    list_display = ('__unicode__', 'voting_enabled', 'number_of_proposals', 'download_proposals')
+    raw_id_fields = ('confirmation_email',)
+
+    def get_urls(self):
+        urls = super(GrantAdmin, self).get_urls()
+        my_urls = [
+            url(r'^download-proposals/(?P<grant_slug>[-\w]+)/$', self.proposals_csv),
+        ]
+        return my_urls + urls
+
+    def download_proposals(self, obj):
+        return '<a href="download-proposals/%s">Download</a>' % obj.slug
+    download_proposals.allow_tags = True
+    download_proposals.short_description = 'proposal spreadsheet'
+
+    def proposals_csv(self, request, grant_slug):
+        grant = Grant.objects.get(slug=grant_slug)
+
+        response = HttpResponse(content_type='text/csv')
+        response['Content-Disposition'] = 'attachment; filename="%s.csv"' % grant.slug
+
+        writer = csv.writer(response)
+
+        headers = grant.proposal_data_headers
+        data = grant.proposal_data
+        writer.writerow(headers)
+        [writer.writerow([d.get(h) for h in headers]) for d in data]
+
+        return response
+
+class GrantProposalAdmin(admin.ModelAdmin):
+    raw_id_fields = ('user', 'grant')
+    list_display = ('__unicode__', 'created')
+    list_filter = ('grant', 'created')
+
+admin.site.register(Grant, GrantAdmin)
+admin.site.register(GrantProposal, GrantProposalAdmin)

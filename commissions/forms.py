@@ -9,6 +9,8 @@ from django.contrib.auth.models import User
 from django.forms.util import ErrorList
 
 
+### new stuff
+
 class CommissionsImageWidget(forms.FileInput):
     """
     A file upload widget that shows the current announcement's image

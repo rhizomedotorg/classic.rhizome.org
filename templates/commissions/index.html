@@ -1,5 +1,5 @@
 {% extends "commissions/base.html" %}
-{% load markup block_tags %}
+{% load markup block_tags thumbnail %}
 {% load url from future %}
 {% block body_class %}commissions{% endblock %}
 
@@ -7,56 +7,67 @@
 
 {% block wide_section_description %}{% get_text 'commissions description' %}{% endblock %}
 
-{% block flash_message %}Your proposal has been deleted{%endblock%}
-
 {% block content %}
 
-{% for cycle in cycles %}
-<div class="section span-24">
-    {% if today < cycle.submission_start_date and today < cycle.ranking_vote_end %}
-        <div id="upcoming-cycle" class="span-20">
-            The {{ cycle.title }} will open on {{ cycle.submission_start_date|date:'l F d, Y' }}
-        </div>
-    {% else %}
-        <div id="artbase-member-exhibitions" class="clear">
-            {% if today > cycle.submission_start_date and today < cycle.ranking_vote_end or not cycle.ranking_vote_end %}
-                <h6>{{ cycle.title }}</h6>
-            {% else %}
-                <h6 class="red">The Current Commissions cycle has closed. Winners will be announced soon!</h6>
-            {% endif %}
-            <hr class="hr3"></hr>
-            <div class="current-cycle-description indent span-20">
-                {{ cycle.description|markdown }}
-                <p class="bold"><u>Application Deadline:</u> {{ cycle.submission_end_date|date:"l F d, Y" }}</p>
-
-                {% if cycle.is_tumblr_commission %}
-                <p class="bold"><a href="{% url 'commissions_procedures' cycle.id %}">Application Instructions</a></p>
-                {% endif %}
-
-                {% if cycle.approval_vote_start %}
-                    <p class="bold"><u>Approval Voting:</u> {{ cycle.approval_vote_start|date:"l F d, Y" }} - {{ cycle.approval_vote_end|date:"l F d, Y" }}</p>
-                {% endif %}
-                {% if cycle.ranking_vote_start %}
-                    <p class="bold"><u>Rank Voting:</u> {{ cycle.ranking_vote_start|date:"l F d, Y" }} - {{ cycle.ranking_vote_end|date:"l F d, Y" }} </p>
-                {% endif %}
-            </div>
-            
-            <div class="enter-wrap">
-                {% if today > cycle.submission_start_date and today < cycle.submission_end_date %}
-                    <a class="basic current-cycle-enter span-12" href="{% url 'commissions_submit' cycle.id %}">SUBMIT A PROPOSAL</a>
-                {% endif %}
-                
-                {% if today > cycle.approval_vote_start and today <  cycle.ranking_vote_end %}
-                    <a class="basic current-cycle-enter span-12" href="{% url 'commissions_voting' cycle.id %}">GO TO COMMISSIONS VOTING</a>
-                {% endif %}
-            </div>
-            <div class="supporters blue span-24">
-                {{ cycle.supporters|markdown }}
-            </div>
-        </div>
-    {% endif %}
+{% for grant in grants %}
+<div class="section">
+  <div class="upcoming-grant">
+    <a href="{% url 'commissions_submit_grant_proposal' grant.slug %}">
+      {% thumbnail grant.image 100x100 background="#fff" as thumb %}
+      <img src={{ thumb.url }}>
+      <h3>{{ grant }}</h3>
+    </a>
+    <p>{{ grant.blurb|safe }}</p>
+  </div>
 </div>
 {% endfor %}
+
+<!-- {% for cycle in cycles %} -->
+<!-- <div class="section span-24"> -->
+<!--     {% if today < cycle.submission_start_date and today < cycle.ranking_vote_end %} -->
+<!--         <div id="upcoming-cycle" class="span-20"> -->
+<!--             The {{ cycle.title }} will open on {{ cycle.submission_start_date|date:'l F d, Y' }} -->
+<!--         </div> -->
+<!--     {% else %} -->
+<!--         <div id="artbase-member-exhibitions" class="clear"> -->
+<!--             {% if today > cycle.submission_start_date and today < cycle.ranking_vote_end or not cycle.ranking_vote_end %} -->
+<!--                 <h6>{{ cycle.title }}</h6> -->
+<!--             {% else %} -->
+<!--                 <h6 class="red">The Current Commissions cycle has closed. Winners will be announced soon!</h6> -->
+<!--             {% endif %} -->
+<!--             <hr class="hr3"></hr> -->
+<!--             <div class="current-cycle-description indent span-20"> -->
+<!--                 {{ cycle.description|markdown }} -->
+<!--                 <p class="bold"><u>Application Deadline:</u> {{ cycle.submission_end_date|date:"l F d, Y" }}</p> -->
+
+<!--                 {% if cycle.is_tumblr_commission %} -->
+<!--                 <p class="bold"><a href="{% url 'commissions_procedures' cycle.id %}">Application Instructions</a></p> -->
+<!--                 {% endif %} -->
+
+<!--                 {% if cycle.approval_vote_start %} -->
+<!--                     <p class="bold"><u>Approval Voting:</u> {{ cycle.approval_vote_start|date:"l F d, Y" }} - {{ cycle.approval_vote_end|date:"l F d, Y" }}</p> -->
+<!--                 {% endif %} -->
+<!--                 {% if cycle.ranking_vote_start %} -->
+<!--                     <p class="bold"><u>Rank Voting:</u> {{ cycle.ranking_vote_start|date:"l F d, Y" }} - {{ cycle.ranking_vote_end|date:"l F d, Y" }} </p> -->
+<!--                 {% endif %} -->
+<!--             </div> -->
+            
+<!--             <div class="enter-wrap"> -->
+<!--                 {% if today > cycle.submission_start_date and today < cycle.submission_end_date %} -->
+<!--                     <a class="basic current-cycle-enter span-12" href="{% url 'commissions_submit' cycle.id %}">SUBMIT A PROPOSAL</a> -->
+<!--                 {% endif %} -->
+                
+<!--                 {% if today > cycle.approval_vote_start and today <  cycle.ranking_vote_end %} -->
+<!--                     <a class="basic current-cycle-enter span-12" href="{% url 'commissions_voting' cycle.id %}">GO TO COMMISSIONS VOTING</a> -->
+<!--                 {% endif %} -->
+<!--             </div> -->
+<!--             <div class="supporters blue span-24"> -->
+<!--                 {{ cycle.supporters|markdown }} -->
+<!--             </div> -->
+<!--         </div> -->
+<!--     {% endif %} -->
+<!-- </div> -->
+<!-- {% endfor %} -->
 
 <div class="section span-24">
     <div id="artbase-member-exhibitions" class="clear">
