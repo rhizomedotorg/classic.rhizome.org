@@ -14,7 +14,7 @@
         </div>
     </div>
     <div class="section">
-       <p>{{ grant.description }}</p>
+       <p>{{ grant.description|safe }}</p>
 
        <h1>Proposal</h1>
        <form method="post" class="rz-form" enctype="multipart/form-data">{% csrf_token %}
