@@ -502,13 +502,8 @@ from django.contrib import messages
 from django.shortcuts import render
 import json
 
-@login_required
 def submit_grant_proposal(request, grant_slug):
     grant = get_object_or_404(Grant, slug=grant_slug)
-    proposal = GrantProposal.objects.filter(grant_id=grant.id, user_id=request.user.id)
-    if proposal:
-        messages.info(request, 'You have already submitted.')
-        return redirect('commissions_index')
 
     if request.method == 'POST':
         data = {}
@@ -519,7 +514,7 @@ def submit_grant_proposal(request, grant_slug):
                 v = v[0]            
             data[k] = v
         
-        proposal = GrantProposal(grant_id=grant.id, user_id=request.user.id, data=json.dumps(data))
+        proposal = GrantProposal(grant_id=grant.id, data=json.dumps(data))
 
         # assume any file is image
         if request.FILES:

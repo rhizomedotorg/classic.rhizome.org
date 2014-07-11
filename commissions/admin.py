@@ -252,7 +252,7 @@ class GrantAdmin(admin.ModelAdmin):
         return response
 
 class GrantProposalAdmin(admin.ModelAdmin):
-    raw_id_fields = ('user', 'grant')
+    raw_id_fields = ('grant',)
     list_display = ('__unicode__', 'created')
     list_filter = ('grant', 'created')
 

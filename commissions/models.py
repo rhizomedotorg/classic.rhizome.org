@@ -381,12 +381,11 @@ class Grant(models.Model):
 class GrantProposal(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     grant = models.ForeignKey(Grant, related_name='proposals')
-    user = models.ForeignKey(User, related_name='grant_proposals')
     data = models.TextField(blank=True)
     image = models.ImageField(upload_to='grant_proposal/img/', blank=True)
 
     def __unicode__(self):
-        return '%s: %s' % (self.grant, self.user)
+        return '%s: %s' % (self.grant, self.data_dict.get('name', self.id))
 
     @property
     def data_dict(self):
@@ -400,5 +399,8 @@ class GrantProposal(models.Model):
 @receiver(post_save, sender=GrantProposal, dispatch_uid='commissions.send_confirmation')
 def send_confirmation(sender, instance, created, **kwargs):
     if created:
-        instance.grant.confirmation_email.send(settings.DEFAULT_FROM_EMAIL, [instance.user.email], extra_context={
-        })
+        if instance.data_dict.get('email'):
+            instance.grant.confirmation_email.send(
+                settings.DEFAULT_FROM_EMAIL, 
+                [instance.data_dict.get('email')], 
+                extra_context={})
