@@ -343,7 +343,9 @@ class GrantManager(models.Manager):
 class Grant(models.Model):
     name = models.CharField(max_length=255)
     slug = models.SlugField()
+    blurb = models.TextField()
     description = models.TextField(blank=True)
+    image = models.ImageField(upload_to='grant/img/')
     voting_enabled = models.BooleanField(default=True)
     submission_start_date = models.DateTimeField(null=True, blank=True, db_index=True)
     submission_end_date = models.DateTimeField(null=True, blank=True, db_index=True)

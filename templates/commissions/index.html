@@ -1,5 +1,5 @@
 {% extends "commissions/base.html" %}
-{% load markup block_tags %}
+{% load markup block_tags thumbnail %}
 {% load url from future %}
 {% block body_class %}commissions{% endblock %}
 
@@ -7,14 +7,17 @@
 
 {% block wide_section_description %}{% get_text 'commissions description' %}{% endblock %}
 
-{% block flash_message %}Your proposal has been deleted{%endblock%}
-
 {% block content %}
 
 {% for grant in grants %}
-<div class="section span-24">
-  <div class="upcoming-cycle" class="span-20">
-    <a href="{% url 'commissions_submit_grant_proposal' grant.slug %}">{{ grant }}</a>
+<div class="section">
+  <div class="upcoming-grant">
+    <a href="{% url 'commissions_submit_grant_proposal' grant.slug %}">
+      {% thumbnail grant.image 100x100 background="#fff" as thumb %}
+      <img src={{ thumb.url }}>
+      <h3>{{ grant }}</h3>
+    </a>
+    <p>{{ grant.blurb|safe }}</p>
   </div>
 </div>
 {% endfor %}
