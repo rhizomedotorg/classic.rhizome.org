@@ -19,3 +19,9 @@ ol li {
 .slide-hidden {
     display: none;
 }
+
+#artist-samples,
+#artist-press,
+#artist-notes {
+    height: 145px;
+}
