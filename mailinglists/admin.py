@@ -49,7 +49,7 @@ class NewsletterAdmin(admin.ModelAdmin):
         article = newsletter.article()
         from_name = "RHIZOME NEWS"
         from_email = "news@rhizome.org"
-        to_email = "joanne.mcneil@rhizome.org"
+        to_email = ""
         formatted_date =  today.strftime('%m.%d.%y')
         
         #get news and test lists

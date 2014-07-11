@@ -7,6 +7,10 @@ from blog.models import (
     Post, ReblogPost, PostMeta, PostImage, PostVideo, PostAudio, PostFile
 ) 
 
+import zipfile
+from django.conf import settings
+from django.contrib.sites.models import Site
+
 
 class PostForm(forms.ModelForm):
     class Meta:
@@ -20,6 +24,23 @@ class PostForm(forms.ModelForm):
            'slug' : forms.TextInput(attrs={'size':'60'})
         }
 
+    zip_file = forms.Field(widget=forms.FileInput(), required=False)
+
+    def save(self, commit):
+        instance = super(PostForm, self).save(commit=False)
+
+        # handle upload
+        zfile = self.cleaned_data.get('zip_file')
+        if zfile:
+            dirname = instance.slug
+            with zipfile.ZipFile(zfile, 'r') as z:
+                z.extractall('%s/%s/' % (settings.MEDIA_ROOT, dirname))
+            instance.iframe_src = '%s%s/index.html' % (settings.MEDIA_URL, dirname)
+
+        if commit:
+            instance.save()
+        return instance
+
 class PostAdmin(admin.ModelAdmin):
     model = Post
     form = PostForm
@@ -29,8 +50,12 @@ class PostAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('title',)}
     date_hierarchy = 'publish'
     raw_id_fields = ('authors',)
+    readonly_fields = ('iframe_src',)
     save_on_top = True
     fieldsets = (
+        (None, {
+            'fields': ('iframe_src', 'zip_file'),
+        }),
         (None, {
             'fields': (('title', 'byline'), ('subtitle', 'status'), 'body', ('authors', 'publish'), 'slug', 'tags')
         }),

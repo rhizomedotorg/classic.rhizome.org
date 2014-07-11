@@ -154,12 +154,13 @@ def post_detail(request, slug, year, month, day, **kwargs):
 
     d = {  
         'post': post,
-        'breadcrumb': breadcrumb,
         'reblog_post': post.is_reblog(),
     }
     
     if post.can_view(request.user):
-        if post.is_reblog():
+        if post.iframe_src:
+            return render(request, 'blog/iframe_post_shell.html', {'post': post})
+        elif post.is_reblog():
             return render_to_response('blog/reblog_post_detail.html', d, RequestContext(request))
         return render_to_response('blog/blog_post_detail.html', d, RequestContext(request))
     raise Http404

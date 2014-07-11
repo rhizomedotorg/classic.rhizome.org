@@ -1,4 +1,4 @@
-{% load discuss comments announce_tags %}
+{% load discuss comments announce_tags thumbnail %}
 
 <div id ="sidebar">
 
@@ -10,10 +10,11 @@
                 {% for job in jobs %}
                 <div class="content-body  ">
                     <div class="deadline ">
-                        {% if job.get_thumbnail %}
-                        <div class = "announce-thumbnail ">
-                            <a href="{{job.get_absolute_url}}">
-                                <img width="80" height="80" src = "{{MEDIA_URL}}{{ job.get_thumbnail }}"></img>
+                        {% if job.image %}
+                        <div class="announce-thumbnail">
+                            <a href="{{ job.get_absolute_url }}">
+			      {% thumbnail job.image 80x80 crop as thumb %}
+                                <img src="{{ thumb.url }}"></img>
                             </a>
                         </div>
                         <div class="announce-title ">
@@ -109,10 +110,11 @@
                 {% for announcement in events_and_opps %}
                 <div class="content-body  ">
                     <div class="deadline ">
-                        {% if announcement.get_thumbnail %}
+                        {% if announcement.image %}
                         <div class = "announce-thumbnail ">
-                            <a href="{{announcement.get_absolute_url}}">
-                                <img width="80" height="80" src = "{{MEDIA_URL}}{{ announcement.get_thumbnail }}"></img>
+                            <a href="{{ announcement.get_absolute_url }}">
+			      {% thumbnail announcement.image 80x80 crop as thumb %}
+                                <img src="{{ thumb.url }}"></img>
                             </a>
                         </div>
                         <div class="announce-title ">

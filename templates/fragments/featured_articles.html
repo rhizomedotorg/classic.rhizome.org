@@ -1,4 +1,4 @@
-{% load blog_tags %}
+{% load blog_tags thumbnail %}
 <div id ="sidebar">
 
     <div class="sidebar-element ">
@@ -14,7 +14,8 @@
                         {% if post.get_first_image %}
                         <div class = "post-image">
                             <a class="bold" href="{{ post.get_absolute_url }}?ref=ftsidebar">
-                                <img width="100px" src = "{{ MEDIA_URL }}{{ post.get_first_image }}"></img>
+			      {% thumbnail post.get_first_image 100x80 crop as thumb %}
+                                <img src="{{ thumb.url }}">
                             </a>
                         </div>
                         <div class="sidebar-post-title ">

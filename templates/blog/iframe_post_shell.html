@@ -1,0 +1,20 @@
+{% extends 'new_base.html' %}
+{% load block_tags %}
+
+{% block title %}{{ exhibition.title }}{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/frontpage_exhibition.css">
+{% endblock %}
+
+{% block body_class %}{% endblock %}
+{% block top-banner %}{% endblock %}
+
+{% block navbars %}
+    {% get_nav 'Journal' None %}
+{% endblock %}
+
+{% block content_class %}frontpage-exhibition{% endblock %}
+{% block content %}
+    <iframe style="background: white;" src="{{ post.iframe_src }}"></iframe>
+{% endblock %}
