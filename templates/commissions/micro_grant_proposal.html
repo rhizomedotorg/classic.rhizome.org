@@ -8,17 +8,13 @@
 {% endblock %}
 
 {% block content %}
-    <div class="header">
-        <div class="section">
-            <h1>{{ grant.name }}</h1>
-        </div>
-    </div>
     <div class="section">
-       <p>{{ grant.description|safe }}</p>
-
+        <br><img src="{{ MEDIA_URL }}{{ grant.image.url }}"><br><br>
+       {{ grant.description|safe }}
+    </div>
+    <div class="section form">
        <h1>Proposal</h1>
        <form method="post" class="rz-form" enctype="multipart/form-data">{% csrf_token %}
-
 	<div class="field col-2">
 	  <label for="name">Name</label><br>
 	  <input id="name" name="name" type="text">
