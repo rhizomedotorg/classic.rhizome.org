@@ -314,8 +314,8 @@ form#approval-voting-form ul li{
 
 .upcoming-grant {
     margin-bottom: 20px;
-    max-width: 500px;
-    height: 100px;
+    max-width: 800px;
+    min-height: 100px;
 }
 
 .upcoming-grant img {

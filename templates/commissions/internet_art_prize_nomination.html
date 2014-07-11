@@ -21,50 +21,6 @@
       <div class="slide-hidden">
       <form method="post" class="rz-form">{% csrf_token %}
 
-	<h2>Nominator Information</h2>
-	<em>*Please note: individuals cannot nominate themselves</em><br>
-
-	<div class="field col-2">
-	  <label for="nominator-name">Name</label><br>
-	  <input id="nominator-name" name="nominator-name" type="text">
-	</div>
-	<div class="field">
-	  <label for="nominator-address1">Address Line 1</label><br>
-	  <input id="nominator-address1" name="nominator-address1" type="text">
-	</div>
-	<div class="field">
-	  <label for="nominator-address2">Address Line 2</label><br>
-	  <input id="nominator-address2" class="optional" name="nominator-address2" type="text">
-	</div>
-	<div class="field">
-	  <label for="nominator-city">City</label><br>
-	  <input id="nominator-city" name="nominator-city" type="text">
-	</div>
-	<div class="field">
-	  <label for="nominator-state">State/Province/Region</label><br>
-	  <input id="nominator-state" name="nominator-state" type="text">
-	</div>
-	<div class="field">
-	  <label for="nominator-zip">Zip/Postal code</label><br>
-	  <input id="nominator-zip" name="nominator-zip" type="text">
-	</div>
-	<div class="field">
-	  <label for="nominator-country">Country</label><br>
-	  <input id="nominator-country" name="nominator-country" type="text">
-	</div>
-	<div class="field col-2">
-	  <label for="nominator-phone">Phone number</label><br>
-	  <input id="nominator-phone" name="nominator-phone" type="text">
-	</div>
-	<div class="field col-2">
-	  <label for="nominator-email">Email address</label><br>
-	  <input id="nominator-email" name="nominator-email" type="text">
-	</div>
-	<div class="field col-2">
-	  <label for="nominator-bio">Bio</label><br>
-	  <textarea id="nominator-bio" name="nominator-bio" placeholder="Up to 300 words" data-word-limit="300"></textarea>
-	</div>
-
 	<h2>Nominated Artist Information</h2>
 	<div class="field col-2">
 	  <label for="artist-name">Name</label><br>
@@ -84,13 +40,11 @@
 	  <textarea id="artist-bio" name="artist-bio" placeholder="Up to 300 words" data-word-limit="300"></textarea>
 	</div>
 	<div class="field col-2">
-	  <label for="artist-samples">Artwork samples</label><br>
-	  <em>*Up to 10 URLs</em><br>
+	  <label for="artist-samples">URLs for up to 10 artwork samples</label><br>
 	  <textarea id="artist-samples" name="artist-samples"></textarea>
 	</div>
 	<div class="field col-2">
-	  <label for="artist-press">Press Reviews / Critical Writing</label><br>
-	  <em>*Up to 5 URLs</em><br>
+	  <label for="artist-press">URLs for up to 5 press reviews or pieces of critical writing</label><br>
 	  <textarea id="artist-press" name="artist-press"></textarea>
 	</div>
 	<div class="field col-2">
@@ -98,9 +52,32 @@
 	  <textarea id="artist-notes" name="artist-notes"></textarea>
 	</div>
 
+	<h2>Nominator Information</h2>
+
+	<div class="field col-2">
+	  <label for="nominator-name">Name</label><br>
+	  <input id="nominator-name" name="nominator-name" type="text">
+	</div>
+	<div class="field col-2">
+	  <label for="nominator-address">Address</label><br>
+	  <textarea id="nominator-address" name="nominator-address"></textarea>
+	</div>
+	<div class="field col-2">
+	  <label for="nominator-phone">Phone number</label><br>
+	  <input id="nominator-phone" name="nominator-phone" type="text">
+	</div>
+	<div class="field col-2">
+	  <label for="nominator-email">Email address</label><br>
+	  <input id="nominator-email" name="nominator-email" type="text">
+	</div>
+	<div class="field col-2">
+	  <label for="nominator-bio">Bio (if different than above)</label><br>
+	  <textarea class="optional" id="nominator-bio" name="nominator-bio" placeholder="Up to 300 words" data-word-limit="300"></textarea>
+	</div>
+
 	<div class="field col-2">
 	  <label for="nomination-statement">Nomination Statment</label><br>
-	  <em>*Please write up to 500 words, articulating how the nominated artist meets the award criteria: artistic excellence, commitment to the field of internet art, and significant future promise as demonstrated through their achievement to date</em><br>
+	  <em>*Please write up to 500 words, articulating how the nominated artist meets the award criteria: <strong>artistic excellence, commitment to the field of internet art</strong>, and <strong>significant future promise</strong> as demonstrated through their achievement to date</em><br>
 	  <textarea id="nomination-statement" name="nomination-statement" placeholder="Up to 500 words" data-word-limit="500"></textarea>
 	</div>
 
@@ -111,10 +88,10 @@
       </form>
       </div>
     </div>
-    <div class="section">
-      <a href="#" class="slide-toggle"><h1>+ FAQ</h1></a>
-      <div class="slide-hidden">{% get_text 'Internet Art Prize fAQ' %}</div>
-    </div>
+    <!-- <div class="section"> -->
+    <!--   <a href="#" class="slide-toggle"><h1>+ FAQ</h1></a> -->
+    <!--   <div class="slide-hidden">{% get_text 'Internet Art Prize fAQ' %}</div> -->
+    <!-- </div> -->
 {% endblock %}
 
 {% block extra_js %}
