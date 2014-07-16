@@ -14,7 +14,7 @@
 {% block content %}
     <div class="section">
         <br><img id="logo" src="{{ STATIC_URL }}images/internet_art_prize_logo.png"><br><br>
-	{% get_text 'Internet Art Prize Top Text' %}
+	{{ grant.description|safe }}
     </div>
     <div class="section form">
       <h1>Form</h1>
@@ -72,8 +72,8 @@
 
 	<div class="field col-2">
 	  <label for="nomination-statement">Nomination Statment</label><br>
-	  <em>*Please write up to 500 words, articulating how the nominated artist meets the award criteria: <strong>artistic excellence, commitment to the field of internet art</strong>, and <strong>significant future promise</strong> as demonstrated through their achievement to date</em><br>
-	  <textarea id="nomination-statement" name="nomination-statement" placeholder="Up to 500 words" data-word-limit="500"></textarea>
+	  <em>*Please write up to 300 words, articulating how the nominated artist meets the award criteria: <strong>artistic excellence, commitment to the field of internet art</strong>, and <strong>significant future promise</strong> as demonstrated through their achievement to date. If you are an artist nominating yourself, this can be similar to an artist statment.</em><br>
+	  <textarea id="nomination-statement" name="nomination-statement" placeholder="Up to 300 words" data-word-limit="300"></textarea>
 	</div>
 
 	<div class="field col-2">
