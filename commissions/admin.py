@@ -247,7 +247,7 @@ class GrantAdmin(admin.ModelAdmin):
         headers = grant.proposal_data_headers
         data = grant.proposal_data
         writer.writerow(headers)
-        [writer.writerow([d.get(h) for h in headers]) for d in data]
+        [writer.writerow([d.get(h,'').encode('UTF-8') for h in headers]) for d in data]
 
         return response
 
