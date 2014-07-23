@@ -5,6 +5,7 @@
 
 {% block extra_css %}
     <link rel="stylesheet" href="{{ STATIC_URL }}css/micro_grant_proposal.css">
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/sidebars.css">
 {% endblock %}
 
 {% block navbars %}
@@ -13,40 +14,58 @@
 
 {% block content %}
     <div class="section">
-        <br><img src="{{ grant.image.url }}"><br><br>
-       {{ grant.description|safe }}
-    </div>
-    <div class="section form">
-       <h1>Proposal</h1>
-       <form method="post" class="rz-form" enctype="multipart/form-data">{% csrf_token %}
-	<div class="field col-2">
-	  <label for="name">Name</label><br>
-	  <input id="name" name="name" type="text">
-	</div>
-	<div class="field col-2">
-	  <label for="email">Email</label><br>
-	  <input id="email" name="email" type="text">
-	</div>
-	<div class="field col-2">
- 	  <label for="site">Site URL</label><br>
-	  <input id="site" name="site" type="text">
-	</div>
-	<div class="field col-2">
-	  <label for="image">Image</label><br>
-	  <input id="image" name="image" type="file">
-	</div>
-	<div class="field col-2">
-	  <label for="idea">Idea</label><br>
-	  <textarea id="idea" name="idea" placeholder="Up to 150 words" data-word-limit="150"></textarea>
-	</div>
+      <div class="left-col">
 
-	<div class="field col-2">
-	  <input type="submit" value="Submit" />
-	</div>
-      </form>
+        <img class="grant-image" src="{{ grant.image.url }}"><br><br>
+	{{ grant.description|safe }}
+
+	<h1>Proposal</h1>
+	<form method="post" class="rz-form" enctype="multipart/form-data">{% csrf_token %}
+	  <div class="field col-2">
+	    <label for="name">Name</label><br>
+	    <input id="name" name="name" type="text">
+	  </div>
+	  <div class="field col-2">
+	    <label for="email">Email</label><br>
+	    <input id="email" name="email" type="text">
+	  </div>
+	  <div class="field col-2">
+ 	    <label for="site">Site URL</label><br>
+	    <input id="site" name="site" type="text">
+	  </div>
+	  <div class="field col-2">
+	    <label for="image">Image</label><br>
+	    <input id="image" name="image" type="file">
+	  </div>
+	  <div class="field col-2">
+	    <label for="idea">Idea</label><br>
+	    <textarea id="idea" name="idea" placeholder="Up to 150 words" data-word-limit="150"></textarea>
+	  </div>
+
+	  <div class="field col-2">
+	    <input type="submit" value="Submit" />
+	  </div>
+	</form>
+      </div>
+      <div class="right-col">
+	{% include "fragments/nectar_ads_sidebar.html" %}  
+      </div>
     </div>
+
 {% endblock %}
 
 {% block extra_js %}
     <script type="text/javascript" src="{{ STATIC_URL }}js/grant_forms.js"></script>
+
+    {% if "https" not in STATIC_URL %}
+    <script type="text/javascript">
+      var z=document.createElement("script");
+      z.type="text/javascript";
+      z.async=true;
+      z.src="//engine.nectarads.com/z/12843/azk1_2_43,azk2_2_16,azk3_2_16,azk4_2_16,azk5_2_16";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(z, s);
+    </script>
+    {% endif %}
+
 {% endblock %}

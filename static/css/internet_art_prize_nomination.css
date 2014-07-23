@@ -1,0 +1,13 @@
+.section {
+    width: 800px;
+}
+
+.section.form {
+    margin-bottom: 260px;
+}
+
+#artist-samples,
+#artist-press,
+#artist-notes {
+    height: 145px;
+}
