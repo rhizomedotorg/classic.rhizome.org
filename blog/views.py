@@ -5,7 +5,9 @@ from itertools import groupby
 from operator import attrgetter
 
 from django.conf import settings
-from django.shortcuts import render, render_to_response, get_object_or_404
+from django.shortcuts import (
+    render, render_to_response, get_list_or_404,
+    get_object_or_404, redirect)
 from django.template import RequestContext
 
 from django.http import Http404
@@ -402,3 +404,17 @@ def search(request, template_name='editorial/post_search.html'):
             message = 'Search term was too vague. Please try again.'
             context = {'message':message}
     return render_to_response(template_name, context, context_instance=RequestContext(request))
+
+from django.core.urlresolvers import resolve
+
+def today(request):
+    posts = get_list_or_404(Post, slug='rhizome-today')
+    post = posts[0]
+
+    year = post.publish.strftime('%Y')
+    month = post.publish.strftime('%b')
+    day = post.publish.strftime('%d')
+
+    return post_detail(request, post.slug, 
+                       year, month, day)
+    return Http404

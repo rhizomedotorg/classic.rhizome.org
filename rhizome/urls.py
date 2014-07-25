@@ -277,6 +277,7 @@ pxs = [
 
     url(r'^email/', include('eazyemail.urls')),
     url(r'^prix-net-art/', 'commissions.views.submit_grant_proposal', {'grant_slug': 'prix-net-art'}),
+    url(r'^today/', 'blog.views.today'),
 ]
 
 if settings.DEBUG:
