@@ -408,7 +408,8 @@ def search(request, template_name='editorial/post_search.html'):
 from django.core.urlresolvers import resolve
 
 def today(request):
-    posts = get_list_or_404(Post, slug='rhizome-today')
+    posts = get_list_or_404(Post, slug='rhizome-today', status__gte=Post.PUBLIC, 
+                            publish__lte=datetime.datetime.now())
     post = posts[0]
 
     year = post.publish.strftime('%Y')
@@ -417,4 +418,4 @@ def today(request):
 
     return post_detail(request, post.slug, 
                        year, month, day)
-    return Http404
+
