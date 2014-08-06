@@ -88,7 +88,7 @@ class SubscribeForm(forms.Form):
                 #send email notice
                 subject = '%s: Thanks for signing up!' % (listobject.title)
                 from_email = '%s' % (listobject.listemail)
-                message = 'You have signed up for %s. Please click here to confirm: http://rhizome.org/mailinglists/confirm/%s/?email=%s' % (listobject.title, listobject.id, sumbitted_email)
+                message = 'You have signed up for %s. ' % (listobject.title)
                 to = [sumbitted_email]
                 confirm_email = EmailMessage(subject, message, from_email, to, headers = {'Reply-To': 'no-reply@rhizome.org'})
                 confirm_email.send(fail_silently=False)
@@ -106,7 +106,7 @@ class SubscribeForm(forms.Form):
                 #send email notice
                 subject = '%s: Thanks for signing up.' % (listobject.title)
                 from_email = '%s' % (listobject.listemail)
-                message = 'You have signed up for %s. Please click here to confirm: http://rhizome.org/mailinglists/confirm/%s/?email=%s' % (listobject.title,listobject.id, sumbitted_email)
+                message = 'You have signed up for %s.' % (listobject.title)
                 to = [sumbitted_email]
                 confirm_email = EmailMessage(subject, message, from_email, to, headers = {'Reply-To': 'no-reply@rhizome.org'})
                 confirm_email.send(fail_silently=False)
@@ -247,7 +247,7 @@ class ManageForm(forms.Form):
                             newmember.save()
                             subject = '%s: Thanks for signing up!' % (listobject.title)
                             from_email = '%s' % (listobject.listemail)
-                            message = 'You have signed up for %s. Please click here to confirm: http://rhizome.org/mailinglists/confirm/%s/?email=%s' % (listobject.title, listobject.id, user.email)
+                            message = 'You have signed up for %s.' % (listobject.title)
                             to = [user.email]
                             confirm_email = EmailMessage(subject, message, from_email, to, headers = {'Reply-To': 'no-reply@rhizome.org'})
                             confirm_email.send(fail_silently=False)
