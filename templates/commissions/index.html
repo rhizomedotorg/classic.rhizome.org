@@ -12,7 +12,7 @@
 {% for grant in grants %}
 <div class="section">
   <div class="upcoming-grant">
-    <a href="{% url 'commissions_submit_grant_proposal' grant.slug %}">
+    <a href="{% url 'commissions_grant' grant.slug %}">
       {% thumbnail grant.image 100x100 background="#fff" as thumb %}
       <img src={{ thumb.url }}>
       <h3>{{ grant }}</h3>

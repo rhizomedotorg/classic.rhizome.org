@@ -324,11 +324,14 @@ from eazyemail.models import EazyEmail
 
 
 class GrantManager(models.Manager):
-    def accepting_submissions(self):
-        return self.filter(
-            submission_start_date__lte=datetime.datetime.now(), 
-            submission_end_date__gte=datetime.datetime.now()
-        )
+    # def accepting_submissions(self):
+    #     return self.filter(
+    #         submission_start_date__lte=datetime.datetime.now(), 
+    #         submission_end_date__gte=datetime.datetime.now()
+    #     )
+
+    def published(self):
+        return self.filter(submission_start_date__lte=datetime.datetime.now())
 
     def voting(self):
         return self.filter(
@@ -339,8 +342,10 @@ class GrantManager(models.Manager):
     def voting_ended(self):
         return self.filter(voting_end_date__lt=datetime.datetime.now())
 
-
 class Grant(models.Model):
+    class Status:
+        UNPUBLISHED, ACCEPTING_SUBMISSIONS, VOTING, VOTING_ENDED = (0, 1, 2, 3)
+
     name = models.CharField(max_length=255)
     slug = models.SlugField()
     blurb = models.TextField()
@@ -363,6 +368,31 @@ class Grant(models.Model):
         return self.name
 
     @property
+    def accepting_submissions(self):
+        return self.submission_start_date <= datetime.datetime.now() and \
+            self.submission_end_date >= datetime.datetime.now()
+
+    @property
+    def voting(self):
+        return self.voting_enabled and \
+            self.voting_start_date <= datetime.datetime.now() and \
+            self.voting_end_date >= datetime.datetime.now()
+
+    @property
+    def voting_ended(self):
+        return self.voting_end_date < datetime.datetime.now()
+
+    @property
+    def status(self):
+        if self.accepting_submissions:
+            return Grant.Status.ACCEPTING_SUBMISSIONS
+        elif self.voting:
+            return Grant.Status.VOTING
+        elif self.voting_ended:
+            return Grant.Status.VOTING_ENDED
+        return Grant.Status.UNPUBLISHED
+
+    @property
     def number_of_proposals(self):
         return self.proposals.count()
 
@@ -373,6 +403,9 @@ class Grant(models.Model):
             for k, v in datum.items():
                 headers.append(k)
         return list(set(headers))
+
+    def get_random_proposals(self, limit):
+        return self.proposals.all().order_by('?')[:limit]
 
     @property
     def proposal_data(self):
@@ -395,6 +428,12 @@ class GrantProposal(models.Model):
         if self.image:
             d.update({'image': '%s%s' % (Site.objects.get_current().domain, self.image.url)})
         return d
+
+class GrantProposalVote(models.Model):
+    created = models.DateTimeField(auto_now_add=True)
+    proposal = models.ForeignKey(GrantProposal, related_name='votes')
+    user = models.ForeignKey(User, related_name='grant_proposal_votes')
+
         
 @receiver(post_save, sender=GrantProposal, dispatch_uid='commissions.send_confirmation')
 def send_confirmation(sender, instance, created, **kwargs):

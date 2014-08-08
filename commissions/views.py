@@ -28,7 +28,7 @@ def index(request):
     # cycles = Cycle.objects.current()
     archive = Cycle.objects.past()
     today = datetime.datetime.now()
-    grants = Grant.objects.accepting_submissions()
+    grants = Grant.objects.published()
 
     return render_to_response(
         'commissions/index.html', {
@@ -496,14 +496,41 @@ def ranking_vote(request, object_id):
 ### new stuff 
 
 from commissions.models import (
-    GrantProposal
+    GrantProposal, GrantProposalVote
 )
+from django.http import Http404
 from django.contrib import messages
 from django.shortcuts import render
 import json
 
+
+def grant(request, grant_slug):
+    grant = get_object_or_404(Grant, slug=grant_slug)
+
+    if grant.status == Grant.Status.ACCEPTING_SUBMISSIONS:
+        return submit_grant_proposal(request, grant_slug)
+    elif grant.status == Grant.Status.VOTING:
+        return grant_voting(request, grant_slug)
+    raise Http404
+
+def grant_voting(request, grant_slug):
+    grant = get_object_or_404(Grant, slug=grant_slug)
+    if grant.status != Grant.Status.VOTING:
+        raise Http404
+
+    if request.method == 'POST':
+        pass
+
+    return render(request, 'commissions/grant_voting.html', {
+        'grant': grant,
+        'proposals': grant.get_random_proposals(10),
+    })
+
+
 def submit_grant_proposal(request, grant_slug):
     grant = get_object_or_404(Grant, slug=grant_slug)
+    if grant.status != Grant.Status.ACCEPTING_SUBMISSIONS:
+        raise Http404
 
     if request.method == 'POST':
         data = {}
