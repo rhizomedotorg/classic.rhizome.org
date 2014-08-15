@@ -36,7 +36,8 @@ SUB_NAV = {
         ('Events', reverse('programs_events')), 
         ('Exhibitions', reverse('programs_exhibitions')),
         ('Seven on Seven', reverse('sevenonseven_landing')),
-        ('The Download', reverse('downloadofthemonth')),
+        # ('The Download', reverse('downloadofthemonth')),
+        ('Internet Subjects', reverse('blog_tag_detail', args=['internet-subjects'])),
     ),
     'Membership': (
         ('Donate', reverse('support_donate')),

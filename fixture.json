@@ -9,7 +9,7 @@
         "is_active": true, 
         "is_superuser": true, 
         "is_staff": true, 
-        "last_login": "2014-03-26T11:21:39.809", 
+        "last_login": "2014-08-15T14:18:51.875", 
         "groups": [], 
         "user_permissions": [], 
         "password": "pbkdf2_sha256$10000$2W5dZXW7ni6E$HNU08KlAYHvAnsPbRJGRjdGrnwX2pZT/2vfFzA6rPCY=", 
@@ -4522,8 +4522,8 @@
     "model": "blocks.block", 
     "fields": {
         "category": "", 
-        "text": "The Rhizome editorial section is your guide to breaking news in the field of art and technology, featuring original coverage of exhibitions, festivals, new projects, and more by Rhizome staff writers and an international network of artists, curators, and critics, while also offering historical insight and links to archival resources. The editorial section is syndicated via the Rhizome Front Page RSS feed.", 
-        "ident": "Editorial Program"
+        "text": "Rhizome's online journal offers original, critical writing about art and digital technology. We aim to encourage in-depth thinking about artists' digital, online, and \"internet-aware\" practices, and about the cultural implications of new technologies.", 
+        "ident": "Journal"
     }
 },
 {
@@ -4605,6 +4605,15 @@
         "category": "", 
         "text": "<li><i>Contemporary art and technology, online since 1996.</i></li>", 
         "ident": "Tagline"
+    }
+},
+{
+    "pk": 36, 
+    "model": "blocks.block", 
+    "fields": {
+        "category": "", 
+        "text": "Internet Subjects is a series of flash panel conversations. Each takes a topic chosen just a week in advance in order to discuss emerging internet subjects and subjectivities in an engaging public forum.", 
+        "ident": "Internet Subjects Program"
     }
 },
 {
@@ -4992,6 +5001,7 @@
         "publish": "2014-03-26T11:24:38", 
         "staff_blog": false, 
         "body": "<p><img style=\"display: block; margin-left: auto; margin-right: auto;\" src=\"http://127.0.0.1:8000/media/blog/1/placeholder_4.jpg\" alt=\"\" width=\"375\" height=\"297\" /></p>\n<p style=\"text-align: center;\"><span style=\"font-size: xx-small;\">Lorem Ipsum Dolar (Tupac Shakur),\u00a0Photograph taken by\u00a0<em>Lorem Ipsum\u00a0</em>(1996) dolar sit amet.</span></p>\n<blockquote>\n<p>Did you hear about the rose that grew<br /> from a crack in the concrete?<br /> Proving nature's law is wrong it<br /> learned to walk with out having feet.<br /> Funny it seems, but by keeping it's dreams,<br /> it learned to breathe fresh air.<br /> Long live the rose that grew from concrete<br /> when no one else ever cared.</p>\n<p>\u2014 from <em>Lorem Ipsum Dolar</em>\u00a0by Tupac Shakur</p>\n</blockquote>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\n<p style=\"text-align: center;\">\u00a0<img src=\"http://127.0.0.1:8000/media/blog/1/placeholder_4.jpg\" alt=\"\" width=\"375\" height=\"297\" /></p>\n<p style=\"text-align: center;\"><span style=\"font-size: xx-small;\">Lorem Ipsum Dolar (Tupac Shakur),\u00a0Photograph taken by\u00a0<em>Lorem Ipsum\u00a0</em>(1996) dolar sit amet.</span></p>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute <a href=\"http://www.google.com/\">irure dolor in reprehenderit</a> in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\n<p style=\"text-align: center;\"><img src=\"http://127.0.0.1:8000/media/blog/1/placeholder_4.jpg\" alt=\"\" width=\"375\" height=\"297\" /></p>\n<p style=\"text-align: center;\"><span style=\"font-size: xx-small;\">Lorem Ipsum Dolar (Tupac Shakur),\u00a0Photograph taken by\u00a0<em>Lorem Ipsum\u00a0</em>(1996) dolar sit amet.</span></p>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\n<p style=\"text-align: center;\">\u00a0<img src=\"http://127.0.0.1:8000/media/blog/1/placeholder_4.jpg\" alt=\"\" width=\"375\" height=\"297\" /></p>\n<p style=\"text-align: center;\"><span style=\"font-size: xx-small;\">Lorem Ipsum Dolar (Tupac Shakur),\u00a0Photograph taken by\u00a0<em>Lorem Ipsum\u00a0</em>(1996) dolar sit amet.</span></p>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>", 
+        "iframe_src": "", 
         "tags": "test, tupac, rhizome", 
         "artbase_essay": false, 
         "is_micro": false, 
@@ -5025,6 +5035,7 @@
         "publish": "2014-03-25T11:35:07", 
         "staff_blog": false, 
         "body": "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>", 
+        "iframe_src": "", 
         "tags": "test", 
         "artbase_essay": false, 
         "is_micro": false, 
@@ -5054,6 +5065,7 @@
         "publish": "2014-03-17T11:45:48", 
         "staff_blog": false, 
         "body": "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>", 
+        "iframe_src": "", 
         "tags": "test", 
         "artbase_essay": false, 
         "is_micro": false, 
@@ -5083,6 +5095,7 @@
         "publish": "2014-03-18T11:45:10", 
         "staff_blog": false, 
         "body": "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>", 
+        "iframe_src": "", 
         "tags": "test", 
         "artbase_essay": false, 
         "is_micro": false, 
@@ -5112,6 +5125,7 @@
         "publish": "2014-03-19T11:44:41", 
         "staff_blog": false, 
         "body": "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>", 
+        "iframe_src": "", 
         "tags": "test", 
         "artbase_essay": false, 
         "is_micro": false, 
@@ -5141,6 +5155,7 @@
         "publish": "2014-03-20T11:44:05", 
         "staff_blog": false, 
         "body": "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>", 
+        "iframe_src": "", 
         "tags": "test", 
         "artbase_essay": false, 
         "is_micro": false, 
@@ -5170,6 +5185,7 @@
         "publish": "2014-03-21T11:43:25", 
         "staff_blog": false, 
         "body": "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>", 
+        "iframe_src": "", 
         "tags": "test", 
         "artbase_essay": false, 
         "is_micro": false, 
@@ -5199,6 +5215,7 @@
         "publish": "2014-03-22T11:42:58", 
         "staff_blog": false, 
         "body": "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>", 
+        "iframe_src": "", 
         "tags": "test", 
         "artbase_essay": false, 
         "is_micro": false, 
@@ -5228,6 +5245,7 @@
         "publish": "2014-03-23T11:42:18", 
         "staff_blog": false, 
         "body": "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>", 
+        "iframe_src": "", 
         "tags": "test", 
         "artbase_essay": false, 
         "is_micro": false, 
@@ -5257,6 +5275,7 @@
         "publish": "2014-03-24T11:41:13", 
         "staff_blog": false, 
         "body": "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>", 
+        "iframe_src": "", 
         "tags": "test", 
         "artbase_essay": false, 
         "is_micro": false, 
