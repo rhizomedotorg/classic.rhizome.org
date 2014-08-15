@@ -12,62 +12,7 @@
 {% block content %}
 <div class="section span-24">
     <div class="span-11">
-        <img src ="{{ STATIC_URL }}programs/images/editorial_thumb.jpg" />
-        
-        <div class="programs-image-credit">
-        Image: Graffiti Analysis, DustTag v. 1.0, by Evan Roth, from Art in Your Pocket 2 written by Jonah Brucker-Cohen for Rhizome News
-        </div>
-    </div>
-    
-    <div class="prepend-1 span-11 programs-program">
-      
-        <div class="program-title">
-            JOURNAL
-        </div>
-      
-        <div class="program-description">
-            {% get_text 'journal' %}
-            
-            <div class="enter">
-               <a href="/editorial">Explore Journal</a>
-            </div>
-        </div>
-
-    </div>
-</div>
-
-<hr>
-
-<div class="section span-24">
-    <div class="span-11">
-        <img src ="http://media.rhizome.org/programs/exhibition/21/oppenheim.jpg" width='430' height='250' />
-        
-        <div class="programs-image-credit">
-        Image:Lisa Oppenheim, "The Sun is Always Setting Somewhere Else" (2006), from <a href="http://www.newmuseum.org/free/">Free</a> curated by Lauren Cornell</div>
-    </div>
-    
-    <div class="prepend-1 span-11 programs-program">
-      
-        <div class="program-title">
-            EXHIBITIONS
-        </div>
-   
-        <div class="program-description">
-           {% get_text 'exhibitions program' %}
-            <div class="enter">
-               <a href="/exhibitions">Explore Exhibitions</a>
-            </div>
-            
-        </div>
-
-    </div>
-</div>
-
-<hr>
-
-<div class="section span-24">
-    <div class="span-11">
-        <img src ="{{ STATIC_URL }}programs/images/events_thumb.jpg" />
+        <img src="{{ STATIC_URL }}programs/images/events_thumb.jpg" />
         
         <div class="programs-image-credit">
       Image: Wait, by Wojciech Kosma, Performance documentation from "VVORK: Variety Evening at the New Museum". Part of Rhizome's  New Silent Series
@@ -115,6 +60,31 @@
                <a href="/commissions">Explore Commissions</a>
             </div>
             
+        </div>
+
+    </div>
+</div>
+
+<hr>
+
+<div class="section span-24">
+    <div class="span-11">
+        <img width="430px" src="{{ STATIC_URL }}images/Opening-the-Kimono.png" />
+    </div>
+    
+    <div class="prepend-1 span-11 programs-program">
+      
+        <div class="program-title">
+	  FIRST LOOK
+        </div>
+      
+        <div class="program-description">
+            {% get_text 'first look program' %} 
+            
+            <div class="enter">
+               <a href="{% url 'blog_tag_detail' 'first-look' %}">Explore First Look</a>
+            </div>    
+        
         </div>
 
     </div>
@@ -174,5 +144,59 @@ Image: David Karp & Ryan Trecartin presenting their project created for Rhizome'
     </div>
 </div>
 
+<hr>
+
+<div class="section span-24">
+    <div class="span-11">
+        <img src ="{{ STATIC_URL }}programs/images/editorial_thumb.jpg" />
+        
+        <div class="programs-image-credit">
+        Image: Graffiti Analysis, DustTag v. 1.0, by Evan Roth, from Art in Your Pocket 2 written by Jonah Brucker-Cohen for Rhizome News
+        </div>
+    </div>
+    
+    <div class="prepend-1 span-11 programs-program">
+      
+        <div class="program-title">
+            JOURNAL
+        </div>
+      
+        <div class="program-description">
+            {% get_text 'journal' %}
+            
+            <div class="enter">
+               <a href="/editorial">Explore Journal</a>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<hr>
+
+<div class="section span-24">
+    <div class="span-11">
+        <img src ="http://media.rhizome.org/programs/exhibition/21/oppenheim.jpg" width='430' height='250' />
+        
+        <div class="programs-image-credit">
+        Image:Lisa Oppenheim, "The Sun is Always Setting Somewhere Else" (2006), from <a href="http://www.newmuseum.org/free/">Free</a> curated by Lauren Cornell</div>
+    </div>
+    
+    <div class="prepend-1 span-11 programs-program">
+      
+        <div class="program-title">
+            EXHIBITIONS
+        </div>
+   
+        <div class="program-description">
+           {% get_text 'exhibitions program' %}
+            <div class="enter">
+               <a href="/exhibitions">Explore Exhibitions</a>
+            </div>
+            
+        </div>
+
+    </div>
+</div>
 
 {% endblock %}
