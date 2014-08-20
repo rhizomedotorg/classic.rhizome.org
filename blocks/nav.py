@@ -32,11 +32,13 @@ SUB_NAV = {
         ('Mailing Lists', reverse('mailinglists')),
     ),
     'Programs': (
-        ('Commissions', reverse('commissions_index')), 
         ('Events', reverse('programs_events')), 
-        ('Exhibitions', reverse('programs_exhibitions')),
+        ('Commissions', reverse('commissions_index')), 
+        ('First Look', reverse('blog_tag_detail', args=['first-look'])),
         ('Seven on Seven', reverse('sevenonseven_landing')),
-        ('The Download', reverse('downloadofthemonth')),
+        ('Internet Subjects', reverse('blog_tag_detail', args=['internet-subjects'])),
+        ('Journal', reverse('blog_index')),
+        ('Exhibitions', reverse('programs_exhibitions')),
     ),
     'Membership': (
         ('Donate', reverse('support_donate')),
