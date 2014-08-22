@@ -4,7 +4,7 @@ from operator import attrgetter
 from django.contrib.auth import authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib.sessions.models import *
-from django.core.paginator import Paginator, InvalidPage, EmptyPage
+from django.core.paginator import Paginator, InvalidPage, EmptyPage, PageNotAnInteger
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import redirect, render_to_response, get_object_or_404
@@ -501,6 +501,7 @@ from commissions.models import (
 from django.http import Http404
 from django.contrib import messages
 from django.shortcuts import render
+import random
 import json
 
 
@@ -515,6 +516,7 @@ def grant(request, grant_slug):
         return grant_voting(request, grant_slug)
     raise Http404
 
+@login_required
 def grant_voting(request, grant_slug):
     grant = get_object_or_404(Grant, slug=grant_slug)
     if grant.status != Grant.Status.VOTING:
@@ -536,10 +538,27 @@ def grant_voting(request, grant_slug):
                       'Thank you!'.format(grant.__unicode__()))
         return redirect('commissions_index')
 
+    proposal_list = [p for p in grant.proposals.all()]
+    random.seed(request.user.id)
+    random.shuffle(proposal_list)
+
+    # exclude proposals already voted on
+    proposal_list = [p for p in proposal_list if request.user.id not in [
+        vote.user_id for vote in p.votes.all()]]
+
+    paginator = Paginator(proposal_list, 8)
+    page = request.GET.get('page')
+    try:
+        proposals = paginator.page(page)
+    except PageNotAnInteger:
+        proposals = paginator.page(1)
+    except EmptyPage:
+        proposals = paginator.page(paginator.num_pages)
+
     return render(request, 'commissions/grant_voting.html', {
         'grant': grant,
         'votes_remaining': MAX_TIMES_CAN_VOTE - times_voted,
-        'proposals': grant.get_random_proposals(10),
+        'proposals': proposals
     })
 
 

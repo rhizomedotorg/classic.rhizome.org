@@ -16,13 +16,31 @@
     <div class="section">
       <div class="left-col">
 
-	<h3>Votes remaining: {{ votes_remaining }}</h3><br>
+	<h3>Votes remaining: {{ votes_remaining }}</h3>
+
+	<p class="explanitory">You are welcome to vote for up to three projects below. This page calls up all the proposals, but randomizes their order. </p>
+
+	<div class="pagination">
+	  <span class="step-links">
+	    {% if proposals.has_previous %}
+	    <a href="?page={{ proposals.previous_page_number }}">Previous page</a>
+	    {% endif %}
+
+	    <span class="current">
+	      Page {{ proposals.number }} of {{ proposals.paginator.num_pages }}.
+	    </span>
+
+	    {% if proposals.has_next %}
+	    <a href="?page={{ proposals.next_page_number }}">Next page</a>
+	    {% endif %}
+	</div>
 
 	{% for proposal in proposals %}
 
 	<div class="proposal-vote-view">
 	  <p>
-	    {{ proposal.data_dict.name }} | {{ proposal.data_dict.site|urlize|url_target_blank }}
+	    <h3>{{ proposal.data_dict.name }}</h3>
+	    {{ proposal.data_dict.site|urlize|url_target_blank }}
 	  </p>
 	  <img src={{ proposal.data_dict.image }}>
 	  <p>{{ proposal.data_dict.idea }}</p>
@@ -35,6 +53,21 @@
 	  </form>
 	</div>
 	{% endfor %}
+	<br>
+	<div class="pagination bottom">
+	  <span class="step-links">
+	    {% if proposals.has_previous %}
+	    <a href="?page={{ proposals.previous_page_number }}">previous</a>
+	    {% endif %}
+
+	    <span class="current">
+	      Page {{ proposals.number }} of {{ proposals.paginator.num_pages }}.
+	    </span>
+
+	    {% if proposals.has_next %}
+	    <a href="?page={{ proposals.next_page_number }}">next</a>
+	    {% endif %}
+	</div><br>
       </div>
       <div class="right-col">
 	{% include "fragments/nectar_ads_sidebar.html" %}

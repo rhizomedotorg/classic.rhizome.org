@@ -324,12 +324,6 @@ from eazyemail.models import EazyEmail
 
 
 class GrantManager(models.Manager):
-    # def accepting_submissions(self):
-    #     return self.filter(
-    #         submission_start_date__lte=datetime.datetime.now(), 
-    #         submission_end_date__gte=datetime.datetime.now()
-    #     )
-
     def published(self):
         return self.filter(submission_start_date__lte=datetime.datetime.now())
 
@@ -352,10 +346,10 @@ class Grant(models.Model):
     description = models.TextField(blank=True)
     image = models.ImageField(upload_to='grant/img/')
     voting_enabled = models.BooleanField(default=True)
-    submission_start_date = models.DateTimeField(null=True, blank=True, db_index=True)
-    submission_end_date = models.DateTimeField(null=True, blank=True, db_index=True)
-    voting_start_date = models.DateTimeField(null=True, blank=True)
-    voting_end_date = models.DateTimeField(null=True, blank=True)
+    submission_start_date = models.DateTimeField(null=True, db_index=True)
+    submission_end_date = models.DateTimeField(null=True, db_index=True)
+    voting_start_date = models.DateTimeField(null=True)
+    voting_end_date = models.DateTimeField(null=True)
     template = models.CharField(max_length=255, default='commissions/micro_grant_proposal.html')
     confirmation_email = models.ForeignKey(EazyEmail)
 
@@ -403,9 +397,6 @@ class Grant(models.Model):
             for k, v in datum.items():
                 headers.append(k)
         return list(set(headers))
-
-    def get_random_proposals(self, limit):
-        return self.proposals.all().order_by('?')[:limit]
 
     @property
     def proposal_data(self):
