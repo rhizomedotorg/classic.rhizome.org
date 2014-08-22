@@ -1,0 +1,58 @@
+{% extends 'new_base.html' %}
+{% load block_tags utils %}
+
+{% block pageTitle %}Vote{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/micro_grant_proposal.css">
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/sidebars.css">
+{% endblock %}
+
+{% block navbars %}
+    {% get_nav 'Programs' 'Commissions' %}
+{% endblock %}
+
+{% block content %}
+    <div class="section">
+      <div class="left-col">
+
+	<h3>Votes remaining: {{ votes_remaining }}</h3><br>
+
+	{% for proposal in proposals %}
+
+	<div class="proposal-vote-view">
+	  <p>
+	    {{ proposal.data_dict.name }} | {{ proposal.data_dict.site|urlize|url_target_blank }}
+	  </p>
+	  <img src={{ proposal.data_dict.image }}>
+	  <p>{{ proposal.data_dict.idea }}</p>
+
+	  <form method="post" class="rz-form" enctype="multipart/form-data">{% csrf_token %}
+	    <div class="field col-2">
+	      <input type="hidden" value="{{ proposal.id }}" name="proposal_id">
+	      <input type="submit" value="Vote">
+	    </div>
+	  </form>
+	</div>
+	{% endfor %}
+      </div>
+      <div class="right-col">
+	{% include "fragments/nectar_ads_sidebar.html" %}
+      </div>
+    </div>
+{% endblock %}
+
+{% block extra_js %}
+    <script type="text/javascript" src="{{ STATIC_URL }}js/grant_forms.js"></script>
+
+    {% if "https" not in STATIC_URL %}
+    <script type="text/javascript">
+      var z=document.createElement("script");
+      z.type="text/javascript";
+      z.async=true;
+      z.src="//engine.nectarads.com/z/12843/azk1_2_43,azk2_2_16,azk3_2_16,azk4_2_16,azk5_2_16";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(z, s);
+    </script>
+    {% endif %}
+{% endblock %}

@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.db import models
 
 from django.contrib import admin
 from django.template import RequestContext
@@ -253,8 +254,23 @@ class GrantAdmin(admin.ModelAdmin):
 
 class GrantProposalAdmin(admin.ModelAdmin):
     raw_id_fields = ('grant',)
-    list_display = ('__unicode__', 'created')
+    list_display = ('__unicode__', 'grant', 'number_of_votes', 'created')
     list_filter = ('grant', 'created')
+
+    def queryset(self, request):
+        qs = super(GrantProposalAdmin, self).queryset(request)
+        qs = qs.annotate(models.Count('votes'))
+        return qs
+
+    def number_of_votes(self, obj):
+        return obj.votes__count
+    number_of_votes.admin_order_field = 'votes__count'
+
+class GrantProposalVoteAdmin(admin.ModelAdmin):
+    raw_id_fields = ('user', 'proposal')
+    list_display = ('proposal', 'user', 'created')
+    list_filter = ('proposal__grant', 'created')
 
 admin.site.register(Grant, GrantAdmin)
 admin.site.register(GrantProposal, GrantProposalAdmin)
+admin.site.register(GrantProposalVote, GrantProposalVoteAdmin)

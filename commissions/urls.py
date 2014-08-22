@@ -17,5 +17,7 @@ urlpatterns = patterns('commissions.views',
     url(r'^voting/approval/proposal/(?P<proposal_id>\d+)/$', 'indiv_approval_voting_wrapper', name='commissions_indiv_approval_voting_wrapper'), 
     url(r'^voting/ranking/(?P<object_id>\d+)/$', 'ranking_vote', name='commissions_ranking_vote'), 
 
-    url(r'^grant/(?P<grant_slug>[-\w]+)/$', 'submit_grant_proposal', name='commissions_submit_grant_proposal'),
+    url(r'^grant/(?P<grant_slug>[-\w]+)/$', 'grant', name='commissions_grant'),
+    url(r'^grant/(?P<grant_slug>[-\w]+)/submit$', 'submit_grant_proposal', name='commissions_submit_grant_proposal'),
+    url(r'^grant/(?P<grant_slug>[-\w]+)/vote$', 'grant_voting', name='commissions_grant_voting'),
 )

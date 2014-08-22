@@ -276,7 +276,7 @@ pxs = [
     url(r'^frontpage-preview/(?P<slug>[\w-]+)/$', 'exhibitions.views.frontpage_exhibition_preview', name='frontpage_preview'),
 
     url(r'^email/', include('eazyemail.urls')),
-    url(r'^prix-net-art/', 'commissions.views.submit_grant_proposal', {'grant_slug': 'prix-net-art'}),
+    url(r'^prix-net-art/', 'commissions.views.grant', {'grant_slug': 'prix-net-art'}),
     url(r'^today/', 'blog.views.today'),
 ]
 

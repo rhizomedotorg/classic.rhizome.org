@@ -29,3 +29,7 @@ def verbatim(parser, token):
         elif token.token_type == template.TOKEN_BLOCK:
             text.append('%}')
     return VerbatimNode(''.join(text))
+
+@register.filter(is_safe=True)
+def url_target_blank(text):
+    return text.replace('<a ', '<a target="_blank" ')
