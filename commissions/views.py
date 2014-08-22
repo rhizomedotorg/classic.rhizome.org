@@ -504,6 +504,8 @@ from django.shortcuts import render
 import json
 
 
+MAX_TIMES_CAN_VOTE = 3
+
 def grant(request, grant_slug):
     grant = get_object_or_404(Grant, slug=grant_slug)
 
@@ -519,10 +521,24 @@ def grant_voting(request, grant_slug):
         raise Http404
 
     if request.method == 'POST':
-        pass
+        proposal_id = request.POST.get('proposal_id')
+        if proposal_id:
+            vote = GrantProposalVote(
+                user=request.user, proposal_id=proposal_id)
+            vote.save()
+
+    times_voted = GrantProposalVote.objects.filter(
+        proposal__grant=grant, user=request.user).count()
+
+    if times_voted >= MAX_TIMES_CAN_VOTE:
+        messages.info(request, 
+                      'You have voted the maximum number of times for {}. '
+                      'Thank you!'.format(grant.__unicode__()))
+        return redirect('commissions_index')
 
     return render(request, 'commissions/grant_voting.html', {
         'grant': grant,
+        'votes_remaining': MAX_TIMES_CAN_VOTE - times_voted,
         'proposals': grant.get_random_proposals(10),
     })
 

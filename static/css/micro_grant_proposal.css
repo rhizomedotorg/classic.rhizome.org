@@ -14,3 +14,19 @@ form {
 .left-col, .right-col {
     margin-top: 20px;
 }
+
+.proposal-vote-view {
+    border-bottom: 1px solid lightblue;
+}
+
+.proposal-vote-view img {
+    max-width: 614px;
+}
+
+.proposal-vote-view:last-child {
+    margin-bottom: 260px;
+}
+
+.proposal-vote-view form {
+    margin-bottom: 0;
+}

@@ -418,7 +418,7 @@ class GrantProposal(models.Model):
     image = models.ImageField(upload_to='grant_proposal/img/', blank=True)
 
     def __unicode__(self):
-        return '%s: %s' % (self.grant, self.data_dict.get('name', self.id))
+        return self.data_dict.get('name', self.id)
 
     @property
     def data_dict(self):
@@ -426,7 +426,7 @@ class GrantProposal(models.Model):
         if self.data:
             d.update(json.loads(self.data))
         if self.image:
-            d.update({'image': '%s%s' % (Site.objects.get_current().domain, self.image.url)})
+            d.update({'image': self.image.url})
         return d
 
 class GrantProposalVote(models.Model):

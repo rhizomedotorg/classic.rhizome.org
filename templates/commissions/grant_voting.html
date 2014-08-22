@@ -1,5 +1,5 @@
 {% extends 'new_base.html' %}
-{% load block_tags %}
+{% load block_tags utils %}
 
 {% block pageTitle %}Vote{% endblock %}
 
@@ -16,29 +16,24 @@
     <div class="section">
       <div class="left-col">
 
-        <img class="grant-image" src="{{ grant.image.url }}"><br><br>
+	<h3>Votes remaining: {{ votes_remaining }}</h3><br>
 
-	<h1>Proposals</h1>
 	{% for proposal in proposals %}
 
-	<table>
-	  <thead>
-	  </thead>
-	  <tbody>
-	    {% for key, value in proposal.data_dict.items %}
-	    <tr>
-	      <td>{{ key }}</td>
-	      <td>{{ value }}</td>
-	    </tr>
-	    {% endfor %}
-	  </tbody>
-	</table>
+	<div class="proposal-vote-view">
+	  <p>
+	    {{ proposal.data_dict.name }} | {{ proposal.data_dict.site|urlize|url_target_blank }}
+	  </p>
+	  <img src={{ proposal.data_dict.image }}>
+	  <p>{{ proposal.data_dict.idea }}</p>
 
-	<form method="post" class="rz-form" enctype="multipart/form-data">{% csrf_token %}
-	  <div class="field col-2">
-	    <input type="submit" value="Vote" />
-	  </div>
-	</form>
+	  <form method="post" class="rz-form" enctype="multipart/form-data">{% csrf_token %}
+	    <div class="field col-2">
+	      <input type="hidden" value="{{ proposal.id }}" name="proposal_id">
+	      <input type="submit" value="Vote">
+	    </div>
+	  </form>
+	</div>
 	{% endfor %}
       </div>
       <div class="right-col">
