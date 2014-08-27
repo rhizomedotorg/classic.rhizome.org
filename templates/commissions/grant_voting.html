@@ -18,7 +18,7 @@
 
 	<h3>Votes remaining: {{ votes_remaining }}</h3>
 
-	<p class="explanitory">You are welcome to vote for up to three projects below. This page calls up all the proposals, but randomizes their order. </p>
+	<p class="explanitory">You are welcome to vote for up to three projects below. This page calls up all the proposals, but randomizes their order. <a href="{% url 'commissions_grant_voting_index' grant.slug %}">Here is a list of all proposals</a>.</p>
 
 	<div class="pagination">
 	  <span class="step-links">
@@ -37,7 +37,7 @@
 
 	{% for proposal in proposals %}
 
-	<div class="proposal-vote-view">
+	<div class="proposal-vote-view" id="{{ proposal.id }}">
 	  <p>
 	    <h3>{{ proposal.data_dict.name }}</h3>
 	    {{ proposal.data_dict.site|urlize|url_target_blank }}

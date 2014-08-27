@@ -1,0 +1,21 @@
+{% extends 'commissions/grant_voting.html' %}
+
+{% block content %}
+    <div class="section">
+      <div class="left-col">
+
+	<h3>Votes remaining: {{ votes_remaining }}</h3>
+	<br>
+
+	{% for page in pages %}
+	<h3>Page {{ page.0 }}</h3>
+	{% for proposal in page.1 %}
+	<a href="{% url 'commissions_grant_voting' grant.slug %}?page={{ page.0 }}#{{ proposal.id }}">{{ proposal }}</a><br>
+	{% endfor %}<br>
+	{% endfor %}
+      </div>
+      <div class="right-col">
+	{% include "fragments/nectar_ads_sidebar.html" %}
+      </div>
+    </div>
+{% endblock %}

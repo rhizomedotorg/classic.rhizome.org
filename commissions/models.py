@@ -1,4 +1,5 @@
 import datetime
+import random
 
 from django.conf import settings
 from django.db import models
@@ -51,19 +52,19 @@ class Cycle(models.Model):
 
     def __unicode__(self):
         return '%s: %s' % (self.id,self.title)
-    
+
     def vote_url(self):
         return '/commissons/voting/%s' % self.id
-    
+
     def submit_url(self):
         return '/commissons/submit/%s' % self.id
 
     def jury_winners(self):
         return self.jury_award_winners_proposal.all()
-    
+
     def vote_winners(self):
         return self.user_vote_winners_proposal.all()
-        
+
     def winners_artwork(self):
         return self.winner_artwork.all()
 
@@ -82,12 +83,12 @@ class Cycle(models.Model):
 def get_commissions_upload_to(self, filename):
     extension = filename.split('.')[-1]
     fixed_title = slugify(self.title[:30])
-    return 'commissions/proposals/%s/%s/%s.%s' % (self.cycle.id, self.author.id, fixed_title, extension)  
+    return 'commissions/proposals/%s/%s/%s.%s' % (self.cycle.id, self.author.id, fixed_title, extension)
 
 def get_thumb_upload_to(self, filename):
     extension = filename.split('.')[-1]
     fixed_title = slugify(self.title[:30])
-    return 'commissions/proposals/%s/%s/thumb-%s.%s' % (self.cycle.id, self.author.id, fixed_title, extension)  
+    return 'commissions/proposals/%s/%s/thumb-%s.%s' % (self.cycle.id, self.author.id, fixed_title, extension)
 
 
 class ProposalManager(models.Manager):
@@ -107,7 +108,7 @@ class Proposal(models.Model):
     author = models.ForeignKey(User,related_name="proposals")
     external_url = models.URLField(blank=True,null=True)
     tumblr_url = models.URLField(blank=True, null=True)
-    rhizome_hosted = models.BooleanField(default=1, blank=True,db_index=True) 
+    rhizome_hosted = models.BooleanField(default=1, blank=True,db_index=True)
     created = models.DateTimeField(editable=False)
     modified = models.DateTimeField(editable=False)
     cycle = models.ForeignKey('Cycle')
@@ -124,19 +125,19 @@ class Proposal(models.Model):
     rank_vote_finalist = models.BooleanField(default=0)
     city = models.CharField(max_length=255, null=True,blank=True)
     username = models.CharField(max_length=255, blank=True, null=True,help_text=_('Deprecated. User should be used instead.'))
-    legacy_state = models.CharField(max_length=100, blank=True, null=True,editable=False) #leftover 
+    legacy_state = models.CharField(max_length=100, blank=True, null=True,editable=False) #leftover
     legacy_country = models.CharField(max_length=100, blank=True, null=True,editable=False) #leftover
     state = models.ForeignKey(UsState,to_field='name',null=True, blank=True)
-    country = models.ForeignKey(Country,null=True,blank=True)    
+    country = models.ForeignKey(Country,null=True,blank=True)
     #created in view from image
-    thumbnail =  models.ImageField(upload_to = get_thumb_upload_to, null=True, blank=True)   
+    thumbnail =  models.ImageField(upload_to = get_thumb_upload_to, null=True, blank=True)
     image = models.ImageField(upload_to = get_commissions_upload_to, null=True, blank=True)
 
     objects = ProposalManager()
 
     def __unicode__(self):
         return 'Commissions Proposal: %s' % (self.title,)
-    
+
     def get_artists(self):
         return self.artists.all()
 
@@ -158,7 +159,7 @@ class Proposal(models.Model):
             return '%s' % self.external_url
         else:
             return reverse('commissions_proposal_detail', args=[self.id])
-   
+
     def voting_view_url(self):
         if not self.rhizome_hosted:
             return '%s' % self.external_url
@@ -167,7 +168,7 @@ class Proposal(models.Model):
 
     def app_voting_view_url(self):
         return '/commissions/voting/approval/?proposal=%s' % self.id
-    
+
     def get_approval_votes(self):
         return ApprovalVote.objects.filter(proposal=self)
 
@@ -176,7 +177,7 @@ class Proposal(models.Model):
 
     def get_is_approved_votes_count(self):
         return ApprovalVote.objects.filter(proposal=self).filter(approved=True).count()
-        
+
     def get_not_approved_votes_count(self):
         return ApprovalVote.objects.filter(proposal=self).filter(approved=False).count()
 
@@ -189,13 +190,13 @@ class Proposal(models.Model):
     def admin_artists(self):
         for d in self.artist.all():
             return '%s / %s' % (d.get_full_name, d.username)
-    
+
     admin_artists.short_description = 'Artist(s)'
 
     def content_type_id(self):
         ct = ContentType.objects.get_for_model(self)
         return ct.id
-    
+
     def content_type(self):
         ct = ContentType.objects.get_for_model(self)
         return ct
@@ -205,12 +206,12 @@ class Proposal(models.Model):
         proposal_notification_email.to = [self.author.email]
         proposal_notification_email.subject = "Rhizome Commissions Proposal Created"
         current_site = Site.objects.get_current()
-        proposal_edit_url = "http://%s%s" % (current_site.domain, self.edit_url())        
+        proposal_edit_url = "http://%s%s" % (current_site.domain, self.edit_url())
 
         proposal_notification_email.body = """
 Dear %s,
 
-Thank you for creating a commissions proposal as part of the %s. 
+Thank you for creating a commissions proposal as part of the %s.
 
 You may edit this proposal at any time up until %s via this url:
 
@@ -229,18 +230,18 @@ Good luck!
         proposal_notification_email.to = [self.author.email]
         proposal_notification_email.subject = "Rhizome Commissions Proposal Published"
         current_site = Site.objects.get_current()
-        proposal_edit_url = "http://%s%s" % (current_site.domain, self.edit_url())     
-        proposal_view_url = "http://%s%s" % (current_site.domain, self.get_absolute_url())                    
+        proposal_edit_url = "http://%s%s" % (current_site.domain, self.edit_url())
+        proposal_view_url = "http://%s%s" % (current_site.domain, self.get_absolute_url())
         proposal_notification_email.body = """
 Dear %s,
 
-Your Rhizome commissions proposal, "%s", has been published on Rhizome as part of the %s. 
+Your Rhizome commissions proposal, "%s", has been published on Rhizome as part of the %s.
 
-You can view your proposal at this url: 
+You can view your proposal at this url:
 
 %s
 
-You may edit your proposal at any time up until %s via this url: 
+You may edit your proposal at any time up until %s via this url:
 
 %s
 
@@ -285,7 +286,7 @@ class ApprovalVote(models.Model):
 
     class Meta:
         unique_together = ("user", "proposal")
-        
+
     def __unicode__(self):
         return '%s for  %s' % (self.id, self.proposal)
 
@@ -304,10 +305,10 @@ class RankVote(models.Model):
             self.created = datetime.datetime.now()
         super(RankVote, self).save(*args, **kwargs)
 
-       
+
     class Meta:
         unique_together = ("user", "proposal", "rank")
-        
+
     def __unicode__(self):
         return '%s for  %s' % (self.id, self.proposal)
 
@@ -337,6 +338,8 @@ class GrantManager(models.Manager):
         return self.filter(voting_end_date__lt=datetime.datetime.now())
 
 class Grant(models.Model):
+    MAX_TIMES_CAN_VOTE = 3
+
     class Status:
         UNPUBLISHED, ACCEPTING_SUBMISSIONS, VOTING, VOTING_ENDED = (0, 1, 2, 3)
 
@@ -402,6 +405,34 @@ class Grant(models.Model):
     def proposal_data(self):
         return [p.data_dict for p in self.proposals.all()]
 
+    def proposal_voting_list(self, user):
+        proposal_list = [p for p in self.proposals.all()]
+        random.seed(user.id)
+        random.shuffle(proposal_list)
+
+        # exclude proposals already voted on
+        return [p for p in proposal_list if user.id not in [
+            vote.user_id for vote in p.votes.all()]]
+
+    def proposal_paged_voting_list(self, user, items_per_page):
+        proposal_list = self.proposal_voting_list(user)
+
+        num_pages = len(proposal_list) / items_per_page
+        if len(proposal_list) % items_per_page != 0:
+            num_pages += 1
+
+        pages = []
+        for i in range(num_pages):
+            chunk = proposal_list[i * items_per_page:(i + 1) * items_per_page]
+            pages.append((i + 1, chunk))
+        return pages
+
+    def proposal_votes_remaining(self, user):
+        times_voted = GrantProposalVote.objects.filter(
+            proposal__grant_id=self.id, user_id=user.id).count()
+        return self.__class__.MAX_TIMES_CAN_VOTE - times_voted
+
+
 class GrantProposal(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     grant = models.ForeignKey(Grant, related_name='proposals')
@@ -425,12 +456,12 @@ class GrantProposalVote(models.Model):
     proposal = models.ForeignKey(GrantProposal, related_name='votes')
     user = models.ForeignKey(User, related_name='grant_proposal_votes')
 
-        
+
 @receiver(post_save, sender=GrantProposal, dispatch_uid='commissions.send_confirmation')
 def send_confirmation(sender, instance, created, **kwargs):
     if created:
         if instance.data_dict.get('email'):
             instance.grant.confirmation_email.send(
-                settings.DEFAULT_FROM_EMAIL, 
-                [instance.data_dict.get('email')], 
+                settings.DEFAULT_FROM_EMAIL,
+                [instance.data_dict.get('email')],
                 extra_context={})

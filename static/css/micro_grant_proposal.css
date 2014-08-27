@@ -17,13 +17,15 @@ form {
 
 .proposal-vote-view {
     border-bottom: 1px solid lightblue;
+    padding-top: 30px;
 }
 
 .proposal-vote-view img {
     max-width: 614px;
+    max-height: 300px;
 }
 
-div.pagination.bottom {
+div.left-col {
     margin-bottom: 260px;
 }
 

@@ -38,9 +38,9 @@ def index(request):
             'today': today,
             'grants': grants,
         },
-        RequestContext(request) 
+        RequestContext(request)
     )
-    
+
 def procedures(request, object_id):
     cycle = get_object_or_404(Cycle, pk=object_id)
     today = datetime.datetime.now()
@@ -48,29 +48,29 @@ def procedures(request, object_id):
     breadcrumb = (('Commissions', reverse('commissions_index')), ('Procedures', None))
 
     return render_to_response(
-        'commissions/procedures.html', {   
+        'commissions/procedures.html', {
             'cycle': cycle,
             'today': today,
             'breadcrumb': breadcrumb,
         },
-        RequestContext(request) 
+        RequestContext(request)
     )
 
-@login_required    
+@login_required
 def submit(request, object_id):
-    cycle = get_object_or_404(Cycle, pk=object_id)   
+    cycle = get_object_or_404(Cycle, pk=object_id)
     user = request.user
     proposal_form = ProposalForm(initial={'author':request.user})
     today = datetime.datetime.now()
-        
+
     if request.method == 'POST':
         proposal_form = ProposalForm(request.POST, request.FILES or None, initial={'author':request.user})
-        
+
         if proposal_form.is_valid():
             user.first_name = request.POST['first_name']
             user.last_name = request.POST['last_name']
             user.save()
-            
+
             proposal = proposal_form.save(commit=False)
             proposal.cycle = cycle
             proposal.author = user
@@ -80,26 +80,26 @@ def submit(request, object_id):
             if proposal.cycle.is_tumblr_commission:
                 proposal.is_public = False
                 proposal.allow_comments = False
-            
+
             proposal.save()
-            
-            # verification of artist accounts for m2m is handled via the form  
-            cleaned_user_list = proposal_form.cleaned_data['other_artists_users']        
-            
+
+            # verification of artist accounts for m2m is handled via the form
+            cleaned_user_list = proposal_form.cleaned_data['other_artists_users']
+
             if cleaned_user_list:
-                for user in cleaned_user_list:  
-                    proposal.artists.add(user)                          
-                
+                for user in cleaned_user_list:
+                    proposal.artists.add(user)
+
             proposal.save()
-            
+
             if proposal.image:
                 # create_thumbnails uses saved image
                 proposal.thumbnail = create_thumbnail(proposal.image)
-                
+
             if request.POST['status'] == 'preview':
                 proposal.save()
                 return redirect('commissions_proposal_preview', proposal_id=proposal.id)
-            
+
             elif request.POST['status'] == 'save':
                 proposal.save()
                 return HttpResponseRedirect('%s?save=True' % reverse('commissions_proposal_edit', args=[proposal.id]))
@@ -111,18 +111,18 @@ def submit(request, object_id):
                 return HttpResponseRedirect('%s?thanks=True' % reverse('commissions_proposal_detail', args=[proposal.id]))
         else:
             proposal_form = ProposalForm(request.POST,request.FILES or None, initial={'author':request.user})
-    
+
     if today > cycle.submission_start_date and today < cycle.submission_end_date:
         return render_to_response(
             'commissions/submit.html', {
-                'proposal_form': proposal_form, 
+                'proposal_form': proposal_form,
                 'cycle': cycle,
-            }, 
-            RequestContext(request) 
+            },
+            RequestContext(request)
         )
     else:
         return redirect('commissions_index')
-   
+
 @login_required
 def proposal_edit(request, proposal_id):
     proposal = get_object_or_404(Proposal, pk=proposal_id)
@@ -130,14 +130,14 @@ def proposal_edit(request, proposal_id):
     proposal_form = ProposalForm(initial={'author':request.user})
     other_artists_list = None
     today = datetime.datetime.now()
-    
+
     if proposal.get_artists():
         other_artists_list = ', '.join(['%s' % artist.email for artist in proposal.get_artists()])
-    
+
     proposal_form = ProposalForm(request.POST or None, request.FILES or None, \
             instance=proposal.id and Proposal.objects.get(id=proposal.id ), \
             initial={'other_artists_users':other_artists_list })
-    
+
     if request.method == 'POST':
         proposal_form = ProposalForm(request.POST or None, request.FILES or None, \
                 instance=proposal.id and Proposal.objects.get(id=proposal.id ), \
@@ -147,38 +147,38 @@ def proposal_edit(request, proposal_id):
             user.first_name = request.POST['first_name']
             user.last_name = request.POST['last_name']
             user.save()
-            
+
             proposal = proposal_form.save(commit=False)
-            
+
             if request.POST['status'] == 'delete':
                 proposal.delete()
                 return HttpResponseRedirect('%s?deleted=True' % reverse('commissions_index'))
-            
+
             proposal.author = user
             proposal.email = user.email
             proposal.username = user.get_full_name()
-            
-            # verification of artist accounts for m2m is handled via the form  
+
+            # verification of artist accounts for m2m is handled via the form
             cleaned_user_list = proposal_form.cleaned_data['other_artists_users']
-                
+
             if cleaned_user_list:
-                for user in cleaned_user_list:  
+                for user in cleaned_user_list:
                     proposal.artists.add(user)
-                           
+
             proposal.save()
- 
+
             if proposal.image:
                 # create_thumbnails uses saved image
                 proposal.thumbnail = create_thumbnail(proposal.image)
-            
+
             if request.POST['status'] == 'preview':
                 proposal.save()
                 return redirect('commissions_proposal_preview', proposal_id=proposal.id)
-            
+
             elif request.POST['status'] == 'save':
                 proposal.save()
                 return HttpResponseRedirect('%s?save=True' % reverse('commissions_proposal_edit', args=[proposal.id]))
-            
+
             elif request.POST['status'] == 'publish':
                 proposal.submitted = 1
                 proposal.save()
@@ -186,7 +186,7 @@ def proposal_edit(request, proposal_id):
                 return HttpResponseRedirect('%s?thanks=True' % reverse('commissions_proposal_detail', args=[proposal.id]))
         else:
             proposal_form = ProposalForm(request.POST,request.FILES or None, initial={'author':request.user})
-            
+
     if request.user == proposal.author \
         and today > proposal.cycle.submission_start_date \
         and today < proposal.cycle.submission_end_date:
@@ -198,19 +198,19 @@ def proposal_detail(request, proposal_id):
     proposal = get_object_or_404(Proposal, id=proposal_id, submitted=True, deleted=0)
     today = datetime.datetime.now()
 
-    can_edit = False    
+    can_edit = False
     if request.user == proposal.author:
-        can_edit = True    
-        
+        can_edit = True
+
     if proposal.rhizome_hosted:
         if proposal.is_public or request.user == proposal.author or request.user.is_staff:
             return render_to_response(
                 'commissions/proposal_detail.html', {
                     'proposal': proposal,
                     'can_edit': can_edit,
-                }, 
-                RequestContext(request) 
-            )   
+                },
+                RequestContext(request)
+            )
         else:
             return redirect('commissions_index')
 
@@ -219,36 +219,36 @@ def proposal_detail(request, proposal_id):
             'commissions/proposal_detail_iframe.html', {
                 'proposal': proposal,
                 'can_edit': can_edit,
-            }, 
+            },
             RequestContext(request)
-        )   
+        )
     else:
         return redirect('commissions_index')
-            
+
 def proposal_preview(request, proposal_id):
     proposal = get_object_or_404(Proposal, id=proposal_id, deleted = 0)
 
-    can_edit = False 
+    can_edit = False
     if request.user == proposal.author:
-        can_edit = True 
-    
+        can_edit = True
+
     if proposal.author == request.user:
         if not proposal.rhizome_hosted:
             return render_to_response(
                 'commissions/proposal_detail_iframe.html', {
                     'proposal':proposal,
                     'can_edit':can_edit,
-                }, 
-                RequestContext(request) 
-            )   
+                },
+                RequestContext(request)
+            )
         else:
             return render_to_response(
                 'commissions/proposal_detail.html', {
                     'proposal': proposal,
                     'can_edit': can_edit,
                 },
-                RequestContext(request) 
-            )   
+                RequestContext(request)
+            )
     else:
         return HttpResponseRedirect(reverse(index))
 
@@ -262,35 +262,35 @@ def voting(request, object_id):
     today = datetime.datetime.now()
     can_vote = False
 
-    if today > cycle.approval_vote_start and today < cycle.ranking_vote_end:    
+    if today > cycle.approval_vote_start and today < cycle.ranking_vote_end:
         return render_to_response('commissions/voting.html', {
                     'can_vote': can_vote,
                     'cycle': cycle,
                     'today': today,
-                }, 
+                },
                 RequestContext(request)
-            ) 
+            )
     else:
-        return redirect('commissions_index') 
+        return redirect('commissions_index')
 
 @login_required
 @membership_required
 def approval_voting_wrapper(request, object_id):
     '''
-    stage 1 in commissions voting. 
+    stage 1 in commissions voting.
     allows members to go through proposals and decide if meet criteria.
     '''
     cycle = get_object_or_404(Cycle, pk=object_id)
     today = datetime.datetime.now()
-    
+
     prev_votes = [a.proposal_id for a in ApprovalVote.objects \
                     .filter(user = request.user) \
                     .filter(created__gte = cycle.submission_start_date)]
-        
+
     if today > cycle.approval_vote_start and today < cycle.approval_vote_end:
         current_proposal = None
         approval_status = None
-                        
+
         proposals = Proposal.objects \
             .filter(cycle=cycle) \
             .filter(submitted=True) \
@@ -298,10 +298,10 @@ def approval_voting_wrapper(request, object_id):
             .exclude(pk__in=prev_votes) \
             .exclude(deleted=True) \
             .order_by('?')
-                        
+
         awaiting_length = len(proposals)
         paginator = Paginator(proposals, 1)
-        
+
         try:
             page = int(request.GET.get('page', '1'))
         except ValueError:
@@ -310,26 +310,26 @@ def approval_voting_wrapper(request, object_id):
         try:
             awaiting_approval = paginator.page(page)
         except (EmptyPage, InvalidPage):
-            awaiting_approval = paginator.page(paginator.num_pages)                
-        
+            awaiting_approval = paginator.page(paginator.num_pages)
+
         if request.GET.get('proposal'):
             proposal_id = request.GET.get('proposal')
             proposal_id = proposal_id.replace('/', '')
             current_proposal = get_object_or_404(Proposal, id = proposal_id)
-        else:        
+        else:
             for p in awaiting_approval.object_list:
                 current_proposal = p
-        
+
         #has user voted for this prop yet?
         try:
-            approval_vote_for_prop = ApprovalVote.objects.get(user=request.user, proposal=current_proposal) 
+            approval_vote_for_prop = ApprovalVote.objects.get(user=request.user, proposal=current_proposal)
             if approval_vote_for_prop.approved:
                 approval_status = 'approved'
             if not approval_vote_for_prop.approved:
                 approval_status = 'not approved'
         except:
             approval_status = None
-        
+
         if approval_status == 'approved':
             voting_form = ApprovalVoteForm(initial={
                 'user': request.user,
@@ -344,19 +344,19 @@ def approval_voting_wrapper(request, object_id):
             })
         else:
             voting_form = ApprovalVoteForm(initial={'user':request.user, 'proposal':current_proposal})
-               
+
         return render_to_response('commissions/approval_voting_wrapper.html', {
                 'voting_form': voting_form,
                 'awaiting_approval': awaiting_approval,
                 'approval_status': approval_status,
                 'current_proposal': current_proposal,
                 'awaiting_length': awaiting_length,
-            }, 
-            RequestContext(request) 
-        )   
+            },
+            RequestContext(request)
+        )
     else:
         return HttpResponseRedirect(reverse('commissions_voting', args=[cycle.id]))
-        
+
 @login_required
 @membership_required
 def indiv_approval_voting_wrapper(request, proposal_id):
@@ -372,36 +372,36 @@ def indiv_approval_voting_wrapper(request, proposal_id):
 
     # has user voted for this prop yet?
     try:
-        approval_vote_for_prop = ApprovalVote.objects.get(user=request.user, proposal=proposal) 
+        approval_vote_for_prop = ApprovalVote.objects.get(user=request.user, proposal=proposal)
         if approval_vote_for_prop.approved:
             approval_status = 'approved'
         if not approval_vote_for_prop.approved:
             approval_status = 'not approved'
     except:
         approval_status = None
-        
+
     if approval_status == 'approved':
         voting_form = ApprovalVoteForm(initial={'user':request.user, 'proposal':proposal, 'approved':True})
     elif approval_status == 'not approved':
         voting_form = ApprovalVoteForm(initial={'user':request.user, 'proposal':proposal, 'approved':False})
     else:
         voting_form = ApprovalVoteForm(initial={'user':request.user, 'proposal':proposal})
-    
+
     return render_to_response("commissions/indiv_voting_wrapper.html", {
                 'voting_form': voting_form,
                 'proposal': proposal,
                 'approval_status': approval_status
-            }, 
+            },
             RequestContext(request)
-        )   
-        
+        )
+
 def voting_proposal_detail(request, proposal_id):
     '''
     view that strips out rhizome template and comments and pulls proposal in via iframe on voting wrapper
     part of approval stage views (stage 1)
     '''
     proposal = get_object_or_404(Proposal, pk=proposal_id)
-    
+
     if proposal.rhizome_hosted:
         if proposal.is_public or request.user == proposal.author or request.user.is_staff:
             return render_to_response('commissions/voting_proposal_detail.html', {'proposal':proposal}, RequestContext(request))
@@ -414,7 +414,7 @@ def voting_proposal_detail(request, proposal_id):
         return redirect('commissions_index')
 
 @login_required
-@membership_required   
+@membership_required
 @csrf_exempt
 def ajax_approve(request, proposal_id):
     '''
@@ -422,7 +422,7 @@ def ajax_approve(request, proposal_id):
     part of stage 1
     '''
     proposal = get_object_or_404(Proposal, pk=proposal_id)
-        
+
     if request.POST.get('approved') == 'true':
         approval, created = ApprovalVote.objects.get_or_create(proposal=proposal, user=request.user)
         approval.approved = True
@@ -431,26 +431,26 @@ def ajax_approve(request, proposal_id):
     elif request.POST.get('approved') == 'false':
         approval, created = ApprovalVote.objects.get_or_create(proposal=proposal, user=request.user)
         approval.approved = False
-        approval.save()  
+        approval.save()
         return HttpResponse('not approved')
-    else:    
+    else:
         return HttpResponse('')
 
 @login_required
 @membership_required
-def ranking_vote(request, object_id):        
+def ranking_vote(request, object_id):
     '''
     allows users to sort proposals in hierarchical order ala member exhibitions
     stage 2 of voting process
     '''
     today = datetime.datetime.now()
     cycle = get_object_or_404(Cycle, pk=object_id)
-    
+
     if today > cycle.ranking_vote_start and today < cycle.ranking_vote_end:
         ranking_finalists = Proposal.objects \
             .filter(cycle=cycle) \
             .filter(rank_vote_finalist=True) \
-            .order_by('?')                            
+            .order_by('?')
 
         rank_votes = RankVote.objects \
             .filter(user=request.user) \
@@ -464,16 +464,16 @@ def ranking_vote(request, object_id):
             voting_form = RankVoteForm(initial=initial)
         else:
             voting_form = RankVoteForm()
-            
+
         if request.method == 'POST':
             voting_form = RankVoteForm(request.POST)
-            
+
             if voting_form.is_valid():
-                proposal_ids = voting_form.cleaned_data['rankings'] 
-                
+                proposal_ids = voting_form.cleaned_data['rankings']
+
                 ranked_props = [Proposal.objects.get(pk=int(s.strip().replace(' ',''))) \
                     for s in proposal_ids.split(' ') if s != '' ]
-                  
+
                 for i in range(len(ranked_props)):
                     prop = ranked_props[i]
                     rank = i + 1
@@ -487,13 +487,13 @@ def ranking_vote(request, object_id):
                 'voting_form': voting_form,
                 'cycle': cycle,
                 'user_rank_votes_length': len(rank_votes),
-            }, 
-            RequestContext(request) 
+            },
+            RequestContext(request)
         )
     else:
         return redirect('commissions_index')
 
-### new stuff 
+### new stuff
 
 from commissions.models import (
     GrantProposal, GrantProposalVote
@@ -501,11 +501,10 @@ from commissions.models import (
 from django.http import Http404
 from django.contrib import messages
 from django.shortcuts import render
-import random
 import json
 
 
-MAX_TIMES_CAN_VOTE = 3
+PROPOSALS_PER_PAGE = 20
 
 def grant(request, grant_slug):
     grant = get_object_or_404(Grant, slug=grant_slug)
@@ -515,6 +514,34 @@ def grant(request, grant_slug):
     elif grant.status == Grant.Status.VOTING:
         return grant_voting(request, grant_slug)
     raise Http404
+
+
+def can_vote(request, grant):
+    votes_remaining = grant.proposal_votes_remaining(request.user)
+    if votes_remaining <= 0:
+        messages.info(request,
+                      'You have voted the maximum number of times for {}. '
+                      'Thank you!'.format(grant.__unicode__()))
+    return votes_remaining
+
+
+@login_required
+def grant_voting_index(request, grant_slug):
+    grant = get_object_or_404(Grant, slug=grant_slug)
+    if grant.status != Grant.Status.VOTING:
+        raise Http404
+
+    votes_remaining = can_vote(request, grant)
+    if not votes_remaining:
+        return redirect('commissions_index')
+
+    pages = grant.proposal_paged_voting_list(request.user, PROPOSALS_PER_PAGE)
+    return render(request, 'commissions/grant_voting_index.html', {
+        'grant': grant,
+        'votes_remaining': votes_remaining,
+        'pages': pages
+    })
+
 
 @login_required
 def grant_voting(request, grant_slug):
@@ -529,24 +556,12 @@ def grant_voting(request, grant_slug):
                 user=request.user, proposal_id=proposal_id)
             vote.save()
 
-    times_voted = GrantProposalVote.objects.filter(
-        proposal__grant=grant, user=request.user).count()
-
-    if times_voted >= MAX_TIMES_CAN_VOTE:
-        messages.info(request, 
-                      'You have voted the maximum number of times for {}. '
-                      'Thank you!'.format(grant.__unicode__()))
+    votes_remaining = can_vote(request, grant)
+    if not votes_remaining:
         return redirect('commissions_index')
 
-    proposal_list = [p for p in grant.proposals.all()]
-    random.seed(request.user.id)
-    random.shuffle(proposal_list)
-
-    # exclude proposals already voted on
-    proposal_list = [p for p in proposal_list if request.user.id not in [
-        vote.user_id for vote in p.votes.all()]]
-
-    paginator = Paginator(proposal_list, 8)
+    paginator = Paginator(grant.proposal_voting_list(request.user),
+                          PROPOSALS_PER_PAGE)
     page = request.GET.get('page')
     try:
         proposals = paginator.page(page)
@@ -557,7 +572,7 @@ def grant_voting(request, grant_slug):
 
     return render(request, 'commissions/grant_voting.html', {
         'grant': grant,
-        'votes_remaining': MAX_TIMES_CAN_VOTE - times_voted,
+        'votes_remaining': votes_remaining,
         'proposals': proposals
     })
 
@@ -573,9 +588,9 @@ def submit_grant_proposal(request, grant_slug):
             if k == 'csrfmiddlewaretoken':
                 continue
             if type(v) is list and len(v) == 1:
-                v = v[0]            
+                v = v[0]
             data[k] = v
-        
+
         proposal = GrantProposal(grant_id=grant.id, data=json.dumps(data))
 
         # assume any file is image
