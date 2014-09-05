@@ -7,8 +7,8 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta http-equiv="Content-Language" content="en-us">
-        <title>Rhizome | {% block pageTitle %}{% endblock %}</title>                
-        <meta name="google-site-verification" content="AZfoqybynDh_0mjEBG_XwMZeCwiSE-GZ8BiQB5FZzDU" />        
+        <title>Rhizome | {% block pageTitle %}{% endblock %}</title>
+        <meta name="google-site-verification" content="AZfoqybynDh_0mjEBG_XwMZeCwiSE-GZ8BiQB5FZzDU" />
         <meta name="ROBOTS" content="ALL" />
         <meta name="description" content="Rhizome is dedicated to the creation, presentation, preservation, and critique of emerging artistic practices that engage technology." />
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -39,7 +39,7 @@
             <!--[if lt IE 8]>
                 <link rel="stylesheet" href="{{ STATIC_URL }}css/blueprint/ie.css" type="text/css" media="screen, projection"></link>
             <![endif]-->
-         
+
             <!--[if IE]>
                 <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/ie.css"  />
             <![endif]-->
@@ -50,10 +50,10 @@
                     <link rel="stylesheet" href="{{ style.href }}" type="text/css" media="screen, projection" charset="utf-8" />
                 {% endfor %}
             {% endblock %}
-            
+
             {% block moreCustomStyleSheets %}
             {% endblock %}
-            
+
             {% block pre_inline_css %}
             {% endblock %}
 
@@ -61,7 +61,7 @@
             {% endblock %}
         {% endblock %}
         {% block extra_css %}{% endblock %}
-        
+
         {% block scripts %}
             <!-- GLOBAL JAVASCRIPT -->
             <script type="text/javascript">var _sf_startpt=(new Date()).getTime()</script>
@@ -78,7 +78,7 @@
             <script type="text/javascript" src="{{ STATIC_URL }}media_players/soundmanager/script/inlineplayer.js"></script>
             <script type="text/javascript" src="{{ STATIC_URL }}js/carousel/PeriodicalExecuter.js"></script>
             <script type="text/javascript" src="{{ STATIC_URL }}js/carousel/Carousel.js"></script>
-            
+
             <script type="text/javascript">
                 soundManager.url = '{{ STATIC_URL }}media_players/soundmanager/swf/';
                 //soundManager.flashVersion = 9; // optional: shiny features (default = 8)
@@ -91,29 +91,29 @@
             </script>
 
             <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.10.2.min.js"></script>
-            <!-- LOCAL  JAVASCRIPT-->              
+            <!-- LOCAL  JAVASCRIPT-->
             {% block customScripts %}{% endblock %}
             {% block moreCustomScripts %}{% endblock %}
-                   
+
             {% block pre_inline_js %}
             {% endblock %}
 
             {% block page_assets_css %}
             {% endblock %}
-            
+
             {% block page_assets_js %}
             {% endblock %}
-            
+
             {% block post_inline_js %}
             {% endblock %}
-            
+
             <script type="text/javascript">
                 {% autoescape off %}
                 {% block pageJsonData %}{% endblock %}
                 {% endautoescape %}
             </script>
         {% endblock %}
-        
+
         <!--RSS HEADER -->
         {% block rss_head_link %}
         {% endblock %}
@@ -123,24 +123,44 @@
             var _qevents = _qevents || [];
             (function() {
                 var elem = document.createElement('script');
-                elem.src = (document.location.protocol == "https:" ? "https://secure" : "http://edge")  
+                elem.src = (document.location.protocol == "https:" ? "https://secure" : "http://edge")
                             + ".quantserve.com/quant.js";
                 elem.async = true;
                 elem.type = "text/javascript";
                 var scpt = document.getElementsByTagName('script')[0];
-                scpt.parentNode.insertBefore(elem, scpt);  
+                scpt.parentNode.insertBefore(elem, scpt);
             })();
         </script>
+	<script type="text/javascript">var p="http",d="static";if(document.location.protocol=="https:"){p+="s";d="engine";}var z=document.createElement("script");z.type="text/javascript";z.async=true;z.src=p+"://"+d+".nectarads.com/ados.js";var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(z,s);</script>
+	<script type="text/javascript">
+	  var ados = ados || {};
+	  ados.run = ados.run || [];
+	  ados.run.push(function() {
+	  /* load placement for account: Nectar Ads, site: Rhizome, size: 300x600 - Half Page, zone: Desktop*/
+	  ados_add_placement(207, 12843, "half_page", 43).setZone(121520);
+
+	  /* load placement for account: Nectar Ads, site: Rhizome, size: 125x125 - Square Button, zone: Desktop*/
+	  ados_add_placement(207, 12843, "square_1", 16).setZone(121520);
+	  ados_add_placement(207, 12843, "square_2", 16).setZone(121520);
+	  ados_add_placement(207, 12843, "square_3", 16).setZone(121520);
+	  ados_add_placement(207, 12843, "square_4", 16).setZone(121520);
+
+	  /* load placement for account: Nectar Ads, site: Rhizome, size: 970x250 - Billboard, zone: Desktop*/
+	  ados_add_placement(207, 12843, "billboard", 123).setZone(121520);
+
+	  ados_setDomain('engine.nectarads.com');
+	  ados_load();
+	  });</script>
     </head>
-        
+
     <body class="{% block body_class %}rhizome-base{% endblock %}{% if current_campaign %} with-top-banner{% endif %}">
         {% if current_campaign %}
             <div class="top-banner">
-                <a href="/campaign/">Community Fundraiser {{ current_campaign.year }}</a> | <a href="/campaign/">Donate Now!</a>  
+                <a href="/campaign/">Community Fundraiser {{ current_campaign.year }}</a> | <a href="/campaign/">Donate Now!</a>
                 <a class="close">X</a>
             </div>
         {% endif %}
-        
+
         {% block navbars %}
             {% assign_text 'tagline' as tagline %}
             {% get_nav None None tagline %}
@@ -153,8 +173,8 @@
                 {% endfor %}
             </ul>
         {% endif %}
-                 
-        {% block featured %}{% endblock %}  
+
+        {% block featured %}{% endblock %}
         {% block highlights %}{% endblock %}
 
         {% if include_section_header %}
@@ -172,7 +192,7 @@
 
                 <div id="section-description" class="span-15">{% block section_description %}{% endblock %}</div>
                 <div id="section-description">{% block wide_section_description %}{% endblock %}</div>
-                
+
                 {% if section_action %}
                 <div class ="section-action" class="span-9 last">
                     <form action="{{ section_action }}">
@@ -180,7 +200,7 @@
                     </form>
                 </div>
                 {% endif %}
-                
+
                 {% if artbase_section_action %}
                 <!--for old design-->
                 <div class ="section-action" class="span-9 last">
@@ -190,25 +210,25 @@
                 </div>
                 {% endif %}
                 <!-- End Standard Section Header -->
-                
+
                 {% block custom_section_header %}{% endblock %}
                 <!-- End Custom Section Header -->
             </div>
 
             {% endif %}
         </div>
-        {% endif %}         
-        
+        {% endif %}
+
          {% if include_object_header %}
             {% block section_object_header %}{% endblock %}
-         {% endif %}    
-         
-         {% block fixedSideContent %}{% endblock %}   
-                        
+         {% endif %}
+
+         {% block fixedSideContent %}{% endblock %}
+
         <div id="content" class="container {% block content_class %}{% endblock %}">
             {% block content %}{% endblock %}
         </div>
-        
+
         <div id="preload"></div>
 
 
@@ -243,19 +263,6 @@
             <script type="text/javascript" src="{{ STATIC_URL }}js/top-banner.js"></script>
         {% endif %}
 
-        {% if "https" not in STATIC_URL %}
-            <script type="text/javascript">
-                var z=document.createElement("script");
-                z.type="text/javascript";
-                z.async=true;
-                z.src="//engine.nectarads.com/z/12843/azk1_2_43,azk2_2_16,azk3_2_16,azk4_2_16,azk5_2_16";
-                var s = document.getElementsByTagName("script")[0];
-                s.parentNode.insertBefore(z, s);
-            </script>
-        {% endif %}
-
-
-
         <script>
           (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
           (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -266,14 +273,14 @@
           ga('send', 'pageview');
 
         </script>
-    
+
         <script type="text/javascript">
             (function() {
-            var src = document.createElement('script'); 
+            var src = document.createElement('script');
             src.async = true;
             src.src = document.location.protocol + '//platform.twitter.com/widgets.js';
             document.getElementsByTagName('head')[0].appendChild(src);
-            }());                        
+            }());
         </script>
         <script type="text/javascript">
           (function() {
@@ -282,7 +289,7 @@
             var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
           })();
         </script>
-        
+
         <script type="text/javascript">
             var _sf_async_config={uid:26954,domain:"rhizome.org"};
             (function(){
@@ -300,6 +307,6 @@
               window.onload = (typeof window.onload != 'function') ?
                  loadChartbeat : function() { oldonload(); loadChartbeat(); };
             })();
-        </script>        
+        </script>
     </body>
 </html>
