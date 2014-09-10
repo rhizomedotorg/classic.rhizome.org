@@ -3,8 +3,8 @@
 
 {% block bottom_js %}
     <script type="text/javascript" src="{{ STATIC_URL }}discuss/scripts/add_comment_toggler.js"></script>
-    <script type="text/javascript" src="{{ STATIC_URL }}js/bbcode/editor.js"></script>   
-    <script type="text/javascript" src="{{ STATIC_URL }}js/bbcode/color_palette.js"></script>   
+    <script type="text/javascript" src="{{ STATIC_URL }}js/bbcode/editor.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/bbcode/color_palette.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL  }}js/loadingOverlay.js"></script>
     <script type="text/javascript">
         window.addEvent('domready', function() {
@@ -26,14 +26,14 @@
                 </h2>
                 {% else %}
                 <h2 class="post-title"><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h2>
-            {% endif %} 
+            {% endif %}
 
             <div class="post-details clearfix">
                 <div class="post-meta">
                     {% if post.get_authors %}
                         {% for author in post.get_authors %}
                             <span class="authors bold-upper blue">
-                                <a href="{{author.get_profile.get_absolute_url}}/">{{ author.get_full_name}}</a> 
+                                <a href="{{author.get_profile.get_absolute_url}}/">{{ author.get_full_name}}</a>
                             </span>
                         {% endfor %}
                         <span class="blue">|</span>
@@ -50,17 +50,17 @@
                     {% include 'fragments/new_share.html' %}
                 {% endwith %}
             </div>
-        
+
             <hr class= "black-thin">
-            
+
             <div class="post-body">
-                {{ post.body|markdown|render_inlines }} 
+                {{ post.body|markdown|render_inlines }}
             </div>
                 {% if post.post_item_link %}
                     <p class="more span-15"><a href="{{post.post_item_link}}">LINK &raquo;</a></p>
                 {% endif %}
-            
-              <!--TAGS-->	
+
+              <!--TAGS-->
             {% tags_for_object post as tag_list %}
             {% if tag_list %}
             <div class="post-tags-and-share span-15">
@@ -72,8 +72,8 @@
                 </span>
             </div>
             {% endif %}
-            
-            {% comment %}           
+
+            {% comment %}
                 {% if post.get_authors %}
                     {% for author in post.get_authors %}
                     <div class = "post-author-bio span-14">
@@ -92,13 +92,13 @@
                             </div>
                         {% endif %}
                         </div>
-                    </div>                 
+                    </div>
                     {% endfor %}
                 {% endif %}
             {% endcomment %}
-                        
+
             <hr class="black-thin span-15">
-            
+
             <div class="post-nav last span-15">
                 {% if post.get_previous_post %}
                     <a class="previous span-7" href="{{ post.get_previous_post.get_absolute_url }}">Previous Post</a>
@@ -112,7 +112,7 @@
                 {% endif %}
             </div>
 
-        </div> 
+        </div>
         {% if post.id %}
             {% if debug %}
                 {% include 'blog/comment_fragment.html' with post=post %}
@@ -121,14 +121,13 @@
             {% endif %}
         {% endif %}
     </div>
-   
    <!--end left column-->
     <div class= "right-column span-8">
-        {% include "fragments/nectar_ads_sidebar.html" %}        
+        {% include "fragments/nectar_ads_sidebar.html" %}
         {% include "fragments/subscribe_sidebar.html" %}
         {% include "fragments/featured_articles.html" %}
     </div>
-
+    <div style="width: 970px; height: 250px; clear: both; padding-top: 25px;" id="billboard"></div>
 </div>
 
 {% endblock %}

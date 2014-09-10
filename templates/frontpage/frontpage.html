@@ -18,7 +18,7 @@
 {% endblock %}
 
 <!-- Start Page JSON Data -->
-{% block pageJsonData %}    
+{% block pageJsonData %}
     {% for name, item in featured_objects_as_json.items %}
         var {{ name }} = {{ item }};
     {% endfor %}
@@ -29,7 +29,7 @@
 
 {% if featured_objects %}
     {% block featured %}
-        {% include 'fragments/new_carousel.html' %} 
+        {% include 'fragments/new_carousel.html' %}
     {% endblock %}
 {% endif %}
 
@@ -37,12 +37,12 @@
 {% cache 500 frontpage %}
 
 <div class="column-wrapper fp">
-<!--left column-->  
+<!--left column-->
 <a name="content"></a>
-<div class="left-column span-15">    
+<div class="left-column span-15">
     <div id="editorial-posts">
         {% with parent_ref='fp' %}
-            {% for post in blog_posts_paginator.object_list %}   
+            {% for post in blog_posts_paginator.object_list %}
                 {% include "blog/listings_post.html" %}
             {% endfor %}
         {% endwith %}
@@ -51,21 +51,21 @@
     <hr class="hr2" />
     {{ blog_posts_paginator.render }}
 </div>
-<!--end left column-->  
+<!--end left column-->
 
-<!-- right column-->            
+<!-- right column-->
 <div class="right-column span-8 last">
-    {% include "fragments/nectar_ads_sidebar.html" %}  
-    {% include "fragments/sidebar-items.html" %}        
+    <!-- {% include "fragments/nectar_ads_sidebar.html" %}   -->
+    {% include "fragments/sidebar-items.html" %}
     {% include "fragments/programs_sidebar.html" %}
     {% include "fragments/subscribe_sidebar.html" %}
     {% include "fragments/featured_articles.html" %}
     {% include "fragments/community_sidebar.html" %}
 </div>
-<!--end right column-->  
+<!--end right column-->
 
 </div>
-<!--end column wrapper-->  
+<!--end column wrapper-->
 
 {% endcache %}
 {% endblock %}
@@ -79,6 +79,6 @@
         $(function() {
             $('.carousel').carousel();
         });
-  })(jQuery); 
+  })(jQuery);
   </script>
 {% endblock %}
