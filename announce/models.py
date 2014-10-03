@@ -34,28 +34,28 @@ from mailinglists.signals import send_to_announce_mailing_list
 
 
 EVENT_SUB_TYPES = (
-    ('Conference','Conference'), 
-    ('Exhibition', 'Exhibition'), 
-    ('Festival','Festival'), 
-    ('Talk/Lecture','Talk/Lecture'), 
-    ('Online Broadcast', 'Online Broadcast'), 
-    ('Panel','Panel'), 
-    ('Performance','Performance'), 
-    ('Project Launch','Project Launch'), 
-    ('Screening','Screening'), 
-    ('Symposium','Symposium'), 
+    ('Conference','Conference'),
+    ('Exhibition', 'Exhibition'),
+    ('Festival','Festival'),
+    ('Talk/Lecture','Talk/Lecture'),
+    ('Online Broadcast', 'Online Broadcast'),
+    ('Panel','Panel'),
+    ('Performance','Performance'),
+    ('Project Launch','Project Launch'),
+    ('Screening','Screening'),
+    ('Symposium','Symposium'),
     ('Workshop','Workshop'),
     ('Other', 'Other')
     )
-    
+
 OPPORTUNITY_SUB_TYPES = (
     ('Academic Programs','Academic Programs'),
-    ('Call for Artists', 'Call for Artists'), 
-    ('Call for Curators','Call for Curators'), 
-    ('Call for Artworks','Call for Artworks'), 
-    ('Call for Papers','Call for Papers'), 
+    ('Call for Artists', 'Call for Artists'),
+    ('Call for Curators','Call for Curators'),
+    ('Call for Artworks','Call for Artworks'),
+    ('Call for Papers','Call for Papers'),
     ('Call for Participation','Call for Participation'),
-    ('Call for Proposals','Call for Proposals'), 
+    ('Call for Proposals','Call for Proposals'),
     ('Call for Submissions','Call for Submissions'),
     ('Fellowships','Fellowships'),
     ('Funding','Funding'),
@@ -79,7 +79,7 @@ def get_opp_upload_to(self, filename):
 
 def get_job_upload_to(self, filename):
     return 'announce/images/jobs/%s' % (filename.replace(" ", "-"))
-    
+
 def get_event_upload_to(self, filename):
     return 'announce/images/events/%s' % (filename.replace(" ", "-"))
 
@@ -89,7 +89,7 @@ def get_thumb_upload_to(self, filename):
 
 class AnnounceModel(models.Model):
     """
-    Abstract base model for all announcements. 
+    Abstract base model for all announcements.
     """
     created = models.DateTimeField(null=False, editable=False)
     modified = models.DateTimeField(null=False, editable=False, auto_now=True)
@@ -110,7 +110,7 @@ class AnnounceModel(models.Model):
 
     city = models.CharField(max_length=75, null=True, blank=True)
     state = models.ForeignKey(UsState, to_field='name',null=True,blank=True)
-    country = models.ForeignKey(Country,null=True,blank=True) 
+    country = models.ForeignKey(Country,null=True,blank=True)
     locality_province = models.CharField(max_length=100, null=True, blank=True)
     zip_postal_code = models.CharField(max_length=10, null=True, blank=True)
 
@@ -135,7 +135,7 @@ class AnnounceModel(models.Model):
     def content_type_id(self):
         ct = ContentType.objects.get_for_model(self)
         return ct.id
-    
+
     def content_type(self):
         ct = ContentType.objects.get_for_model(self)
         return ct
@@ -152,7 +152,7 @@ class AnnounceModel(models.Model):
 
     def description_strip_bbcode(self):
         return strip_bbcode(self.description)
-    
+
     def get_thumbnail(self):
         try:
             if os.path.exists(self.thumbnail.path):
@@ -168,7 +168,7 @@ class AnnounceModel(models.Model):
             messages = MLMessage.objects.filter(content_type = self.content_type_id(), object_pk = self.id)
         except:
             messages = None
-        
+
         if messages:
             sent = True
         else:
@@ -184,23 +184,23 @@ class AnnounceModel(models.Model):
 
         if self.city and self.state and self.zip_postal_code and self.locality_province:
             location += '%s, %s  %s %s' % (self.city, self.state, self.locality_province, self.zip_postal_code)
-        
+
         if self.city and self.state and self.zip_postal_code and not self.locality_province:
             location += '%s, %s  %s' % (self.city, self.state, self.zip_postal_code)
-        
+
         if self.city and self.state and not self.zip_postal_code and not self.locality_province:
-            location += '%s, %s' % (self.city, self.state)        
-        
+            location += '%s, %s' % (self.city, self.state)
+
         if self.city and not self.state and self.zip_postal_code and self.locality_province:
-            location += '%s, %s %s' % (self.city, self.locality_province, self.zip_postal_code) 
+            location += '%s, %s %s' % (self.city, self.locality_province, self.zip_postal_code)
 
         if self.city and not self.state and self.zip_postal_code and not self.locality_province:
-            location += '%s, %s' % (self.city, self.zip_postal_code)                          
-        
+            location += '%s, %s' % (self.city, self.zip_postal_code)
+
         if self.country:
-            location += ', %s' % (self.country)  
-   
-        return location 
+            location += ', %s' % (self.country)
+
+        return location
 
     def get_html_location(self):
         location = ''
@@ -211,23 +211,23 @@ class AnnounceModel(models.Model):
 
         if self.city and self.state and self.zip_postal_code and self.locality_province:
             location += '%s, %s  %s %s <br />' % (self.city, self.state, self.locality_province, self.zip_postal_code)
-        
+
         if self.city and self.state and self.zip_postal_code and not self.locality_province:
             location += '%s, %s  %s <br />' % (self.city, self.state, self.zip_postal_code)
-        
+
         if self.city and self.state and not self.zip_postal_code and not self.locality_province:
-            location += '%s, %s <br />' % (self.city, self.state)        
-        
+            location += '%s, %s <br />' % (self.city, self.state)
+
         if self.city and not self.state and self.zip_postal_code and self.locality_province:
-            location += '%s, %s %s <br />' % (self.city, self.locality_province, self.zip_postal_code) 
+            location += '%s, %s %s <br />' % (self.city, self.locality_province, self.zip_postal_code)
 
         if self.city and not self.state and self.zip_postal_code and not self.locality_province:
-            location += '%s, %s <br />' % (self.city, self.zip_postal_code)                          
-        
-        if self.country:
-            location += '%s' % (self.country)  
+            location += '%s, %s <br />' % (self.city, self.zip_postal_code)
 
-        return location 
+        if self.country:
+            location += '%s' % (self.country)
+
+        return location
 
     def get_previous_post(self):
         return self.get_previous_by_publish(status__gte=1)
@@ -251,7 +251,7 @@ class AnnounceModelModerator(ModelModerator):
     def requires_moderation(self, post):
         if isinstance(post, Job) and post.is_paid(): # paid jobs pass
             return False
-        
+
         if post.user.get_profile().is_trusted():
             return False
         return True
@@ -271,8 +271,8 @@ class AnnounceModelModerator(ModelModerator):
         post.user.get_profile().save()
 
     def moderation_pass(self, post, request):
-        post.status = True 
-        post.is_spam = False 
+        post.status = True
+        post.is_spam = False
         post.user.get_profile().add_points(3)
         send_to_announce_mailing_list(post.__class__, post, created=True)
         send_mail('Content Approved', self.approved_message_text(post), settings.DEFAULT_FROM_EMAIL, [post.user.email])
@@ -291,7 +291,7 @@ class AnnounceModelModerator(ModelModerator):
             ('submitted', post.created),
             ('type', post.content_type()),
             ('description', post.description),
-        ) 
+        )
 
 class Event(AnnounceModel):
     facebook_url = models.URLField(null=True, blank=True)
@@ -302,13 +302,13 @@ class Event(AnnounceModel):
 
     def get_absolute_url(self):
         return "/announce/events/%s/view/" % (self.id)
-    
+
     def edit_url(self):
         return "/announce/events/%s/edit/" % (self.id)
-            
+
     def calendar_day(self):
         return self.start_date
-        
+
     def type_for_url(self):
         return "events"
 
@@ -317,7 +317,7 @@ class Event(AnnounceModel):
         if self.end_date > now:
             return True
         return False
-        
+
     def save(self, *args, **kwargs):
         self.subtype = strip_tags(self.subtype)
         super(Event, self).save(*args, **kwargs)
@@ -326,7 +326,10 @@ class Opportunity(AnnounceModel):
     type = models.CharField(max_length=50, default='opportunity', editable=False, db_index = True)
     subtype = models.CharField(_('Type of Opportunity'), max_length=50, choices=OPPORTUNITY_SUB_TYPES, null=True,db_index = True)
     deadline = models.DateTimeField(null=False, db_index = True)
-    
+
+    class Meta:
+        verbose_name_plural = "opportunities"
+
     def type_for_url(self):
         return "opportunities"
 
@@ -347,27 +350,27 @@ class Job(AnnounceModel):
     type = models.CharField(max_length=50, default='job', editable=False,db_index = True)
     subtype = models.CharField(_('Type of Job'), choices= JOB_SUB_TYPES, max_length=50,db_index = True)
     deadline = models.DateTimeField(null=False)
-    
+
     def type_for_url(self):
         return "jobs"
-    
+
     def calendar_day(self):
         return self.deadline
-    
+
     def save(self, *args, **kwargs):
         self.subtype = strip_tags(self.subtype)
         super(Job, self).save(*args, **kwargs)
-                           
+
     def is_paid(self):
         payment = None
-        
+
         try:
             payment = JobPostingPayment.objects.get(job=self)
         except:
             payments = JobPostingPayment.objects.filter(job=self)[:1]
             for p in payments:
                 payment = p
-                                     
+
         return payment
 
     def can_edit(self):
@@ -380,7 +383,7 @@ class JobPostingPayment(models.Model):
     user = models.ForeignKey(User, null=False)
     job = models.ForeignKey(Job, null=False)
     amount = models.DecimalField(max_digits=10, decimal_places=2, null=False)
-    created = models.DateTimeField(null=False, editable=False)   
+    created = models.DateTimeField(null=False, editable=False)
 
     def formatted_amount(self):
         return "%01.2f" % self.amount
@@ -408,7 +411,7 @@ The Rhizome Staff
 
 """ % (self.user.get_profile(), self.amount, self.job.title, self.job.get_absolute_url(), self.formatted_amount(), self.created.strftime("%m/%d/%Y"))
         receipt.send(fail_silently=False)
-    
+
     def save(self, *args, **kwargs):
         if not self.id:
             self.created = datetime.datetime.now()
@@ -435,7 +438,7 @@ class AnnounceCalendar(HTMLCalendar):
         super(AnnounceCalendar, self).__init__()
         self.announcements = self.group_by_day(announcements)
         self.firstweekday = calendar.SUNDAY
-        
+
     def formatday(self, day, weekday):
         if day != 0:
             #cssclass = self.cssclasses[weekday]
@@ -461,20 +464,20 @@ class AnnounceCalendar(HTMLCalendar):
 
     def formatmonth(self, year, month):
         self.year, self.month = year, month
-        
+
         return super(AnnounceCalendar, self).formatmonth(year, month)
 
     def group_by_day(self, announcements):
 #         field = lambda announcement: announcement.created.day
         field = lambda announcement: announcement.calendar_day().day
-        
+
         return dict(
             [(day, list(items)) for day, items in groupby(announcements, field)]
         )
 
     def day_cell(self, cssclass, announcement_date, body):
         if announcement_date:
-            return '<td class="%s" rel = "%s/%s/%s"><span>%s</span></td>' % (cssclass, announcement_date.year, announcement_date.month, announcement_date.day, body)   
+            return '<td class="%s" rel = "%s/%s/%s"><span>%s</span></td>' % (cssclass, announcement_date.year, announcement_date.month, announcement_date.day, body)
         else:
              return '<td class="%s"><span>%s</span></td>' % (cssclass, body)
 
@@ -488,19 +491,19 @@ def get_latest_announcements(limit=None):
 
     if limit:
         objects_per_limit = int(limit) / 3
-        
+
         events = Event.objects \
             .filter(status=True) \
             .exclude(is_spam=True) \
             .order_by('-created') \
             [:objects_per_limit]
-        
+
         opportunitys = Opportunity.objects \
             .filter(status=True) \
             .exclude(is_spam=True) \
             .order_by('-created') \
             [:objects_per_limit]
-        
+
         jobs = Job.objects \
             .filter(status=True) \
             .exclude(is_spam=True) \
@@ -511,33 +514,33 @@ def get_latest_announcements(limit=None):
             .filter(status=True) \
             .order_by('-created') \
             .exclude(is_spam=True)
-        
+
         opportunitys = Opportunity.objects \
             .filter(status=True) \
             .order_by('-created') \
             .exclude(is_spam=True)
-            
+
         jobs = Job.objects \
             .filter(status=True) \
             .order_by('-created') \
             .exclude(is_spam=True)
-        
+
     return sorted(chain(events, opportunitys, jobs), key=attrgetter('created'), reverse=True)
 
 def get_announcements_by_deadline(limit=None):
     today = datetime.date.today()
-        
+
     opportunitys = Opportunity.objects \
         .filter(status=True) \
         .filter(status=1) \
         .filter(deadline__gte = today) \
         .exclude(is_spam=True)
-    
+
     jobs = Job.objects \
         .filter(status=True) \
         .filter(deadline__gte = today) \
         .exclude(is_spam=True) \
-        
+
     result = sorted(chain(opportunitys, jobs), key=attrgetter('deadline'), reverse=False)
     if limit:
         return result[:limit]
@@ -561,14 +564,14 @@ def get_random_jobs(limit):
         .filter(deadline__gte = today) \
         .order_by('?')[:limit]
     return random_jobs
-    
+
 def get_latest_opportunities(limit):
     latest_opportunitys = Opportunity.objects \
         .order_by('-created') \
         .filter(status=1) \
         .exclude(is_spam=True)[:limit]
     return latest_opportunitys
-    
+
 def get_latest_events(limit):
     latest_events = Event.objects \
         .order_by('-created') \
@@ -594,35 +597,35 @@ def get_current_events(limit):
         .exclude(is_spam=True) \
         .order_by("-start_date")[:limit]
     return events
-    
+
 def get_latest_opps(limit):
     even_split = floor(int(limit) / 2)
     latest_calls = Opportunity.objects \
         .order_by('-created') \
         .filter(status=1) \
         .exclude(is_spam=True)[:even_split  + 1]
-        
+
     latest_jobs = Job.objects \
         .order_by('-created') \
         .filter(status=1) \
         .exclude(is_spam=True)[:even_split]
-    opps = sorted(chain(latest_calls, latest_jobs), key=attrgetter('created'), reverse=True)        
+    opps = sorted(chain(latest_calls, latest_jobs), key=attrgetter('created'), reverse=True)
     return opps
-    
+
 def get_announce_calendar():
     today = datetime.date.today()
     events = Event.objects \
         .filter(status=True) \
         .filter(start_date__year=today.year, start_date__month= today.month) \
         .filter(status=1) \
-        .order_by('start_date') 
+        .order_by('start_date')
     announce_calendar = AnnounceCalendar(events).formatmonth(today.year, today.month)
     return announce_calendar
 
 # signals
 def update_activity_stream(sender, instance, **kwargs):
     # Used to update stream, not used by comments (see discuss.signals)
-    
+
     try: # check to make sure it's a published object
         activity_status = instance.status
     except:
@@ -630,15 +633,15 @@ def update_activity_stream(sender, instance, **kwargs):
             activity_status = instance.is_visible
         except:
             activity_status = False
-    
+
     if activity_status: # if published, check to make sure the object's corresponding activity doesn't already exist
         try:
             activity_check = ActivityStream.objects.get(content_type=ContentType.objects.get_for_model(instance), object_pk=instance.id)
         except:
             activity_check = False
-        
+
         if not activity_check:
-            activity = ActivityStream()    
+            activity = ActivityStream()
             activity.user = instance.user
             activity.created = datetime.datetime.now()
             activity.content_type = ContentType.objects.get_for_model(instance)
