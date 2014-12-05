@@ -9,19 +9,6 @@
 
 {% block content %}
 
-{% for grant in grants %}
-<div class="section">
-  <div class="upcoming-grant">
-    <a href="{% url 'commissions_grant' grant.slug %}">
-      {% thumbnail grant.image 100x100 background="#fff" as thumb %}
-      <img src={{ thumb.url }}>
-      <h3>{{ grant }}</h3>
-    </a>
-    <p>{{ grant.blurb|safe }}</p>
-  </div>
-</div>
-{% endfor %}
-
 <!-- {% for cycle in cycles %} -->
 <!-- <div class="section span-24"> -->
 <!--     {% if today < cycle.submission_start_date and today < cycle.ranking_vote_end %} -->
@@ -73,6 +60,32 @@
     <div id="artbase-member-exhibitions" class="clear">
         <h6>Commissions Archive</h6>
         <hr class="hr3"></hr>
+    </div>
+</div>
+
+{% for grant in grants %}
+<div class="section">
+  <div class="upcoming-grant">
+    <a target="_blank" href="{% if grant.slug == 'internet-art-microgrants' %}
+			     http://rhizome.org/editorial/2014/sep/16/announcing-microgrant-awardees/
+			     {% elif grant.slug == 'prix-net-art' %}
+			     http://prixnetart.org/
+			     {% elif grant.slug == '2014-rhizome-commissions' %}
+			     http://rhizome.org/editorial/2014/oct/1/announcing-rhizomes-program/
+			     {% else %}
+			     {% url 'commissions_grant' grant.slug %}
+			     {% endif %}">
+      {% thumbnail grant.image 100x100 background="#fff" as thumb %}
+      <img src={{ thumb.url }}>
+      <h3>{{ grant }}</h3>
+    </a>
+    <p>{{ grant.blurb|safe }}</p>
+  </div>
+</div>
+{% endfor %}
+
+<div class="section span-24">
+    <div id="artbase-member-exhibitions" class="clear">
         {% for cycle in archive %}
         {% if cycle.vote_winners or cycle.jury_winners or cycle.winners_artwork or cycle.winner_proposal_deprecated %}
         <div class="exhibition span-24 last">
