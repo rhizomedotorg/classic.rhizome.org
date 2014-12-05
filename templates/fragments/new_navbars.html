@@ -1,4 +1,5 @@
 <div id="new_header">
+<a class="moon-face" target="_blank" href="https://www.kickstarter.com/projects/710593842/theresa-duncan-cd-roms-visionary-videogames-for-gi"><img src="{{ STATIC_URL }}/images/moon-face.png"></a>
     <ul>
         {% for item in primary_nav|slice:':5' %}
             <li><a {% if item.0 == section_name %}class="active"{% endif %} href="{{ item.1 }}?ref=header">{{ item.0 }}</a></li>
