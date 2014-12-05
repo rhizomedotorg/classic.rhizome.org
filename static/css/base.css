@@ -2985,3 +2985,29 @@ form#login #login-text a:first-child {
 @media screen and (-webkit-min-device-pixel-ratio:0) {
 #scaled-iframe-50-for-mirrroring iframe { zoom: 1; 
 }
+
+@media (max-width: 600px) {
+    .moon-face {
+	display: none;
+    } 
+}
+
+@media (max-width: 1234px) {
+    .moon-face.article { 
+	display: none;
+    }
+}
+
+.moon-face {
+    position: absolute;
+    z-index: 500; 
+    top: 93px; 
+    left: 64%;
+}
+
+.moon-face.article {
+    left: 0;
+    top: 104px;
+    margin-right: 20px;
+    position: fixed;
+}
