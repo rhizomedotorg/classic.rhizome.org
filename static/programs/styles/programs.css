@@ -237,6 +237,7 @@ a.enter:hover {
 
 .section{
     padding-bottom: 10px;
+    clear: both;
 }
 
 .program-no-image{
