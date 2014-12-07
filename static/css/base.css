@@ -2983,7 +2983,7 @@ form#login #login-text a:first-child {
 }
 
 @media screen and (-webkit-min-device-pixel-ratio:0) {
-#scaled-iframe-50-for-mirrroring iframe { zoom: 1; 
+    #scaled-iframe-50-for-mirrroring iframe { zoom: 1; }
 }
 
 @media (max-width: 600px) {
