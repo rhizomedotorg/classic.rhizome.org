@@ -2992,14 +2992,22 @@ form#login #login-text a:first-child {
     } 
 }
 
-.moon-face {
-    position: fixed;
-    z-index: 1500; 
-    top: -2px; 
-    left: 673px;
+@media (max-width: 1234px) {
+    .moon-face.article { 
+	display: none;
+    }
 }
 
-.moon-face img {
-    -webkit-transform: rotate(7deg); /* Chrome, Safari, Opera */
-    transform: rotate(7deg);
+.moon-face {
+    position: absolute;
+    z-index: 500; 
+    top: 93px; 
+    left: 64%;
+}
+
+.moon-face.article {
+    left: 0;
+    top: 104px;
+    margin-right: 20px;
+    position: fixed;
 }
