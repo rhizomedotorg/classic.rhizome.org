@@ -218,7 +218,8 @@ def update_donor_membership(sender, instance, created, **kwargs):
 def send_donation_receipt(sender, instance, created, **kwargs):
     if created and instance.contact_email:
         if Decimal(instance.amount) >= Decimal(settings.MIN_DONATION_TO_BECOME_COUNCIL):
-            title = 'Council Level Donation'
+            # send a custom email by hand instead
+            return
         elif Decimal(instance.amount) >= Decimal(settings.HIGH_LEVEL_DONATION_CUTOFF):
             title = 'High Level Donation'
         elif Decimal(instance.amount) >= Decimal(settings.MIN_DONATION_TO_BECOME_MEMBER):
