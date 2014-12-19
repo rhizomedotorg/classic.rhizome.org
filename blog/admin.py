@@ -7,10 +7,10 @@ from blog.models import (
     Post, ReblogPost, PostMeta, PostImage, PostVideo, PostAudio, PostFile
 ) 
 
-import zipfile
+import zipfile, shutil
 from django.conf import settings
 from django.contrib.sites.models import Site
-
+from django.core.exceptions import ValidationError
 
 class PostForm(forms.ModelForm):
     class Meta:
@@ -33,9 +33,25 @@ class PostForm(forms.ModelForm):
         zfile = self.cleaned_data.get('zip_file')
         if zfile:
             dirname = instance.slug
+
             with zipfile.ZipFile(zfile, 'r') as z:
-                z.extractall('%s/%s/' % (settings.MEDIA_ROOT, dirname))
-            instance.iframe_src = '%s%s/index.html' % (settings.MEDIA_URL, dirname)
+
+                namelist = z.namelist()
+
+                if len(namelist):
+
+                    z.extractall('%s/%s/' % (settings.MEDIA_ROOT, dirname))
+
+                    if namelist[0][-1] == '/':
+                        foldername = namelist[0]
+                        instance.iframe_src = '%s%s/%sindex.html' % (settings.MEDIA_URL, dirname, foldername)
+
+                    else:
+                        instance.iframe_src = '%s%s/index.html' % (settings.MEDIA_URL, dirname)
+
+                else:
+                    raise ValidationError('Zip file cannot be empty.')
+
 
         if commit:
             instance.save()
@@ -50,7 +66,6 @@ class PostAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('title',)}
     date_hierarchy = 'publish'
     raw_id_fields = ('authors',)
-    readonly_fields = ('iframe_src',)
     save_on_top = True
     fieldsets = (
         (None, {
