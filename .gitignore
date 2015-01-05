@@ -9,6 +9,7 @@ site_media/
 search_index/
 sitemaps/
 venv/
+env/
 .sass-cache/
 rhizome/local_settings.py
 local_settings.py
