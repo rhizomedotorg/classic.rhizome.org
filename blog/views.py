@@ -216,10 +216,13 @@ def old_month_forward(request):
     if timestamp:
         try:
             dt = datetime.datetime.strptime(timestamp,'%Y%m')
+            month = datetime.datetime.strftime(dt,"%b")
+        
         except TypeError:
             return HttpResponse(status=404)
-
-        month = datetime.datetime.strftime(dt,"%b")
+        except ValueError:
+            return HttpResponse(status=400)
+        
         return HttpResponseRedirect("/editorial/archive/%s/%s/" % (dt.year, month) )
     else:
         return HttpResponseRedirect("/editorial/archive/")
