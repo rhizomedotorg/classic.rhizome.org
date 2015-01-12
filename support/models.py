@@ -206,6 +206,8 @@ def update_donor_membership(sender, instance, created, **kwargs):
                     membership.update_membership(instance)
                 else:
                     instance.user.get_profile().make_member(instance)
+
+            ''' temporarily disable Claim Membership email
             elif instance.contact_email:
                 email = EazyEmail.objects.get(title='Claim Membership Instructions')
                 email.send(settings.MEMBERSHIP_GROUP_EMAIL, [instance.contact_email], bcc=[settings.MEMBERSHIP_GROUP_EMAIL], extra_context={
@@ -213,6 +215,7 @@ def update_donor_membership(sender, instance, created, **kwargs):
                     'last_name': instance.last_name,
                     'donation_amount': instance.amount,
                 })
+            '''
 
 @receiver(post_save, sender=NewDonation, dispatch_uid='support.send_donation_receipt')
 def send_donation_receipt(sender, instance, created, **kwargs):
