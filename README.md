@@ -94,4 +94,4 @@ password: 123
 (coming soon)
 
 got a question? open an issue.    
-for support contact scott.meisburger@rhizome.org.
+for support contact matthew.conlen@rhizome.org.
