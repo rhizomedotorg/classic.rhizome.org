@@ -34,9 +34,12 @@ USE_TZ = False
 
 CELERY_RESULT_BACKEND = 'djcelery.backends.cache.CacheBackend'
 
+## Allow rhizome.org, rhizome.com, subdomains, and RQDNs
 ALLOWED_HOSTS = [
-    '.rhizome.org', # Allow domain and subdomains
-    '.rhizome.com.', # Also allow FQDN and subdomains
+    '.rhizome.org',
+    '.rhizome.org.',
+    '.rhizome.com',
+    '.rhizome.com.',
 ]
 
 COMMENT_MAX_LENGTH = 15000
