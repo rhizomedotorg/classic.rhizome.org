@@ -91,7 +91,5 @@ password: 123
 
 ## Documentation
 
-(coming soon)
-
 got a question? open an issue.    
 for support contact matthew.conlen@rhizome.org.
