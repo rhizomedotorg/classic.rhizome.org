@@ -2,6 +2,11 @@ import os
 import datetime
 import urllib2
 import HTMLParser
+import requests
+try:
+    import simplejson as json
+except ImportError:
+    import json
 
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
@@ -57,6 +62,7 @@ class Post(models.Model):
     tags = TagField(max_length=1024, null=True, blank=True)
     iframe_src = models.CharField(blank=True, max_length=200)
 
+
     class Meta:
         db_table  = 'blog_posts'
         ordering  = ('-publish',)
@@ -78,6 +84,12 @@ class Post(models.Model):
                 
         if not self.byline:
             self.byline = "Rhizome"
+
+        # slack integration
+        if self.status == Post.PUBLIC and self.status != self.old_status:
+            payload = {'text': 'New post published: <' + ('%s%s' % ('http://rhizome.org', self.get_absolute_url())) + '| ' + self.title + '>'}
+            requests.post(settings.SLACK_WEBHOOK_URL, data=json.dumps(payload))
+
         super(Post, self).save(*args, **kwargs)
 
     def can_view(self, user):
@@ -382,11 +394,13 @@ except tagging.AlreadyRegistered:
     pass
 
 def on_post_save(sender, **kwargs):
+
     instance = kwargs['instance']
     if instance.status == 2:
         for a in instance.get_authors():
             a.get_profile().add_points_for_object(instance)
-        
+
+
 post_save.connect(on_post_save, sender=Post)
 
 
