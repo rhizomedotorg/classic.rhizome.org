@@ -87,7 +87,7 @@ class Post(models.Model):
 
         # slack integration
         if self.status == Post.PUBLIC and self.status != self.old_status:
-            payload = {'text': 'New post published: <' + ('%s%s' % ('http://rhizome.org', self.get_absolute_url())) + '| ' + self.title + '>'}
+            payload = {'text': 'New post published: <%s%s|%s>' % ('http://rhizome.org', self.get_absolute_url(), self.title), 'unfurl_links': True}
             requests.post(settings.SLACK_WEBHOOK_URL, data=json.dumps(payload))
 
         super(Post, self).save(*args, **kwargs)
