@@ -14,8 +14,7 @@ PRIMARY_NAV = (
 SUB_NAV = {
     'Journal': (
         ('Artist Profiles', reverse('artist_profiles')),
-        ('Surf Reports', reverse('blog_tag_detail', args=['surf-report'])),
-        ('E-Cig in Context', reverse('blog_tag_detail', args=['e-cig-in-context'])),
+        ('First Look: New Art Online', 'http://www.newmuseum.org/exhibitions/online'),
     ),
     'Artbase': (
         ('Browse', reverse('browse')),
