@@ -4603,7 +4603,7 @@
     "model": "blocks.block", 
     "fields": {
         "category": "", 
-        "text": "<li><i>Contemporary art and technology, online since 1996.</i></li>", 
+        "text": "<li class=\"desktop\"><i>Contemporary art and technology, online since 1996.</i></li>", 
         "ident": "Tagline"
     }
 },

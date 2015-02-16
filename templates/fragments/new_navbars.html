@@ -12,7 +12,8 @@
 
         <li id="account">
             {% if request.user.is_authenticated %}
-                <a href="{% url 'edit_profile' %}?ref=header">{{ request.user }}&nbsp;&nbsp;<i class="fa fa-user"></i></a>
+                <a class="desktop" href="{% url 'edit_profile' %}?ref=header">{{ request.user }}</a>
+                <!-- <a href="{% url 'edit_profile' %}?ref=header">&nbsp;&nbsp;<i class="fa fa-user"></i></a> -->
             {% else %}
                 <a href="{% url 'login' %}?ref=header"><i class="fa fa-key"></i></a>
             {% endif %}
@@ -22,12 +23,13 @@
 
 <div id="new_footer">
     <ul>
+        wtffffff
         {% for item in primary_nav %}
-            {% if item.0 == section_name %}<li><a class="active" href="{{ item.1 }}?ref=footer"><span class="underline">{{ item.0 }}</span> &raquo;</a></li>{% endif %}
+            {% if item.0 == section_name %}<li class="desktop"><a class="active" href="{{ item.1 }}?ref=footer"><span class="underline">{{ item.0 }}</span> &raquo;</a></li>{% endif %}
         {% endfor %}
 
         {% for item in sub_nav %}
-            <li><a {% if item.0|lower == sub_section_name|lower or item.0|lower == sub_section_name|add:'s' %}class="active"{% endif %} href="{{ item.1 }}?ref=footer">{{ item.0 }}</a></li>
+            <li class="desktop"><a {% if item.0|lower == sub_section_name|lower or item.0|lower == sub_section_name|add:'s' %}class="active"{% endif %} href="{{ item.1 }}?ref=footer">{{ item.0 }}</a></li>
         {% endfor %}
 
         {% if html_credits %}{{ html_credits|safe }}{% endif %}
