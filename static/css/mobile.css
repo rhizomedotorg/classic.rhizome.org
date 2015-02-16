@@ -2,7 +2,7 @@
  * Primarly overriding the styles in blueprint
  * and blueprint/screen
  */
-@media (max-width: 600px) {
+@media (max-width: 690px) {
     .carousel#fp .carousel-inner .carousel-caption {
         left: 50px;
         top: 16px;
@@ -23,7 +23,7 @@
             height: 260px;
         }
     #content {
-        margin-top: -5px;
+        margin-top: 40px;
     }
     .container {
         width: 100%;
