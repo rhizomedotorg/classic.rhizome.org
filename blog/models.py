@@ -71,7 +71,7 @@ class Post(models.Model):
     def __init__(self, *args, **kwargs):
         super(Post, self).__init__(*args, **kwargs)
         self.old_status = self.status
-        
+
     def save(self, *args, **kwargs):
         ''' On save, clean HTML '''
         self.body = clean_html(self.body)
@@ -87,6 +87,7 @@ class Post(models.Model):
 
         # slack integration
         if self.status == Post.PUBLIC and self.status != self.old_status:
+            self.old_status = self.status
             payload = None
 
             if self.publish <= datetime.datetime.now():
