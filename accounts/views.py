@@ -419,6 +419,7 @@ def user_profile(request, user):
     address = user.get_profile().address()
     is_member = user.get_profile().is_rhizomemember()
     portfolio = user.get_profile().get_portfolio()
+    artbase_portfolio = user.get_profile().get_artbase_portfolio()
     exhibitions = user.get_profile().get_member_exhibitions()
     saved_works = user.get_profile().get_saved_artworks()
     
@@ -463,6 +464,7 @@ def user_profile(request, user):
         "user":user,
         "is_member":is_member,
         "portfolio":portfolio,
+        "artbase_portfolio":artbase_portfolio,
         "activities_count":activities_count,
         "auto_checks":auto_checks,
         "activities_paginator":activities_paginator,

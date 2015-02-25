@@ -31,6 +31,22 @@ window.addEvent('domready', function() {
             }
         });
     {% endif %}
+
+    {% if artbase_portfolio and artbase_portfolio|length > 4 %}
+        artbase_portfolio_links = $$('span#carousel-scroll-artbase-portfolio a');
+        
+        artbase_portfolio = new Carousel({
+            container: 'artbase-portfolio',
+            distance: 1,
+            previous: artbase_portfolio_links.shift(),
+            next: artbase_portfolio_links.pop(),
+            mode: 'horizontal', 
+            fx: {
+                duration: 750,
+                transition: Fx.Transitions.Quart.easeInOut
+            }
+        });
+    {% endif %}
     
     {% if exhibitions and exhibitions|length > 4 %}
         alert({{exhibitions|length}});
@@ -214,6 +230,70 @@ window.addEvent('domready', function() {
     {% endif %}  
 </div>
 {% endif %}            
+
+
+{% if artbase_portfolio %}
+<div class="profile-section section span-24">
+    {% if artbase_portfolio|length > 4 %}
+        <div class="section-title span-24">
+            <span class="span-22">ARTBASE ({{artbase_portfolio|length}})</span>
+            <span class="carousel-scroll" id ="carousel-scroll-artbase-portfolio">
+                    <a href = "#" class = "portfolio-previous" id = "previous"></a>
+                    <a href = "#" class = "portfolio-next" id = "next"></a>
+            </span>
+            <hr class="hr3">
+        </div> 
+        
+        <div class = "section-content span-24">
+            <div id ="artbase-portfolio" class="span-22">
+            {% for work in artbase_portfolio %}
+                <div class = "portfolio-work">
+                    {% if work.image_small %}
+                        <a href= "{{work.view_url}}">
+                            <img src="{{MEDIA_URL}}{{ work.image_small }}" width = "135">
+                        </a>
+                    {% else %}
+                        <a href= "{{work.view_url}}">
+                            <img src="{{ STATIC_URL }}artbase/images/rhizome_art_default.png" width = "135">
+                        </a>                       
+                    {% endif %}
+                    <div class = "portfolio-work-title">
+                        <a href= "{{work.view_url}}">{{ work.title }}</a>
+                    </div>
+                </div>
+            {% endfor %}
+            </div>
+        </div>
+    {% else %}
+        <div class="section-title span-24">
+            <span class="span-22">ARTBASE ({{artbase_portfolio|length}})</span>
+            <hr class="hr3">
+        </div> 
+        
+        <div class = "section-content span-24">
+             <div id ="portfolio-no-scroll">
+                {% for work in artbase_portfolio %}
+                <div class = "portfolio-work">
+                    {% if work.image_small %}
+                        <a href= "{{work.view_url}}">
+                            <img src="{{MEDIA_URL}}{{ work.image_small }}" width = "135">
+                        </a>
+                    {% else %}
+                        <a href= "{{work.view_url}}">
+                            <img src="{{ STATIC_URL }}artbase/images/rhizome_art_default.png" width = "135">
+                        </a>                       
+                    {% endif %}
+                    <div class = "portfolio-work-title">
+                        <a href= "{{work.view_url}}">{{ work.title }}</a>
+                    </div>
+                </div>
+            {% endfor %}
+            </div>
+        </div>
+    {% endif %}  
+</div>
+{% endif %}            
+
 
 {% if user.get_profile.bio %}
 <div class="span-24"> 

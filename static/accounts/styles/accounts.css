@@ -147,7 +147,8 @@
     margin-bottom: 10px;
 }
 
-#portfolio {
+#portfolio,
+#artbase-portfolio {
     height: 250px;
     margin-top: 10px;
     margin-left: 40px;
@@ -325,7 +326,8 @@
     background-color: white;
 }
 
-#portfolio .portfolio-work img{
+#portfolio .portfolio-work img,
+#artbase-portfolio .portfolio-work img{
     max-height: 200px;
     overflow: hidden;
 }

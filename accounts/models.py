@@ -452,7 +452,21 @@ class RhizomeUser(User):
     def get_portfolio(self):
         try:
             from artbase.models import ArtworkStub
-            portfolio = ArtworkStub.objects.filter(user = self).exclude(status = "unsubmitted").exclude(status = "deleted")
+            portfolio = ArtworkStub.objects.filter(user = self).exclude(status = "unsubmitted").exclude(status = "deleted").exclude(status = "approved")
+        except:
+            portfolio = None
+        if not portfolio:
+            portfolio = None
+            count = None
+        else:
+            count = len(portfolio)
+        d = {"portfolio":portfolio, "count":count} 
+        return portfolio
+
+    def get_artbase_portfolio(self):
+        try:
+            from artbase.models import ArtworkStub
+            portfolio = ArtworkStub.objects.filter(user = self, status = "approved")
         except:
             portfolio = None
         if not portfolio:
@@ -1123,12 +1137,14 @@ def get_recently_updated_portfolios(limit=None):
     if limit:
         return ArtworkStub.objects \
                 .exclude(status = "unsubmitted") \
+                .exclude(status = "approved") \
                 .exclude(status = "deleted") \
                 .exclude(image_small ="artbase/images/rhizome_art_default.png") \
                 .order_by("-modified")[:limit]
     else:
         return ArtworkStub.objects \
                 .exclude(status = "unsubmitted") \
+                .exclude(status = "approved") \
                 .exclude(status = "deleted") \
                 .exclude(image_small ="artbase/images/rhizome_art_default.png") \
                 .order_by("-modified")   
