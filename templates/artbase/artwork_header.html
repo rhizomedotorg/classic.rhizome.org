@@ -35,7 +35,7 @@
         <span>by</span>
         <span class="blue">
             {% if artwork.user.id != 2 %}
-                <a href="{{ artwork.user.get_profile.get_absolute_url }}/">{{ artwork.get_artist }}</a>
+                <a href="{{ artwork.user.get_profile.get_absolute_url }}">{{ artwork.get_artist }}</a>
             {% else %}
                 {{ artwork.get_artist }}
             {% endif %}
