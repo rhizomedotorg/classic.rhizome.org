@@ -1,5 +1,5 @@
 #content {
-    overflow-y: auto;
+    overflow-y: hidden;
     -webkit-overflow-scrolling: touch;
 }
 
