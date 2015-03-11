@@ -14,7 +14,7 @@
     {% get_nav 'Journal' None %}
 {% endblock %}
 
-{% block content_class %}frontpage-exhibition{% endblock %}
+{% block content_class %}frontpage-exhibition overflow-auto{% endblock %}
 {% block content %}
-    <iframe style="background: white;" src="{{ post.iframe_src }}"></iframe>
+    <iframe class="block" style="background: white;" src="{{ post.iframe_src }}"></iframe>
 {% endblock %}
