@@ -352,6 +352,7 @@ class ManageMailchimpSubscriptionForm(forms.Form):
 
         announce_subscribed_status = False
         news_subscribed_status = False
+        announce_form_label = ''
 
         for mchimp_list in mchimp_lists:
 
