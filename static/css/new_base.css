@@ -38,6 +38,10 @@ h4 {
   display: block !important;
 }
 
+.overflow-auto {
+  overflow: auto !important;
+}
+
 #content {
   top: 30px;
   height: 100%;
