@@ -860,6 +860,8 @@ def commissions_voting(request):
     }
     return render_to_response('accounts/member_voting.html', d, context)
 
+
+@login_required
 def manage_mailchimp_subscriptions(request):
     '''
     - creates a simple form allowing people to un/subscribe 
