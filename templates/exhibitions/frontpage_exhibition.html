@@ -26,7 +26,7 @@
             {{ exhibition.video_embed_code|safe }}
         </div>
     {% elif exhibition.iframe_src %}
-        <iframe src="{{ exhibition.iframe_src }}"></iframe>
+        <iframe src="{{ exhibition.iframe_src }}" style="background-color:white;"></iframe>
     {% else %}
         <div class="zoomer-loading">loading <span class="spinner"></span></div>
         <div class="zoomer-img" data-src="{{ MEDIA_URL }}{{ exhibition.image }}"></div>
