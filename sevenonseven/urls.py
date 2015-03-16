@@ -1,16 +1,16 @@
 from django.conf.urls.defaults import patterns, url
 from django.contrib.auth.decorators import login_required
-from django.views.generic import TemplateView
+from django.views.generic import RedirectView
 
 
 urlpatterns = patterns('discuss.views',
-    url(r'^$', TemplateView.as_view(template_name='sevenonseven/landing.html'), name='sevenonseven_landing'),
-    url(r'^past/$', TemplateView.as_view(template_name='sevenonseven/landing.html'), name='sevenonseven_past'),
-	#url(r'^preview/$',login_required(TemplateView.as_view(template_name='sevenonseven/2014.html'))),
-    url(r'^2010/$', TemplateView.as_view(template_name='sevenonseven/2010.html')),
-    url(r'^2011/$', TemplateView.as_view(template_name='sevenonseven/2011.html')),
-    url(r'^2012/$', TemplateView.as_view(template_name='sevenonseven/2012.html')),
-    url(r'^2013/$', TemplateView.as_view(template_name='sevenonseven/2013.html')),
-    url(r'^2013-london/$', TemplateView.as_view(template_name='sevenonseven/2013_london.html')),
-    url(r'^2014/$', TemplateView.as_view(template_name='sevenonseven/2014.html')),                       
+    url(r'^$', RedirectView.as_view(url='http://sevenonseven.rhizome.org/'), name='sevenonseven_landing'),
+    url(r'^past/$', RedirectView.as_view(url='http://sevenonseven.rhizome.org/'), name='sevenonseven_past'),
+    #url(r'^preview/$',login_required(RedirectView.as_view(url='http://sevenonseven.rhizome.org/'))),
+    url(r'^2010/$', RedirectView.as_view(url='http://sevenonseven.rhizome.org/')),
+    url(r'^2011/$', RedirectView.as_view(url='http://sevenonseven.rhizome.org/')),
+    url(r'^2012/$', RedirectView.as_view(url='http://sevenonseven.rhizome.org/')),
+    url(r'^2013/$', RedirectView.as_view(url='http://sevenonseven.rhizome.org/')),
+    url(r'^2013-london/$', RedirectView.as_view(url='http://sevenonseven.rhizome.org/')),
+    url(r'^2014/$', RedirectView.as_view(url='http://sevenonseven.rhizome.org/')),
 )
