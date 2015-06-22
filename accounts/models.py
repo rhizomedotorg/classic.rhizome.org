@@ -452,7 +452,7 @@ class RhizomeUser(User):
     def get_portfolio(self):
         try:
             from artbase.models import ArtworkStub
-            portfolio = ArtworkStub.objects.filter(user = self).exclude(status = "unsubmitted").exclude(status = "deleted")#.exclude(status = "approved")
+            portfolio = ArtworkStub.objects.filter(user = self).exclude(status = "unsubmitted").exclude(status = "deleted").exclude(status = "approved")
         except:
             portfolio = None
         if not portfolio:

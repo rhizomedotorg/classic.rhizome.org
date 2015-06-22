@@ -32,21 +32,21 @@ window.addEvent('domready', function() {
         });
     {% endif %}
 
-    // {% if artbase_portfolio and artbase_portfolio|length > 4 %}
-    //     artbase_portfolio_links = $$('span#carousel-scroll-artbase-portfolio a');
+    {% if artbase_portfolio and artbase_portfolio|length > 4 %}
+        artbase_portfolio_links = $$('span#carousel-scroll-artbase-portfolio a');
         
-    //     artbase_portfolio = new Carousel({
-    //         container: 'artbase-portfolio',
-    //         distance: 1,
-    //         previous: artbase_portfolio_links.shift(),
-    //         next: artbase_portfolio_links.pop(),
-    //         mode: 'horizontal', 
-    //         fx: {
-    //             duration: 750,
-    //             transition: Fx.Transitions.Quart.easeInOut
-    //         }
-    //     });
-    // {% endif %}
+        artbase_portfolio = new Carousel({
+            container: 'artbase-portfolio',
+            distance: 1,
+            previous: artbase_portfolio_links.shift(),
+            next: artbase_portfolio_links.pop(),
+            mode: 'horizontal', 
+            fx: {
+                duration: 750,
+                transition: Fx.Transitions.Quart.easeInOut
+            }
+        });
+    {% endif %}
     
     {% if exhibitions and exhibitions|length > 4 %}
         alert({{exhibitions|length}});
@@ -168,7 +168,7 @@ window.addEvent('domready', function() {
 {% endblock %}
 
 {% block content %}
-<!-- 
+
 {% if artbase_portfolio %}
 <div class="profile-section section span-24">
     {% if artbase_portfolio|length > 4 %}
@@ -230,7 +230,7 @@ window.addEvent('domready', function() {
     {% endif %}  
 </div>
 {% endif %}            
- -->
+
 
 {% if portfolio %}
 <div class="profile-section section span-24">
