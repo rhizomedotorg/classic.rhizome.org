@@ -8,4 +8,4 @@ def create_thumbnail(source, width=100, height=100):
     '''
     from easy_thumbnails.files import get_thumbnailer
     thumbnail_options = dict(size=(width, height), crop=True)
-    return get_thumbnailer(source).get_thumbnail(thumbnail_options)
+    return get_thumbnailer(source).get_thumbnail(thumbnail_options).file
