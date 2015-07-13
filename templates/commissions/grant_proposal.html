@@ -1,0 +1,83 @@
+{% extends 'new_base.html' %}
+{% load block_tags utils %}
+
+{% block pageTitle %}Vote{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/micro_grant_proposal.css">
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/sidebars.css">
+{% endblock %}
+
+{% block navbars %}
+    {% get_nav 'Programs' 'Commissions' %}
+{% endblock %}
+
+{% block content %}
+    <div class="section">
+      <div class="left-col">
+
+	<p class="explanitory">This page calls up all the proposals, but randomizes their order. <a href="{% url 'commissions_grant_proposal_index' grant.slug %}">Here is a list of all proposals</a>.</p>
+
+	<div class="pagination">
+	  <span class="step-links">
+	    {% if proposals.has_previous %}
+	    <a href="?page={{ proposals.previous_page_number }}">Previous page</a>
+	    {% endif %}
+
+	    <span class="current">
+	      Page {{ proposals.number }} of {{ proposals.paginator.num_pages }}.
+	    </span>
+
+	    {% if proposals.has_next %}
+	    <a href="?page={{ proposals.next_page_number }}">Next page</a>
+	    {% endif %}
+	</div>
+
+	{% for proposal in proposals %}
+
+	<div class="proposal-vote-view" id="{{ proposal.id }}">
+	  <p>
+	    <h3>{{ proposal.data_dict.name }}</h3>
+	    {{ proposal.data_dict.site|urlize|url_target_blank }}
+	  </p>
+	  <img src={{ proposal.data_dict.image }}>
+	  <p>{{ proposal.data_dict.idea }}</p>
+
+	</div>
+	{% endfor %}
+	<br>
+	<div class="pagination bottom">
+	  <span class="step-links">
+	    {% if proposals.has_previous %}
+	    <a href="?page={{ proposals.previous_page_number }}">previous</a>
+	    {% endif %}
+
+	    <span class="current">
+	      Page {{ proposals.number }} of {{ proposals.paginator.num_pages }}.
+	    </span>
+
+	    {% if proposals.has_next %}
+	    <a href="?page={{ proposals.next_page_number }}">next</a>
+	    {% endif %}
+	</div><br>
+      </div>
+      <div class="right-col">
+	{% include "fragments/nectar_ads_sidebar.html" %}
+      </div>
+    </div>
+{% endblock %}
+
+{% block extra_js %}
+    <script type="text/javascript" src="{{ STATIC_URL }}js/grant_forms.js"></script>
+
+    {% if "https" not in STATIC_URL %}
+    <script type="text/javascript">
+      var z=document.createElement("script");
+      z.type="text/javascript";
+      z.async=true;
+      z.src="//engine.nectarads.com/z/12843/azk1_2_43,azk2_2_16,azk3_2_16,azk4_2_16,azk5_2_16";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(z, s);
+    </script>
+    {% endif %}
+{% endblock %}

@@ -405,6 +405,25 @@ class Grant(models.Model):
     def proposal_data(self):
         return [p.data_dict for p in self.proposals.all()]
 
+    def proposal_list(self):
+        proposal_list = [p for p in self.proposals.all()]
+        random.shuffle(proposal_list)
+
+        return proposal_list
+
+    def proposal_paged_list(self, items_per_page):
+        proposal_list = self.proposal_list()
+
+        num_pages = len(proposal_list) / items_per_page
+        if len(proposal_list) % items_per_page != 0:
+            num_pages += 1
+
+        pages = []
+        for i in range(num_pages):
+            chunk = proposal_list[i * items_per_page:(i + 1) * items_per_page]
+            pages.append((i + 1, chunk))
+        return pages
+
     def proposal_voting_list(self, user):
         proposal_list = [p for p in self.proposals.all()]
         random.seed(user.id)

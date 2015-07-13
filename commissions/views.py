@@ -525,6 +525,33 @@ def can_vote(request, grant):
     return votes_remaining
 
 
+def grant_proposal_index(request, grant_slug):
+    grant = get_object_or_404(Grant, slug=grant_slug)
+    pages = grant.proposal_paged_list(PROPOSALS_PER_PAGE)
+
+    return render(request, 'commissions/grant_proposal_index.html', {
+        'grant': grant,
+        'pages': pages
+    })
+
+def grant_proposal(request, grant_slug):
+    grant = get_object_or_404(Grant, slug=grant_slug)
+
+    paginator = Paginator(grant.proposal_list(),
+                          PROPOSALS_PER_PAGE)
+    page = request.GET.get('page')
+    try:
+        proposals = paginator.page(page)
+    except PageNotAnInteger:
+        proposals = paginator.page(1)
+    except EmptyPage:
+        proposals = paginator.page(paginator.num_pages)
+
+    return render(request, 'commissions/grant_proposal.html', {
+        'grant': grant,
+        'proposals': proposals
+    })
+
 @login_required
 def grant_voting_index(request, grant_slug):
     grant = get_object_or_404(Grant, slug=grant_slug)
