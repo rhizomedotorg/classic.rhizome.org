@@ -407,6 +407,7 @@ class Grant(models.Model):
 
     def proposal_list(self):
         proposal_list = [p for p in self.proposals.all()]
+        random.seed(4281990)
         random.shuffle(proposal_list)
 
         return proposal_list
