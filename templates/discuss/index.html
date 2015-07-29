@@ -73,13 +73,10 @@
             <span class="span-2 views">
                 {% if thread.is_discuss_thread %}
                     {% get_comment_count for thread as comment_count %}
-                    {% get_hit_count for thread as hit_count %}
                 {% else %}
                     {% get_comment_count for thread.content_object as comment_count %}
-                    {% get_hit_count for thread.content_object as hit_count %}
                 {% endif %}
 
-                Views: {{ hit_count }}<br />
                 Length: {{ comment_count }}
             </span>
         </div>
