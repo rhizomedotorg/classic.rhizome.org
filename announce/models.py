@@ -164,6 +164,9 @@ class AnnounceModel(models.Model):
 
     def has_been_sent_to_list(self):
         #for checking to see if sent to rhizome listservs, for now only checks for messages
+        if self.user.pk == 2:
+            return True
+
         try:
             messages = MLMessage.objects.filter(content_type = self.content_type_id(), object_pk = self.id)
         except:
@@ -608,6 +611,7 @@ def get_latest_opps(limit):
     latest_jobs = Job.objects \
         .order_by('-created') \
         .filter(status=1) \
+        .exclude(user=2) \
         .exclude(is_spam=True)[:even_split]
     opps = sorted(chain(latest_calls, latest_jobs), key=attrgetter('created'), reverse=True)
     return opps
