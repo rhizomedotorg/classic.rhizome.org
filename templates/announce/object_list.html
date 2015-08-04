@@ -15,7 +15,7 @@
                 </div>
                 {% endif %}
                 
-                {% if a.deadline %}
+                {% if a.deadline and a.user.pk != 2  %}
                 <div class="start-date-single span-2">
                     <div class = "deadline">Deadline:</div>
                     <div class = "month">{{ a.deadline|date:"M"}}</div>
@@ -37,7 +37,7 @@
                 </div>
                 {% endif %}
                 
-                {% if a.deadline %}
+                {% if a.deadline and a.user.pk != 2 %}
                 <div class = "prepend-2">
                     <div class="start-date-no-image span-2 prepend-1">
                         <div class = "deadline">Deadline:</div>
@@ -83,7 +83,7 @@
             </div> 
             {% endif %}
             
-            {% if a.deadline %}
+            {% if a.deadline and a.user.pk != 2 %}
             <div class="feed-item-listing span-18">   
                 <div class ="feed-item-listing-row">
                     <div class = "feed-item-listing-row-title span-2">Deadline:</div>  

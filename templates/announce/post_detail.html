@@ -90,7 +90,7 @@
                 </div>
             {% endif %}
             
-            {% if announcement.deadline %}
+            {% if announcement.deadline and announcement.user.pk != 2 %}
                 <div class="start-date-single span-2 last">
                     <div class = "deadline">Deadline:</div>
                     <div class = "month">{{ announcement.deadline|date:"M"}}</div>
