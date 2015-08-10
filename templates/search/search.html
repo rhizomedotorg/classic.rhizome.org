@@ -100,7 +100,7 @@ Search
                         {% if result.object.title %}
                             {% if result.object.get_absolute_url != '' %}
                                 {% if result.content_type == "programs.video" %}
-                                <a href="{{ result.object.url }}ref=search_title">
+                                <a href="{{ result.object.url }}?ref=search_title">
                                     {{ result.object.title }}
                                 </a>
                                 {% else %}
@@ -115,7 +115,7 @@ Search
                         
                         {% if result.content_type == "accounts.rhizomeuser" %} 
                              {{ result.object.get_profile.get_small_miniprofile|markdown }}
-                            <a href="{{ result.object.get_profile.get_absolute_url }}ref=search_title">
+                            <a href="{{ result.object.get_profile.get_absolute_url }}?ref=search_title">
                                 {{ result.object.user.get_profile }}
                             </a>
                         {% endif %}
