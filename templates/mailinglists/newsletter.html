@@ -1,4 +1,4 @@
-{% load blog_tags inlines_tags markup comments %} 
+{% load blog_tags inlines_tags markup comments %}
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.02 Final//EN">
 <html>
 <head>
@@ -42,7 +42,7 @@
                     <td width="700" style="line-height:0;text-align:center;background-color:#f3f3f3;">
 			<a href="http://engine.nectarads.com/s/redirect/59769/0/4/51423629?key=*|UNIQID|**|CAMPAIGN_UID|*">
 			<img border="0" src="http://engine.nectarads.com/s/59769/0/4/51423629?key=*|UNIQID|**|CAMPAIGN_UID|*" /></a>
-                        
+
                         <p style="background-color:#f3f3f3;font-size:11px;color:#555555;text-align:right;padding-top:6px;padding-bottom:0px;padding-right:20px;padding-left:0;margin-top:5px;margin-bottom:0;margin-right:0;margin-left:0;">
                             <a style="color:#888888;text-decoration:none;" href="http://nectarads.com/">Advertise with Nectar Ads</a>
                         </p>
@@ -112,10 +112,10 @@
 										<tr><td width="441" height="15" style="line-height:0;">&nbsp;</td></tr>
 									</table>
 								</td>
-							</tr>						
+							</tr>
 						</table>
-						
-						
+
+
 						<table width="480" align="center" cellpadding="0" border="0" style="border-collapse:seperate; border:1px solid #ccc; margin-top:10px;" bgcolor="#ffffff">
 							<tr>
 								<td width="478">
@@ -138,9 +138,9 @@
 													</tr>
 													<tr><td width="215" height="10"><img src="{{ STATIC_URL }}editorial/newsletter/template_images/hr2.gif" alt="" /></td></tr>
 													<tr><td width="215" height="10" style="line-height:0;">&nbsp;</td></tr>
-													
-                          						
-													
+
+
+
 													{% for article in featured_articles %}
 													<tr>
 														<td width="215">
@@ -150,8 +150,8 @@
 													</tr>
 													<tr><td width="215" height="15" style="line-height:0;">&nbsp;</td></tr>
                                                     {% endfor %}
-                          
-                          
+
+
 													<tr>
 														<td width="215">
 															<table>
@@ -179,7 +179,7 @@
 													</tr>
 													<tr><td width="215" height="10"><img src="{{ STATIC_URL }}editorial/newsletter/template_images/hr2.gif" alt="" /></td></tr>
 													<tr><td width="215" height="10" style="line-height:0;">&nbsp;</td></tr>
-													
+
 													{% get_latest_posts 5 as latest_post_list %}
 													{% for post in latest_post_list %}
 													<tr>
@@ -189,14 +189,14 @@
 														</td>
 													</tr>
 													<tr><td width="215" height="15" style="line-height:0;">&nbsp;</td></tr>
-                                                    {% endfor %}													
+                                                    {% endfor %}
 													<tr>
 														<td width="215">
 															<table>
 																<tr>
 																	<td bgcolor="#ffcaff" height="16">
 																		<a href="http://rhizome.org/editorial/?ref=nwslettr" style="font:bold 10px Arial, Helvetica, sans-serif; color:#000; padding:0 5px; margin:0; text-transform:uppercase; text-decoration:none;">SEE THE BLOG</a>
-																	</td>  
+																	</td>
 																</tr>
 															</table>
 														</td>
@@ -232,8 +232,8 @@
 													<tr><td width="215" height="10"><img src="{{ STATIC_URL }}editorial/newsletter/template_images/hr2.gif" alt="" /></td></tr>
 													<tr><td width="215" height="10" style="line-height:0;">&nbsp;</td></tr>
 													<tr>
-														<td width="215">												  
-															{% for opp in opps %}		
+														<td width="215">
+															{% for opp in opps %}
 															<p style="font:13px Georgia, 'Times New Roman', Times, serif; color:#000; padding:0 0 5px; margin:0;"><img src="{{ STATIC_URL }}editorial/newsletter/template_images/arrow.gif" alt="" /> <a style="color:#026784; text-decoration:none;" href="http://rhizome.org{{ opp.get_absolute_url }}?ref=nwslettr">{{ opp.title }}</a></p>
 													       {% endfor %}
 														</td>
@@ -244,7 +244,7 @@
 															<table>
 																<tr>
 																	<td bgcolor="#ffcaff" height="16">
-																		<a href="http://rhizome.org/announce/opportunities/?ref=nwslettr" style="font:bold 10px Arial, Helvetica, sans-serif; color:#000; padding:0 5px; margin:0; text-transform:uppercase; text-decoration:none;">SEE ALL</a>
+																		<a href="http://rhizome.org/announce/opportunities/" style="font:bold 10px Arial, Helvetica, sans-serif; color:#000; padding:0 5px; margin:0; text-transform:uppercase; text-decoration:none;">SEE ALL</a>
 																	</td>
 																</tr>
 															</table>
@@ -279,7 +279,7 @@
 															<table>
 																<tr>
 																	<td bgcolor="#ffcaff" height="16">
-																		<a href="http://rhizome.org/announce/events/?ref=nwslettr" style="font:bold 10px Arial, Helvetica, sans-serif; color:#000; padding:0 5px; margin:0; text-transform:uppercase; text-decoration:none;">SEE ALL</a>
+																		<a href="http://rhizome.org/announce/events/" style="font:bold 10px Arial, Helvetica, sans-serif; color:#000; padding:0 5px; margin:0; text-transform:uppercase; text-decoration:none;">SEE ALL</a>
 																	</td>
 																</tr>
 															</table>
@@ -318,24 +318,24 @@
 													<tr>
 														<td width="454">
 												        {% for thread in threads %}
-														  														  
+
                                                             {% if thread.content_type_id == 112 %}
                                                                 {% get_comment_count for thread as thread_count %}
-                                				                <p style="font:13px Georgia, 'Times New Roman', Times, serif; color:#000; padding:0 0 5px; margin:0;"><img src="{{ STATIC_URL }}editorial/newsletter/template_images/arrow.gif" alt="" /> 
+                                				                <p style="font:13px Georgia, 'Times New Roman', Times, serif; color:#000; padding:0 0 5px; margin:0;"><img src="{{ STATIC_URL }}editorial/newsletter/template_images/arrow.gif" alt="" />
         														      <a style="color:#026784; text-decoration:none;" href="http://rhizome.org/discuss/view/{{thread.id}}/?ref=nwslettr">{{ thread.content_object.title }} ({{ thread_count }} posts)
         														      </a>
         														  </p>
     												        {% else %}
-    														  
+
     														   {% get_comment_count for thread.content_object as thread_count %}
-    														  <p style="font:13px Georgia, 'Times New Roman', Times, serif; color:#000; padding:0 0 5px; margin:0;"><img src="{{ STATIC_URL }}editorial/newsletter/template_images/arrow.gif" alt="" /> 
+    														  <p style="font:13px Georgia, 'Times New Roman', Times, serif; color:#000; padding:0 0 5px; margin:0;"><img src="{{ STATIC_URL }}editorial/newsletter/template_images/arrow.gif" alt="" />
     														      <a style="color:#026784; text-decoration:none;" href="http://rhizome.org/discuss/view/{{thread.id}}/?ref=nwslettr">{{ thread.content_object.title }} ({{ thread_count }} posts)
     														      </a>
     														  </p>
-    														  {% endif %}														  
-														  
+    														  {% endif %}
+
 												        {% endfor %}
-															
+
 														</td>
 													</tr>
 													<tr><td width="454" height="10" style="line-height:0;">&nbsp;</td></tr>
@@ -400,59 +400,59 @@
 								</td>
 							</tr>
 						</table>
-						
-                        <table width="192" align="center" cellpadding="0" border="0" style="border-collapse:seperate; border:1px solid #ccc; margin-top:10px; bgcolor:#ffffff;">		
+
+                        <table width="192" align="center" cellpadding="0" border="0" style="border-collapse:seperate; border:1px solid #ccc; margin-top:10px; bgcolor:#ffffff;">
 							<tr>
 								<td width="190">
-		
+
 									<table width="190" align="center" cellpadding="0" border="0" style="border-collapse:seperate;" bgcolor="#ffffff">
 										<tr><td width="174" height="10" style="line-height:0;">&nbsp;</td></tr>
 								        <tr>
 								            <td width="174" style="line-height:0; text-align:center;">
 								                <p style="font:bold 11px Arial, Helvetica, sans-serif; color:#000; padding:0 5px; margin:0; text-transform:uppercase;"><a style="font:bold 12px Arial, Helvetica, sans-serif; color:#026784; text-decoration:none;" href="https://rhizome.org/support/donate?ref=nwslettr">  <img style = "border:none;" width = "175" src = "{{ STATIC_URL }}support/images/individual/member_price.png" /></a>
                                                 </p>
-                            
-                                                <p style="font:11px Arial, Helvetica, sans-serif; padding:0; margin-bottom:5px;"><a href="https://rhizome.org/support/donate/?ref=nwslettr" style="font:bold 12px Arial, Helvetica, sans-serif; color:#026784; text-decoration:none;margin:0px 3px;">Become a Rhizome Member!</a></p>   											
+
+                                                <p style="font:11px Arial, Helvetica, sans-serif; padding:0; margin-bottom:5px;"><a href="https://rhizome.org/support/donate/?ref=nwslettr" style="font:bold 12px Arial, Helvetica, sans-serif; color:#026784; text-decoration:none;margin:0px 3px;">Become a Rhizome Member!</a></p>
 								            </td>
-										</tr>                                    
+										</tr>
                                     </table>
 				                </td>
 							</tr>
 						</table>
-																	
-						
+
+
 						<!--START ADS TABLE-->
-						
+
 						<table width="192" align="center" cellpadding="0" border="0" style="border-collapse:seperate; border:1px solid #ccc; margin-top:10px;" bgcolor="#ffffff">
 							<tr>
 								<td width="190">
-									
+
 									<table width="174" align="center" cellpadding="0" border="0" style="border-collapse:seperate;" bgcolor="#ffffff">
 										<tr>
 										<td width="174" height="10" style="line-height:0;">&nbsp;</td></tr>
-											
+
 											<tr>
 												<td width="174">
-													
+
 													<table align="center">
 														<tr>
 															<td bgcolor="#ffcaff" height="16">
 																<p style="font:bold 11px Arial, Helvetica, sans-serif; color:#000; padding:0 5px; margin:0; text-transform:uppercase;">RHIZOME NEWS ADS</p>
-										
+
 															</td>
 														</tr>
 													</table>
-													
+
 												</td>
 											</tr>
-											 
+
 
 											<tr><td width="174" height="10" style="line-height:0;text-align:center;"><img src="{{ STATIC_URL }}editorial/newsletter/template_images/hr4.gif" alt="" /></td></tr>
-								            
+
 								            <tr><td width="174" height="10" style="line-height:0;">&nbsp;</td></tr>
-	
-								<!--start ad-->	
-									
+
+								<!--start ad-->
+
                                         <tr>
 							             <td width="174" align="center" style="padding: 0px;">
 
@@ -461,24 +461,24 @@
 								                <img style = "border:none;" width = "175" src = "{{ STATIC_URL }}/support/images/advertise@rhizome-news.gif" />
 								            </a>
                                         </p>
-                                        <p style="font:11px Arial, Helvetica, sans-serif; padding:0; margin-bottom:5px;"><a href="http://nectarads.com/" style="font:bold 12px Arial, Helvetica, sans-serif; color:#026784; text-decoration:none;margin:0px 3px;">Contact our partner Nectar Ads for details</a></p>    
+                                        <p style="font:11px Arial, Helvetica, sans-serif; padding:0; margin-bottom:5px;"><a href="http://nectarads.com/" style="font:bold 12px Arial, Helvetica, sans-serif; color:#026784; text-decoration:none;margin:0px 3px;">Contact our partner Nectar Ads for details</a></p>
                                         </td>
-										</tr>	                                         
+										</tr>
 								<!--end ad-->
-										
+
                                         <tr><td width="174" height="10" style="line-height:0;">&nbsp;</td></tr>
 
 									</table>
 								</tr>
 							</table>
-									<!--END ADS TABLE-->	
+									<!--END ADS TABLE-->
                 <tr><td width="441" height="15" style="line-height:0;">&nbsp;</td></tr>
 
 										</td>
 									</table>
 								</td>
 							</tr>
-				
+
 	<tr>
 		<td width="700" align="center" bgcolor="#ffffff">
 			<table width="680" align="center" cellpadding="0" border="0" style="border-collapse:seperate;" >
