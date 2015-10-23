@@ -22,7 +22,17 @@
                     <fieldset>
                         <div class="field col-2">
                             {{ form.select_amount.label_tag }}<br>
-                            {{ form.select_amount }} USD
+                            <select id="id_select_amount" name="select_amount">
+                              <option value="" selected="selected"></option>
+                              <option value="30.00">$30.00 -- Basic Membership</option>
+                              <option value="45.00">$45.00 -- Rhizome hat or tote</option>
+                              <option value="50.00">$50.00</option>
+                              <option value="60.00">$60.00 -- Bad Logo shirt</option>
+                              <option value="100.00">$100.00</option>
+                              <option value="300.00">$300.00</option>
+                              <option value="500.00">$500.00</option>
+                              <option value="1000.00">$1000.00 -- Rhizome Council</option>
+                            </select>
                         </div>
                         <div class="field col-2">
                             {{ form.custom_amount.label_tag }}<br>
